@@ -33,7 +33,11 @@ export async function GET(request: Request) {
 
     if (!error) {
       // Successful login, redirect to admin dashboard
-      return NextResponse.redirect(new URL('/admin', request.url));
+      // Use hardcoded admin path for stability
+      const nextUrl = new URL('/admin', process.env.NEXT_PUBLIC_ADMIN_URL || request.url);
+      return NextResponse.redirect(nextUrl);
+    } else {
+      console.error('SUPABASE AUTH EXCHANGE ERROR:', error.message);
     }
   }
 
