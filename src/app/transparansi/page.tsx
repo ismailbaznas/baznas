@@ -24,7 +24,7 @@ const DOCUMENT_TYPES_MAP: Record<string, string> = {
 };
 
 export default async function TransparansiPage() {
-    const supabase = createServerSupabase();
+    const supabase = await createServerSupabase();
 
     const { data: documents, error } = await supabase
         .from("documents")

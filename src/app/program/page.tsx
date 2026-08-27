@@ -7,7 +7,7 @@ import { AlertTriangle } from "lucide-react";
 export const dynamic = "force-dynamic";
 
 export default async function ProgramPage() {
-    const supabase = createServerSupabase();
+    const supabase = await createServerSupabase();
 
     const { data: programs, error } = await supabase
         .from("programs")
