@@ -23,7 +23,7 @@ export default async function AdminUsersPage({
   const offset = (currentPage - 1) * PAGE_SIZE;
 
   // Fetch users and roles data using service role client to bypass RLS
-  const supabase = createServerSupabase();
+  const supabase = await createServerSupabase();
 
   // Fetch all users
   let query = supabase

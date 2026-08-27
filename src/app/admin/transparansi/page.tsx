@@ -24,7 +24,7 @@ export default async function AdminDocumentPage({
   const search = searchParams.search || "";
   const offset = (currentPage - 1) * PAGE_SIZE;
 
-  const supabase = createServerSupabase();
+  const supabase = await createServerSupabase();
 
   // 3. Initial Data Fetch (Documents + Total Count)
   let query = supabase
