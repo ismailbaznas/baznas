@@ -1,0 +1,150 @@
+// src/components/admin/AdminRolesClient.tsx
+
+"use client";
+
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useAdmin } from "@/lib/admin-context";
+import { Plus, Pencil, Trash2, Key, Users } from "lucide-react";
+import { Button } from "../ui/Button";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/Table";
+import { Badge } from "../ui/Badge";
+import { RBACUser, Role, PermissionId } from "@/types/rbac";
+import { Can } from "../rbac/Can";
+import AdminRolesModal from "./AdminRolesModal";
+
+interface AdminRolesClientProps {
+    initialRoles: Role[];
+    user: RBACUser;
+    allPermissions: PermissionId[];
+}
+
+export default function AdminRolesClient({
+    initialRoles,
+    user,
+    allPermissions,
+}: AdminRolesClientProps) {
+    const router = useRouter();
+    const { can } = useAdmin();
+    const [roleList, setRoleList] = useState(initialRoles);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [editingRole, setEditingRole] = useState<Role | null>(null);
+
+    // Function to handle modal close and potential data refetch
+    const handleCloseModal = (refetch: boolean = false) => {
+        setIsModalOpen(false);
+        setEditingRole(null);
+        if (refetch) {
+            router.refresh(); // Triggers Server Component to fetch new data
+        }
+    }
+
+    const handleEdit = (role: Role) => {
+        setEditingRole(role);
+        setIsModalOpen(true);
+    };
+
+    const handleCreate = () => {
+        setEditingRole(null);
+        setIsModalOpen(true);
+    };
+
+    const handleDelete = async (id: string) => {
+        if (!can("role", "manage") || !confirm(`Apakah Anda yakin ingin menghapus peran '${id}'? Tindakan ini tidak dapat dibatalkan.`)) {
+            return;
+        }
+
+        try {
+            const response = await fetch("/api/rbac/roles", {
+                method: "DELETE",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id }),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || "Gagal menghapus peran.");
+            }
+
+            router.refresh(); // Refetch data
+        } catch (error: any) {
+            alert(error.message);
+        }
+    };
+
+    return (
+        <>
+            <div className="space-y-6">
+                <div className="flex justify-between items-center">
+                    <h1 className="text-headline-md font-space-grotesk">
+                        Manajemen Peran ({roleList.length})
+                    </h1>
+                    <Can required="role.manage">
+                        <Button onClick={handleCreate} className="space-x-2">
+                            <Plus className="w-5 h-5" />
+                            <span>Buat Peran Baru</span>
+                        </Button>
+                    </Can>
+                </div>
+
+                <div className="bg-surface rounded-xl shadow-lg border border-surface-variant overflow-hidden">
+                    <Table>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHead className="w-[10%]">ID</TableHead>
+                                <TableHead className="w-[20%]">Nama Peran</TableHead>
+                                <TableHead className="w-[40%]">Deskripsi</TableHead>
+                                <TableHead>Status</TableHead>
+                                <TableHead className="text-right">Aksi</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            {roleList.length === 0 ? (
+                                <TableRow>
+                                    <TableCell colSpan={5} className="text-center text-on-surface-variant py-8">
+                                        Tidak ada peran ditemukan.
+                                    </TableCell>
+                                </TableRow>
+                            ) : (
+                                roleList.map((role) => (
+                                    <TableRow key={role.id}>
+                                        <TableCell className="font-mono text-xs text-on-surface-variant">{role.id}</TableCell>
+                                        <TableCell className="font-medium">{role.name}</TableCell>
+                                        <TableCell className="text-sm text-on-surface-variant">{role.description}</TableCell>
+                                        <TableCell>
+                                            <Badge variant={role.is_system ? "destructive" : "default"}>
+                                                {role.is_system ? "Sistem" : "Kustom"}
+                                            </Badge>
+                                        </TableCell>
+                                        <TableCell className="text-right">
+                                            <div className="space-x-2 flex justify-end">
+                                                <Can required="role.manage">
+                                                    <Button variant="outline" size="sm" onClick={() => handleEdit(role)} title="Edit Role">
+                                                        <Pencil className="w-4 h-4" />
+                                                    </Button>
+                                                </Can>
+                                                <Can required="role.manage">
+                                                    <Button variant="destructive" size="sm" onClick={() => handleDelete(role.id)} disabled={role.is_system} title="Hapus Role">
+                                                        <Trash2 className="w-4 h-4" />
+                                                    </Button>
+                                                </Can>
+                                            </div>
+                                        </TableCell>
+                                    </TableRow>
+                                ))
+                            )}
+                        </TableBody>
+                    </Table>
+                </div>
+            </div>
+
+            {/* Modal */}
+            <AdminRolesModal 
+                open={isModalOpen} 
+                onClose={handleCloseModal} 
+                editRole={editingRole}
+                allPermissions={allPermissions}
+            />
+        </>
+    );
+}

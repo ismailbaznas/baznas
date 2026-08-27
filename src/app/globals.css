@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light Theme (BAZNAS Green/Gold) */
+    --c-primary: 29 133 9; /* BAZNAS Green */
+    --c-on-primary: 255 255 255;
+    --c-primary-container: 245 200 80; /* Light Gold */
+    --c-on-primary-container: 26 13 0;
+
+    /* Status Colors */
+    --c-status-success: 22 163 74; /* Light Success */
+    --c-on-status-success: 255 255 255;
+    --c-status-warning: 217 119 6; /* Light Warning */
+    --c-on-status-warning: 255 255 255;
+    --c-status-danger: 220 38 38; /* Light Danger */
+    --c-on-status-danger: 255 255 255;
+
+    --c-primary-dark: 140 105 15; /* For text on light surfaces (gold) */
+
+    /* Surface and Text */
+    --c-background: 255 255 255;
+    --c-on-background: 28 27 31;
+    --c-surface: 255 255 255;
+    --c-on-surface: 28 27 31;
+    --c-surface-variant: 236 224 236;
+    --c-on-surface-variant: 73 69 78;
+    --c-surface-container-lowest: 255 255 255; /* White */
+  }
+
+  /* Dark Theme */
+  [data-mode="dark"] {
+    --c-primary: 153 234 110;
+    --c-on-primary: 0 57 32;
+    --c-primary-container: 247 210 108;
+    --c-on-primary-container: 32 15 0;
+
+    /* Status Colors (Dark Contrast) */
+    --c-status-success: 34 197 94;
+    --c-on-status-success: 0 0 0;
+    --c-status-warning: 251 191 36;
+    --c-on-status-warning: 0 0 0;
+    --c-status-danger: 248 113 113;
+    --c-on-status-danger: 0 0 0;
+
+    --c-primary-dark: 200 160 40; /* Dark Gold contrast */
+
+    /* Surface and Text */
+    --c-background: 18 18 18;
+    --c-on-background: 230 230 230;
+    --c-surface: 18 18 18;
+    --c-on-surface: 230 230 230;
+    --c-surface-variant: 38 40 42; /* Dark grey */
+    --c-on-surface-variant: 198 198 200;
+    --c-surface-container-lowest: 28 28 30; /* Very dark grey */
+  }
+
+  /* KEMENHAJ/BAZNAS Specifics */
+  .glow-gold {
+    text-shadow: 0 0 20px rgb(var(--c-primary-container) / 0.7);
+  }
+}
