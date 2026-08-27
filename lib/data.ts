@@ -1,10 +1,9 @@
 // lib/data.ts
 
-import { createClientSupabaseClient } from './supabase-client'; // Use client for public read access (assuming RLS is public)
+import { createClientSupabaseClient } from './supabase-client';
 import { notFound } from 'next/navigation';
 
 // Type definitions for public tables
-// NOTE: These should ideally be generated via Supabase CLI, but for MVP, we define them manually
 interface Program {
   id: string;
   slug: string;
@@ -24,13 +23,12 @@ interface NewsItem {
   category_id: string | null;
   published_at: string;
   thumbnail_url: string | null;
-  // Join category name for display purposes
   category_name: string | null; 
 }
 
-const supabase = createClientSupabaseClient(); // Public, read-only client
+const supabase = createClientSupabaseClient();
 
-// --- Program Fetching ---
+// --- PROGRAM FETCHING (Detail & Slugs for SSG) ---
 
 export async function fetchAllProgramSlugs() {
   const { data, error } = await supabase
@@ -42,8 +40,6 @@ export async function fetchAllProgramSlugs() {
     console.error('Error fetching program slugs:', error);
     return [];
   }
-  
-  // Need to map to match the expected format for generateStaticParams: [{ slug: '...' }]
   return data.map(item => ({ slug: item.slug }));
 }
 
@@ -58,11 +54,10 @@ export async function fetchProgramBySlug(slug: string): Promise<Program> {
   if (error || !data) {
     notFound();
   }
-
   return data as Program;
 }
 
-// --- News Fetching ---
+// --- NEWS FETCHING (Detail & Slugs for SSG) ---
 
 export async function fetchAllNewsSlugs() {
   const { data, error } = await supabase
@@ -74,12 +69,10 @@ export async function fetchAllNewsSlugs() {
     console.error('Error fetching news slugs:', error);
     return [];
   }
-  
   return data.map(item => ({ slug: item.slug }));
 }
 
 export async function fetchNewsBySlug(slug: string): Promise<NewsItem> {
-  // We need to join with categories to get the category name
   const { data, error } = await supabase
     .from('news')
     .select('*, categories(name)')
@@ -91,14 +84,57 @@ export async function fetchNewsBySlug(slug: string): Promise<NewsItem> {
     notFound();
   }
   
-  // Format the data to match the interface
   const newsItem: NewsItem = {
     ...data,
     category_name: (data.categories as { name: string | null })?.name ?? 'Umum',
   };
-
   return newsItem;
 }
 
-// NOTE: Since the project is fresh, all fetching will currently result in notFound()
-// until seed data or CMS creation is implemented.
+
+// --- PUBLIC LISTING FETCHING (List Pages) ---
+
+export async function fetchNewsList() {
+  const { data, error } = await supabase
+    .from('news')
+    .select('id, title, slug, published_at, thumbnail_url, content, categories(name)')
+    .eq('is_published', true)
+    .order('published_at', { ascending: false });
+
+  if (error) {
+    console.error('Error fetching news list:', error);
+    return [];
+  }
+
+  return data.map((item: any) => ({
+    id: item.id,
+    title: item.title,
+    slug: item.slug,
+    date: item.published_at,
+    excerpt: item.content.replace(/<[^>]*>?/gm, "").substring(0, 150) + '...',
+    thumbnailUrl: item.thumbnail_url,
+    category: item.categories?.name ?? 'Umum',
+  }));
+}
+
+export async function fetchProgramList() {
+  const { data, error } = await supabase
+    .from('programs')
+    .select('id, title, slug, description, image_url, categories(name)')
+    .eq('is_active', true)
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    console.error('Error fetching program list:', error);
+    return [];
+  }
+
+  return data.map((item: any) => ({
+    id: item.id,
+    title: item.title,
+    slug: item.slug,
+    description: item.description,
+    imageUrl: item.image_url,
+    category: item.categories?.name ?? 'Umum',
+  }));
+}
