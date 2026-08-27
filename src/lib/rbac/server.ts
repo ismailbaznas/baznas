@@ -32,9 +32,9 @@ export async function getRbacUser(): Promise<RBACUser | null> {
     user_email: authUser.email!,
   } as any);
 
-  if (error || !rbacData) {
-    // If RPC fails (e.g., user is authenticated but not in admin_users table), return base user
-    console.error("RPC get_rbac_user failed:", error);
+  if (error || !rbacData || rbacData.length === 0) {
+    // If RPC fails (error) or user is not found in admin_users (empty array), return base user
+    if (error) console.error("RPC get_rbac_user failed:", error);
     return {
       id: authUser.id,
       email: authUser.email!,
@@ -45,8 +45,8 @@ export async function getRbacUser(): Promise<RBACUser | null> {
     };
   }
 
-  // Assuming rbacData is the single row returned by the RPC
-  const user: any = rbacData;
+  // Get the first user record from the array
+  const user: any = rbacData[0];
   const isSuperAdmin = user.role === "superadmin";
 
   return {
