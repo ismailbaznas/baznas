@@ -2,8 +2,7 @@
 
 "use client";
 
-import React, { useState } from "react";
-import { Lock, Mail, LogIn, AlertTriangle } from "lucide-react";
+import { Lock, Mail, LogIn, AlertTriangle, Chrome } from "lucide-react";
 import { Button } from "../ui/Button";
 import { getSupabaseBrowser } from "@/lib/supabase";
 import { redirect } from "next/navigation";
@@ -36,6 +35,25 @@ export default function LoginFormClient() {
     }
 
     setLoading(false);
+  };
+
+  const handleGoogleLogin = async () => {
+    setLoading(true);
+    setError(null);
+
+    // Initiates the OAuth flow
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        // Redirect user back to the admin page after successful login
+        redirectTo: `${window.location.origin}/admin`,
+      },
+    });
+
+    if (error) {
+      setError(error.message);
+    }
+    // Note: No need to set loading to false here, as the page will redirect
   };
 
   return (
@@ -95,6 +113,17 @@ export default function LoginFormClient() {
           <span>{loading ? "Memproses..." : "Masuk"}</span>
         </Button>
       </form>
+
+      <div className="flex items-center space-x-2">
+        <hr className="flex-grow border-t border-surface-variant" />
+        <span className="text-sm text-on-surface-variant">ATAU</span>
+        <hr className="flex-grow border-t border-surface-variant" />
+      </div>
+
+      <Button onClick={handleGoogleLogin} className="w-full space-x-2 bg-surface-container-high text-on-surface hover:bg-surface-container-highest" disabled={loading} type="button">
+        <Chrome className="w-5 h-5" />
+        <span>Masuk dengan Google</span>
+      </Button>
     </div>
   );
 }
