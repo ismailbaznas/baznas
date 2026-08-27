@@ -9,7 +9,7 @@ import { AlertTriangle } from "lucide-react";
 export const dynamic = "force-dynamic";
 
 export default async function KabarPage() {
-    const supabase = createServerSupabase();
+    const supabase = await createServerSupabase();
 
     const { data: news, error } = await supabase
         .from("news")
