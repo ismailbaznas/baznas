@@ -3,6 +3,7 @@
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { createServerClient } from "@supabase/ssr";
 import { Database } from "../types/database.types"; // Assuming this will be generated later
+import { cookies } from "next/headers";
 
 /**
  * Singleton for the Supabase browser client (for use in client components for mutations)
@@ -29,7 +30,6 @@ export function getSupabaseBrowser() {
  */
 export function createServerSupabase() {
   // We import cookies dynamically to avoid "next/headers" evaluation in non-server contexts
-  const { cookies } = require("next/headers");
   const cookieStore = cookies();
   
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
