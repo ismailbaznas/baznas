@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
-  },\n\n  "dependencies": {
+  },
+  "dependencies": {
     "@supabase/ssr": "^0.12.5",
     "@supabase/supabase-js": "^2.112.4",
     "next": "16.3.3",
