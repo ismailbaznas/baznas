@@ -1,6 +1,6 @@
 # BAZNAS Kabupaten Boven Digoel Rebuild Project
 
-Selamat datang di proyek pembangunan ulang Website Resmi BAZNAS Kabupaten Boven Digoel. Proyek ini dibangun dengan arsitektur modern Next.js 16 (App Router), TypeScript, Tailwind CSS, dan Supabase untuk menjamin performa, skalabilitas, dan keamanan.
+Selamat datang di proyek pembangunan ulang Website Resmi BAZNAS Kabupaten Boven Digoel. Proyek ini dibangun dengan arsitektur modern Next.js 16 (App Router), TypeScript, Tailwind CSS, dan Supabase untuk menjamin performa, skalabilitas dan keamanan.
 
 Sistem ini mengadopsi pola arsitektur yang teruji (berdasarkan proyek KEMENHAJ) dan telah dilengkapi dengan modul fungsionalitas penuh untuk CMS dan manajemen keamanan.
 

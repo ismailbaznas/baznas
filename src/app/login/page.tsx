@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation";
 import LoginFormClient from "@/components/auth/LoginFormClient";
 import { createServerSupabase } from "@/lib/server-supabase";
+import RedirectClient from "@/components/RedirectClient";
 
 // Required for dynamic behavior
 export const dynamic = "force-dynamic";
@@ -16,8 +17,8 @@ export default async function LoginPage() {
   } = await supabase.auth.getUser();
 
   if (user) {
-    // If logged in, redirect to the admin dashboard
-    redirect("/admin");
+    // If logged in, use client component to force a clean, client-side navigation
+    return <RedirectClient />;
   }
 
   return (

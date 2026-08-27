@@ -32,7 +32,7 @@ export async function getRbacUser(): Promise<RBACUser | null> {
     user_email: authUser.email!,
   } as any);
 
-  if (error || !rbacData || rbacData.length === 0) {
+  if (error || !rbacData || (rbacData as any[]).length === 0) {
     // If RPC fails (error) or user is not found in admin_users (empty array), return base user
     if (error) console.error("RPC get_rbac_user failed:", error);
     return {

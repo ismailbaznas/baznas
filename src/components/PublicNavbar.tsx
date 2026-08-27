@@ -9,6 +9,7 @@ import Logo from './ui/Logo';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { User, Menu, X } from 'lucide-react';
+import { useAuthSession } from '@/hooks/useAuthSession';
 
 const NAV_LINKS = [
     { href: '/', label: 'Beranda' },
@@ -23,6 +24,7 @@ const NAV_LINKS = [
 export default function PublicNavbar() {
     const pathname = usePathname();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { isLoggedIn, loading, handleLogout } = useAuthSession();
 
     return (
         <header className="sticky top-0 z-40 w-full bg-surface shadow-md">
@@ -49,12 +51,23 @@ export default function PublicNavbar() {
 
                 {/* Action Buttons */}
                 <div className="flex items-center space-x-3">
-                    <Button variant="default" size="sm" asChild>
-                        <Link href="/login" className='space-x-2'>
+                    {loading ? (
+                        <Button variant="default" size="sm" disabled>
+                            <span>Memuat...</span>
+                        </Button>
+                    ) : isLoggedIn ? (
+                        <Button variant="default" size="sm" onClick={handleLogout} className='space-x-2'>
                             <User className='w-4 h-4' />
-                            <span>Admin</span>
-                        </Link>
-                    </Button>
+                            <span>Logout</span>
+                        </Button>
+                    ) : (
+                        <Button variant="default" size="sm" asChild>
+                            <Link href="/login" className='space-x-2'>
+                                <User className='w-4 h-4' />
+                                <span>Login</span>
+                            </Link>
+                        </Button>
+                    )}
 
                     {/* Mobile Menu Button */}
                     <Button 
@@ -70,8 +83,10 @@ export default function PublicNavbar() {
 
             {/* Mobile Menu */}
             <div className={cn(
-                "fixed inset-x-0 top-16 bg-surface shadow-lg border-t border-surface-variant transition-transform duration-300 ease-in-out md:hidden z-30",
-                isMenuOpen ? "translate-y-0" : "-translate-y-full"
+                "fixed inset-x-0 top-16 bg-surface shadow-lg border-t border-surface-variant transition-all duration-300 ease-in-out md:hidden z-30",
+                isMenuOpen 
+                    ? "opacity-100 translate-y-0 pointer-events-auto" 
+                    : "opacity-0 -translate-y-2 pointer-events-none"
             )}>
                 <nav className="flex flex-col p-4 space-y-1">
                     {NAV_LINKS.map((link) => (

@@ -2,10 +2,11 @@
 
 "use client";
 
+import { useState, useEffect } from "react";
 import { Lock, Mail, LogIn, AlertTriangle, Chrome } from "lucide-react";
 import { Button } from "../ui/Button";
 import { getSupabaseBrowser } from "@/lib/supabase";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Input } from "../ui/Input"; // Placeholder for Input component
 
@@ -16,7 +17,28 @@ export default function LoginFormClient() {
   const [error, setError] = useState<string | null>(null);
 
   const supabase = getSupabaseBrowser();
+  const router = useRouter();
 
+  // Listen for auth change and redirect
+  useEffect(() => {
+    // Initial check on mount
+    supabase.auth.getSession().then(({ data: { session } }) => {
+        if (session) {
+            router.push("/admin");
+        }
+    });
+
+    // Listener for sign in events from OAuth popup
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+        if (event === 'SIGNED_IN' && session) {
+            router.push("/admin");
+        }
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, [router, supabase]);
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -30,8 +52,10 @@ export default function LoginFormClient() {
     if (error) {
       setError(error.message);
     } else {
-      // Successful login, redirect to admin page
-      redirect("/admin");
+      // Successful login, wait briefly for cookies to write, then redirect to admin page
+      await supabase.auth.getSession();
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      router.push("/admin");
     }
 
     setLoading(false);
@@ -41,12 +65,11 @@ export default function LoginFormClient() {
     setLoading(true);
     setError(null);
 
-    // Initiates the OAuth flow
+    // Initiates the OAuth flow with explicit redirect to our callback endpoint
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        // Redirect user back to the admin page after successful login
-        redirectTo: `${window.location.origin}/admin`,
+        redirectTo: window.location.origin + "/api/auth/callback",
       },
     });
 

@@ -5,7 +5,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAdmin } from "@/lib/admin-context";
-import { Plus, Pencil, Trash2, Key, Users } from "lucide-react";
+import { Plus, Pencil, Trash2, ShieldAlert } from "lucide-react";
 import { Button } from "../ui/Button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/Table";
 import { Badge } from "../ui/Badge";
@@ -26,7 +26,6 @@ export default function AdminRolesClient({
 }: AdminRolesClientProps) {
     const router = useRouter();
     const { can } = useAdmin();
-    const [roleList, setRoleList] = useState(initialRoles);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingRole, setEditingRole] = useState<Role | null>(null);
 
@@ -77,7 +76,7 @@ export default function AdminRolesClient({
             <div className="space-y-6">
                 <div className="flex justify-between items-center">
                     <h1 className="text-headline-md font-space-grotesk">
-                        Manajemen Peran ({roleList.length})
+                        Manajemen Peran ({initialRoles.length})
                     </h1>
                     <Can required="role.manage">
                         <Button onClick={handleCreate} className="space-x-2">
@@ -93,28 +92,38 @@ export default function AdminRolesClient({
                             <TableRow>
                                 <TableHead className="w-[10%]">ID</TableHead>
                                 <TableHead className="w-[20%]">Nama Peran</TableHead>
-                                <TableHead className="w-[40%]">Deskripsi</TableHead>
-                                <TableHead>Status</TableHead>
+                                <TableHead className="w-[30%]">Deskripsi</TableHead>
+                                <TableHead className="w-[15%]">Hak Akses</TableHead>
+                                <TableHead className="w-[10%]">Status</TableHead>
                                 <TableHead className="text-right">Aksi</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {roleList.length === 0 ? (
+                            {initialRoles.length === 0 ? (
                                 <TableRow>
-                                    <TableCell colSpan={5} className="text-center text-on-surface-variant py-8">
+                                    <TableCell colSpan={6} className="text-center text-on-surface-variant py-8">
                                         Tidak ada peran ditemukan.
                                     </TableCell>
                                 </TableRow>
                             ) : (
-                                roleList.map((role) => (
+                                initialRoles.map((role) => (
                                     <TableRow key={role.id}>
                                         <TableCell className="font-mono text-xs text-on-surface-variant">{role.id}</TableCell>
                                         <TableCell className="font-medium">{role.name}</TableCell>
-                                        <TableCell className="text-sm text-on-surface-variant">{role.description}</TableCell>
+                                        <TableCell className="text-sm text-on-surface-variant">{role.description || "—"}</TableCell>
+                                        <TableCell className="text-sm font-medium">
+                                            {role.permission_ids?.length || 0} Hak Akses
+                                        </TableCell>
                                         <TableCell>
-                                            <Badge variant={role.is_system ? "destructive" : "default"}>
-                                                {role.is_system ? "Sistem" : "Kustom"}
-                                            </Badge>
+                                            {role.is_system ? (
+                                                <Badge variant="warning">
+                                                    Sistem
+                                                </Badge>
+                                            ) : (
+                                                <Badge variant="secondary">
+                                                    Kustom
+                                                </Badge>
+                                            )}
                                         </TableCell>
                                         <TableCell className="text-right">
                                             <div className="space-x-2 flex justify-end">
