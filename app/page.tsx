@@ -1,12 +1,12 @@
 // app/page.tsx
 import { Metadata } from "next";
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
 
 import Hero from "@/components/Hero";
 import QuickServices from "@/components/QuickServices";
 import TrustIndicators from "@/components/TrustIndicators";
 import LatestNews from "@/components/LatestNews";
+import AuthRedirector from "@/components/AuthRedirector"; // NEW IMPORT
 
 // Ensure metadata is set for the homepage
 export const metadata: Metadata = {
@@ -15,15 +15,10 @@ export const metadata: Metadata = {
   // Add other SEO metadata later (canonical, og, etc.)
 };
 
-export default function Home({ searchParams }: { searchParams: { code?: string } }) {
-  // Check for the OAuth code parameter (Workaround for Supabase Redirect URL misconfiguration)
-  if (searchParams.code) {
-    // If the code is present, redirect to the correct handler
-    redirect('/auth/callback'); 
-  }
-  
+export default function Home() {
   return (
     <>
+      <AuthRedirector /> {/* NEW COMPONENT */}
       {/* 1. Hero Section (PRD Section 7) */}
       <Hero />
 
