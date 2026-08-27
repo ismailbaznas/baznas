@@ -4,7 +4,7 @@
 import { redirect } from "next/navigation";
 import { NextResponse } from "next/server";
 import { PermissionId, RBACUser } from "@/types/rbac";
-import { createServerSupabase } from "../supabase";
+import { createServerSupabase } from "../server-supabase";
 import { Database } from "@/types/database.types"; // Ensure Database type is imported if needed, but not strictly required here
 import { SUPERADMIN_PERMISSIONS } from "./constants";
 
@@ -16,7 +16,7 @@ import { SUPERADMIN_PERMISSIONS } from "./constants";
  * @returns RBACUser object or null if not authenticated/authorized.
  */
 export async function getRbacUser(): Promise<RBACUser | null> {
-  const supabase = createServerSupabase();
+  const supabase = await createServerSupabase();
 
   // Check auth session
   const {
