@@ -1,6 +1,6 @@
 // src/app/program/page.tsx
 
-import { createServerSupabase } from "@/lib/supabase";
+import { createServerSupabase } from "@/lib/server-supabase";
 import Link from "next/link";
 import { AlertTriangle } from "lucide-react";
 

@@ -1,6 +1,6 @@
 // src/app/kabar/page.tsx
 
-import { createServerSupabase } from "@/lib/supabase";
+import { createServerSupabase } from "@/lib/server-supabase";
 import { format } from "date-fns";
 import { id } from "date-fns/locale";
 import Link from "next/link";

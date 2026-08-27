@@ -1,6 +1,6 @@
 // src/app/transparansi/page.tsx
 
-import { createServerSupabase } from "@/lib/supabase";
+import { createServerSupabase } from "@/lib/server-supabase";
 import { AlertTriangle, FileText } from "lucide-react";
 import Link from "next/link";
 
