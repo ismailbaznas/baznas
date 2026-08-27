@@ -1,5 +1,6 @@
 // components/Header.tsx
 import Link from 'next/link';
+import AuthButton from './AuthButton';
 
 // Main navigation links based on PRD Section 6
 const navLinks = [
@@ -39,14 +40,15 @@ export default function Header() {
             </div>
           </nav>
 
-          {/* CTA Button */}
+          {/* CTA Buttons */}
           <div className="hidden md:flex items-center">
             <Link 
               href="/layanan/bayar-zakat" 
-              className="ml-4 px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-baznas-green hover:bg-baznas-green-dark transition-colors"
+              className="px-4 py-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-baznas-gold hover:bg-yellow-600 transition-colors"
             >
               Tunaikan Zakat
             </Link>
+            <AuthButton />
           </div>
 
           {/* Mobile Menu Button - Placeholder for now */}
