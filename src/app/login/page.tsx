@@ -8,7 +8,7 @@ import { createServerSupabase } from "@/lib/supabase";
 export const dynamic = "force-dynamic";
 
 export default async function LoginPage() {
-  const supabase = createServerSupabase();
+  const supabase = await createServerSupabase();
 
   // Check if the user is already logged in
   const {
