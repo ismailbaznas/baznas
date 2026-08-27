@@ -1,12 +1,13 @@
 // app/page.tsx
 import { Metadata } from "next";
 import Link from 'next/link';
+import { redirect } from 'next/navigation'; // Only one time
 
 import Hero from "@/components/Hero";
 import QuickServices from "@/components/QuickServices";
 import TrustIndicators from "@/components/TrustIndicators";
 import LatestNews from "@/components/LatestNews";
-import AuthRedirector from "@/components/AuthRedirector"; // NEW IMPORT
+import AuthRedirectorWrapper from "@/components/AuthRedirectorWrapper"; // Use the wrapper
 
 // Ensure metadata is set for the homepage
 export const metadata: Metadata = {
@@ -16,9 +17,10 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
+  
   return (
     <>
-      <AuthRedirector /> {/* NEW COMPONENT */}
+      <AuthRedirectorWrapper />
       {/* 1. Hero Section (PRD Section 7) */}
       <Hero />
 
