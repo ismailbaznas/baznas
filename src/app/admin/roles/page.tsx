@@ -13,7 +13,7 @@ export default async function AdminRolesPage() {
   const user = await guardAdminPage("role.manage");
   
   // Fetch initial roles data using service role client to bypass RLS on system tables
-  const supabase = createServerSupabase();
+  const supabase = await createServerSupabase();
 
   const { data: roles, error } = await supabase.from("roles").select("*").order("is_system", {ascending: false}).order("name", {ascending: true});
 

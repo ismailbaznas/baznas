@@ -22,7 +22,7 @@ export default async function AdminSettingsPage() {
   // Guard 1: Check read permission
   const user = await guardAdminPage("settings.read");
 
-  const supabase = createServerSupabase();
+  const supabase = await createServerSupabase();
 
   // Fetch all current settings
   const { data: currentSettings, error } = await (supabase

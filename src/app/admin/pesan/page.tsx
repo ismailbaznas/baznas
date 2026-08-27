@@ -25,7 +25,7 @@ export default async function AdminPesanPage({
   const typeFilter = searchParams.type || "";
   const offset = (currentPage - 1) * PAGE_SIZE;
 
-  const supabase = createServerSupabase();
+  const supabase = await createServerSupabase();
 
   // 3. Initial Data Fetch (Messages + Total Count)
   let query = supabase
