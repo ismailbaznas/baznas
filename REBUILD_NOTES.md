@@ -122,3 +122,67 @@ Untuk setiap formulir publik baru yang memerlukan penulisan data ke database (se
 Jika di masa depan diputuskan untuk mengimplementasikan fitur unggah file langsung oleh pengguna (seperti unggah KTP/Bukti Transfer):
 1.  **Gunakan Private Bucket untuk Dokumen Sensitif**: Dokumen pribadi (KTP, KK, Bukti Transaksi) wajib diunggah ke private bucket, dan diakses menggunakan *Signed URL* jangka pendek terproteksi (misal durasi 10 menit).
 2.  **Validasi Tipe & Ukuran File**: Batasi ketat format file (hanya `.jpg`, `.jpeg`, `.png`, `.pdf`) dan ukuran maksimal (maksimal 2MB) langsung pada API Route server-side sebelum menyimpannya ke Supabase Storage.
+
+### D. Supabase Storage Bucket 'baznas' & Folder RLS Policies (Desain Struktur Folder Kuat)
+Untuk mendukung pengunggahan file (seperti gambar berita, program, dan laporan), kami merancang **Struktur Folder Tersegmentasi** yang memisahkan aset publik dan aset administratif privat pada bucket `baznas`.
+
+#### 1. Arsitektur Struktur Folder Bucket `baznas`:
+```text
+baznas (Bucket Name)
+ ├── public/                      <── Kategori Akses Terbuka (Public Read)
+ │    ├── news/                   <── Gambar / Thumbnail Berita & Artikel
+ │    ├── programs/               <── Ilustrasi Program Kerja
+ │    ├── team/                   <── Foto Pimpinan & Struktur Pengurus
+ │    └── transparansi/           <── Dokumen Transparansi Publik (PDF/Gambar)
+ │
+ └── admin/                       <── Kategori Terproteksi (Admin Only)
+      ├── private_documents/      <── Laporan Internal / Bukti Audit Rahasia
+      └── temporary/              <── Berkas Sementara Proses Verifikasi
+```
+
+#### 2. SQL RLS Storage Policies (Copy-Paste ke Supabase SQL Editor):
+Salin dan jalankan skrip SQL berikut di **Supabase SQL Editor** Anda untuk mengaktifkan RLS dan mengunci bucket `baznas` secara ketat berdasarkan rute folder di atas:
+
+```sql
+-- A. Aktifkan Row Level Security pada objek penyimpanan
+ALTER TABLE storage.objects ENABLE ROW LEVEL SECURITY;
+
+-- B. Bersihkan kebijakan lama (idempotent drops)
+DROP POLICY IF EXISTS "Public Read - baznas public folders" ON storage.objects;
+DROP POLICY IF EXISTS "Admin Manage - baznas folders" ON storage.objects;
+
+-- C. KEBIJAKAN 1: Izinkan siapa saja (anon & authenticated) untuk MEMBACA file di folder 'public/'
+CREATE POLICY "Public Read - baznas public folders" ON storage.objects
+  FOR SELECT TO public
+  USING (
+    bucket_id = 'baznas' 
+    AND (storage.foldername(name))[1] = 'public'
+  );
+
+-- D. KEBIJAKAN 2: Izinkan hanya admin yang sah (authenticated) untuk menulis/mengubah/menghapus file
+CREATE POLICY "Admin Manage - baznas folders" ON storage.objects
+  FOR ALL TO authenticated
+  USING (
+    bucket_id = 'baznas'
+  )
+  WITH CHECK (
+    bucket_id = 'baznas'
+    AND (
+      -- 1. Folder 'admin/' hanya boleh ditulisi oleh admin berwenang (manage settings)
+      (
+        (storage.foldername(name))[1] = 'admin'
+        AND public.has_permission('settings.read')
+      )
+      OR
+      -- 2. Folder 'public/' boleh ditulisi oleh editor/admin pembuat konten
+      (
+        (storage.foldername(name))[1] = 'public'
+        AND (
+          public.has_permission('berita.create')
+          OR public.has_permission('program.create')
+          OR public.has_permission('team_members.create')
+        )
+      )
+    )
+  );
+```
