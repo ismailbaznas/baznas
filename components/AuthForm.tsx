@@ -32,6 +32,23 @@ export default function AuthForm() {
     }
   };
 
+  const handleGoogleLogin = async () => {
+    setLoading(true);
+    setMessage('');
+
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`, // Needs to match the callback route
+      },
+    });
+
+    if (error) {
+      setMessage(`Login Google Gagal: ${error.message}`);
+    }
+    setLoading(false);
+  };
+
   return (
     <div className="max-w-md w-full space-y-8 p-10 bg-white rounded-xl shadow-lg border border-baznas-green/20">
       <h2 className="text-center text-3xl font-extrabold text-baznas-green-dark">
@@ -78,14 +95,33 @@ export default function AuthForm() {
             />
           </div>
         </div>
-
-        <div>
+        <div className="space-y-4">
           <button
             type="submit"
             disabled={loading}
             className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-baznas-green-dark hover:bg-baznas-green focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-baznas-green-dark disabled:opacity-50"
           >
-            {loading ? 'Memproses...' : 'Masuk'}
+            {loading ? 'Memproses...' : 'Masuk dengan Email/Password'}
+          </button>
+          
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-300" />
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-2 bg-white text-gray-500">
+                Atau
+              </span>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={handleGoogleLogin}
+            disabled={loading}
+            className="group relative w-full flex justify-center items-center py-2 px-4 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50"
+          >
+            {loading ? 'Memproses...' : 'Masuk dengan Google'}
           </button>
         </div>
         <p className='text-xs text-center text-gray-500'>*Pastikan akun admin sudah terdaftar di Supabase Auth.</p>
