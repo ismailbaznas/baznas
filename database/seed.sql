@@ -2,12 +2,6 @@
 -- Seed data for BAZNAS Boven Digoel Public Content Tables
 -- FIX: Using raw UUID strings directly for maximum compatibility with Supabase SQL Editor.
 
--- Define UUIDs to be used for foreign keys
-\set uuid_kat_pendidikan '1a2b3c4d-5e6f-7080-90a0-b1c2d3e4f5a1'
-\set uuid_kat_ekonomi '1a2b3c4d-5e6f-7080-90a0-b1c2d3e4f5a2'
-\set uuid_kat_kemanusiaan '1a2b3c4d-5e6f-7080-90a0-b1c2d3e4f5a3'
-\set uuid_kat_berita '1a2b3c4d-5e6f-7080-90a0-b1c2d3e4f5a4'
-
 -- 1. Insert Categories
 INSERT INTO categories (id, slug, name, type) VALUES
 ('1a2b3c4d-5e6f-7080-90a0-b1c2d3e4f5a1', 'pendidikan', 'Pendidikan', 'program'),
