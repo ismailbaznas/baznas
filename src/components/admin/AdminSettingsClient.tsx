@@ -9,7 +9,6 @@ import { Button } from "../ui/Button";
 import { Input } from "../ui/Input";
 import { RBACUser } from "@/types/rbac";
 import { Can } from "../rbac/Can";
-import { createServiceRoleClient } from "@/lib/supabase";
 import { AlertTriangle, Save } from "lucide-react";
 
 type Setting = {
@@ -54,8 +53,6 @@ export default function AdminSettingsClient({
             return;
         }
 
-        const supabase = createServiceRoleClient();
-        
         // Prepare data for upsert
         const dataToUpsert = settings.map(setting => ({
             key: setting.key,
@@ -63,10 +60,16 @@ export default function AdminSettingsClient({
             description: setting.name,
         }));
 
-        const { error: dbError } = await (supabase.from("site_settings") as any).upsert(dataToUpsert);
+        const response = await fetch("/api/settings", {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(dataToUpsert),
+        });
 
-        if (dbError) {
-            setError("Gagal menyimpan pengaturan: " + dbError.message);
+        const result = await response.json();
+
+        if (!response.ok || result.error) {
+            setError(result.error || "Terjadi kesalahan yang tidak diketahui saat menyimpan.");
         } else {
             setSuccess("Pengaturan berhasil disimpan.");
             router.refresh();
