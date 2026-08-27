@@ -31,9 +31,9 @@ Dokumen ini berfungsi sebagai acuan teknis master, analisis temuan awal, spesifi
 * **Solusi & Perbaikan**: Menghapus referensi `localStorage` langsung dari tubuh komponen. Sebagai gantinya, data pengguna masuk yang sah (`currentUser`) diambil secara aman di sisi Server Component dan dialirkan ke level modal terdalam melalui properti (props) terstruktur, sehingga menjamin kompatibilitas SSR 100% dan keamanan tipe data TypeScript.
 
 ### D. Tautan Mati 404 pada Kabar & Program
-* **Temuan Masalah**: Kartu berita terbaru dan kartu program di homepage serta halaman kategori mengarah ke tautan mati (404 Not Found) seperti `/kabar/${item.slug}` dan `/program/${item.slug}`.
+* **Temuan Masalah**: Kartu berita terbaru dan kartu program di homepage serta halaman kategori mengarah ke tautan mati (404 Not Found) seperti `/kabar/${item.slug}` and `/program/${item.slug}`.
 * **Penyebab**: Direktori dynamic routing `/kabar/[slug]` dan `/program/[slug]` belum dibuat sama sekali dalam struktur folder Next.js.
-* **Solusi & Perbaikan**: Membuat halaman detail dinamis yang teroptimasi di `/src/app/kabar/[slug]/page.tsx` dan `/src/app/program/[slug]/page.tsx`. Halaman-halaman ini secara asinkron mengambil data dari tabel `news` dan `programs` berdasarkan `slug` mereka, lengkap dengan penanganan halaman kosong (`notFound()`) dan visual artikel yang indah.
+* **Solusi & Perbaikan**: Membuat halaman detail dinamis yang teroptimasi di `/src/app/kabar/[slug]/page.tsx` and `/src/app/program/[slug]/page.tsx`. Halaman-halaman ini secara asinkron mengambil data dari tabel `news` dan `programs` berdasarkan `slug` mereka, lengkap dengan penanganan halaman kosong (`notFound()`) dan visual artikel yang indah.
 
 ---
 
@@ -85,5 +85,40 @@ Rencana pengembangan fungsionalitas lanjutan situs BAZNAS Boven Digoel agar teta
 
 ### FASE III: Sistem Pembayaran & Integrasi Nasional (Target: 6+ Bulan)
 1.  **Integrasi Kalkulator Zakat Nasional**: Menghubungkan modul perhitungan zakat BAZNAS Boven Digoel dengan Standard Calculation Engine resmi dari BAZNAS RI API (bila API tersedia), atau menggunakan abstraction layer `ZakatCalculationProvider` yang aman dan sesuai syariah.
-2.  **Kolaborasi Payment Gateway**: Menyediakan fitur pembayaran zakat online menggunakan metode transfer bank otomatis, retail, atau kode QRIS dinamis berkolaborasi dengan payment gateway resmi yang berizin Bank Indonesia (misal: Midtrans / Xendit).
+2.  **Kolaborasi Payment Gateway**: Menyediakan fitur pembayaran zakat online menggunakan metode transfer bank otomatis, retail, atau QRIS dinamis berkolaborasi dengan payment gateway resmi yang berizin Bank Indonesia (misal: Midtrans / Xendit).
 3.  **Dashboard Monitoring Muzaki & Mustahik**: Membangun modul internal admin (khusus role finansial & pimpinan) untuk memantau pendaftaran muzaki baru, melacak histori transaksi ZIS, serta mengelola verifikasi berkas penyaluran bantuan mustahik secara rahasia dan aman di bawah kendali RLS (Row Level Security) database yang sangat ketat.
+
+---
+
+## 4. ACUAN & RANCANGAN KEAMANAN SISTEM (SECURE ARCHITECTURE GUIDELINES)
+
+Untuk menjaga integritas, keamanan data, dan keandalan sistem BAZNAS Boven Digoel dalam jangka panjang, seluruh pengembangan fitur baru wajib mematuhi arsitektur keamanan terstandarisasi berikut:
+
+### A. Alur Transaksi Data Publik yang Aman (Secure Data Flow)
+Untuk setiap formulir publik baru yang memerlukan penulisan data ke database (seperti pengajuan bantuan, pendaftaran muzaki, atau konsultasi):
+
+```text
+  [ Browser Client Publik ] ──( Kirim Formulir )──> [ API Route Server-Side ]
+                                                           │
+                                                ( Validasi & Sanitasi )
+                                                           │
+                                                           ▼
+  [ Database Supabase ] <──( Bypass Aman RLS )── [ Service Role Client ]
+```
+
+1.  **JANGAN melonggarkan RLS tabel untuk `anon` secara bebas**: Membuka akses INSERT langsung pada database ke peran `anon` (anonymous) sangat rentan memicu serangan spamming bot, SQL Injection, atau eksploitasi kapasitas penyimpanan (DDoS).
+2.  **Gunakan Service Role di Lingkungan Server Tertutup**: Operasi penulisan dari form publik wajib diarahkan terlebih dahulu ke API Route Next.js (`src/app/api/...`), lalu dieksekusi di server menggunakan `createServiceRoleClient()`.
+3.  **Validasi & Sanitasi Sisi Server**: Sebelum data disimpan, lakukan validasi kelengkapan data (seperti pengecekan kolom wajib di `/api/contact` baris 12) untuk menyaring data sampah.
+
+### B. Aturan Emas Pengelolaan Kredensial & Server Boundary
+1.  **Pemisahan Kunci Supabase**:
+    - `NEXT_PUBLIC_SUPABASE_ANON_KEY` aman digunakan pada berkas client-side (`src/lib/supabase.ts`) untuk query data publik.
+    - `SUPABASE_SERVICE_ROLE_KEY` wajib dijaga kerahasiaannya dan **HANYA boleh diimpor di berkas server-side** (`src/lib/server-supabase.ts`). Jangan pernah mengekspos kunci ini ke browser client.
+2.  **Sinkronisasi Variabel Lingkungan di Vercel**:
+    - Setiap kali melakukan perubahan, penambahan, atau rotasi kunci API pada Environment Variables di Vercel Dashboard, developer **WAJIB melakukan Redeploy** pada menu Deployments Vercel agar sistem produksi memperbarui konfigurasinya.
+    - Pastikan variabel lingkungan publik selalu diawali dengan prefix `NEXT_PUBLIC_` agar dapat dibaca dengan benar oleh Next.js di sisi client.
+
+### C. Keamanan File & Media (Future Upload Security)
+Jika di masa depan diputuskan untuk mengimplementasikan fitur unggah file langsung oleh pengguna (seperti unggah KTP/Bukti Transfer):
+1.  **Gunakan Private Bucket untuk Dokumen Sensitif**: Dokumen pribadi (KTP, KK, Bukti Transaksi) wajib diunggah ke private bucket, dan diakses menggunakan *Signed URL* jangka pendek terproteksi (misal durasi 10 menit).
+2.  **Validasi Tipe & Ukuran File**: Batasi ketat format file (hanya `.jpg`, `.jpeg`, `.png`, `.pdf`) dan ukuran maksimal (maksimal 2MB) langsung pada API Route server-side sebelum menyimpannya ke Supabase Storage.
