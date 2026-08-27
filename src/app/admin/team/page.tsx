@@ -1,7 +1,7 @@
 // src/app/admin/team/page.tsx
 
 import { guardAdminPage } from "@/lib/rbac/server";
-import { createServerSupabase } from "@/lib/supabase";
+import { createServerSupabase } from "@/lib/server-supabase";
 import { cookies } from "next/headers";
 import AdminTeamClient from "@/components/admin/AdminTeamClient";
 

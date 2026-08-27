@@ -1,7 +1,7 @@
 // src/app/admin/berita/page.tsx
 
 import { guardAdminPage } from "@/lib/rbac/server";
-import { createServerSupabase } from "@/lib/supabase";
+import { createServerSupabase } from "@/lib/server-supabase";
 import { cookies } from "next/headers";
 import { Database } from "@/types/database.types"; // Assuming types are generated/updated
 import AdminBeritaClient from "@/components/admin/AdminBeritaClient";

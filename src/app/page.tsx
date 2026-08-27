@@ -1,12 +1,12 @@
 // src/app/page.tsx
 // Server Component
-import { createServerSupabase } from "@/lib/supabase";
+import { createServerSupabase } from "@/lib/server-supabase";
 import HomeClient from "@/components/HomeClient";
 
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const supabase = createServerSupabase();
+  const supabase = await createServerSupabase();
 
   // Fetch recent news
   const { data: newsData } = await supabase

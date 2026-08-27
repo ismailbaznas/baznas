@@ -4,7 +4,7 @@
 import { NextResponse } from "next/server";
 import { requirePermission } from "@/lib/rbac/server";
 import { PermissionId, Role } from "@/types/rbac";
-import { createServiceRoleClient } from "@/lib/supabase";
+import { createServiceRoleClient } from "@/lib/server-supabase";
 
 const REQUIRED_PERMISSION: PermissionId = "role.manage";
 

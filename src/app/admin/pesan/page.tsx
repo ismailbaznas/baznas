@@ -1,7 +1,7 @@
 // src/app/admin/pesan/page.tsx
 
 import { guardAdminPage } from "@/lib/rbac/server";
-import { createServerSupabase } from "@/lib/supabase";
+import { createServerSupabase } from "@/lib/server-supabase";
 import { cookies } from "next/headers";
 import AdminPesanClient from "@/components/admin/AdminPesanClient";
 

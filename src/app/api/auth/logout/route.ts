@@ -1,7 +1,7 @@
 // src/app/api/auth/logout/route.ts
 
 import { NextRequest, NextResponse } from "next/server";
-import { createServerSupabase } from "@/lib/supabase";
+import { createServerSupabase } from "@/lib/server-supabase";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 

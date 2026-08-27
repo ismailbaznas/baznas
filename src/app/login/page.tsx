@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 import LoginFormClient from "@/components/auth/LoginFormClient";
-import { createServerSupabase } from "@/lib/supabase";
+import { createServerSupabase } from "@/lib/server-supabase";
 
 // Required for dynamic behavior
 export const dynamic = "force-dynamic";
