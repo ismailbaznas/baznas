@@ -28,12 +28,9 @@ export function getSupabaseBrowser() {
  * Handles session cookies automatically by accessing `cookies()` dynamically.
  * @returns SupabaseClient
  */
-export function createServerSupabase() {
-  // We import cookies dynamically to avoid "next/headers" evaluation in non-server contexts
+export async function createServerSupabase() {
   const cookieStore = cookies();
-  
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-  const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY!; 
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
   return createServerClient<Database>(
@@ -41,22 +38,13 @@ export function createServerSupabase() {
     supabaseAnonKey,
     {
       cookies: {
-        get(name: string) {
-          return cookieStore.get(name)?.value;
+        getAll() {
+          return cookieStore.getAll();
         },
-        set(name: string, value: string, options: any) {
-          try {
-            cookieStore.set(name, value, options);
-          } catch (error) {
-            // The `set` method is not supported in Server Components. We rely on the proxy for session refresh.
-          }
-        },
-        remove(name: string, options: any) {
-          try {
-            cookieStore.set(name, "", options);
-          } catch (error) {
-            // Ignored
-          }
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value, options }) =>
+            cookieStore.set(name, value, options)
+          );
         },
       },
       // Using Anon Key here; for Admin API routes, use createServiceRoleClient
