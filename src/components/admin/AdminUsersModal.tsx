@@ -5,7 +5,7 @@
 import { Modal } from "../ui/Modal";
 import { Button } from "../ui/Button";
 import { Input } from "../ui/Input";
-import { Role } from "@/types/rbac";
+import { RBACUser, Role } from "@/types/rbac";
 import { useState, useEffect } from "react";
 import { CheckCircle } from "lucide-react";
 
@@ -24,6 +24,7 @@ interface AdminUsersModalProps {
   onClose: (refetch?: boolean) => void;
   editUser: UserItem | null;
   rolesList: Role[];
+  currentUser: RBACUser;
 }
 
 // Initial form state
@@ -40,13 +41,14 @@ export default function AdminUsersModal({
   onClose,
   editUser,
   rolesList,
+  currentUser,
 }: AdminUsersModalProps) {
   const [form, setForm] = useState<typeof initialFormState>(initialFormState);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const isEditing = !!editUser;
-  const isSelf = editUser?.id === localStorage.getItem("auth.uid"); // Simple check
+  const isSelf = editUser?.id === currentUser?.id;
 
   // Load data for editing
   useEffect(() => {

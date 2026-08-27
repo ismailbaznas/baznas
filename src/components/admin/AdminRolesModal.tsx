@@ -162,14 +162,10 @@ export default function AdminRolesModal({
         </div>
 
         {/* System Role Indicator */}
-        {isEditing && (
-            <div className="p-3 bg-surface-variant rounded-lg flex items-center space-x-2 text-sm">
-                {isSystem ? (
-                    <CheckCircle className="w-5 h-5 text-status-success" />
-                ) : (
-                    <XCircle className="w-5 h-5 text-status-danger" />
-                )}
-                <span>Peran ini adalah Peran Sistem. {isSystem && "Aksesnya tidak dapat diubah."}</span>
+        {isEditing && isSystem && (
+            <div className="p-3 bg-status-warning/10 border border-status-warning text-status-warning rounded-lg flex items-center space-x-2 text-sm">
+                <CheckCircle className="w-5 h-5 text-status-warning" />
+                <span>Peran ini adalah Peran Sistem. Anda dapat menyesuaikan hak aksesnya, tetapi perannya tidak dapat dihapus.</span>
             </div>
         )}
         
@@ -177,17 +173,15 @@ export default function AdminRolesModal({
         <PermissionEditor
             selectedPermissions={form.permission_ids}
             onChange={handlePermissionChange}
-            disabled={isSystem || loading}
+            disabled={loading}
         />
 
         {/* Submit Button */}
         <div className="flex justify-end pt-4">
-          <Button type="submit" disabled={loading || isSystem} className="space-x-2">
+          <Button type="submit" disabled={loading} className="space-x-2">
             <span>
               {loading
                 ? "Menyimpan..."
-                : isSystem
-                ? "Peran Sistem (Tidak Dapat Disimpan)"
                 : "Simpan Peran"}
             </span>
           </Button>

@@ -12,7 +12,7 @@ import { cookies } from "next/headers";
  * @returns SupabaseClient
  */
 export async function createServerSupabase() {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
@@ -24,13 +24,17 @@ export async function createServerSupabase() {
         getAll() {
           return cookieStore.getAll();
         },
-        setAll(cookiesToSet) {
+        setAll(cookiesToSet: { name: string, value: string, options: any }[]) {
           cookiesToSet.forEach(({ name, value, options }) =>
             cookieStore.set(name, value, options)
           );
         },
       },
-      // Using Anon Key here; for Admin API routes, use createServiceRoleClient
+      auth: {
+        autoRefreshToken: true,
+        persistSession: true,
+        detectSessionInUrl: false,
+      },
     }
   );
 }

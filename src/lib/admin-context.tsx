@@ -1,8 +1,9 @@
 "use client";
 
-import { createContext, useContext, useMemo, useState } from "react";
+import { createContext, useContext, useMemo, useState, useEffect } from "react";
 import { PermissionId, RBACUser } from "@/types/rbac";
 import { checkPermission, hasAnyPermission } from "./rbac/check-permission";
+import { getSupabaseBrowser } from "./supabase"; // Added import
 
 /**
  * Empty/Default RBACUser object for unauthenticated state.

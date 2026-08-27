@@ -6,7 +6,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 export async function POST(request: NextRequest) {
-  const supabase = createServerSupabase();
+  const supabase = await createServerSupabase();
 
   // Check if a session exists before logging out
   const {

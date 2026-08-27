@@ -205,6 +205,7 @@ export default function AdminUsersClient({
                 onClose={handleCloseModal} 
                 editUser={editingUser} 
                 rolesList={initialRoles}
+                currentUser={user}
             />
         </>
     );
