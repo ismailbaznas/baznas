@@ -41,10 +41,13 @@ export default async function AdminDashboardPage() {
           <h3 className="text-xl font-bold text-baznas-green-dark">Manajemen Program</h3>
           <p className="text-sm text-baznas-neutral/80">Buat, edit, dan publikasikan program kegiatan BAZNAS.</p>
         </Link>
-        <div className="p-6 bg-gray-100 border-l-4 border-gray-400 shadow-md rounded-lg">
-          <h3 className="text-xl font-bold text-gray-700">Laporan (TODO)</h3>
-          <p className="text-sm text-gray-500">Modul transparansi dan dokumen publik.</p>
-        </div>
+        <Link 
+          href="/admin/document" 
+          className="p-6 bg-white border-l-4 border-baznas-green-dark shadow-md hover:shadow-lg rounded-lg transition-shadow block"
+        >
+          <h3 className="text-xl font-bold text-baznas-green-dark">Laporan & Dokumen</h3>
+          <p className="text-sm text-baznas-neutral/80">Kelola laporan transparansi, tahunan, dan dokumen publik lainnya.</p>
+        </Link>
       </div>
       {/* End CMS Quick Links */}
       
@@ -56,7 +59,8 @@ export default async function AdminDashboardPage() {
           <li>Admin Dashboard sudah dilindungi.</li>
           <li>Sistem login dan logout sudah berfungsi.</li>
           <li>Manajemen Berita (CRUD) selesai.</li>
-          <li>**Manajemen Program (CRUD) selesai.**</li>
+          <li>Manajemen Program (CRUD) selesai.</li>
+          <li>**Manajemen Dokumen (CRUD) selesai.**</li>
         </ul>
       </div>
     </div>
