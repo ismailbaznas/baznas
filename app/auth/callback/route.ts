@@ -9,21 +9,20 @@ export async function GET(request: Request) {
   const code = searchParams.get('code');
   
   if (code) {
-    const cookieStore = cookies();
+    const cookieStore = await cookies();
     const supabase = createServerClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL!,
         process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
         {
           cookies: {
-            get: (name) => cookieStore.get(name)?.value,
-            // set and remove must be handled differently in a Route Handler context
-            set: (name, value, options) => {
-                // Ensure options are correctly applied
-                cookieStore.set(name, value, options);
+            get(name) {
+              return cookieStore.get(name)?.value;
             },
-            remove: (name, options) => {
-                // Ensure options are correctly applied
-                cookieStore.set(name, '', options);
+            set(name, value, options) {
+              cookieStore.set(name, value, options);
+            },
+            remove(name, options) {
+              cookieStore.set(name, '', options);
             },
           },
         }
