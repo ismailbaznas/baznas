@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+/*
+  The background and foreground colors are now primarily managed
+  by Tailwind classes applied in layout.tsx using the baznas-neutral/white palette.
+*/
+
+/* Custom body styles for system fonts and basic resetting */
+body {
+  /* Use system font stack for clean look, as per PRD visual design */
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
