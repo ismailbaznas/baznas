@@ -92,7 +92,7 @@ export async function guardAdminPage(
   // Check required permission
   if (!user.permissions.includes(requiredPermission)) {
     // Unauthorized: Redirect to admin dashboard
-    redirect("/admin");
+    redirect("/");
   }
 
   return user;
