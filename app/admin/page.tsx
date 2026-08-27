@@ -1,6 +1,7 @@
 // app/admin/page.tsx
 import { Metadata } from 'next';
-import { createServerSupabaseClient } from '@/lib/supabase-server';
+import { getSupabaseServerClient } from '@/lib/supabase-server';
+import { cookies } from 'next/headers';
 import LogoutButton from '@/components/LogoutButton';
 
 export const metadata: Metadata = {
@@ -9,7 +10,9 @@ export const metadata: Metadata = {
 };
 
 export default async function AdminDashboardPage() {
-  const supabase = createServerSupabaseClient();
+  // Workaround for non-standard local build environment: use await cookies()
+  const cookieStore = await cookies();
+  const supabase = getSupabaseServerClient(cookieStore);
   const { data: { user } } = await supabase.auth.getUser();
 
   return (

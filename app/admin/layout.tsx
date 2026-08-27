@@ -1,16 +1,19 @@
 // app/admin/layout.tsx
 import { redirect } from 'next/navigation';
-import { createServerSupabaseClient } from '@/lib/supabase-server';
+import { getSupabaseServerClient } from '@/lib/supabase-server';
+import { cookies } from 'next/headers';
 
 export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  // Use the server client to check the user's session
-  const supabase = createServerSupabaseClient();
+  // Workaround for non-standard local build environment: use await cookies()
+  const cookieStore = await cookies();
+  const supabase = getSupabaseServerClient(cookieStore);
   
   const { data: { session } } = await supabase.auth.getSession();
+
 
   // If no session, redirect to login page
   if (!session) {
