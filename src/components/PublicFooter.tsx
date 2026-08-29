@@ -165,8 +165,7 @@ export default function PublicFooter() {
                 <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center text-xs text-white/60 gap-4">
                     <p>© 2026 BAZNAS Kabupaten Boven Digoel. All rights reserved.</p>
                     <div className="flex items-center gap-3">
-                        <span className="text-white/80 font-medium text-xs">Mode Tampilan</span>
-                        <ThemeToggle />
+                        <ThemeToggle variant="footer" showLabel={true} />
                     </div>
                 </div>
             </div>
