@@ -2,8 +2,6 @@
 
 import { guardAdminPage } from "@/lib/rbac/server";
 import { createServerSupabase } from "@/lib/server-supabase";
-import { cookies } from "next/headers";
-import { Database } from "@/types/database.types"; // Assuming types are generated/updated
 import AdminBeritaClient from "@/components/admin/AdminBeritaClient";
 
 // Required for dynamic behavior
@@ -15,14 +13,15 @@ const PAGE_SIZE = 10;
 export default async function AdminBeritaPage({
   searchParams,
 }: {
-  searchParams: { page?: string; search?: string; category?: string };
+  searchParams: Promise<{ page?: string; search?: string; category?: string }>;
 }) {
   // 1. Guard 1: Check read permission
   const user = await guardAdminPage("berita.read");
 
-  // 2. Setup pagination
-  const currentPage = parseInt(searchParams.page || "1");
-  const search = searchParams.search || "";
+  // 2. Setup pagination & params (Next.js 16 async searchParams)
+  const resolvedParams = await searchParams;
+  const currentPage = parseInt(resolvedParams.page || "1");
+  const search = resolvedParams.search || "";
   const offset = (currentPage - 1) * PAGE_SIZE;
 
   const supabase = await createServerSupabase();
@@ -41,17 +40,17 @@ export default async function AdminBeritaPage({
   // Apply pagination
   query = query.range(offset, offset + PAGE_SIZE - 1);
 
-  const { data: news, count: totalItems, error } = await query;
+  // Parallel fetch: news + count and categories
+  const [{ data: news, count: totalItems, error }, { data: categories }] = await Promise.all([
+    query,
+    supabase.from("categories").select("*")
+  ]);
 
   if (error) {
     console.error("Error fetching news:", error.message);
-    // In a real app, handle error gracefully. For now, pass empty array.
   }
 
   const totalPages = totalItems ? Math.ceil(totalItems / PAGE_SIZE) : 0;
-
-  // 4. Fetch Categories (used for filtering/modal)
-  const { data: categories } = await supabase.from("categories").select("*");
 
   return (
     <AdminBeritaClient

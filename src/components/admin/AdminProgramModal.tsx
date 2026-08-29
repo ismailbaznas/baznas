@@ -194,9 +194,7 @@ export default function AdminProgramModal({
             value={form.description}
             onChange={handleChange}
             rows={5}
-            className={cn(
-                "flex min-h-[80px] w-full rounded-lg border border-surface-variant bg-background px-3 py-2 text-body-md ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-              )}
+            className="flex min-h-[100px] w-full rounded-xl border border-surface-variant/60 dark:border-zinc-700 bg-white dark:bg-[#1e1e1e] px-3.5 py-2 text-sm text-on-surface placeholder:text-slate-400 dark:placeholder:text-zinc-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075C3B] dark:focus-visible:ring-[#8cd6ac]"
           />
         </div>
 
@@ -204,7 +202,7 @@ export default function AdminProgramModal({
         <div>
           <label
             htmlFor="image_url"
-            className="block text-body-md font-medium mb-1"
+            className="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1"
           >
             URL Gambar Program
           </label>
@@ -221,7 +219,7 @@ export default function AdminProgramModal({
           <div>
             <label
               htmlFor="category_id"
-              className="block text-body-md font-medium mb-1"
+              className="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1"
             >
               Kategori
             </label>
@@ -230,7 +228,7 @@ export default function AdminProgramModal({
               name="category_id"
               value={form.category_id}
               onChange={handleChange}
-              className="flex h-10 w-full rounded-lg border border-surface-variant bg-background px-3 py-2 text-body-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
+              className="flex h-10 w-full rounded-xl border border-surface-variant/60 dark:border-zinc-700 bg-white dark:bg-[#1e1e1e] text-on-surface px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075C3B] dark:focus-visible:ring-[#8cd6ac]"
             >
               <option value="">-- Pilih Kategori --</option>
               {categories.map((cat) => (

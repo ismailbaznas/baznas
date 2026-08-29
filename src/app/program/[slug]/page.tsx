@@ -2,11 +2,12 @@
 
 import { createServerSupabase } from "@/lib/server-supabase";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Tag } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 export default async function ProgramDetailPage({
   params,
@@ -45,7 +46,7 @@ export default async function ProgramDetailPage({
       </Link>
 
       <div className="space-y-4">
-        <h1 className="text-headline-lg font-space-grotesk font-bold text-on-surface leading-tight">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-playfair font-bold text-[#004229] dark:text-white leading-tight">
           {item.title}
         </h1>
 
@@ -61,11 +62,14 @@ export default async function ProgramDetailPage({
       </div>
 
       {item.image_url && (
-        <div className="w-full h-[400px] rounded-2xl overflow-hidden shadow-lg border border-surface-variant">
-          <img
+        <div className="relative w-full h-[400px] rounded-2xl overflow-hidden shadow-lg border border-surface-variant">
+          <Image
             src={item.image_url}
             alt={item.title}
-            className="w-full h-full object-cover"
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, 896px"
+            className="object-cover"
           />
         </div>
       )}

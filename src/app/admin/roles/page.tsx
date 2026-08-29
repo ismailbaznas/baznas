@@ -3,7 +3,6 @@
 import { guardAdminPage } from "@/lib/rbac/server";
 import { createServerSupabase } from "@/lib/server-supabase";
 import { ALL_PERMISSION_IDS } from "@/lib/rbac/constants";
-import { cookies } from "next/headers";
 import AdminRolesClient from "@/components/admin/AdminRolesClient";
 
 export const dynamic = "force-dynamic";

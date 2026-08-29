@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAdmin } from "@/lib/admin-context";
 import { Eye, Trash2, Search, Mail, Phone, Clock, MessageSquare } from "lucide-react";
@@ -15,10 +15,12 @@ import { Can } from "../rbac/Can";
 import { Pagination } from "../ui/Pagination";
 import { Database } from "@/types/database.types";
 import { getSupabaseBrowser } from "@/lib/supabase";
-import AdminPesanModal from "./AdminPesanModal";
+import dynamic from "next/dynamic";
 import { formatDistanceToNow } from "date-fns";
 import { id } from "date-fns/locale";
 import { VariantProps } from "class-variance-authority";
+
+const AdminPesanModal = dynamic(() => import("./AdminPesanModal"), { ssr: false });
 
 // Types derived from DB structure
 type MessageItem = Database["public"]["Tables"]["contact_messages"]["Row"];
@@ -116,6 +118,11 @@ export default function AdminPesanClient({
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [viewingId, setViewingId] = useState<string | null>(null);
 
+    // Synchronize local state whenever server props update (e.g. after router.refresh())
+    useEffect(() => {
+        setMessageList(initialMessages);
+    }, [initialMessages]);
+
     // Function to handle modal close and potential data refetch
     const handleCloseModal = (refetch: boolean = false) => {
         setIsModalOpen(false);
@@ -141,6 +148,7 @@ export default function AdminPesanClient({
         if (error) {
             alert(`Gagal menghapus pesan: ${error.message}`);
         } else {
+            setMessageList(prev => prev.filter(item => item.id !== id));
             router.refresh(); // Refetch data
         }
     };
@@ -152,32 +160,31 @@ export default function AdminPesanClient({
     return (
         <>
             <div className="space-y-6">
-                <div className="flex justify-between items-center">
-                    <h1 className="text-headline-md font-space-grotesk">
-                        Daftar Pesan Masuk ({totalItems})
-                    </h1>
-                    {/* Only view/delete/update status is allowed for this module */}
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div>
+                        <h1 className="text-2xl sm:text-3xl font-playfair font-bold text-[#004229] dark:text-[#8cd6ac]">
+                            Pesan Masuk & Pengaduan
+                        </h1>
+                        <p className="text-xs text-on-surface-variant mt-1">
+                            Total {totalItems} pesan dan konsultasi masuk dari masyarakat.
+                        </p>
+                    </div>
                 </div>
 
                 {/* Search and Filter Section */}
-                <div className="flex space-x-4">
+                <div className="bg-white dark:bg-[#181818] p-4 rounded-2xl border border-surface-variant/40 dark:border-zinc-800 flex flex-col sm:flex-row gap-4 shadow-sm">
                     <div className="relative flex-1">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-on-surface-variant" />
+                        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-on-surface-variant" />
                         <Input
                             placeholder="Cari nama, subjek, atau isi pesan..."
                             defaultValue={search}
                             className="pl-10"
                         />
                     </div>
-                    {/* Placeholder for Type Filter */}
-                    <Button variant="outline" className="space-x-2">
-                        <MessageSquare className="w-4 h-4" />
-                        <span>Filter Jenis</span>
-                    </Button>
                 </div>
 
                 {/* Main Table */}
-                <div className="bg-surface rounded-xl shadow-lg border border-surface-variant overflow-hidden">
+                <div className="bg-white dark:bg-[#181818] rounded-2xl shadow-sm border border-surface-variant/40 dark:border-zinc-800 overflow-hidden">
                     <Table>
                         <TableHeader>
                             <TableRow>

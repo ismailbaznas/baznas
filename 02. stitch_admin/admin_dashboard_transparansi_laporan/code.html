@@ -1,0 +1,400 @@
+<!DOCTYPE html><html class="light" lang="id"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Manajemen Transparansi - Admin BAZNAS</title>
+<!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Hide scrollbar for cleaner look in side nav */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Configuration (from Design System) -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#fbf9f4",
+                        "tertiary-fixed": "#ffdad8",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#eae8e3",
+                        "on-tertiary-fixed": "#3c070b",
+                        "surface-tint": "#1f6b48",
+                        "on-surface-variant": "#3f4942",
+                        "on-primary-fixed": "#002112",
+                        "background": "#fbf9f4",
+                        "secondary-fixed-dim": "#e9c349",
+                        "on-secondary-fixed-variant": "#574500",
+                        "secondary-container": "#fed65b",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#bfc9c0",
+                        "outline": "#707a72",
+                        "surface": "#fbf9f4",
+                        "on-tertiary-fixed-variant": "#743232",
+                        "on-secondary-container": "#745c00",
+                        "on-primary-container": "#88d2a8",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#241a00",
+                        "primary-fixed": "#a8f3c7",
+                        "tertiary-container": "#803b3b",
+                        "secondary": "#735c00",
+                        "error-container": "#ffdad6",
+                        "inverse-on-surface": "#f2f1ec",
+                        "secondary-fixed": "#ffe088",
+                        "primary": "#004229",
+                        "surface-container-highest": "#e4e2dd",
+                        "tertiary-fixed-dim": "#ffb3b1",
+                        "inverse-surface": "#30312e",
+                        "on-surface": "#1b1c19",
+                        "on-primary-fixed-variant": "#005233",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#ffaeab",
+                        "surface-container-low": "#f5f3ee",
+                        "tertiary": "#632526",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#8cd6ac",
+                        "on-background": "#1b1c19",
+                        "primary-container": "#075c3b",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#8cd6ac",
+                        "surface-container": "#f0eee9",
+                        "surface-variant": "#e4e2dd",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#dbdad5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "sm": "0.25rem",
+                        "md": "0.75rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Playfair Display", "serif"],
+                        "body": ["Plus Jakarta Sans", "sans-serif"],
+                        "label": ["Plus Jakarta Sans", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body antialiased min-h-screen flex flex-col relative">
+<!-- 
+      =========================================
+      SHARED COMPONENT: SideNavBar
+      =========================================
+    -->
+<nav class="h-screen w-72 flex flex-col fixed left-0 top-0 bg-primary dark:bg-primary-container z-50">
+<div class="h-full py-8 flex flex-col gap-2">
+<!-- Header Brand -->
+<div class="px-8 pb-8 mb-4 border-b border-on-primary/10 flex flex-col gap-1">
+<h1 class="font-headline text-2xl font-bold text-on-primary dark:text-on-primary-container">BAZNAS</h1>
+<p class="font-body text-sm text-on-primary/70">Kabupaten Boven Digoel</p>
+</div>
+<!-- Navigation Links -->
+<div class="flex-grow flex flex-col gap-1 px-4 overflow-y-auto no-scrollbar">
+<!-- Tab: Dashboard -->
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-on-primary/5 transition-colors font-label tracking-wide" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="">Dashboard</span>
+</a>
+<!-- Tab: ZIS Statistics -->
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-on-primary/5 transition-colors font-label tracking-wide" href="#">
+<span class="material-symbols-outlined" data-icon="bar_chart">bar_chart</span>
+<span class="">ZIS Statistics</span>
+</a>
+<!-- Tab: Programs -->
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-on-primary/5 transition-colors font-label tracking-wide" href="#">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+<span class="">Programs</span>
+</a>
+<!-- Tab: Transparency (ACTIVE) -->
+<!-- Active logic: Mapped to intent of this page -->
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg bg-on-primary/10 text-on-primary font-bold border-l-4 border-secondary font-label tracking-wide scale-[0.98] transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="history_edu">history_edu</span>
+<span class="">Transparency</span>
+</a>
+<!-- Tab: Kabar -->
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-on-primary/5 transition-colors font-label tracking-wide" href="#">
+<span class="material-symbols-outlined" data-icon="newspaper">newspaper</span>
+<span class="">Kabar</span>
+</a>
+<!-- Tab: Settings -->
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-on-primary/5 transition-colors font-label tracking-wide" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="">Settings</span>
+</a>
+</div>
+<!-- CTA Button -->
+<div class="px-6 pt-4 mt-auto">
+<button class="w-full bg-secondary text-on-secondary font-label font-bold py-3 rounded-lg shadow-sm hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="">Logout</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- 
+      =========================================
+      SHARED COMPONENT: TopAppBar
+      =========================================
+    -->
+<header class="docked full-width top sticky ml-72 flex justify-between items-center px-12 py-4 w-[calc(100%-18rem)] bg-surface dark:bg-surface-dim border-b border-surface-container-low dark:border-surface-container-high z-40">
+<!-- Brand / Product Name -->
+<div class="flex items-center gap-4">
+<h2 class="font-headline text-xl font-bold text-primary dark:text-primary-fixed tracking-tight">Admin Dashboard</h2>
+<div class="h-5 w-px bg-outline-variant mx-2"></div>
+<span class="text-primary dark:text-primary-fixed font-bold border-b-2 border-primary font-label text-sm pb-1 opacity-80 duration-150">Transparency</span>
+</div>
+<!-- Right Side Actions -->
+<div class="flex items-center gap-6">
+<!-- Search Bar -->
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="pl-9 pr-4 py-2 bg-surface-container-lowest border border-outline-variant rounded-full text-sm font-body text-on-surface focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary w-64 transition-all" placeholder="Cari dokumen..." type="text">
+</div>
+<!-- Icon Actions -->
+<div class="flex items-center gap-2">
+<button class="p-2 text-on-surface-variant dark:text-on-surface hover:bg-surface-container dark:hover:bg-surface-container-highest transition-all rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant dark:text-on-surface hover:bg-surface-container dark:hover:bg-surface-container-highest transition-all rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+</div>
+<!-- Profile Avatar -->
+<div class="h-9 w-9 rounded-full bg-primary-container overflow-hidden border border-outline-variant ml-2">
+<img alt="Administrator Profile" class="w-full h-full object-cover" data-alt="A professional headshot portrait of an administrator in formal attire, well-lit studio lighting, isolated on a neutral background, high resolution." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeecoTAA0u6Wtc7L7LCeQxhf-TGSbqZdOjloVbu0NAyrSSvm2Qs_kiM0G13f2TYWHr2m3X7pgvifcF_iK2m656VGU9EkubsJGwK2q_MhSjKnV-_09RWA7-HbV1YtrtRwvKKjWWWfM6rjRkVX9ZT0QvR0AfevoHqsXG9SPH7DZtZubxeLchjBZyakjGJvAr37M9L5zwMHurKAtiJZsyg9Ol7pFipIZ5YpOhre8MX1kW55ig9z5mLxOo">
+</div>
+</div>
+</header>
+<!-- 
+      =========================================
+      MAIN CONTENT CANVAS
+      =========================================
+    -->
+<main class="ml-72 w-[calc(100%-18rem)] flex-grow p-12 flex flex-col gap-10">
+<!-- Page Header -->
+<section class="flex flex-col gap-2">
+<h2 class="font-headline text-4xl font-bold text-on-surface tracking-tight">Manajemen Transparansi</h2>
+<p class="font-body text-on-surface-variant max-w-2xl">Perbarui metrik keuangan utama dan kelola laporan pertanggungjawaban yang akan ditampilkan kepada publik untuk menjaga akuntabilitas lembaga.</p>
+</section>
+<!-- Asymmetric Bento Grid Layout -->
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-8 items-start">
+<!-- LEFT COLUMN (Span 2): Document Management Table -->
+<div class="xl:col-span-2 flex flex-col gap-6">
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden flex flex-col h-full">
+<!-- Card Header -->
+<div class="px-6 py-5 border-b border-outline-variant flex justify-between items-center bg-surface-bright">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-weight="fill">folder_open</span>
+<h3 class="font-label text-base font-bold text-on-surface">Arsip Laporan Publik</h3>
+</div>
+<span class="font-body text-xs text-on-surface-variant bg-surface-container px-2 py-1 rounded-md">Total: 12 Dokumen</span>
+</div>
+<!-- Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container font-label text-xs uppercase tracking-wider text-on-surface-variant border-b border-outline-variant">
+<th class="px-6 py-4 font-semibold">Nama Dokumen</th>
+<th class="px-6 py-4 font-semibold">Tipe &amp; Tahun</th>
+<th class="px-6 py-4 font-semibold">Tgl Unggah</th>
+<th class="px-6 py-4 font-semibold text-right">Aksi</th>
+</tr>
+</thead>
+<tbody class="font-body text-sm divide-y divide-outline-variant/50">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-error opacity-80" data-icon="picture_as_pdf">picture_as_pdf</span>
+<span class="font-medium text-on-surface group-hover:text-primary transition-colors">Laporan Keuangan 2023 - Audited.pdf</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">Laporan Tahunan</span>
+<span class="text-on-surface-variant text-xs">2023</span>
+</div>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">15 Jan 2024</td>
+<td class="px-6 py-4">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-primary bg-primary/5 hover:bg-primary/10 rounded-md transition-colors" title="Lihat">
+<span class="material-symbols-outlined text-sm" data-icon="visibility">visibility</span>
+</button>
+<button class="p-2 text-error bg-error/5 hover:bg-error/10 rounded-md transition-colors" title="Hapus">
+<span class="material-symbols-outlined text-sm" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-error opacity-80" data-icon="picture_as_pdf">picture_as_pdf</span>
+<span class="font-medium text-on-surface group-hover:text-primary transition-colors">Laporan Penyaluran Semester II - 2023.pdf</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">Semester II</span>
+<span class="text-on-surface-variant text-xs">2023</span>
+</div>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">10 Jan 2024</td>
+<td class="px-6 py-4">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-primary bg-primary/5 hover:bg-primary/10 rounded-md transition-colors" title="Lihat">
+<span class="material-symbols-outlined text-sm" data-icon="visibility">visibility</span>
+</button>
+<button class="p-2 text-error bg-error/5 hover:bg-error/10 rounded-md transition-colors" title="Hapus">
+<span class="material-symbols-outlined text-sm" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-error opacity-80" data-icon="picture_as_pdf">picture_as_pdf</span>
+<span class="font-medium text-on-surface group-hover:text-primary transition-colors">Laporan ZIS Semester I - 2023.pdf</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">Semester I</span>
+<span class="text-on-surface-variant text-xs">2023</span>
+</div>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">20 Jul 2023</td>
+<td class="px-6 py-4">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-primary bg-primary/5 hover:bg-primary/10 rounded-md transition-colors" title="Lihat">
+<span class="material-symbols-outlined text-sm" data-icon="visibility">visibility</span>
+</button>
+<button class="p-2 text-error bg-error/5 hover:bg-error/10 rounded-md transition-colors" title="Hapus">
+<span class="material-symbols-outlined text-sm" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Placeholder for more rows -->
+<tr>
+<td class="px-6 py-8 text-center text-on-surface-variant text-sm bg-surface-container-lowest border-t border-outline-variant/30" colspan="4">
+<button class="font-label font-semibold text-primary hover:underline underline-offset-4">Muat Dokumen Lama</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN (Span 1): Forms & Upload -->
+<div class="xl:col-span-1 flex flex-col gap-8">
+<!-- Metric Editor Card -->
+<div class="bg-primary text-on-primary rounded-xl border border-primary-container overflow-hidden shadow-sm relative">
+<!-- Subtle background pattern injection via inline SVG data for atmospheric effect without bloating external requests -->
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 20px 20px;"></div>
+<div class="px-6 py-5 border-b border-on-primary/10 relative z-10 flex items-center justify-between">
+<h3 class="font-label text-base font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" data-icon="monitoring">monitoring</span>
+                            Metrik Beranda Utama
+                        </h3>
+</div>
+<div class="p-6 flex flex-col gap-5 relative z-10">
+<div class="flex flex-col gap-2">
+<label class="font-label text-xs text-on-primary/80 uppercase tracking-wider">Total Dana Dihimpun (Rp)</label>
+<input class="bg-primary-container border border-primary-container text-on-primary rounded-lg px-4 py-3 font-body font-medium focus:ring-2 focus:ring-secondary focus:border-secondary transition-all outline-none" type="text" value="1.250.450.000">
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label text-xs text-on-primary/80 uppercase tracking-wider">Total Dana Disalurkan (Rp)</label>
+<input class="bg-primary-container border border-primary-container text-on-primary rounded-lg px-4 py-3 font-body font-medium focus:ring-2 focus:ring-secondary focus:border-secondary transition-all outline-none" type="text" value="980.125.000">
+</div>
+<button class="mt-2 w-full bg-secondary text-on-secondary font-label font-bold py-3 rounded-lg hover:bg-secondary/90 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="save">save</span>
+                            Simpan Metrik
+                        </button>
+</div>
+</div>
+<!-- Upload New Document Card -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden">
+<div class="px-6 py-5 border-b border-outline-variant bg-surface-bright">
+<h3 class="font-label text-base font-bold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="upload_file">upload_file</span>
+                            Unggah Laporan Baru
+                        </h3>
+</div>
+<div class="p-6 flex flex-col gap-5">
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-2">
+<label class="font-label text-xs text-on-surface-variant font-semibold">Kategori Laporan</label>
+<select class="bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2.5 font-body text-sm text-on-surface focus:ring-1 focus:ring-primary focus:border-primary outline-none appearance-none">
+<option>Semester I</option>
+<option>Semester II</option>
+<option>Laporan Tahunan</option>
+</select>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label text-xs text-on-surface-variant font-semibold">Tahun</label>
+<input class="bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2.5 font-body text-sm text-on-surface focus:ring-1 focus:ring-primary focus:border-primary outline-none" type="number" value="2024">
+</div>
+</div>
+<!-- Dropzone -->
+<div class="border-2 border-dashed border-outline-variant bg-surface-container-low rounded-lg p-8 flex flex-col items-center justify-center text-center gap-3 hover:bg-surface-container transition-colors cursor-pointer group">
+<div class="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="cloud_upload">cloud_upload</span>
+</div>
+<div>
+<p class="font-label text-sm text-on-surface font-semibold">Tarik &amp; lepas file PDF di sini</p>
+<p class="font-body text-xs text-on-surface-variant mt-1">atau klik untuk menelusuri (Maks 10MB)</p>
+</div>
+</div>
+<button class="w-full border border-primary text-primary font-label font-bold py-3 rounded-lg hover:bg-primary hover:text-on-primary transition-colors flex items-center justify-center gap-2">
+                            Unggah Dokumen
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- 
+      =========================================
+      SHARED COMPONENT: Footer
+      =========================================
+    -->
+<footer class="ml-72 w-[calc(100%-18rem)] py-6 flex justify-between items-center px-12 border-t border-outline-variant bg-surface-container-lowest dark:bg-surface-dim mt-auto">
+<p class="font-body text-label-sm text-on-surface-variant dark:text-on-surface">
+            © 2024 BAZNAS Kabupaten Boven Digoel. Transparansi &amp; Akuntabilitas Terjaga.
+        </p>
+<div class="flex items-center gap-6">
+<a class="font-body text-label-sm text-secondary-gray hover:text-primary transition-colors" href="#">Kebijakan Privasi</a>
+<a class="font-body text-label-sm text-secondary-gray hover:text-primary transition-colors" href="#">Kontak Kami</a>
+<a class="font-body text-label-sm text-secondary-gray hover:text-primary transition-colors" href="#">Pusat Bantuan</a>
+</div>
+</footer>
+
+
+</body></html>

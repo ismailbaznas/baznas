@@ -113,26 +113,26 @@ export default function AdminPesanModal({
       )}
 
       {data && (
-        <div className="space-y-6">
-            <div className="bg-surface-container-lowest p-4 rounded-lg space-y-2 text-body-md">
-                <p><strong>Dari:</strong> {data.name} ({data.email || '-'})</p>
-                <p><strong>Nomor Telepon:</strong> {data.phone || '-'}</p>
-                <p><strong>Jenis:</strong> <Badge variant="secondary">{getTypeLabel(data.type)}</Badge></p>
-                <p><strong>Tanggal Masuk:</strong> {format(new Date(data.created_at), "dd MMMM yyyy, HH:mm", { locale: id })} WIT</p>
+        <div className="space-y-6 font-jakarta">
+            <div className="bg-slate-50 dark:bg-zinc-800/40 p-5 rounded-2xl border border-surface-variant/40 dark:border-zinc-800 space-y-2.5 text-sm">
+                <div><strong className="text-on-surface">Dari:</strong> <span className="text-on-surface-variant ml-1">{data.name} ({data.email || '-'})</span></div>
+                <div><strong className="text-on-surface">Nomor Telepon:</strong> <span className="text-on-surface-variant font-mono ml-1">{data.phone || '-'}</span></div>
+                <div className="flex items-center"><strong className="text-on-surface">Jenis Pesan:</strong> <Badge variant="secondary" className="ml-2">{getTypeLabel(data.type)}</Badge></div>
+                <div><strong className="text-on-surface">Tanggal Masuk:</strong> <span className="text-on-surface-variant ml-1">{format(new Date(data.created_at), "dd MMMM yyyy, HH:mm", { locale: id })} WIT</span></div>
             </div>
             
-            <h3 className="text-lg font-semibold border-b border-surface-variant pb-2">Subjek: {data.subject}</h3>
+            <h3 className="text-base font-bold border-b border-surface-variant/40 dark:border-zinc-800 pb-3 text-[#004229] dark:text-[#8cd6ac]">Subjek: {data.subject}</h3>
 
-            <div className="p-4 bg-surface-container-low rounded-lg whitespace-pre-wrap">
+            <div className="p-5 bg-slate-50 dark:bg-zinc-800/40 border border-surface-variant/30 dark:border-zinc-800 rounded-2xl whitespace-pre-wrap text-sm text-on-surface leading-relaxed">
                 {data.message}
             </div>
 
             {/* Status Update Form */}
-            <form onSubmit={handleStatusUpdate} className="pt-4 border-t border-surface-variant flex justify-between items-end">
-                <div className="w-1/3">
+            <form onSubmit={handleStatusUpdate} className="pt-4 border-t border-surface-variant/40 dark:border-zinc-800 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4">
+                <div className="w-full sm:w-1/2">
                     <label
                         htmlFor="status"
-                        className="block text-body-md font-medium mb-1"
+                        className="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1.5"
                     >
                         Perbarui Status
                     </label>
@@ -141,7 +141,7 @@ export default function AdminPesanModal({
                         name="status"
                         value={status}
                         onChange={(e) => setStatus(e.target.value)}
-                        className="flex h-10 w-full rounded-lg border border-surface-variant bg-background px-3 py-2 text-body-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
+                        className="flex h-10 w-full rounded-xl border border-surface-variant/60 dark:border-zinc-700 bg-white dark:bg-[#1e1e1e] text-on-surface px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075C3B] dark:focus-visible:ring-[#8cd6ac]"
                         disabled={saving}
                     >
                         {MESSAGE_STATUSES.map((stat) => (

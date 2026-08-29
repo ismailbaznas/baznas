@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAdmin } from "@/lib/admin-context";
 import { Plus, Pencil, Trash2, Search, Clock, User, Mail } from "lucide-react";
@@ -13,8 +13,10 @@ import { Badge } from "../ui/Badge";
 import { RBACUser, Role } from "@/types/rbac";
 import { Can } from "../rbac/Can";
 import { Pagination } from "../ui/Pagination";
-import AdminUsersModal from "./AdminUsersModal";
+import dynamic from "next/dynamic";
 import { formatDistanceToNow, format } from "date-fns";
+
+const AdminUsersModal = dynamic(() => import("./AdminUsersModal"), { ssr: false });
 import { id } from "date-fns/locale";
 
 type UserItem = {
@@ -99,6 +101,11 @@ export default function AdminUsersClient({
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingUser, setEditingUser] = useState<UserItem | null>(null);
 
+    // Synchronize local state whenever server props update (e.g. after router.refresh())
+    useEffect(() => {
+        setUserList(initialUsers);
+    }, [initialUsers]);
+
     // Function to handle modal close and potential data refetch
     const handleCloseModal = (refetch: boolean = false) => {
         setIsModalOpen(false);
@@ -135,6 +142,7 @@ export default function AdminUsersClient({
                 throw new Error(errorData.error || "Gagal menghapus pengguna.");
             }
 
+            setUserList(prev => prev.filter(item => item.id !== id));
             router.refresh(); // Refetch data
         } catch (error: any) {
             alert(error.message);
@@ -144,10 +152,15 @@ export default function AdminUsersClient({
     return (
         <>
             <div className="space-y-6">
-                <div className="flex justify-between items-center">
-                    <h1 className="text-headline-md font-space-grotesk">
-                        Manajemen Pengguna Admin ({totalItems})
-                    </h1>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div>
+                        <h1 className="text-2xl sm:text-3xl font-playfair font-bold text-[#004229] dark:text-[#8cd6ac]">
+                            Manajemen Pengguna Admin
+                        </h1>
+                        <p className="text-xs text-on-surface-variant mt-1">
+                            Total {totalItems} akun administrator terdaftar dalam sistem.
+                        </p>
+                    </div>
                     <Can required="user.manage">
                         <Button onClick={handleInvite} className="space-x-2">
                             <Plus className="w-5 h-5" />
@@ -157,9 +170,9 @@ export default function AdminUsersClient({
                 </div>
 
                 {/* Search Section */}
-                <div className="flex space-x-4">
+                <div className="bg-white dark:bg-[#181818] p-4 rounded-2xl border border-surface-variant/40 dark:border-zinc-800 flex flex-col sm:flex-row gap-4 shadow-sm">
                     <div className="relative flex-1">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-on-surface-variant" />
+                        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-on-surface-variant" />
                         <Input
                             placeholder="Cari nama atau email pengguna..."
                             defaultValue={search}
@@ -169,7 +182,7 @@ export default function AdminUsersClient({
                 </div>
 
                 {/* Main Table */}
-                <div className="bg-surface rounded-xl shadow-lg border border-surface-variant overflow-hidden">
+                <div className="bg-white dark:bg-[#181818] rounded-2xl shadow-sm border border-surface-variant/40 dark:border-zinc-800 overflow-hidden">
                     <Table>
                         <TableHeader>
                             <TableRow>

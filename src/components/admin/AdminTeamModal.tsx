@@ -166,9 +166,7 @@ export default function AdminTeamModal({
             value={form.bio}
             onChange={handleChange}
             rows={4}
-            className={cn(
-                "flex min-h-[80px] w-full rounded-lg border border-surface-variant bg-background px-3 py-2 text-body-md ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-              )}
+            className="flex min-h-[100px] w-full rounded-xl border border-surface-variant/60 dark:border-zinc-700 bg-white dark:bg-[#1e1e1e] px-3.5 py-2 text-sm text-on-surface placeholder:text-slate-400 dark:placeholder:text-zinc-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075C3B] dark:focus-visible:ring-[#8cd6ac]"
           />
         </div>
 

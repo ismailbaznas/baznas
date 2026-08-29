@@ -1,35 +1,60 @@
-# BAZNAS Kabupaten Boven Digoel Rebuild Project
+# 🏢 Website Resmi BAZNAS Kabupaten Boven Digoel
 
-Selamat datang di proyek pembangunan ulang Website Resmi BAZNAS Kabupaten Boven Digoel. Proyek ini dibangun dengan arsitektur modern Next.js 16 (App Router), TypeScript, Tailwind CSS, dan Supabase untuk menjamin performa, skalabilitas dan keamanan.
+Portal resmi Badan Amil Zakat Nasional (BAZNAS) Kabupaten Boven Digoel. Dibangun dengan arsitektur modern **Next.js 16 (App Router)**, **TypeScript**, **Tailwind CSS**, dan **Supabase SSR** untuk menjamin performa, skalabilitas, dan keamanan tata kelola zakat yang amanah, transparan, dan profesional.
 
-Sistem ini mengadopsi pola arsitektur yang teruji (berdasarkan proyek KEMENHAJ) dan telah dilengkapi dengan modul fungsionalitas penuh untuk CMS dan manajemen keamanan.
+---
 
-## 🚀 Status Proyek (Selesai Implementasi)
+## ⚡ Fitur Utama
 
-Seluruh fungsionalitas yang disepakati dalam PRD telah selesai diimplementasikan, termasuk:
+- **Portal Publik Informatif & Cepat:** Beranda, Tentang Kami, 5 Pilar Program Unggulan, Arsip Transparansi Keuangan (PDF), Kabar Berita, Kalkulator Zakat & Permohonan Mustahik, serta Kontak Resmi.
+- **Incremental Static Regeneration (ISR):** Halaman publik di-cache di Edge CDN (`revalidate = 60`) dengan waktu respon sub-50ms dan hemat kueri database.
+- **Admin CMS Terpadu & Responsif:** Manajemen penuh untuk Berita, Program Kerja, Agenda, Dokumen Publik, Profil Pimpinan, Permohonan Mustahik, Pesan Masuk, dan Pengaturan Situs.
+- **Sistem Keamanan 3-Lapis (RBAC):** Proteksi bertingkat pada Server Component, API Route, dan Client UI dengan Google OAuth PKCE.
+- **Desain Modern Berstandar BAZNAS:** Palet *Deep Emerald* (`#004229`) dan *Gold Accent* (`#D4AF37`) dengan tipografi *Playfair Display* dan *Plus Jakarta Sans*.
 
-1.  **Arsitektur Inti:** Next.js 16 (App Router) + Supabase SSR.
-2.  **Keamanan:** Sistem RBAC 3-Lapis (Roles, Permissions, Guards) terintegrasi penuh.
-3.  **Modul Admin (CMS):** CRUD Lengkap untuk Berita, Program, Agenda, Dokumen Transparansi, Pimpinan, Pesan Masuk, Pengguna, dan Peran.
-4.  **Halaman Publik:** Navigasi, Layout Publik, dan Form Kontak/Pengaduan (Selesai).
+---
 
-**Proyek saat ini dalam kondisi siap *Production Build* setelah dilakukan beberapa perbaikan kecil pada TypeScript dan JSX.**
+## 🛠️ Stack Teknologi
 
-## 🛠️ Cara Menjalankan
+- **Framework:** Next.js 16.3.3 (App Router & Turbopack)
+- **Bahasa & Typing:** TypeScript (Strict Mode)
+- **Styling:** Tailwind CSS 3 & Lucide Icons
+- **Database & Auth:** Supabase (PostgreSQL, Row Level Security, Storage, Auth SSR via `@supabase/ssr`)
+- **Optimization:** Next.js `<Image />` (AVIF/WebP), Code Splitting (`next/dynamic`), Parallel Data Fetching (`Promise.all`).
 
-1.  **Install Dependencies:**
-    ```bash
-    npm install
-    ```
-2.  **Konfigurasi Database:** Terapkan skema SQL (`supabase/migrations/0000_initial_schema.sql`) ke proyek Supabase Anda.
-3.  **Isi Environment:** Isi file `.env.local` dengan kunci Supabase Anda.
-4.  **Jalankan Lokal:**
-    ```bash
-    npm run dev
-    ```
+---
 
-## 📝 Catatan dan Checklist Detail
+## 🚀 Memulai Pengembangan Lokal
 
-Untuk perincian kemajuan, daftar file yang diubah, dan langkah-langkah *deployment* berikutnya, silakan merujuk pada file:
+1. **Clone repository dan install dependensi:**
+   ```bash
+   npm install
+   ```
+2. **Setup Environment Variables (`.env.local`):**
+   ```env
+   NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+   SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+   NEXT_PUBLIC_SITE_URL=http://localhost:3000
+   ```
+3. **Jalankan Development Server:**
+   ```bash
+   npm run dev
+   ```
+4. **Verifikasi Build Produksi:**
+   ```bash
+   npm run build
+   ```
 
-**[REBUILD_NOTES.md](./REBUILD_NOTES.md)**
+---
+
+## 📚 Dokumentasi Teknis Modular
+
+Untuk pedoman teknis mendalam, buka dokumen spesifik di folder `docs/`:
+
+- 🎨 **[Sistem Desain & UI](docs/01_UI_DESIGN_SYSTEM.md)** — Palet warna, tipografi, token desain, komponen atomik (`Badge.tsx`), dan layout shell.
+- ⚡ **[Arsitektur Next.js 16](docs/02_NEXTJS_ARCHITECTURE.md)** — Async `params`/`searchParams`, Server vs Client boundary, ISR, dynamic imports, dan kompresi gambar.
+- 🗄️ **[Database & Supabase](docs/03_DATABASE_SUPABASE.md)** — Skema tabel, kamus key `site_settings`, optimasi kueri PostgREST, dan jenis klien Supabase.
+- 🛡️ **[Keamanan & RBAC](docs/04_SECURITY_RBAC.md)** — Sistem keamanan 3-lapis, Google OAuth PKCE callback, dan pengamanan API route.
+- 🚀 **[Audit & Standar Performa](docs/05_PERFORMANCE_AUDIT.md)** — Implementasi 10 pilar performa tinggi dan checklist verifikasi pra-commit.
+- 📝 **[Catatan & Log Riwayat Proyek](REBUILD_NOTES.md)** — Riwayat audit historis, resolusi masalah lampau, dan catatan migrasi.

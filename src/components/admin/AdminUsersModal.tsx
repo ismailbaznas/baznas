@@ -123,15 +123,15 @@ export default function AdminUsersModal({
 
         {/* Info */}
         {!isEditing && (
-            <div className="p-3 bg-primary/10 border border-primary/30 rounded-lg flex items-center space-x-2 text-sm text-primary-dark">
-                <CheckCircle className="w-5 h-5" />
-                <span>Undangan akan dikirim via email. Pengguna akan mengatur password mereka sendiri.</span>
+            <div className="p-3.5 bg-[#075C3B]/10 dark:bg-[#075C3B]/20 border border-[#075C3B]/30 rounded-xl flex items-center space-x-2 text-xs font-semibold text-[#004229] dark:text-[#8cd6ac]">
+                <CheckCircle className="w-4 h-4 shrink-0" />
+                <span>Undangan akan dikirim via email. Pengguna baru akan mengatur kata sandi secara mandiri.</span>
             </div>
         )}
         
         {/* Email (Readonly if editing) */}
         <div>
-            <label htmlFor="email" className="block text-body-md font-medium mb-1">Email</label>
+            <label htmlFor="email" className="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1">Email</label>
             <Input
                 id="email"
                 name="email"
@@ -146,7 +146,7 @@ export default function AdminUsersModal({
         {/* Name & Role */}
         <div className="grid grid-cols-2 gap-4">
             <div>
-                <label htmlFor="name" className="block text-body-md font-medium mb-1">Nama Pengguna</label>
+                <label htmlFor="name" className="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1">Nama Pengguna</label>
                 <Input
                     id="name"
                     name="name"
@@ -156,14 +156,14 @@ export default function AdminUsersModal({
                 />
             </div>
             <div>
-                <label htmlFor="role" className="block text-body-md font-medium mb-1">Peran (Role)</label>
+                <label htmlFor="role" className="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1">Peran (Role)</label>
                 <select
                     id="role"
                     name="role"
                     value={form.role}
                     onChange={handleChange}
                     disabled={isSelf} // Prevent user from changing their own role
-                    className="flex h-10 w-full rounded-lg border border-surface-variant bg-background px-3 py-2 text-body-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container"
+                    className="flex h-10 w-full rounded-xl border border-surface-variant/60 dark:border-zinc-700 bg-white dark:bg-[#1e1e1e] text-on-surface px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075C3B] dark:focus-visible:ring-[#8cd6ac]"
                 >
                     <option value="" disabled>-- Pilih Peran --</option>
                     {rolesList.map((role) => (

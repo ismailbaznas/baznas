@@ -22,7 +22,7 @@ export default async function LoginPage() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-surface-container-lowest">
+    <div className="flex items-center justify-center min-h-screen bg-[#fbf9f4] dark:bg-[#121212] p-4">
       <LoginFormClient />
     </div>
   );

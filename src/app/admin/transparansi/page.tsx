@@ -2,7 +2,6 @@
 
 import { guardAdminPage } from "@/lib/rbac/server";
 import { createServerSupabase } from "@/lib/server-supabase";
-import { cookies } from "next/headers";
 import AdminDocumentClient from "@/components/admin/AdminDocumentClient";
 
 // Required for dynamic behavior
@@ -14,14 +13,15 @@ const PAGE_SIZE = 10;
 export default async function AdminDocumentPage({
   searchParams,
 }: {
-  searchParams: { page?: string; search?: string; type?: string };
+  searchParams: Promise<{ page?: string; search?: string; type?: string }>;
 }) {
   // 1. Guard 1: Check read permission
   const user = await guardAdminPage("dokumentasi.read");
 
-  // 2. Setup pagination
-  const currentPage = parseInt(searchParams.page || "1");
-  const search = searchParams.search || "";
+  // 2. Setup pagination & params (Next.js 16 async searchParams)
+  const resolvedParams = await searchParams;
+  const currentPage = parseInt(resolvedParams.page || "1");
+  const search = resolvedParams.search || "";
   const offset = (currentPage - 1) * PAGE_SIZE;
 
   const supabase = await createServerSupabase();

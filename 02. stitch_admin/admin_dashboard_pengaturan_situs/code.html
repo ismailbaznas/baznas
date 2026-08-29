@@ -1,0 +1,484 @@
+<!DOCTYPE html><html class="light" lang="id"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Settings - Admin Dashboard BAZNAS Boven Digoel</title>
+<!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-container": "#f0eee9",
+                      "on-surface": "#1b1c19",
+                      "on-surface-variant": "#3f4942",
+                      "inverse-surface": "#30312e",
+                      "surface-container-highest": "#e4e2dd",
+                      "tertiary-fixed": "#ffdad8",
+                      "secondary-container": "#fed65b",
+                      "on-secondary-container": "#745c00",
+                      "primary-container": "#075c3b",
+                      "surface-container-low": "#f5f3ee",
+                      "on-primary-container": "#88d2a8",
+                      "primary-fixed": "#a8f3c7",
+                      "surface-bright": "#fbf9f4",
+                      "outline": "#707a72",
+                      "secondary": "#735c00",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary-fixed": "#002112",
+                      "surface-tint": "#1f6b48",
+                      "on-background": "#1b1c19",
+                      "on-secondary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "secondary-fixed-dim": "#e9c349",
+                      "on-tertiary-fixed": "#3c070b",
+                      "error-container": "#ffdad6",
+                      "surface-container-high": "#eae8e3",
+                      "secondary-fixed": "#ffe088",
+                      "on-error-container": "#93000a",
+                      "surface-dim": "#dbdad5",
+                      "primary": "#004229",
+                      "on-tertiary-fixed-variant": "#743232",
+                      "inverse-on-surface": "#f2f1ec",
+                      "error": "#ba1a1a",
+                      "on-secondary-fixed": "#241a00",
+                      "tertiary-container": "#803b3b",
+                      "outline-variant": "#bfc9c0",
+                      "primary-fixed-dim": "#8cd6ac",
+                      "tertiary-fixed-dim": "#ffb3b1",
+                      "on-primary-fixed-variant": "#005233",
+                      "on-tertiary-container": "#ffaeab",
+                      "on-primary": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary-fixed-variant": "#574500",
+                      "inverse-primary": "#8cd6ac",
+                      "surface": "#fbf9f4",
+                      "tertiary": "#632526",
+                      "background": "#fbf9f4",
+                      "surface-variant": "#e4e2dd"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Playfair Display"],
+                      "display": ["Playfair Display"],
+                      "body": ["Plus Jakarta Sans"],
+                      "label": ["Plus Jakarta Sans"]
+              }
+            },
+          }
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fbf9f4; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #bfc9c0; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #707a72; 
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body antialiased min-h-screen flex">
+<!-- SideNavBar Component -->
+<aside class="bg-primary h-screen w-72 flex flex-col fixed left-0 top-0 py-8 gap-2 z-50">
+<div class="px-8 mb-8">
+<!-- Brand Logo / Identity -->
+<div class="flex items-center gap-3">
+<img alt="BAZNAS Boven Digoel Logo" class="w-10 h-10 object-contain bg-surface-container-lowest rounded-full p-1" data-alt="Official high-resolution logo of BAZNAS Kabupaten Boven Digoel, featuring the iconic Islamic geometric star in vibrant green and yellow, set against a transparent background to ensure pristine clarity on a deep emerald surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7OKgbpMmj9cJ8GhLVi9kpKSS2Rg0bqzxpFCJTfeXP85Mr8E9niM24NCu5G5J-nYKALgNaH9Fb1uyXIft5uWmFRxdBkX9Mxd4qJJJheAkgEOWPQjoM0hgPwsl5ZjohVmkoT82vWcC2B-0v8MkcLwmyFT124I4s8p4tAyOSzqaHef5DlFhJKN4jBGjQ94pYFfeFbrE0jrjeedfc6sfOlZv2XLZCiPuDwJDmFiaEecJBLirRSKp6sRRX">
+<div>
+<h2 class="font-headline text-2xl font-bold text-on-primary leading-none tracking-tight">BAZNAS</h2>
+<p class="font-label text-xs text-on-primary/80 mt-1 uppercase tracking-widest">Kab. Boven Digoel</p>
+</div>
+</div>
+</div>
+<nav class="flex flex-col gap-1 flex-grow px-4">
+<!-- Inactive Tab: Dashboard -->
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-on-primary/5 transition-colors font-label tracking-wide" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="">Dashboard</span>
+</a>
+<!-- Inactive Tab: ZIS Statistics -->
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-on-primary/5 transition-colors font-label tracking-wide" href="#">
+<span class="material-symbols-outlined text-[20px]">bar_chart</span>
+<span class="">ZIS Statistics</span>
+</a>
+<!-- Inactive Tab: Programs -->
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-on-primary/5 transition-colors font-label tracking-wide" href="#">
+<span class="material-symbols-outlined text-[20px]">assignment</span>
+<span class="">Programs</span>
+</a>
+<!-- Inactive Tab: Transparency -->
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-on-primary/5 transition-colors font-label tracking-wide" href="#">
+<span class="material-symbols-outlined text-[20px]">history_edu</span>
+<span class="">Transparency</span>
+</a>
+<!-- Inactive Tab: Kabar -->
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-on-primary/5 transition-colors font-label tracking-wide" href="#">
+<span class="material-symbols-outlined text-[20px]">newspaper</span>
+<span class="">Kabar</span>
+</a>
+<!-- ACTIVE Tab: Settings -->
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg bg-on-primary/10 text-on-primary font-bold border-l-4 border-secondary scale-[0.98] transition-transform font-label tracking-wide" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="">Settings</span>
+</a>
+</nav>
+<div class="px-6 mt-auto">
+<button class="w-full bg-secondary text-on-secondary font-label font-bold py-3 px-4 rounded-lg hover:bg-secondary/90 transition-colors shadow-sm flex items-center justify-center gap-2">
+                Bayar Zakat Sekarang
+            </button>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<div class="flex-1 ml-72 flex flex-col min-h-screen">
+<!-- TopAppBar Component -->
+<header class="bg-surface sticky top-0 z-40 flex justify-between items-center px-12 py-4 shadow-[0_1px_0_0_rgba(228,226,221,1)]">
+<div class="flex items-center gap-4">
+<h1 class="font-headline text-xl font-bold text-primary">Admin Dashboard</h1>
+</div>
+<div class="flex items-center gap-6">
+<!-- Search (from JSON config search_bar: on_right, though mostly an icon here) -->
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="pl-10 pr-4 py-2 border border-outline-variant rounded-full bg-surface-container-lowest text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary w-64 text-on-surface transition-all" placeholder="Cari pengaturan..." type="text">
+</div>
+<div class="flex items-center gap-3 text-on-surface-variant">
+<button class="hover:bg-surface-container rounded-full p-2 transition-all text-on-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="hover:bg-surface-container rounded-full p-2 transition-all text-on-surface-variant">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+<div class="h-8 w-px bg-outline-variant mx-2"></div>
+<button class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+<img alt="Administrator Profile" class="w-10 h-10 rounded-full border border-outline-variant object-cover shadow-sm" data-alt="A professional headshot of a well-groomed administrator wearing formal business attire, positioned against a bright, modern office background. The lighting is soft and flattering, emphasizing approachability and competence, suitable for a trusted institutional profile picture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyerWvdL2ithpHsNUYLIFA6SPmHwbiEFTaoWRFpito_9xMrCIO_5uVO4te7T5VqXs6fivkAD_OU5mjclqVEFd8F2LWymRordf8qWvSAFmrMCh1vz004kMChhak-dfRCtqguLCq8t3_r_10YMWNxwhp1a-3FSY_HYemIfULS3PZ7yuwLi9SK0wNGNR9ztx7Hyl3gHE_EBa61x-BmXWXnjJ5e17J2yHdeJdWmpIg-LwT8Soc27bGvTPW">
+<div class="text-left hidden lg:block">
+<p class="font-label text-sm font-semibold text-on-surface leading-tight">Admin Utama</p>
+<p class="font-body text-xs text-on-surface-variant">Superadmin</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">expand_more</span>
+</button>
+</div>
+</header>
+<!-- Page Canvas -->
+<main class="flex-1 p-8 lg:p-12">
+<div class="max-w-6xl mx-auto">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+<div>
+<h2 class="font-headline text-3xl font-bold text-primary mb-2">Pengaturan Situs</h2>
+<p class="font-body text-on-surface-variant max-w-2xl">Kelola informasi publik, kontak resmi, dan preferensi tampilan untuk portal BAZNAS Kabupaten Boven Digoel.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-2.5 rounded-lg font-label text-sm border border-outline-variant text-on-surface-variant bg-surface-container-lowest hover:bg-surface-container transition-colors">Batal</button>
+<button class="px-6 py-2.5 rounded-lg font-label text-sm bg-primary text-on-primary hover:bg-primary-container transition-colors shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">save</span>
+                            Simpan Perubahan
+                        </button>
+</div>
+</div>
+<!-- Settings Bento Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column (Wider for main config) -->
+<div class="lg:col-span-8 flex flex-col gap-8">
+<!-- 1. Identitas Institusi -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden shadow-sm">
+<div class="border-b border-surface-container-high px-8 py-5 bg-surface-bright">
+<h3 class="font-headline text-xl font-bold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">branding_watermark</span>
+                                    Identitas Institusi
+                                </h3>
+<p class="text-sm text-on-surface-variant mt-1 font-body">Informasi utama yang ditampilkan pada header dan meta tag website.</p>
+</div>
+<div class="p-8 space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2 col-span-2">
+<label class="block font-label text-sm text-on-surface">Judul Website</label>
+<input class="w-full border-outline-variant rounded-lg bg-surface-bright text-on-surface focus:ring-primary focus:border-primary shadow-sm font-body text-sm py-2.5 px-4" placeholder="Masukkan judul resmi institusi" type="text" value="BAZNAS Kabupaten Boven Digoel">
+</div>
+<div class="space-y-2 col-span-2">
+<label class="block font-label text-sm text-on-surface">Tagline Utama</label>
+<input class="w-full border-outline-variant rounded-lg bg-surface-bright text-on-surface focus:ring-primary focus:border-primary shadow-sm font-body text-sm py-2.5 px-4" placeholder="Slogan atau tagline singkat" type="text" value="Amanah, Transparan, Profesional">
+</div>
+</div>
+<div class="pt-4 border-t border-surface-container-high">
+<label class="block font-label text-sm text-on-surface mb-3">Logo Institusi</label>
+<div class="flex items-start gap-6">
+<div class="w-24 h-24 rounded-lg border border-outline-variant bg-surface flex items-center justify-center overflow-hidden flex-shrink-0">
+<img alt="Current Logo" class="w-20 h-20 object-contain" data-alt="A clean, flat lay preview of the BAZNAS institutional logo isolated on a pure white background, showcasing crisp lines and accurate brand colors (deep green and gold) to demonstrate professional asset management." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSror0wZ2gkAO0UzCBISU0N3v6N-CMivqtgPROAey952748XrCh0NkPp6OngNA93GqtEcTBltJLOG5KIsYaegAoVU7dkEHC8G3QPQZwl0luxBZ_LMPGL_zRHKfGCcNMhMLQLHQwLXoOda-WKcproGlZn3EMvMSs3TnH2Dv8BpEGoHTWVH6vrQAEMERIJcoF_R7cfRAks37ntiX9J2txstcml8qFgscSL-Evgx7EA21q8jYvQjCbeAO">
+</div>
+<div class="flex-1">
+<div class="flex justify-center px-6 pt-5 pb-6 border-2 border-outline-variant border-dashed rounded-lg bg-surface-bright hover:bg-surface-container-low transition-colors cursor-pointer">
+<div class="space-y-1 text-center">
+<span class="material-symbols-outlined text-outline text-[32px] mx-auto">cloud_upload</span>
+<div class="flex text-sm text-on-surface-variant justify-center font-body">
+<span class="relative cursor-pointer rounded-md font-semibold text-primary focus-within:outline-none focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 hover:text-primary-container">
+<span class="">Upload file</span>
+</span>
+<p class="pl-1">atau drag and drop</p>
+</div>
+<p class="text-xs text-on-surface-variant font-body">PNG, JPG, SVG maksimal 2MB (Rekomendasi ukuran: 512x512px)</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. Kontak & Alamat -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden shadow-sm">
+<div class="border-b border-surface-container-high px-8 py-5 bg-surface-bright">
+<h3 class="font-headline text-xl font-bold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">location_on</span>
+                                    Kontak &amp; Alamat
+                                </h3>
+<p class="text-sm text-on-surface-variant mt-1 font-body">Lokasi kantor pusat dan saluran komunikasi resmi.</p>
+</div>
+<div class="p-8 space-y-6">
+<div class="space-y-2">
+<label class="block font-label text-sm text-on-surface">Alamat Fisik Lengkap</label>
+<textarea class="w-full border-outline-variant rounded-lg bg-surface-bright text-on-surface focus:ring-primary focus:border-primary shadow-sm font-body text-sm py-2.5 px-4" placeholder="Masukkan alamat lengkap dengan kode pos" rows="3">Jl. Trans Papua KM. 2, Kompleks Perkantoran Bupati, Tanah Merah, Boven Digoel, Papua Selatan 99662</textarea>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="block font-label text-sm text-on-surface">Nomor Telepon Utama</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">call</span>
+<input class="w-full pl-10 border-outline-variant rounded-lg bg-surface-bright text-on-surface focus:ring-primary focus:border-primary shadow-sm font-body text-sm py-2.5 pr-4" placeholder="Contoh: (021) 1234567" type="text" value="+62 811-4922-334">
+</div>
+</div>
+<div class="space-y-2">
+<label class="block font-label text-sm text-on-surface">Email Resmi</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">mail</span>
+<input class="w-full pl-10 border-outline-variant rounded-lg bg-surface-bright text-on-surface focus:ring-primary focus:border-primary shadow-sm font-body text-sm py-2.5 pr-4" placeholder="email@domain.com" type="email" value="info@baznasbovendigoel.go.id">
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. Rekening Resmi (Table) -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden shadow-sm">
+<div class="border-b border-surface-container-high px-8 py-5 bg-surface-bright flex justify-between items-center">
+<div>
+<h3 class="font-headline text-xl font-bold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">account_balance</span>
+                                        Rekening Penampungan Resmi
+                                    </h3>
+<p class="text-sm text-on-surface-variant mt-1 font-body">Kelola daftar rekening bank untuk penerimaan ZIS.</p>
+</div>
+<button class="p-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors tooltip relative group">
+<span class="material-symbols-outlined">add</span>
+<!-- Tooltip could go here -->
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body text-sm">
+<thead class="bg-surface border-b border-outline-variant text-on-surface-variant text-xs uppercase font-label">
+<tr>
+<th class="px-6 py-4 font-semibold tracking-wider">Nama Bank</th>
+<th class="px-6 py-4 font-semibold tracking-wider">Nomor Rekening</th>
+<th class="px-6 py-4 font-semibold tracking-wider">Atas Nama (A/N)</th>
+<th class="px-6 py-4 font-semibold tracking-wider">Status</th>
+<th class="px-6 py-4 text-right font-semibold tracking-wider">Aksi</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-high">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-bright transition-colors">
+<td class="px-6 py-4 text-on-surface font-medium flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary/5 flex items-center justify-center border border-primary/10">
+<span class="material-symbols-outlined text-primary text-[18px]">account_balance_wallet</span>
+</div>
+                                                Bank Syariah Indonesia (BSI)
+                                            </td>
+<td class="px-6 py-4 text-on-surface font-mono">7123 456 789</td>
+<td class="px-6 py-4 text-on-surface-variant">BAZNAS Kab Boven Digoel - Zakat</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary-container border border-primary/20">
+                                                    Aktif
+                                                </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+<button class="text-on-surface-variant hover:text-error transition-colors p-1 ml-2"><span class="material-symbols-outlined text-[20px]">delete</span></button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-bright transition-colors">
+<td class="px-6 py-4 text-on-surface font-medium flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary/5 flex items-center justify-center border border-primary/10">
+<span class="material-symbols-outlined text-primary text-[18px]">account_balance_wallet</span>
+</div>
+                                                Bank Papua
+                                            </td>
+<td class="px-6 py-4 text-on-surface font-mono">152 000 123 456</td>
+<td class="px-6 py-4 text-on-surface-variant">BAZNAS Boven Digoel Infaq/Sedekah</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary-container border border-primary/20">
+                                                    Aktif
+                                                </span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-1"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+<button class="text-on-surface-variant hover:text-error transition-colors p-1 ml-2"><span class="material-symbols-outlined text-[20px]">delete</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- Right Column (Narrower for secondary settings) -->
+<div class="lg:col-span-4 flex flex-col gap-8">
+<!-- 3. Media Sosial -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden shadow-sm">
+<div class="border-b border-surface-container-high px-6 py-4 bg-surface-bright">
+<h3 class="font-headline text-lg font-bold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">share</span>
+                                    Tautan Media Sosial
+                                </h3>
+</div>
+<div class="p-6 space-y-5">
+<div class="space-y-1.5">
+<label class="block font-label text-xs text-on-surface-variant">Instagram URL</label>
+<div class="flex rounded-md shadow-sm">
+<span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-outline-variant bg-surface text-outline sm:text-sm font-mono">
+                                            @
+                                        </span>
+<input class="flex-1 min-w-0 block w-full px-3 py-2 rounded-none rounded-r-md border-outline-variant focus:ring-primary focus:border-primary sm:text-sm bg-surface-bright font-body" type="text" value="baznas.bovendigoel">
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="block font-label text-xs text-on-surface-variant">Facebook Page URL</label>
+<div class="flex rounded-md shadow-sm">
+<span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-outline-variant bg-surface text-outline sm:text-sm font-mono text-[11px]">
+                                            fb.com/
+                                        </span>
+<input class="flex-1 min-w-0 block w-full px-3 py-2 rounded-none rounded-r-md border-outline-variant focus:ring-primary focus:border-primary sm:text-sm bg-surface-bright font-body" type="text" value="baznasbovendigoel">
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="block font-label text-xs text-on-surface-variant">YouTube Channel URL</label>
+<input class="block w-full rounded-md border-outline-variant py-2 px-3 shadow-sm focus:border-primary focus:ring-primary sm:text-sm bg-surface-bright font-body" type="url" value="https://youtube.com/@BAZNASBovenDigoel">
+</div>
+<div class="space-y-1.5">
+<label class="block font-label text-xs text-on-surface-variant">WhatsApp Gateway (API)</label>
+<input class="block w-full rounded-md border-outline-variant py-2 px-3 shadow-sm focus:border-primary focus:ring-primary sm:text-sm bg-surface-bright font-body" placeholder="Nomor dengan kode negara" type="text" value="628114922334">
+<p class="text-[11px] text-outline mt-1 font-body">Gunakan format 628xxx tanpa tanda plus atau spasi.</p>
+</div>
+</div>
+</section>
+<!-- 5. Footer Info -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden shadow-sm">
+  <div class="border-b border-surface-container-high px-6 py-4 bg-surface-bright flex justify-between items-center">
+    <h3 class="font-headline text-lg font-bold text-on-surface flex items-center gap-2">
+      <span class="material-symbols-outlined text-primary text-[20px]">link</span>
+      Tautan Cepat
+    </h3>
+    <button class="p-1.5 bg-primary/10 text-primary rounded-md hover:bg-primary/20 transition-colors">
+      <span class="material-symbols-outlined text-[18px]">add</span>
+    </button>
+  </div>
+  <div class="p-6 space-y-4">
+    <div class="space-y-3">
+      <div class="flex items-center justify-between py-1">
+        <span class="text-sm font-label text-on-surface">Beranda</span>
+        <button aria-checked="true" class="bg-primary relative inline-flex h-5 w-10 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none" role="switch" type="button">
+          <span class="translate-x-5 pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow transition duration-200 ease-in-out"></span>
+        </button>
+      </div>
+      <div class="flex items-center justify-between py-1">
+        <span class="text-sm font-label text-on-surface">Tentang Kami</span>
+        <button aria-checked="true" class="bg-primary relative inline-flex h-5 w-10 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none" role="switch" type="button">
+          <span class="translate-x-5 pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow transition duration-200 ease-in-out"></span>
+        </button>
+      </div>
+      <div class="flex items-center justify-between py-1">
+        <span class="text-sm font-label text-on-surface">Program</span>
+        <button aria-checked="true" class="bg-primary relative inline-flex h-5 w-10 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none" role="switch" type="button">
+          <span class="translate-x-5 pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow transition duration-200 ease-in-out"></span>
+        </button>
+      </div>
+      <div class="flex items-center justify-between py-1">
+        <span class="text-sm font-label text-on-surface text-on-surface-variant/60">Transparansi</span>
+        <button aria-checked="false" class="bg-outline-variant relative inline-flex h-5 w-10 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none" role="switch" type="button">
+          <span class="translate-x-0 pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow transition duration-200 ease-in-out"></span>
+        </button>
+      </div>
+    </div>
+    <div class="pt-4 border-t border-surface-container-high">
+      <p class="text-[11px] font-bold text-primary uppercase tracking-wider mb-3">Tambah Tautan Kustom</p>
+      <div class="space-y-3">
+        <input class="w-full border-outline-variant rounded-md bg-surface-bright text-xs py-2 px-3 focus:ring-primary focus:border-primary" placeholder="Label Tautan (e.g. Pengaduan)" type="text">
+        <input class="w-full border-outline-variant rounded-md bg-surface-bright text-xs py-2 px-3 focus:ring-primary focus:border-primary" placeholder="URL (https://...)" type="url">
+      </div>
+    </div>
+  </div>
+</section><section class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden shadow-sm">
+<div class="border-b border-surface-container-high px-6 py-4 bg-surface-bright">
+<h3 class="font-headline text-lg font-bold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">notes</span>
+                                    Pengaturan Footer
+                                </h3>
+</div>
+<div class="p-6 space-y-5">
+<div class="space-y-2">
+<label class="block font-label text-xs text-on-surface-variant">Copyright Text</label>
+<textarea class="w-full border-outline-variant rounded-md bg-surface-bright text-on-surface focus:ring-primary focus:border-primary shadow-sm font-body text-sm py-2 px-3" rows="2">© 2024 BAZNAS Kabupaten Boven Digoel. Transparansi &amp; Akuntabilitas Terjaga.</textarea>
+</div>
+<div class="space-y-2">
+<label class="block font-label text-xs text-on-surface-variant">Teks Legal Notice / Disclaimer</label>
+<textarea class="w-full border-outline-variant rounded-md bg-surface-bright text-on-surface focus:ring-primary focus:border-primary shadow-sm font-body text-sm py-2 px-3" rows="4">Seluruh dana Zakat, Infaq, dan Sedekah dikelola berdasarkan prinsip syariat Islam dan peraturan perundang-undangan yang berlaku di Republik Indonesia.</textarea>
+</div>
+<div class="flex items-center justify-between pt-2">
+<span class="flex-grow flex flex-col">
+<span class="text-sm font-label text-on-surface">Tampilkan Footer</span>
+<span class="text-xs text-on-surface-variant font-body">Aktifkan footer pada halaman publik</span>
+</span>
+<button aria-checked="true" class="bg-primary relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" role="switch" type="button">
+<span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+</button>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Component (Based on JSON, integrated into admin shell) -->
+<footer class="bg-surface border-t border-outline-variant py-6 px-12 flex flex-col md:flex-row justify-between items-center gap-4 mt-auto">
+<p class="font-body text-xs text-on-surface-variant text-center md:text-left">
+                © 2024 BAZNAS Kabupaten Boven Digoel. Admin Panel System.
+            </p>
+<div class="flex items-center gap-6">
+<a class="font-body text-xs text-on-surface-variant hover:text-primary transition-colors" href="#">Pusat Bantuan</a>
+<a class="font-body text-xs text-on-surface-variant hover:text-primary transition-colors" href="#">Dokumentasi</a>
+</div>
+</footer>
+</div>
+
+
+</body></html>

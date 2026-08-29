@@ -9,7 +9,7 @@ const Table = React.forwardRef<
   <div className="relative w-full overflow-auto">
     <table
       ref={ref}
-      className={cn("w-full caption-bottom text-body-md", className)}
+      className={cn("w-full caption-bottom text-sm font-jakarta", className)}
       {...props}
     />
   </div>
@@ -22,7 +22,7 @@ const TableHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <thead
     ref={ref}
-    className={cn("[&_tr]:border-b border-surface-variant", className)}
+    className={cn("bg-slate-50 dark:bg-zinc-800/60 [&_tr]:border-b border-surface-variant/40 dark:border-zinc-800", className)}
     {...props}
   />
 ));
@@ -34,7 +34,7 @@ const TableBody = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <tbody
     ref={ref}
-    className={cn("[&_tr:last-child]:border-0", className)}
+    className={cn("[&_tr:last-child]:border-0 divide-y divide-surface-variant/20 dark:divide-zinc-800/60", className)}
     {...props}
   />
 ));
@@ -47,7 +47,7 @@ const TableRow = React.forwardRef<
   <tr
     ref={ref}
     className={cn(
-      "border-b border-surface-variant transition-colors hover:bg-surface-variant data-[state=selected]:bg-surface-variant",
+      "border-b border-surface-variant/30 dark:border-zinc-800/60 transition-colors hover:bg-slate-50/70 dark:hover:bg-zinc-800/40 data-[state=selected]:bg-slate-100 dark:data-[state=selected]:bg-zinc-800",
       className
     )}
     {...props}
@@ -62,7 +62,7 @@ const TableHead = React.forwardRef<
   <th
     ref={ref}
     className={cn(
-      "h-12 px-4 text-left align-middle font-medium text-on-surface-variant [&:has([role=checkbox])]:pr-0",
+      "h-12 px-5 text-left align-middle font-bold text-xs uppercase tracking-wider text-[#5B6470] dark:text-zinc-400 [&:has([role=checkbox])]:pr-0",
       className
     )}
     {...props}
@@ -76,7 +76,7 @@ const TableCell = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <td
     ref={ref}
-    className={cn("p-4 align-middle [&:has([role=checkbox])]:pr-0", className)}
+    className={cn("p-4 sm:p-5 align-middle text-on-surface text-xs sm:text-sm [&:has([role=checkbox])]:pr-0", className)}
     {...props}
   />
 ));

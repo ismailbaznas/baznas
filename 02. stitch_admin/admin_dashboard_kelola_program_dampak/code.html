@@ -1,0 +1,293 @@
+<!DOCTYPE html><html lang="id"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>BAZNAS Admin - Program &amp; Impact</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#fbf9f4",
+                        "tertiary-fixed": "#ffdad8",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#eae8e3",
+                        "on-tertiary-fixed": "#3c070b",
+                        "surface-tint": "#1f6b48",
+                        "on-surface-variant": "#3f4942",
+                        "on-primary-fixed": "#002112",
+                        "background": "#fbf9f4",
+                        "secondary-fixed-dim": "#e9c349",
+                        "on-secondary-fixed-variant": "#574500",
+                        "secondary-container": "#fed65b",
+                        "on-error": "#ffffff",
+                        "outline-variant": "#bfc9c0",
+                        "outline": "#707a72",
+                        "surface": "#fbf9f4",
+                        "on-tertiary-fixed-variant": "#743232",
+                        "on-secondary-container": "#745c00",
+                        "on-primary-container": "#88d2a8",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#241a00",
+                        "primary-fixed": "#a8f3c7",
+                        "tertiary-container": "#803b3b",
+                        "secondary": "#735c00",
+                        "error-container": "#ffdad6",
+                        "inverse-on-surface": "#f2f1ec",
+                        "secondary-fixed": "#ffe088",
+                        "primary": "#004229",
+                        "surface-container-highest": "#e4e2dd",
+                        "tertiary-fixed-dim": "#ffb3b1",
+                        "inverse-surface": "#30312e",
+                        "on-surface": "#1b1c19",
+                        "on-primary-fixed-variant": "#005233",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-container": "#ffaeab",
+                        "surface-container-low": "#f5f3ee",
+                        "tertiary": "#632526",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#8cd6ac",
+                        "on-background": "#1b1c19",
+                        "primary-container": "#075c3b",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#8cd6ac",
+                        "surface-container": "#f0eee9",
+                        "surface-variant": "#e4e2dd",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#dbdad5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Playfair Display"],
+                        "display": ["Playfair Display"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { background-color: #fbf9f4; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body min-h-screen flex">
+<!-- SideNavBar (Shared Component) -->
+<aside class="h-screen w-72 flex flex-col fixed left-0 top-0 bg-primary dark:bg-primary-container z-50">
+<div class="p-8 border-b border-on-primary/10">
+<h1 class="font-headline text-2xl font-bold text-on-primary dark:text-on-primary-container tracking-tight">BAZNAS</h1>
+<p class="font-body text-sm text-on-primary/80 mt-1">Kabupaten Boven Digoel</p>
+</div>
+<nav class="flex-1 py-8 flex flex-col gap-2 overflow-y-auto px-4">
+<!-- Inactive -->
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-on-primary/5 transition-colors font-label tracking-wide" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="">Dashboard</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-on-primary/5 transition-colors font-label tracking-wide" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="">ZIS Statistics</span>
+</a>
+<!-- Active: Programs -->
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg bg-on-primary/10 text-on-primary font-bold border-l-4 border-secondary font-label tracking-wide scale-[0.98] transition-transform" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span class="">Programs</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-on-primary/5 transition-colors font-label tracking-wide" href="#">
+<span class="material-symbols-outlined">history_edu</span>
+<span class="">Transparency</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-on-primary/5 transition-colors font-label tracking-wide" href="#">
+<span class="material-symbols-outlined">newspaper</span>
+<span class="">Kabar</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-primary/70 hover:text-on-primary hover:bg-on-primary/5 transition-colors font-label tracking-wide mt-auto" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="">Settings</span>
+</a>
+</nav>
+<div class="p-4 border-t border-on-primary/10">
+<button class="w-full py-3 px-4 bg-secondary text-on-secondary rounded-lg font-label font-bold hover:bg-secondary/90 transition-colors">Bayar Zakat Sekarang</button>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col min-w-0 ml-72 bg-surface">
+<!-- TopAppBar (Shared Component) -->
+<header class="flex justify-between items-center px-12 py-4 w-full sticky top-0 z-40 bg-surface-container-low dark:bg-surface-container-high border-b border-outline-variant/30">
+<h2 class="font-headline text-xl font-bold text-primary dark:text-primary-fixed">Admin Dashboard</h2>
+<div class="flex items-center gap-6">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="pl-10 pr-4 py-2 rounded-full border border-outline-variant bg-surface-container-lowest focus:outline-none focus:border-primary text-sm font-body w-64" placeholder="Search..." type="text">
+</div>
+<button class="text-on-surface-variant dark:text-on-surface hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant dark:text-on-surface hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-primary-container overflow-hidden border-2 border-surface">
+<img alt="Administrator Profile" class="w-full h-full object-cover" data-alt="A professional portrait of an administrator in a well-lit modern office setting. Soft, natural lighting highlights the subject's face against a blurred background of contemporary office architecture. The image exudes a sense of competence, trust, and institutional professionalism fitting a government or official agency dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFBP8unZa2qkp_1cAVnclBjIDS7i18VnGr_IaATm_7I6xL69xWwCtsaaGs32bQh86jLInl0ri4n2Ycikd-fuZa0KxrTAZYtakUWI2ghkmcIhf0C31AhP3wy6PFz3G-jUpUieFzJR5xlaX17EP79LLXltly1mzFCSVvOCoypROgWtkuDR8zWwLJUtnVFqu6rBml6zg7EBCMkTHm08YF6YJmqWkl5yH_lWmEo6rFYriPGah2QdNpIGKU">
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 px-12 py-12 max-w-[1320px] mx-auto w-full">
+<div class="mb-10 flex justify-between items-end">
+<div>
+<h2 class="font-headline text-3xl font-bold text-on-surface mb-2">Program &amp; Impact Management</h2>
+<p class="font-body text-on-surface-variant text-lg">Manage the '5 Pilar Penyaluran' and highlight human stories.</p>
+</div>
+<button class="bg-primary text-on-primary px-6 py-3 rounded-lg font-label flex items-center gap-2 hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined text-sm">save</span>
+                    Save Changes
+                </button>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- 5 Pilar Editor (Takes up 2 columns) -->
+<section class="lg:col-span-2 bg-surface-container-lowest rounded-xl p-8 border border-outline-variant/50 relative overflow-hidden"><div class="flex flex-col gap-8">
+    <!-- Header & Actions -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-primary text-3xl">assignment_turned_in</span>
+            <h3 class="font-headline text-2xl font-bold text-on-surface">Manajemen Program &amp; Unggulan</h3>
+        </div>
+        <button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label text-sm flex items-center gap-2 hover:bg-primary/90 transition-colors">
+            <span class="material-symbols-outlined text-sm">add</span>
+            Tambah Program Baru
+        </button>
+    </div>
+
+    <!-- Tabs & Search -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-outline-variant/30 pb-4">
+        <div class="flex gap-6">
+            <button class="font-label text-sm font-bold text-primary border-b-2 border-primary pb-4 -mb-4.5">Semua Program</button>
+            <button class="font-label text-sm font-medium text-on-surface-variant hover:text-primary transition-colors pb-4">Program Unggulan</button>
+        </div>
+        <div class="relative">
+            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+            <input type="text" placeholder="Cari program..." class="pl-9 pr-4 py-1.5 rounded-lg border border-outline-variant bg-surface-bright focus:outline-none focus:border-primary text-sm font-body w-full md:w-64">
+        </div>
+    </div>
+
+    <!-- Program Table -->
+    <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+            <thead>
+                <tr class="text-on-surface-variant text-xs font-label uppercase tracking-wider border-b border-outline-variant/30">
+                    <th class="py-3 px-4 font-semibold">Nama Program</th>
+                    <th class="py-3 px-4 font-semibold">Kategori</th>
+                    <th class="py-3 px-4 font-semibold">Status</th>
+                    <th class="py-3 px-4 font-semibold text-right">Aksi</th>
+                </tr>
+            </thead>
+            <tbody class="text-sm font-body">
+                <tr class="border-b border-outline-variant/10 hover:bg-surface-container-low transition-colors">
+                    <td class="py-4 px-4 font-medium text-on-surface">Beasiswa Boven Digoel Cerdas</td>
+                    <td class="py-4 px-4"><span class="px-2 py-1 bg-surface-container rounded text-xs">BAZNAS Cerdas</span></td>
+                    <td class="py-4 px-4"><span class="flex items-center gap-1.5 text-primary font-medium"><span class="w-2 h-2 rounded-full bg-primary"></span>Aktif</span></td>
+                    <td class="py-4 px-4 text-right">
+                        <div class="flex justify-end gap-2">
+                            <button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">edit</span></button>
+                            <button class="p-1.5 text-on-surface-variant hover:text-error transition-colors"><span class="material-symbols-outlined text-lg">delete</span></button>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="border-b border-outline-variant/10 hover:bg-surface-container-low transition-colors">
+                    <td class="py-4 px-4 font-medium text-on-surface">Layanan Kesehatan Keliling</td>
+                    <td class="py-4 px-4"><span class="px-2 py-1 bg-surface-container rounded text-xs">BAZNAS Sehat</span></td>
+                    <td class="py-4 px-4"><span class="flex items-center gap-1.5 text-primary font-medium"><span class="w-2 h-2 rounded-full bg-primary"></span>Aktif</span></td>
+                    <td class="py-4 px-4 text-right">
+                        <div class="flex justify-end gap-2">
+                            <button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">edit</span></button>
+                            <button class="p-1.5 text-on-surface-variant hover:text-error transition-colors"><span class="material-symbols-outlined text-lg">delete</span></button>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="border-b border-outline-variant/10 hover:bg-surface-container-low transition-colors">
+                    <td class="py-4 px-4 font-medium text-on-surface">Pemberdayaan Ekonomi Mualaf</td>
+                    <td class="py-4 px-4"><span class="px-2 py-1 bg-surface-container rounded text-xs">BAZNAS Mandiri</span></td>
+                    <td class="py-4 px-4"><span class="flex items-center gap-1.5 text-on-surface-variant font-medium"><span class="w-2 h-2 rounded-full bg-outline-variant"></span>Draft</span></td>
+                    <td class="py-4 px-4 text-right">
+                        <div class="flex justify-end gap-2">
+                            <button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">edit</span></button>
+                            <button class="p-1.5 text-on-surface-variant hover:text-error transition-colors"><span class="material-symbols-outlined text-lg">delete</span></button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Reference Area: 5 Pilar -->
+    <div class="mt-4 p-6 bg-surface-container-low rounded-lg border border-outline-variant/30">
+        <div class="flex items-center gap-2 mb-4">
+            <span class="material-symbols-outlined text-primary text-xl">info</span>
+            <h4 class="font-headline text-lg font-bold text-on-surface">Panduan Klasifikasi: 5 Pilar Penyaluran</h4>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="text-xs font-body text-on-surface-variant">
+                <p class="font-bold text-primary mb-1">BAZNAS Sehat</p>
+                <p class="">Bantuan kesehatan &amp; layanan medis gratis.</p>
+            </div>
+            <div class="text-xs font-body text-on-surface-variant">
+                <p class="font-bold text-primary mb-1">BAZNAS Cerdas</p>
+                <p class="">Beasiswa &amp; keberlanjutan pendidikan.</p>
+            </div>
+            <div class="text-xs font-body text-on-surface-variant">
+                <p class="font-bold text-primary mb-1">BAZNAS Mandiri</p>
+                <p class="">Pemberdayaan ekonomi &amp; modal usaha.</p>
+            </div>
+        </div>
+    </div>
+</div></section>
+<!-- Impact Stories Editor (Takes up 1 column) -->
+<section class="lg:col-span-1 bg-surface-container-lowest rounded-xl p-8 border border-outline-variant/50 flex flex-col h-full">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary text-3xl">auto_stories</span>
+<h3 class="font-headline text-2xl font-bold text-on-surface">Impact Stories</h3>
+</div>
+<div class="flex-1 flex flex-col gap-5">
+<div class="relative w-full aspect-[4/3] rounded-lg overflow-hidden border border-outline-variant bg-surface-container flex items-center justify-center group cursor-pointer">
+<img alt="Impact Story Image" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity" data-alt="A touching documentary-style photograph of a local recipient of aid in Boven Digoel, looking hopeful and dignified. The lighting is warm and natural, emphasizing human connection and authenticity. The background gently suggests a modest rural or suburban setting, highlighting the real-world impact of charitable programs in a respectful, non-exploitative manner." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_U3jzqRZ7oP_jAZnmjQJHgDq8LpmTX0XsaW8_5vNmO0fDHXy8CebhiQerpqz6C-LN72rTuBKg9BDYUaiMmNHY2qY_V76pvYX7Ht0Ge1aP0brDGaXQ6oLNbBnjCymNgzthV6sJRTS27E0LJQP7jb7WdwKp6tD-AUVZIlJkiTVIU4Mpb0ApRns_qsrJa_8Ic6snGiPAMF93jjZbmaiMXpq9Vxsvs6cVSRHcKmNVpxWnVnPAZDrlH29H">
+<div class="relative z-10 flex flex-col items-center gap-2 text-on-surface bg-surface-container-lowest/80 px-4 py-2 rounded-lg backdrop-blur-sm shadow-sm">
+<span class="material-symbols-outlined">upload</span>
+<span class="font-label text-sm">Change Image</span>
+</div>
+</div>
+<div>
+<label class="block font-label text-sm text-on-surface-variant mb-1">Headline</label>
+<input class="w-full font-headline text-lg p-3 rounded-lg border border-outline-variant bg-surface-bright focus:border-primary focus:outline-none" type="text" value="Harapan Baru di Ujung Timur">
+</div>
+<div class="flex-1 flex flex-col">
+<label class="block font-label text-sm text-on-surface-variant mb-1">Story Content</label>
+<textarea class="w-full flex-1 p-3 rounded-lg border border-outline-variant bg-surface-bright focus:border-primary focus:outline-none text-body text-sm resize-none min-h-[150px]">Kisah inspiratif keluarga Bapak Yanto yang berhasil membangun kemandirian ekonomi melalui program BAZNAS Mandiri. Bantuan modal usaha dan pendampingan berkelanjutan telah mengubah jalan hidup mereka, memberikan secercah harapan di tengah kesulitan ekonomi.</textarea>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="mt-auto px-12 py-6 border-t border-outline-variant bg-surface-container-lowest dark:bg-surface-dim flex justify-between items-center w-full">
+<p class="font-body text-sm font-medium text-on-surface-variant dark:text-on-surface">© 2024 BAZNAS Kabupaten Boven Digoel. Transparansi &amp; Akuntabilitas Terjaga.</p>
+<div class="flex gap-6">
+<a class="font-body text-sm font-medium text-secondary-gray hover:text-primary transition-colors" href="#">Kebijakan Privasi</a>
+<a class="font-body text-sm font-medium text-secondary-gray hover:text-primary transition-colors" href="#">Kontak Kami</a>
+<a class="font-body text-sm font-medium text-secondary-gray hover:text-primary transition-colors" href="#">Pusat Bantuan</a>
+</div>
+</footer>
+</div>
+
+
+</body></html>
