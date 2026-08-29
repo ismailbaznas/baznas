@@ -44,6 +44,7 @@ const PAGE_TITLES: Record<string, string> = {
   "/admin/users": "Manajemen Pengguna",
   "/admin/roles": "Manajemen Peran & Hak Akses",
   "/admin/settings": "Pengaturan Situs",
+  "/admin/profile": "Pengaturan Profil",
 };
 
 const AdminSidebar = ({ mobileOpen = false, onClose }: AdminSidebarProps) => {
@@ -197,12 +198,17 @@ const AdminSidebar = ({ mobileOpen = false, onClose }: AdminSidebarProps) => {
 
       {/* User Info & Logout Panel */}
       <div className="mt-auto pt-4 border-t border-white/10 space-y-3">
-        <div className="p-3 rounded-xl bg-white/5 border border-white/10 flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/40 flex items-center justify-center text-[#ffe088] font-bold text-xs shrink-0">
+        <Link 
+          href="/admin/profile" 
+          onClick={onClose}
+          className="p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/10 flex items-center gap-3 group"
+          title="Buka Pengaturan Profil Saya"
+        >
+          <div className="w-8 h-8 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/40 flex items-center justify-center text-[#ffe088] font-bold text-xs shrink-0 group-hover:scale-105 transition-transform">
             {(user.name || user.email || "A").charAt(0).toUpperCase()}
           </div>
           <div className="overflow-hidden flex-1">
-            <p className="text-xs font-bold text-white truncate leading-tight">
+            <p className="text-xs font-bold text-white truncate leading-tight group-hover:text-[#ffe088] transition-colors">
               {user.name || user.email}
             </p>
             <span className="inline-flex items-center gap-1 text-[10px] text-[#ffe088] font-medium mt-0.5 capitalize">
@@ -210,7 +216,7 @@ const AdminSidebar = ({ mobileOpen = false, onClose }: AdminSidebarProps) => {
               {user.role || "Admin"}
             </span>
           </div>
-        </div>
+        </Link>
 
         <button
           onClick={handleLogout}
@@ -298,19 +304,23 @@ export default function AdminLayoutClient({ children }: { children: React.ReactN
             <ThemeToggle />
 
             {/* User Pill */}
-            <div className="hidden lg:flex items-center gap-2 pl-2 border-l border-surface-variant/40 dark:border-zinc-800">
-              <div className="w-8 h-8 rounded-full bg-[#075C3B]/10 dark:bg-[#8cd6ac]/10 text-[#004229] dark:text-[#8cd6ac] flex items-center justify-center font-bold text-xs font-jakarta">
+            <Link 
+              href="/admin/profile"
+              className="flex items-center gap-2 pl-2 border-l border-surface-variant/40 dark:border-zinc-800 hover:opacity-85 transition-opacity group"
+              title="Buka Pengaturan Profil Saya"
+            >
+              <div className="w-8 h-8 rounded-full bg-[#075C3B]/10 dark:bg-[#8cd6ac]/10 text-[#004229] dark:text-[#8cd6ac] flex items-center justify-center font-bold text-xs font-jakarta group-hover:scale-105 transition-transform border border-[#075C3B]/20">
                 {(user.name || user.email || "A").charAt(0).toUpperCase()}
               </div>
-              <div className="text-left">
-                <p className="text-xs font-bold text-on-surface leading-none truncate max-w-[120px]">
+              <div className="text-left hidden sm:block">
+                <p className="text-xs font-bold text-on-surface leading-none truncate max-w-[120px] group-hover:text-[#004229] dark:group-hover:text-[#8cd6ac] transition-colors">
                   {user.name || user.email}
                 </p>
                 <span className="text-[10px] text-on-surface-variant font-medium capitalize">
                   {user.role || "Admin"}
                 </span>
               </div>
-            </div>
+            </Link>
           </div>
         </header>
 

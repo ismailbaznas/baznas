@@ -2,12 +2,12 @@
 
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Logo from './ui/Logo';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { User, Menu, X, ArrowRight, LogOut } from 'lucide-react';
+import { User, Menu, X, ArrowRight, LogOut, LayoutDashboard, LogIn } from 'lucide-react';
 import { useAuthSession } from '@/hooks/useAuthSession';
 
 const NAV_LINKS = [
@@ -23,7 +23,30 @@ const NAV_LINKS = [
 export default function PublicNavbar() {
     const pathname = usePathname();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const { isLoggedIn, loading, handleLogout } = useAuthSession();
+    const [isProfileOpen, setIsProfileOpen] = useState(false);
+    const { user, isLoggedIn, loading, handleLogout } = useAuthSession();
+    const profileRef = useRef<HTMLDivElement>(null);
+
+    // Close profile dropdown on click outside
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (profileRef.current && !profileRef.current.contains(event.target as Node)) {
+                setIsProfileOpen(false);
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
+    // Close menus on route change
+    useEffect(() => {
+        setIsMenuOpen(false);
+        setIsProfileOpen(false);
+    }, [pathname]);
+
+    const userInitial = (user?.user_metadata?.full_name || user?.email || "A").charAt(0).toUpperCase();
 
     return (
         <header className="sticky top-0 z-50 w-full h-20 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md border-b border-[#bfc9c0]/30 transition-colors">
@@ -63,28 +86,75 @@ export default function PublicNavbar() {
                         <ArrowRight className="w-4 h-4" />
                     </Link>
 
-                    {/* Auth Button */}
-                    {loading ? (
-                        <div className="w-8 h-8 rounded-lg bg-zinc-100 animate-pulse hidden md:block" />
-                    ) : isLoggedIn ? (
+                    {/* Circular Profile Avatar Button & Dropdown */}
+                    <div className="relative hidden md:block" ref={profileRef}>
                         <button
-                            onClick={handleLogout}
-                            title="Logout"
-                            className="hidden md:flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-lg border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                            onClick={() => setIsProfileOpen(!isProfileOpen)}
+                            title={isLoggedIn ? (user?.user_metadata?.full_name || user?.email || "Akun Saya") : "Masuk / Login"}
+                            className="w-10 h-10 rounded-full bg-[#004229]/10 dark:bg-[#8cd6ac]/15 text-[#004229] dark:text-[#8cd6ac] border border-[#004229]/20 dark:border-[#8cd6ac]/30 flex items-center justify-center font-bold text-xs transition-all hover:scale-105 hover:border-[#075C3B] active:scale-95 shadow-sm"
+                            aria-expanded={isProfileOpen}
+                            aria-label="Menu Akun"
                         >
-                            <LogOut className="w-3.5 h-3.5 text-red-500" />
-                            <span>Keluar</span>
+                            {loading ? (
+                                <div className="w-4 h-4 border-2 border-[#004229] dark:border-[#8cd6ac] border-t-transparent rounded-full animate-spin" />
+                            ) : isLoggedIn ? (
+                                <span>{userInitial}</span>
+                            ) : (
+                                <User className="w-4 h-4 text-[#004229] dark:text-[#8cd6ac]" />
+                            )}
                         </button>
-                    ) : (
-                        <Link
-                            href="/login"
-                            title="Login Admin"
-                            className="hidden md:flex items-center gap-1.5 text-xs font-semibold px-3 py-2 rounded-lg border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
-                        >
-                            <User className="w-3.5 h-3.5 text-[#075C3B]" />
-                            <span>Login</span>
-                        </Link>
-                    )}
+
+                        {/* Dropdown Popover */}
+                        {isProfileOpen && (
+                            <div className="absolute right-0 mt-2.5 w-56 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200/90 dark:border-zinc-800 shadow-2xl py-2 z-50 font-jakarta animate-in fade-in zoom-in-95 duration-150">
+                                {isLoggedIn ? (
+                                    <>
+                                        <div className="px-4 py-2.5 border-b border-zinc-100 dark:border-zinc-800">
+                                            <p className="text-xs font-bold text-[#1F2937] dark:text-white truncate">
+                                                {user?.user_metadata?.full_name || user?.email?.split('@')[0]}
+                                            </p>
+                                            <p className="text-[11px] text-[#5B6470] dark:text-zinc-400 truncate mt-0.5">
+                                                {user?.email}
+                                            </p>
+                                        </div>
+
+                                        <div className="p-1.5 space-y-0.5">
+                                            <Link
+                                                href="/admin"
+                                                onClick={() => setIsProfileOpen(false)}
+                                                className="flex items-center gap-2.5 px-3 py-2 text-xs font-semibold text-[#1F2937] dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-xl transition-colors"
+                                            >
+                                                <LayoutDashboard className="w-4 h-4 text-[#075C3B] dark:text-[#8cd6ac]" />
+                                                <span>Buka Panel Admin</span>
+                                            </Link>
+
+                                            <button
+                                                onClick={() => {
+                                                    setIsProfileOpen(false);
+                                                    handleLogout();
+                                                }}
+                                                className="w-full flex items-center gap-2.5 px-3 py-2 text-xs font-semibold text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 rounded-xl transition-colors"
+                                            >
+                                                <LogOut className="w-4 h-4" />
+                                                <span>Keluar</span>
+                                            </button>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <div className="p-1.5">
+                                        <Link
+                                            href="/login"
+                                            onClick={() => setIsProfileOpen(false)}
+                                            className="flex items-center gap-2.5 px-3 py-2.5 text-xs font-bold text-[#004229] dark:text-[#8cd6ac] hover:bg-emerald-50 dark:hover:bg-emerald-950/30 rounded-xl transition-colors"
+                                        >
+                                            <LogIn className="w-4 h-4 text-[#075C3B] dark:text-[#8cd6ac]" />
+                                            <span>Masuk / Login</span>
+                                        </Link>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                    </div>
 
                     {/* Mobile Menu Button */}
                     <button
@@ -135,23 +205,34 @@ export default function PublicNavbar() {
                         </Link>
 
                         {isLoggedIn ? (
-                            <button
-                                onClick={() => {
-                                    handleLogout();
-                                    setIsMenuOpen(false);
-                                }}
-                                className="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 text-sm font-semibold text-red-600 dark:text-red-400"
-                            >
-                                <LogOut className="w-4 h-4" />
-                                <span>Logout</span>
-                            </button>
+                            <>
+                                <Link
+                                    href="/admin"
+                                    onClick={() => setIsMenuOpen(false)}
+                                    className="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg bg-[#075C3B]/10 text-[#075C3B] dark:text-[#8cd6ac] text-sm font-bold"
+                                >
+                                    <LayoutDashboard className="w-4 h-4" />
+                                    <span>Buka Panel Admin</span>
+                                </Link>
+
+                                <button
+                                    onClick={() => {
+                                        handleLogout();
+                                        setIsMenuOpen(false);
+                                    }}
+                                    className="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 text-sm font-semibold text-red-600 dark:text-red-400"
+                                >
+                                    <LogOut className="w-4 h-4" />
+                                    <span>Logout</span>
+                                </button>
+                            </>
                         ) : (
                             <Link
                                 href="/login"
                                 onClick={() => setIsMenuOpen(false)}
                                 className="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 text-sm font-semibold text-zinc-700 dark:text-zinc-300"
                             >
-                                <User className="w-4 h-4 text-[#075C3B]" />
+                                <LogIn className="w-4 h-4 text-[#075C3B]" />
                                 <span>Login Staff / Admin</span>
                             </Link>
                         )}

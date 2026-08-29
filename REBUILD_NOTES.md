@@ -503,31 +503,22 @@ Menghilangkan ketidakkonsistenan font antar-halaman admin/publik dan menertibkan
 
 ---
 
-## 19. HIGH-PERFORMANCE SYSTEM ARCHITECTURE & CORE WEB VITALS (AGUSTUS 2026)
+## 20. PROFILE SELF-SERVICE & CIRCULAR AVATAR NAVIGATION (AGUSTUS 2026)
 
-Implementasi 10 pilar optimasi performa berdaya dampak tinggi untuk memangkas waktu tunggu respon, ukuran bundle JavaScript, dan transfer aset visual secara dramatis:
+Implementasi fitur manajemen profil mandiri (Self-Service Profile) dan perampingan navigasi login frontend:
 
-### A. Rincian 10 Optimasi yang Diimplementasikan
-1. **Server Parallel Data Fetching (`Promise.all`)**:
-   - Seluruh Server Component publik (`page.tsx`, `tentang/page.tsx`, `program/page.tsx`, `transparansi/page.tsx`, `kontak/page.tsx`) dan halaman admin (`admin/berita`, `admin/program`, `admin/users`) diubah dari eksekusi sekuensial (waterfall ~650ms) menjadi paralel (`await Promise.all([...])`). Waktu tunggu database server pada Beranda turun dari **~650ms menjadi ~120ms** (TTFB naik 400%).
-2. **Next.js Automatic Image Optimization (`next/image`)**:
-   - Menghapus seluruh tag mentah `<img>` dan menggantinya dengan komponen `<Image />` bawaan Next.js dengan responsive `sizes`, `priority` pada LCP hero, format AVIF/WebP, serta mendaftarkan remote domains (`lh3.googleusercontent.com`, `images.unsplash.com`, `*.supabase.co`) pada `next.config.mjs`. Total transfer visual terpangkas dari **~8MB menjadi <600KB**.
-3. **Eliminasi Client-Side Fetching Waterfall (`PublicFooter.tsx` & `ContactFormClient.tsx`)**:
-   - Menghilangkan pemanggilan `useEffect` yang menembak 3 kueri API Supabase di browser setiap kali navigasi rute dilakukan. Data dialirkan dari server atau menggunakan fallback statis terstruktur, menghilangkan 3 HTTP roundtrip latar belakang dan mencegah CLS.
-4. **Transformasi ke Pure Server Components**:
-   - Mengubah `TentangClient.tsx`, `ProgramClient.tsx`, dan `HomeClient.tsx` menjadi Server Components murni tanpa `"use client"`, menghilangkan overhead hidrasi React dan memangkas ukuran JavaScript bundle landing page sebesar **~45KB – 60KB**.
-5. **Dynamic Imports & Modal Code-Splitting (`next/dynamic`)**:
-   - Seluruh 9 form modal CMS admin (`AdminBeritaModal`, `AdminProgramModal`, `AdminAgendaModal`, `AdminDocumentModal`, `AdminPesanModal`, `AdminBantuanModal`, `AdminTeamModal`, `AdminUsersModal`, `AdminRolesModal`) diimpor secara dinamis (`dynamic(() => import("./..."), { ssr: false })`), memangkas initial chunk size tabel admin hingga **40%**.
-6. **Strategi Caching Cerdas (ISR `revalidate = 60`)**:
-   - Mengganti `force-dynamic` pada rute publik (`/`, `/tentang`, `/program`, `/transparansi`, `/kabar`, `/kabar/[slug]`, `/program/[slug]`, `/kontak`, `/layanan`) dengan `export const revalidate = 60;`. 95%+ permintaan publik dilayani langsung dari **Static / Edge Cache** dengan TTFB **< 50ms**.
-7. **Supabase Column Pruning (Pencegahan Overfetching)**:
-   - Menghapus kolom `content` (HTML rich-text ratusan KB) dari kueri daftar berita di Beranda dan `/kabar`, memotong payload JSON transfer database sebesar **98%**. Kolom `content` penuh hanya diambil pada halaman detail `[slug]`.
-8. **Penyatuan Sumber Data Halaman Kontak**:
-   - Menyatukan kueri `bank_accounts` dan `site_settings` di server pada `src/app/kontak/page.tsx` dan mengalirkannya ke `ContactFormClient.tsx`, menghilangkan fetching ganda.
-9. **Database Aggregate Indexing & Head Counting (`head: true`)**:
-   - Memastikan penghitungan ringkasan statistik di dasbor admin menggunakan `{ count: "exact", head: true }` tanpa menarik baris data fisik.
-10. **Tree-Shaking & Build Cleanliness Verification**:
-    - Seluruh 34 rute lulus kompilasi `npm run build` Turbopack dengan 0 error.
+### A. Rincian Fitur & Penyesuaian
+1. **Frontend Navbar Circular Profile (`PublicNavbar.tsx`)**:
+   - Mengganti tombol login lebar dengan tombol avatar bulat modern berinisial pengguna (atau ikon user jika belum masuk).
+   - Menambahkan dropdown popover interaktif:
+     - Jika sudah masuk (*Logged In*): Menampilkan info email/nama, tombol *"Buka Panel Admin"* (`/admin`), dan tombol *"Keluar"* (Logout).
+     - Jika belum masuk (*Logged Out*): Menampilkan opsi *"Masuk / Login"* (`/login`).
+2. **Halaman Profil Mandiri (`/admin/profile`)**:
+   - Mengembangkan `AdminProfileClient.tsx` dan `src/app/admin/profile/page.tsx` untuk memfasilitasi admin memperbarui **Nama Lengkap** dan **Kata Sandi** secara mandiri.
+   - Mengintegrasikan API Route backend `/api/admin/profile` dengan validasi otentikasi ketat dan sinkronisasi ke tabel `admin_users` serta Supabase Auth metadata.
+3. **Backend TopAppBar Avatar Navigation (`AdminLayoutClient.tsx`)**:
+   - Menghubungkan user pill dan avatar inisial pada TopAppBar dan sidebar langsung ke rute `/admin/profile`.
+
 
 
 
