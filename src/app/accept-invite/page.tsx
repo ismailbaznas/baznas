@@ -37,20 +37,20 @@ export default function AcceptInvitePage() {
   }, [router, supabase]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-surface-container-lowest p-4">
-      <div className="w-full max-w-md p-8 space-y-6 bg-surface rounded-xl shadow-2xl border border-surface-variant text-center">
-        <h1 className="text-3xl font-space-grotesk font-bold text-primary">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[#fbf9f4] dark:bg-[#121212] p-4 font-jakarta">
+      <div className="w-full max-w-md p-8 md:p-10 space-y-6 bg-white dark:bg-[#181818] rounded-3xl shadow-xl border border-surface-variant/40 dark:border-zinc-800 text-center">
+        <h1 className="text-2xl md:text-3xl font-playfair font-bold text-[#004229] dark:text-[#8cd6ac]">
           Penerimaan Undangan
         </h1>
         {error ? (
-          <div className="flex flex-col items-center text-status-danger space-y-2">
+          <div className="flex flex-col items-center text-red-600 dark:text-red-400 space-y-2 p-4 bg-red-50 dark:bg-red-950/20 rounded-2xl border border-red-200 dark:border-red-900/30">
             <AlertTriangle className="w-8 h-8" />
-            <p>{error}</p>
+            <p className="text-xs font-semibold leading-relaxed">{error}</p>
           </div>
         ) : (
-          <div className="flex flex-col items-center text-on-surface space-y-2">
-            <Loader2 className="w-8 h-8 animate-spin text-primary" />
-            <p>{message}</p>
+          <div className="flex flex-col items-center text-on-surface space-y-3">
+            <Loader2 className="w-8 h-8 animate-spin text-[#075C3B] dark:text-[#8cd6ac]" />
+            <p className="text-sm font-medium">{message}</p>
           </div>
         )}
       </div>

@@ -1,0 +1,286 @@
+<!DOCTYPE html><html lang="id"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Kontak - BAZNAS Boven Digoel</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#ffaeab",
+                        "inverse-on-surface": "#f2f1ec",
+                        "primary": "#004229",
+                        "on-secondary-fixed": "#241a00",
+                        "tertiary-container": "#803b3b",
+                        "surface": "#fbf9f4",
+                        "on-secondary-container": "#745c00",
+                        "outline-variant": "#bfc9c0",
+                        "tertiary-fixed-dim": "#ffb3b1",
+                        "outline": "#707a72",
+                        "secondary-fixed": "#ffe088",
+                        "on-primary-fixed": "#002112",
+                        "secondary": "#735c00",
+                        "tertiary": "#632526",
+                        "surface-container-highest": "#e4e2dd",
+                        "surface-variant": "#e4e2dd",
+                        "background": "#fbf9f4",
+                        "surface-bright": "#fbf9f4",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#3f4942",
+                        "primary-fixed": "#a8f3c7",
+                        "surface-dim": "#dbdad5",
+                        "on-primary-fixed-variant": "#005233",
+                        "surface-container-low": "#f5f3ee",
+                        "surface-container-high": "#eae8e3",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#1b1c19",
+                        "inverse-primary": "#8cd6ac",
+                        "primary-fixed-dim": "#8cd6ac",
+                        "on-tertiary-fixed-variant": "#743232",
+                        "tertiary-fixed": "#ffdad8",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-container": "#f0eee9",
+                        "secondary-fixed-dim": "#e9c349",
+                        "on-primary-container": "#88d2a8",
+                        "surface-tint": "#1f6b48",
+                        "secondary-container": "#fed65b",
+                        "on-tertiary-fixed": "#3c070b",
+                        "on-secondary-fixed-variant": "#574500",
+                        "primary-container": "#075c3b",
+                        "on-surface": "#1b1c19",
+                        "inverse-surface": "#30312e",
+                        "deep-emerald": "#075C3B",
+                        "refined-gold": "#D4AF37",
+                        "warm-off-white": "#F8F6F1",
+                        "near-black": "#1F2937",
+                        "secondary-gray": "#5B6470",
+                        "white": "#FFFFFF"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "sm": "0.25rem",
+                        "md": "0.75rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1320px",
+                        "section-v-spacer": "112px",
+                        "gutter": "24px",
+                        "margin-desktop": "48px",
+                        "margin-mobile": "20px",
+                        "stack-sm": "8px",
+                        "stack-md": "24px",
+                        "stack-lg": "48px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Playfair Display"],
+                        "display": ["Playfair Display"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body min-h-screen flex flex-col antialiased">
+<!-- TopNavBar -->
+<nav class="bg-surface dark:bg-surface-container-low w-full top-0 sticky z-50">
+<div class="max-w-[1320px] mx-auto flex justify-between items-center px-12 py-6">
+<div class="text-xl font-headline font-bold text-primary dark:text-primary-fixed tracking-tight">BAZNAS Boven Digoel</div>
+<div class="hidden md:flex space-x-8 items-center">
+<a class="text-on-surface-variant dark:text-outline-variant font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors font-label font-semibold hover:bg-surface-container-high dark:hover:bg-surface-container transition-all duration-200 py-2 px-3 rounded" href="#">Beranda</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors font-label font-semibold hover:bg-surface-container-high dark:hover:bg-surface-container transition-all duration-200 py-2 px-3 rounded" href="#">Tentang Kami</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors font-label font-semibold hover:bg-surface-container-high dark:hover:bg-surface-container transition-all duration-200 py-2 px-3 rounded" href="#">Program</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors font-label font-semibold hover:bg-surface-container-high dark:hover:bg-surface-container transition-all duration-200 py-2 px-3 rounded" href="#">Kabar</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors font-label font-semibold hover:bg-surface-container-high dark:hover:bg-surface-container transition-all duration-200 py-2 px-3 rounded" href="#">Transparansi</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors font-label font-semibold hover:bg-surface-container-high dark:hover:bg-surface-container transition-all duration-200 py-2 px-3 rounded" href="#">Layanan</a>
+<a class="text-primary dark:text-primary-fixed border-b-2 border-primary dark:border-primary-fixed pb-1 font-semibold font-label opacity-90 transition-opacity" href="#">Kontak</a>
+</div>
+<a class="bg-primary-container text-on-primary-container px-6 py-3 rounded-DEFAULT font-label font-semibold hover:opacity-90 transition-opacity" href="#">Tunaikan Zakat</a>
+</div>
+</nav>
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="py-24 bg-surface-container-lowest">
+<div class="max-w-[1320px] mx-auto px-12 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+<div>
+<h1 class="font-headline text-5xl md:text-6xl font-bold text-near-black leading-[1.0] mb-6">Hubungi Kami</h1>
+<p class="font-body text-lg text-secondary-gray leading-relaxed mb-8">
+                        Kami selalu hadir untuk melayani umat. Silakan hubungi kami untuk informasi seputar zakat, infak, sedekah, maupun program-program pemberdayaan BAZNAS Kabupaten Boven Digoel.
+                    </p>
+</div>
+<div class="h-[400px] rounded-lg overflow-hidden bg-surface-container" data-alt="A professional high-quality photograph of a modern islamic philantrophy office building exterior in a tropical setting. Warm natural sunlight, clean architectural lines, institutional and trustworthy atmosphere, deep emerald and neutral tones." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDEALrKfrqj14WCjhQz6Rc3nzwtx9Y-lJhpVFkkPmQabbdJllewxmcOcaYkBrcc75qqb4NVUfcyK0UofVMIwiP1jPpqAYswy5aFPy4EbklkeOA-MTQDBtWKTK0ibp0il_CY-Vvx0asFnoQUhAxTZef1SRLaLPOVwT3EdBNbGcq4wP4rn9PvYPwsHogA0Js2lBe_UxpC-XnZz0Hw6y2pneh_B8U9oYESBy7frMATlzZfEpve6Oq7r19T')"></div>
+</div>
+</section>
+<!-- Contact Info & Form Section -->
+<section class="py-24 bg-warm-off-white">
+<div class="max-w-[1320px] mx-auto px-12">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+<!-- Info Left Column -->
+<div class="lg:col-span-5 space-y-12">
+<div>
+<h2 class="font-headline text-3xl font-bold text-near-black mb-8">Informasi Kontak</h2>
+<div class="space-y-6">
+<div class="flex items-start space-x-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-lowest border border-surface-variant flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary-container" data-icon="location_on">location_on</span>
+</div>
+<div>
+<h3 class="font-label text-sm font-semibold text-secondary-gray uppercase tracking-wider mb-1">Alamat Kantor</h3>
+<p class="font-body text-near-black">Jl. Trans Papua KM. 2, Tanah Merah,<br>Kabupaten Boven Digoel, Papua Selatan</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-lowest border border-surface-variant flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary-container" data-icon="phone">phone</span>
+</div>
+<div>
+<h3 class="font-label text-sm font-semibold text-secondary-gray uppercase tracking-wider mb-1">Telepon / WhatsApp</h3>
+<p class="font-body text-near-black">+62 812 3456 7890</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-lowest border border-surface-variant flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary-container" data-icon="mail">mail</span>
+</div>
+<div>
+<h3 class="font-label text-sm font-semibold text-secondary-gray uppercase tracking-wider mb-1">Email Resmi</h3>
+<p class="font-body text-near-black">bovendigoel@baznas.go.id</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="w-12 h-12 rounded-full bg-surface-container-lowest border border-surface-variant flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary-container" data-icon="schedule">schedule</span>
+</div>
+<div>
+<h3 class="font-label text-sm font-semibold text-secondary-gray uppercase tracking-wider mb-1">Jam Operasional</h3>
+<p class="font-body text-near-black">Senin - Jumat: 08.00 - 16.00 WIT<br>Sabtu - Minggu: Tutup</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Bank Accounts -->
+<div class="bg-surface-container-lowest p-8 rounded-lg border border-surface-variant">
+<h3 class="font-headline text-2xl font-bold text-near-black mb-6">Rekening Resmi</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center border-b border-surface-variant pb-4">
+<div>
+<p class="font-label text-sm font-semibold text-secondary-gray">BSI (Zakat)</p>
+<p class="font-body font-medium text-lg text-near-black">712 3456 789</p>
+</div>
+<button class="text-primary-container hover:text-primary font-label text-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]" data-icon="content_copy">content_copy</span> Salin
+                                    </button>
+</div>
+<div class="flex justify-between items-center border-b border-surface-variant pb-4">
+<div>
+<p class="font-label text-sm font-semibold text-secondary-gray">BRI (Infak/Sedekah)</p>
+<p class="font-body font-medium text-lg text-near-black">0123 0100 4567 890</p>
+</div>
+<button class="text-primary-container hover:text-primary font-label text-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]" data-icon="content_copy">content_copy</span> Salin
+                                    </button>
+</div>
+<div class="flex justify-between items-center">
+<div>
+<p class="font-label text-sm font-semibold text-secondary-gray">BNI (Kemanusiaan)</p>
+<p class="font-body font-medium text-lg text-near-black">098 765 4321</p>
+</div>
+<button class="text-primary-container hover:text-primary font-label text-sm font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]" data-icon="content_copy">content_copy</span> Salin
+                                    </button>
+</div>
+<p class="text-xs text-secondary-gray mt-4">a.n BAZNAS Kabupaten Boven Digoel</p>
+</div>
+</div>
+</div>
+<!-- Form Right Column -->
+<div class="lg:col-span-7">
+<div class="bg-surface-container-lowest p-10 rounded-xl border border-surface-variant shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
+<h2 class="font-headline text-3xl font-bold text-near-black mb-2">Kirim Pesan</h2>
+<p class="font-body text-secondary-gray mb-8">Silakan isi formulir di bawah ini, tim kami akan segera merespons pesan Anda.</p>
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block font-label text-sm font-semibold text-near-black mb-2" for="name">Nama Lengkap</label>
+<input class="w-full rounded-DEFAULT border-surface-variant focus:border-primary focus:ring focus:ring-primary/20 bg-surface px-4 py-3 font-body outline-none transition-colors" id="name" placeholder="Masukkan nama Anda" type="text">
+</div>
+<div>
+<label class="block font-label text-sm font-semibold text-near-black mb-2" for="phone">Nomor Telepon / WA</label>
+<input class="w-full rounded-DEFAULT border-surface-variant focus:border-primary focus:ring focus:ring-primary/20 bg-surface px-4 py-3 font-body outline-none transition-colors" id="phone" placeholder="08xx xxxx xxxx" type="tel">
+</div>
+</div>
+<div>
+<label class="block font-label text-sm font-semibold text-near-black mb-2" for="email">Email (Opsional)</label>
+<input class="w-full rounded-DEFAULT border-surface-variant focus:border-primary focus:ring focus:ring-primary/20 bg-surface px-4 py-3 font-body outline-none transition-colors" id="email" placeholder="email@contoh.com" type="email">
+</div>
+<div>
+<label class="block font-label text-sm font-semibold text-near-black mb-2" for="subject">Subjek</label>
+<select class="w-full rounded-DEFAULT border-surface-variant focus:border-primary focus:ring focus:ring-primary/20 bg-surface px-4 py-3 font-body outline-none transition-colors" id="subject">
+<option value="">Pilih Subjek Pesan</option>
+<option value="zakat">Konsultasi Zakat</option>
+<option value="program">Informasi Program</option>
+<option value="partnership">Kerja Sama / Kemitraan</option>
+<option value="other">Lainnya</option>
+</select>
+</div>
+<div>
+<label class="block font-label text-sm font-semibold text-near-black mb-2" for="message">Pesan</label>
+<textarea class="w-full rounded-DEFAULT border-surface-variant focus:border-primary focus:ring focus:ring-primary/20 bg-surface px-4 py-3 font-body outline-none transition-colors resize-none" id="message" placeholder="Tuliskan pesan Anda secara detail..." rows="5"></textarea>
+</div>
+<button class="w-full bg-deep-emerald text-white rounded-DEFAULT px-6 py-4 font-label font-semibold flex items-center justify-center gap-2 hover:bg-primary transition-colors" type="submit">
+                                    Kirim Pesan <span class="material-symbols-outlined" data-icon="send">send</span>
+</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Map Section -->
+<section class="h-[500px] w-full bg-surface-container" data-location="Tanah Merah, Boven Digoel">
+<!-- A real map integration would go here. Using a placeholder image for design layout purposes -->
+<div class="w-full h-full bg-cover bg-center" data-alt="A highly detailed clean minimalist map interface showing Tanah Merah, Boven Digoel, Papua. The map style is modern, using off-white, light gray, and deep emerald green accents. A sleek pin marker indicates the BAZNAS office location." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCIstclstn0X5ZLF0obcazSG_SF63fpCpyvc1Jz9ayjLS4Ep7ZucXItsQas6DMC5ErqGQfDH3ijBTOt6icPKBNCsOPmLQehqgGt8bzEuzLCArV-P1h8n8b9lE1PR0_w9kCYoUA677K-hN4P7BZBODLwzxqrguz1SpkrQiLRgYw-ASIhkPlrFPwIG5exS4AXrTHU4m6FKXuSZS_kl2vQVyixuUsC-dok3q8hh8K1mE0DFiIKXy4tSfv8')"></div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-primary dark:bg-primary-container w-full pt-20 pb-10">
+<div class="max-w-[1320px] mx-auto px-12 grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="md:col-span-1">
+<div class="text-2xl font-headline font-bold text-on-primary dark:text-on-primary-container mb-4">BAZNAS Boven Digoel</div>
+<p class="font-body text-on-primary/80 text-sm leading-relaxed">
+                    Badan Amil Zakat Nasional Kabupaten Boven Digoel. Amanah, Transparan, Profesional dalam mengelola zakat, infak, dan sedekah.
+                </p>
+</div>
+<div class="md:col-span-3 flex flex-col md:flex-row justify-end items-start md:items-center space-y-4 md:space-y-0 md:space-x-8">
+<a class="text-on-primary/80 dark:text-on-primary-container/80 hover:text-on-primary transition-colors font-label text-label-sm hover:underline decoration-secondary dark:decoration-secondary-fixed underline-offset-4 focus:ring-2 ring-secondary dark:ring-secondary-fixed ring-offset-2" href="#">Kebijakan Privasi</a>
+<a class="text-on-primary/80 dark:text-on-primary-container/80 hover:text-on-primary transition-colors font-label text-label-sm hover:underline decoration-secondary dark:decoration-secondary-fixed underline-offset-4 focus:ring-2 ring-secondary dark:ring-secondary-fixed ring-offset-2" href="#">Syarat &amp; Ketentuan</a>
+<a class="text-on-primary/80 dark:text-on-primary-container/80 hover:text-on-primary transition-colors font-label text-label-sm hover:underline decoration-secondary dark:decoration-secondary-fixed underline-offset-4 focus:ring-2 ring-secondary dark:ring-secondary-fixed ring-offset-2" href="#">Laporan Tahunan</a>
+<a class="text-on-primary/80 dark:text-on-primary-container/80 hover:text-on-primary transition-colors font-label text-label-sm hover:underline decoration-secondary dark:decoration-secondary-fixed underline-offset-4 focus:ring-2 ring-secondary dark:ring-secondary-fixed ring-offset-2" href="#">Pusat Bantuan</a>
+</div>
+</div>
+<div class="max-w-[1320px] mx-auto px-12 mt-12 pt-8 border-t border-on-primary/20">
+<p class="text-on-primary/60 text-sm font-body text-center md:text-left">
+                © 2024 BAZNAS Kabupaten Boven Digoel. Amanah, Transparan, Profesional.
+            </p>
+</div>
+</footer>
+</body></html>

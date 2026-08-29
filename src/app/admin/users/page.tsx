@@ -2,7 +2,6 @@
 
 import { guardAdminPage } from "@/lib/rbac/server";
 import { createServerSupabase } from "@/lib/server-supabase";
-import { cookies } from "next/headers";
 import AdminUsersClient from "@/components/admin/AdminUsersClient";
 
 export const dynamic = "force-dynamic";
@@ -13,13 +12,14 @@ const PAGE_SIZE = 10;
 export default async function AdminUsersPage({
   searchParams,
 }: {
-  searchParams: { page?: string; search?: string };
+  searchParams: Promise<{ page?: string; search?: string }>;
 }) {
   // Guard 1: Check read permission
   const user = await guardAdminPage("user.manage");
 
-  const currentPage = parseInt(searchParams.page || "1");
-  const search = searchParams.search || "";
+  const resolvedParams = await searchParams;
+  const currentPage = parseInt(resolvedParams.page || "1");
+  const search = resolvedParams.search || "";
   const offset = (currentPage - 1) * PAGE_SIZE;
 
   // Fetch users and roles data using service role client to bypass RLS
@@ -37,10 +37,11 @@ export default async function AdminUsersPage({
 
   query = query.range(offset, offset + PAGE_SIZE - 1);
   
-  const { data: users, count: totalItems, error } = await query;
-  
-  // Fetch all roles for the user modal
-  const { data: roles } = await supabase.from("roles").select("*");
+  // Parallel fetch: users + count and roles
+  const [{ data: users, count: totalItems, error }, { data: roles }] = await Promise.all([
+    query,
+    supabase.from("roles").select("*")
+  ]);
 
   if (error) {
     console.error("Error fetching admin users:", error.message);

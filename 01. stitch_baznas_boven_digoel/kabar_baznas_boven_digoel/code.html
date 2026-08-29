@@ -1,0 +1,285 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Kabar BAZNAS - BAZNAS Boven Digoel</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary": "#632526",
+                      "error-container": "#ffdad6",
+                      "tertiary-fixed-dim": "#ffb3b1",
+                      "outline": "#707a72",
+                      "on-secondary-fixed-variant": "#574500",
+                      "on-secondary-fixed": "#241a00",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-fixed-variant": "#743232",
+                      "surface-tint": "#1f6b48",
+                      "background": "#fbf9f4",
+                      "surface-dim": "#dbdad5",
+                      "surface-variant": "#e4e2dd",
+                      "on-primary": "#ffffff",
+                      "on-secondary-container": "#745c00",
+                      "on-primary-fixed-variant": "#005233",
+                      "outline-variant": "#bfc9c0",
+                      "secondary": "#735c00",
+                      "on-surface": "#1b1c19",
+                      "secondary-fixed-dim": "#e9c349",
+                      "surface-container-high": "#eae8e3",
+                      "error": "#ba1a1a",
+                      "primary-container": "#075c3b",
+                      "surface-container-highest": "#e4e2dd",
+                      "inverse-surface": "#30312e",
+                      "on-surface-variant": "#3f4942",
+                      "tertiary-fixed": "#ffdad8",
+                      "inverse-primary": "#8cd6ac",
+                      "on-error-container": "#93000a",
+                      "inverse-on-surface": "#f2f1ec",
+                      "surface-container": "#f0eee9",
+                      "primary-fixed-dim": "#8cd6ac",
+                      "on-primary-fixed": "#002112",
+                      "secondary-container": "#fed65b",
+                      "primary-fixed": "#a8f3c7",
+                      "secondary-fixed": "#ffe088",
+                      "surface-container-low": "#f5f3ee",
+                      "on-primary-container": "#88d2a8",
+                      "on-tertiary": "#ffffff",
+                      "tertiary-container": "#803b3b",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary-container": "#ffaeab",
+                      "surface-bright": "#fbf9f4",
+                      "on-tertiary-fixed": "#3c070b",
+                      "surface": "#fbf9f4",
+                      "on-background": "#1b1c19",
+                      "on-error": "#ffffff",
+                      "primary": "#004229"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.5rem",
+                      "sm": "0.25rem",
+                      "md": "0.75rem",
+                      "lg": "1rem",
+                      "xl": "1.5rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                  "container-max": "1320px",
+                  "section-v-spacer": "112px",
+                  "gutter": "24px",
+                  "margin-desktop": "48px",
+                  "margin-mobile": "20px",
+                  "stack-sm": "8px",
+                  "stack-md": "24px",
+                  "stack-lg": "48px"
+              },
+              "fontFamily": {
+                      "headline": [
+                              "Playfair Display", "serif"
+                      ],
+                      "display": [
+                              "Playfair Display", "serif"
+                      ],
+                      "body": [
+                              "Plus Jakarta Sans", "sans-serif"
+                      ],
+                      "label": [
+                              "Plus Jakarta Sans", "sans-serif"
+                      ]
+              }
+            }
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-background font-body antialiased">
+<!-- TopNavBar -->
+<nav class="bg-white dark:bg-inverse-surface h-20 flex items-center w-full sticky top-0 z-50 border-b border-outline-variant/30 dark:border-outline/20">
+<div class="max-w-container-max mx-auto px-margin-desktop flex justify-between items-center w-full">
+<div class="font-headline font-bold text-headline-md text-primary dark:text-primary-fixed">
+                BAZNAS Boven Digoel
+            </div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-label text-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Beranda</a>
+<a class="font-label text-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Tentang Kami</a>
+<a class="font-label text-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Program</a>
+<a class="font-label text-label-md text-primary dark:text-primary-fixed font-bold border-b-2 border-primary dark:border-primary-fixed pb-1" href="#">Kabar</a>
+<a class="font-label text-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Transparansi</a>
+<a class="font-label text-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Layanan</a>
+<a class="font-label text-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Kontak</a>
+</div>
+<a class="hidden md:inline-flex bg-primary text-white font-label text-label-md px-6 py-3 rounded-DEFAULT hover:bg-primary-container transition-colors items-center gap-2" href="#">
+                Tunaikan Zakat
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</button>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="py-section-v-spacer max-w-container-max mx-auto px-margin-desktop text-center">
+<h1 class="font-headline text-headline-lg md:text-headline-xl text-on-surface font-bold mb-stack-md leading-[1.1]">Kabar BAZNAS</h1>
+<p class="font-body text-body-lg text-on-surface-variant max-w-3xl mx-auto">Mendokumentasikan kebaikan dan transparansi informasi seputar program penyaluran dan pemberdayaan masyarakat di Kabupaten Boven Digoel.</p>
+</section>
+<!-- Categories/Filter -->
+<section class="max-w-container-max mx-auto px-margin-desktop mb-stack-lg">
+<div class="flex flex-wrap gap-4 justify-center">
+<button class="bg-primary text-white font-label text-label-md px-6 py-2 rounded-full">Semua</button>
+<button class="bg-surface-container border border-outline-variant text-on-surface font-label text-label-md px-6 py-2 rounded-full hover:bg-surface-container-high transition-colors">Berita</button>
+<button class="bg-surface-container border border-outline-variant text-on-surface font-label text-label-md px-6 py-2 rounded-full hover:bg-surface-container-high transition-colors">Artikel</button>
+<button class="bg-surface-container border border-outline-variant text-on-surface font-label text-label-md px-6 py-2 rounded-full hover:bg-surface-container-high transition-colors">Penyaluran</button>
+<button class="bg-surface-container border border-outline-variant text-on-surface font-label text-label-md px-6 py-2 rounded-full hover:bg-surface-container-high transition-colors">Pengumuman</button>
+</div>
+</section>
+<!-- Featured Article -->
+<section class="max-w-container-max mx-auto px-margin-desktop mb-section-v-spacer">
+<div class="bg-white rounded-lg border border-surface-variant overflow-hidden group hover:shadow-sm transition-shadow duration-300">
+<div class="flex flex-col lg:flex-row">
+<div class="lg:w-7/12 relative h-64 lg:h-auto overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A high-quality documentary-style photo showing BAZNAS officials distributing aid to a smiling family in Boven Digoel. The scene is bright and optimistic, reflecting institutional transparency and human connection, following the light-mode editorial aesthetic with natural lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJas6hKgeZgwLCj6cHbcGP3wTb-jVoSse6CVa-QpgA1iUrJiA6WHTZY9SLj3hPYxSgWPh7Njrh_hMGPcONFUccu_OywUnuEhMTyUOJvQiFfsYtnYF-EppqXd9z5_QPFoufm-AQnh2xM9A4JHEDRqQb-81dgmwhn1Q01txGW3D3-z-HExaLcdIs_AEqxhb4tPhzanEJb-mxV0RctksGVWbohVsnVfiDVoRH3IOnlbXdnuhL9ij016gJ">
+</div>
+<div class="lg:w-5/12 p-8 lg:p-12 flex flex-col justify-center bg-surface-bright">
+<div class="flex items-center gap-4 mb-stack-sm">
+<span class="text-primary font-label text-label-sm uppercase tracking-wider">Penyaluran</span>
+<span class="text-on-surface-variant font-label text-label-sm">•</span>
+<span class="text-on-surface-variant font-label text-label-sm">12 Mei 2026</span>
+</div>
+<h2 class="font-headline text-headline-md text-on-surface font-bold mb-stack-md leading-tight group-hover:text-primary transition-colors">Rapat Koordinasi Program Kerja 2027 dan Penyaluran Bantuan Daerah Terpencil</h2>
+<p class="font-body text-body-md text-on-surface-variant mb-stack-lg line-clamp-3">BAZNAS Boven Digoel mengadakan rapat koordinasi untuk merumuskan program kerja tahun 2027, dilanjutkan dengan penyaluran bantuan logistik ke distrik-distrik terpencil untuk memastikan kesejahteraan merata.</p>
+<a class="inline-flex items-center gap-2 text-primary font-label text-label-md group-hover:text-primary-container transition-colors" href="#">
+                            Baca Selengkapnya
+                            <span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- News Grid -->
+<section class="max-w-container-max mx-auto px-margin-desktop mb-section-v-spacer">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Card 1 -->
+<div class="bg-white rounded-lg border border-surface-variant overflow-hidden group hover:shadow-sm transition-shadow duration-300 flex flex-col">
+<div class="relative h-48 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A professional documentary photo showing students receiving educational scholarships in a brightly lit classroom in Boven Digoel. The image uses a clean, light-mode palette emphasizing hope and community empowerment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyvzgmUGsQr9kgv0pfmqlmlwFLoO6xwquJszrAljB2p_l_h6gPaMWShpBR8IFe_joL6SG4O3StQI3X0TpFPq3ViN6m4QpPPqj_DuUKylnp2POBOHGcrsZYI-Rm1nwZdY3kHHJ5B4y7erwSq19NFsbWWFM6SRYHSpl1_CgrU46X1jwhqt3KeMpgV0QxKwUkv_Is1Rc7-rSFSSG0GjTIZSzPHsTrEertmJ0g2zbHXjBVQi48bxLtZhCV">
+</div>
+<div class="p-6 flex flex-col flex-grow bg-surface-bright">
+<div class="flex items-center gap-3 mb-stack-sm">
+<span class="text-primary font-label text-label-sm">Pendidikan</span>
+<span class="text-on-surface-variant text-xs">•</span>
+<span class="text-on-surface-variant font-label text-label-sm">10 Mei 2026</span>
+</div>
+<h3 class="font-headline text-xl font-semibold text-on-surface mb-stack-sm leading-tight group-hover:text-primary transition-colors">Beasiswa Cahaya Papua Untuk Masa Depan Anak-anak</h3>
+<p class="font-body text-body-md text-on-surface-variant mb-stack-md line-clamp-2">Program beasiswa untuk mendukung pendidikan anak-anak yatim dan dhuafa di wilayah Boven Digoel.</p>
+<div class="mt-auto pt-4 border-t border-surface-variant">
+<a class="inline-flex items-center gap-2 text-primary font-label text-label-md group-hover:text-primary-container transition-colors" href="#">
+                                Baca Selengkapnya
+                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-white rounded-lg border border-surface-variant overflow-hidden group hover:shadow-sm transition-shadow duration-300 flex flex-col">
+<div class="relative h-48 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A clear, editorial-style photograph showing local farmers or small business owners in Boven Digoel receiving empowerment funds. The setting is bright and authentic, reflecting the institutional trust aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAk8-wnbm6hoUsXyh03TYf4Ho0ELTWmOyG9ELhjBvpraORCECDFVT0yE2Q0oYsF63T3qibSCsNKF3em9QI1ehiOXNQsMBzqPiZkDMexZQj18NOcTZdM6wYqp1cT_Y7heDlzxrUNhxKnq2imJdNisyQgmfVQmeljVm3T-Yr4YC2KW1HDpb2mlCYXWJ-HG75mdjkDduqkXy4xw0VFtS0hxdt1LIOq1Xr4sQVyf9a2krIwGTr7Y4aVGjWQ">
+</div>
+<div class="p-6 flex flex-col flex-grow bg-surface-bright">
+<div class="flex items-center gap-3 mb-stack-sm">
+<span class="text-primary font-label text-label-sm">Pemberdayaan</span>
+<span class="text-on-surface-variant text-xs">•</span>
+<span class="text-on-surface-variant font-label text-label-sm">05 Mei 2026</span>
+</div>
+<h3 class="font-headline text-xl font-semibold text-on-surface mb-stack-sm leading-tight group-hover:text-primary transition-colors">Dari Zakat Menjadi Mandiri: Kisah Ibu Maria</h3>
+<p class="font-body text-body-md text-on-surface-variant mb-stack-md line-clamp-2">Bantuan modal usaha dari BAZNAS membantu mustahik mengembangkan usaha anyaman dan menghidupi keluarga.</p>
+<div class="mt-auto pt-4 border-t border-surface-variant">
+<a class="inline-flex items-center gap-2 text-primary font-label text-label-md group-hover:text-primary-container transition-colors" href="#">
+                                Baca Selengkapnya
+                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-white rounded-lg border border-surface-variant overflow-hidden group hover:shadow-sm transition-shadow duration-300 flex flex-col">
+<div class="relative h-48 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A well-lit, professional image of a medical checkup camp organized by BAZNAS in Boven Digoel. Doctors are attending to locals in a clean, organized environment, capturing the essence of Boven Digoel Sehat." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBh206dw2EWn21_ZmTG7nQ4Z4np66RFkOn07xoRkITBl6XG2DTuYShJLKOKcil2phlI3fJxjsitb98r0-CIz6l45pL-ijdX2JPNAMuubMxtF9mMGPfqj9xK3z7ZBOPa2yvlh_7mSDU_utDH5i-rW2qrFWQVS_AoBfoOgbnDULDOa1xuyaRtcMRF1Lh_sY882e6ncSE-YgWOieW7L3YKcb01ImZoKd5myH8wy9UhTxZDNVBuzqYF5vuV">
+</div>
+<div class="p-6 flex flex-col flex-grow bg-surface-bright">
+<div class="flex items-center gap-3 mb-stack-sm">
+<span class="text-primary font-label text-label-sm">Kesehatan</span>
+<span class="text-on-surface-variant text-xs">•</span>
+<span class="text-on-surface-variant font-label text-label-sm">01 Mei 2026</span>
+</div>
+<h3 class="font-headline text-xl font-semibold text-on-surface mb-stack-sm leading-tight group-hover:text-primary transition-colors">Layanan Kesehatan Gratis Boven Digoel Sehat</h3>
+<p class="font-body text-body-md text-on-surface-variant mb-stack-md line-clamp-2">BAZNAS menyelenggarakan layanan kesehatan dan bantuan gizi bagi masyarakat di daerah pelosok.</p>
+<div class="mt-auto pt-4 border-t border-surface-variant">
+<a class="inline-flex items-center gap-2 text-primary font-label text-label-md group-hover:text-primary-container transition-colors" href="#">
+                                Baca Selengkapnya
+                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-stack-lg flex justify-center">
+<button class="border-2 border-primary text-primary font-label text-label-md px-8 py-3 rounded-DEFAULT hover:bg-primary hover:text-white transition-colors duration-300 inline-flex items-center gap-2">
+                    Muat Lebih Banyak
+                    <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-primary dark:bg-inverse-surface w-full py-section-v-spacer">
+<div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div>
+<div class="font-headline-md text-headline-md font-bold text-white mb-6">BAZNAS Boven Digoel</div>
+<p class="font-body text-body-md text-on-primary/80 mb-6">Mengelola zakat, infak dan sedekah dengan amanah, profesional dan transparan untuk kesejahteraan masyarakat Boven Digoel.</p>
+<p class="font-body text-body-md text-on-primary/80">© 2026 BAZNAS Kabupaten Boven Digoel. All rights reserved.</p>
+</div>
+<div>
+<h4 class="font-headline text-lg font-bold text-secondary-container mb-4">Tautan Cepat</h4>
+<div class="flex flex-col gap-3">
+<a class="font-label text-label-sm text-on-primary/80 dark:text-surface-variant/80 hover:text-white transition-colors hover:underline decoration-secondary-container" href="#">Tentang Kami</a>
+<a class="font-label text-label-sm text-on-primary/80 dark:text-surface-variant/80 hover:text-white transition-colors hover:underline decoration-secondary-container" href="#">Program</a>
+<a class="font-label text-label-sm text-on-primary/80 dark:text-surface-variant/80 hover:text-white transition-colors hover:underline decoration-secondary-container" href="#">Transparansi</a>
+<a class="font-label text-label-sm text-on-primary/80 dark:text-surface-variant/80 hover:text-white transition-colors hover:underline decoration-secondary-container" href="#">Layanan</a>
+<a class="font-label text-label-sm text-secondary-container font-bold hover:underline decoration-secondary-container" href="#">Kabar</a>
+</div>
+</div>
+<div>
+<h4 class="font-headline text-lg font-bold text-secondary-container mb-4">Dukungan</h4>
+<div class="flex flex-col gap-3">
+<a class="font-label text-label-sm text-on-primary/80 dark:text-surface-variant/80 hover:text-white transition-colors hover:underline decoration-secondary-container" href="#">Kontak</a>
+<a class="font-label text-label-sm text-on-primary/80 dark:text-surface-variant/80 hover:text-white transition-colors hover:underline decoration-secondary-container" href="#">Pengaduan</a>
+</div>
+</div>
+<div>
+<h4 class="font-headline text-lg font-bold text-secondary-container mb-4">Legalitas</h4>
+<div class="flex flex-col gap-3">
+<a class="font-label text-label-sm text-on-primary/80 dark:text-surface-variant/80 hover:text-white transition-colors hover:underline decoration-secondary-container" href="#">SK BAZNAS</a>
+<a class="font-label text-label-sm text-on-primary/80 dark:text-surface-variant/80 hover:text-white transition-colors hover:underline decoration-secondary-container" href="#">Kesepakatan BAZNAS</a>
+<a class="font-label text-label-sm text-on-primary/80 dark:text-surface-variant/80 hover:text-white transition-colors hover:underline decoration-secondary-container" href="#">Kebijakan Privasi</a>
+<a class="font-label text-label-sm text-on-primary/80 dark:text-surface-variant/80 hover:text-white transition-colors hover:underline decoration-secondary-container" href="#">Syarat &amp; Ketentuan</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

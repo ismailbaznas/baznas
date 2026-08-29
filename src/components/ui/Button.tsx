@@ -6,25 +6,24 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-lg text-body-md font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-container focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-xl text-sm font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075C3B] disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "bg-primary text-on-primary hover:bg-primary/90 shadow-md",
-        destructive: "bg-status-danger text-on-status-danger hover:bg-status-danger/90",
-        outline: "border border-input bg-background hover:bg-surface-variant hover:text-on-surface-variant",
-        "outline-gold": "border border-primary/40 text-primary-dark hover:bg-primary/10 hover:border-primary/60",
-        secondary: "bg-secondary text-on-secondary hover:bg-secondary/80",
-        ghost: "hover:bg-surface-variant hover:text-on-surface-variant",
-        link: "text-primary underline-offset-4 hover:underline",
-        // Inverse for dark background compatibility (Kemenhaj style)
-        inverse: "bg-on-background text-background hover:bg-on-background/90",
+        default: "bg-[#075C3B] text-white hover:bg-[#004229] dark:bg-[#8cd6ac] dark:text-[#002112] dark:hover:bg-[#a8f3c7] shadow-sm",
+        destructive: "bg-red-600 text-white hover:bg-red-700 dark:bg-red-500/20 dark:text-red-400 dark:hover:bg-red-500/30 border border-transparent dark:border-red-900/40 shadow-sm",
+        outline: "border border-surface-variant/60 dark:border-zinc-700 bg-white dark:bg-[#1e1e1e] text-on-surface hover:bg-slate-50 dark:hover:bg-zinc-800",
+        "outline-gold": "border border-[#D4AF37]/50 text-[#735c00] dark:text-[#ffe088] hover:bg-[#D4AF37]/10",
+        secondary: "bg-[#D4AF37] text-[#241a00] hover:bg-[#e9c349] font-bold shadow-sm",
+        ghost: "text-on-surface hover:bg-slate-100 dark:hover:bg-zinc-800",
+        link: "text-[#075C3B] dark:text-[#8cd6ac] underline-offset-4 hover:underline",
+        inverse: "bg-white text-[#1F2937] hover:bg-white/90 shadow-sm",
       },
       size: {
         default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
-        icon: "h-10 w-10",
+        sm: "h-9 rounded-lg px-3 text-xs",
+        lg: "h-12 rounded-xl px-7 text-base font-bold",
+        icon: "h-9 w-9 rounded-lg",
       },
     },
     defaultVariants: {

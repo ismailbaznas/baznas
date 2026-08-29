@@ -10,18 +10,17 @@ const badgeVariants = cva(
     variants: {
       variant: {
         default:
-          "border-transparent bg-primary text-on-primary shadow hover:bg-primary/80",
+          "border-transparent bg-[#075C3B] text-white shadow-sm hover:bg-[#004229]",
         secondary:
-          "border-transparent bg-surface-variant text-on-surface-variant hover:bg-surface-variant/80",
+          "border-surface-variant/60 dark:border-zinc-700 bg-slate-100 dark:bg-zinc-800 text-slate-700 dark:text-zinc-300",
         destructive:
-          "border-transparent bg-status-danger text-on-status-danger shadow hover:bg-status-danger/80",
+          "border-red-200 dark:border-red-900/30 bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-400",
         success:
-          "border-transparent bg-status-success text-on-status-success shadow hover:bg-status-success/80",
+          "border-emerald-200 dark:border-emerald-900/30 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400",
         warning:
-          "border-transparent bg-status-warning text-on-status-warning shadow hover:bg-status-warning/80",
-        outline: "text-on-surface-variant",
-        // Kemenhaj style for contrast
-        inverse: "bg-on-background text-background shadow hover:bg-on-background/80"
+          "border-amber-200 dark:border-amber-900/30 bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-400",
+        outline: "border-slate-300 dark:border-zinc-700 text-on-surface",
+        inverse: "bg-white text-[#1F2937] shadow-sm"
       },
     },
     defaultVariants: {
@@ -31,12 +30,12 @@ const badgeVariants = cva(
 );
 
 export interface BadgeProps
-  extends React.HTMLAttributes<HTMLDivElement>,
+  extends React.HTMLAttributes<HTMLSpanElement>,
     VariantProps<typeof badgeVariants> {}
 
 function Badge({ className, variant, ...props }: BadgeProps) {
   return (
-    <div className={cn(badgeVariants({ variant }), className)} {...props} />
+    <span className={cn(badgeVariants({ variant }), className)} {...props} />
   );
 }
 

@@ -11,7 +11,9 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from ".
 import { Badge } from "../ui/Badge";
 import { RBACUser, Role, PermissionId } from "@/types/rbac";
 import { Can } from "../rbac/Can";
-import AdminRolesModal from "./AdminRolesModal";
+import dynamic from "next/dynamic";
+
+const AdminRolesModal = dynamic(() => import("./AdminRolesModal"), { ssr: false });
 
 interface AdminRolesClientProps {
     initialRoles: Role[];
@@ -74,10 +76,15 @@ export default function AdminRolesClient({
     return (
         <>
             <div className="space-y-6">
-                <div className="flex justify-between items-center">
-                    <h1 className="text-headline-md font-space-grotesk">
-                        Manajemen Peran ({initialRoles.length})
-                    </h1>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div>
+                        <h1 className="text-2xl sm:text-3xl font-playfair font-bold text-[#004229] dark:text-[#8cd6ac]">
+                            Manajemen Peran & Hak Akses
+                        </h1>
+                        <p className="text-xs text-on-surface-variant mt-1">
+                            Total {initialRoles.length} peran sistem dan kustom terdaftar.
+                        </p>
+                    </div>
                     <Can required="role.manage">
                         <Button onClick={handleCreate} className="space-x-2">
                             <Plus className="w-5 h-5" />
@@ -86,7 +93,7 @@ export default function AdminRolesClient({
                     </Can>
                 </div>
 
-                <div className="bg-surface rounded-xl shadow-lg border border-surface-variant overflow-hidden">
+                <div className="bg-white dark:bg-[#181818] rounded-2xl shadow-sm border border-surface-variant/40 dark:border-zinc-800 overflow-hidden">
                     <Table>
                         <TableHeader>
                             <TableRow>

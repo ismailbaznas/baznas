@@ -2,7 +2,6 @@
 
 import { guardAdminPage } from "@/lib/rbac/server";
 import { createServerSupabase } from "@/lib/server-supabase";
-import { cookies } from "next/headers";
 import AdminTeamClient from "@/components/admin/AdminTeamClient";
 
 // Required for dynamic behavior
@@ -14,14 +13,15 @@ const PAGE_SIZE = 10;
 export default async function AdminTeamPage({
   searchParams,
 }: {
-  searchParams: { page?: string; search?: string };
+  searchParams: Promise<{ page?: string; search?: string }>;
 }) {
   // 1. Guard 1: Check read permission
   const user = await guardAdminPage("team_members.read");
 
-  // 2. Setup pagination
-  const currentPage = parseInt(searchParams.page || "1");
-  const search = searchParams.search || "";
+  // 2. Setup pagination & params (Next.js 16 async searchParams)
+  const resolvedParams = await searchParams;
+  const currentPage = parseInt(resolvedParams.page || "1");
+  const search = resolvedParams.search || "";
   const offset = (currentPage - 1) * PAGE_SIZE;
 
   const supabase = await createServerSupabase();

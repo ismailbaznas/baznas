@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAdmin } from "@/lib/admin-context";
 import { Plus, Pencil, Trash2, Search, Calendar, MapPin } from "lucide-react";
@@ -15,10 +15,12 @@ import { Can } from "../rbac/Can";
 import { Pagination } from "../ui/Pagination";
 import { Database } from "@/types/database.types";
 import { getSupabaseBrowser } from "@/lib/supabase";
-import AdminAgendaModal from "./AdminAgendaModal";
+import dynamic from "next/dynamic";
 import { format } from "date-fns";
 import { id } from "date-fns/locale";
 import { VariantProps } from "class-variance-authority";
+
+const AdminAgendaModal = dynamic(() => import("./AdminAgendaModal"), { ssr: false });
 
 
 // Types derived from DB structure
@@ -115,6 +117,11 @@ export default function AdminAgendaClient({
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingId, setEditingId] = useState<string | null>(null);
 
+    // Synchronize local state whenever server props update (e.g. after router.refresh())
+    useEffect(() => {
+        setAgendaList(initialAgendas);
+    }, [initialAgendas]);
+
     // Function to handle modal close and potential data refetch
     const handleCloseModal = (refetch: boolean = false) => {
         setIsModalOpen(false);
@@ -145,6 +152,7 @@ export default function AdminAgendaClient({
         if (error) {
             alert(`Gagal menghapus agenda: ${error.message}`);
         } else {
+            setAgendaList(prev => prev.filter(item => item.id !== id));
             router.refresh(); // Refetch data
         }
     };
@@ -152,10 +160,15 @@ export default function AdminAgendaClient({
     return (
         <>
             <div className="space-y-6">
-                <div className="flex justify-between items-center">
-                    <h1 className="text-headline-md font-space-grotesk">
-                        Daftar Agenda Kegiatan ({totalItems})
-                    </h1>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div>
+                        <h1 className="text-2xl sm:text-3xl font-playfair font-bold text-[#004229] dark:text-[#8cd6ac]">
+                            Daftar Agenda Kegiatan
+                        </h1>
+                        <p className="text-xs text-on-surface-variant mt-1">
+                            Total {totalItems} agenda kegiatan operasional terdaftar.
+                        </p>
+                    </div>
                     <Can required="agenda.create">
                         <Button onClick={handleCreate} className="space-x-2">
                             <Plus className="w-5 h-5" />
@@ -165,9 +178,9 @@ export default function AdminAgendaClient({
                 </div>
 
                 {/* Search and Filter Section */}
-                <div className="flex space-x-4">
+                <div className="bg-white dark:bg-[#181818] p-4 rounded-2xl border border-surface-variant/40 dark:border-zinc-800 flex flex-col sm:flex-row gap-4 shadow-sm">
                     <div className="relative flex-1">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-on-surface-variant" />
+                        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-on-surface-variant" />
                         <Input
                             placeholder="Cari judul atau lokasi agenda..."
                             defaultValue={search}
@@ -177,7 +190,7 @@ export default function AdminAgendaClient({
                 </div>
 
                 {/* Main Table */}
-                <div className="bg-surface rounded-xl shadow-lg border border-surface-variant overflow-hidden">
+                <div className="bg-white dark:bg-[#181818] rounded-2xl shadow-sm border border-surface-variant/40 dark:border-zinc-800 overflow-hidden">
                     <Table>
                         <TableHeader>
                             <TableRow>

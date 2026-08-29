@@ -344,6 +344,135 @@ export interface Database {
         }
         Relationships: []
       }
+      bank_accounts: {
+        Row: {
+          id: string
+          nama_bank: string
+          nomor_rekening: string
+          atas_nama: string
+          kategori: string | null
+          status: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          nama_bank: string
+          nomor_rekening: string
+          atas_nama: string
+          kategori?: string | null
+          status?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          nama_bank?: string
+          nomor_rekening?: string
+          atas_nama?: string
+          kategori?: string | null
+          status?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      quick_links: {
+        Row: {
+          id: string
+          label: string
+          url: string
+          sort_order: number | null
+          is_active: boolean
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          label: string
+          url: string
+          sort_order?: number | null
+          is_active?: boolean
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          label?: string
+          url?: string
+          sort_order?: number | null
+          is_active?: boolean
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      mustahik_applications: {
+        Row: {
+          id: string
+          name: string
+          nik: string
+          district: string
+          phone: string
+          category: string
+          notes: string
+          status: string
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          name: string
+          nik: string
+          district: string
+          phone: string
+          category: string
+          notes: string
+          status?: string
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          nik?: string
+          district?: string
+          phone?: string
+          category?: string
+          notes?: string
+          status?: string
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      transparency_stats: {
+        Row: {
+          id: string
+          key: string
+          label: string
+          value: string
+          sub_label: string | null
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          key: string
+          label: string
+          value: string
+          sub_label?: string | null
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          key?: string
+          label?: string
+          value?: string
+          sub_label?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       placeholder_view: {

@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAdmin } from "@/lib/admin-context";
 import { Plus, Pencil, Trash2, Search, Calendar, Package } from "lucide-react";
@@ -17,8 +17,10 @@ import { id } from "date-fns/locale";
 import { Can } from "../rbac/Can";
 import { Database } from "@/types/database.types";
 import { Pagination } from "../ui/Pagination";
-import AdminBeritaModal from "./AdminBeritaModal"; // Correct external modal import
+import dynamic from "next/dynamic";
 import { getSupabaseBrowser } from "@/lib/supabase";
+
+const AdminBeritaModal = dynamic(() => import("./AdminBeritaModal"), { ssr: false });
 
 // Types derived from DB structure
 type NewsItem = Database["public"]["Tables"]["news"]["Row"] & {
@@ -53,6 +55,11 @@ export default function AdminBeritaClient({
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingId, setEditingId] = useState<string | null>(null);
 
+    // Synchronize local state whenever server props update (e.g. after router.refresh())
+    useEffect(() => {
+        setNewsList(initialNews);
+    }, [initialNews]);
+
     // Function to handle modal close and potential data refetch
     const handleCloseModal = (refetch: boolean = false) => {
         setIsModalOpen(false);
@@ -83,6 +90,7 @@ export default function AdminBeritaClient({
         if (error) {
             alert(`Gagal menghapus berita: ${error.message}`);
         } else {
+            setNewsList(prev => prev.filter(item => item.id !== id));
             router.refresh(); // Refetch data
         }
     };
@@ -90,37 +98,37 @@ export default function AdminBeritaClient({
     return (
         <>
             <div className="space-y-6">
-                <div className="flex justify-between items-center">
-                    <h1 className="text-headline-md font-space-grotesk">
-                        Daftar Berita & Artikel ({totalItems})
-                    </h1>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div>
+                        <h1 className="text-2xl sm:text-3xl font-playfair font-bold text-[#004229] dark:text-[#8cd6ac]">
+                            Daftar Berita & Artikel
+                        </h1>
+                        <p className="text-xs text-on-surface-variant mt-1">
+                            Total {totalItems} berita dan artikel terdaftar dalam sistem.
+                        </p>
+                    </div>
                     <Can required="berita.create">
                         <Button onClick={handleCreate} className="space-x-2">
-                            <Plus className="w-5 h-5" />
+                            <Plus className="w-4 h-4" />
                             <span>Buat Berita Baru</span>
                         </Button>
                     </Can>
                 </div>
 
                 {/* Search and Filter Section */}
-                <div className="flex space-x-4">
+                <div className="bg-white dark:bg-[#181818] p-4 rounded-2xl border border-surface-variant/40 dark:border-zinc-800 flex flex-col sm:flex-row gap-4 shadow-sm">
                     <div className="relative flex-1">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-on-surface-variant" />
+                        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-on-surface-variant" />
                         <Input
-                            placeholder="Cari judul atau konten..."
+                            placeholder="Cari judul atau konten berita..."
                             defaultValue={search}
                             className="pl-10"
                         />
                     </div>
-                    {/* Placeholder for Category Filter */}
-                    <Button variant="outline" className="space-x-2">
-                        <Package className="w-4 h-4" />
-                        <span>Filter Kategori</span>
-                    </Button>
                 </div>
 
                 {/* Main Table */}
-                <div className="bg-surface rounded-xl shadow-lg border border-surface-variant overflow-hidden">
+                <div className="bg-white dark:bg-[#181818] rounded-2xl shadow-sm border border-surface-variant/40 dark:border-zinc-800 overflow-hidden">
                     <Table>
                         <TableHeader>
                             <TableRow>

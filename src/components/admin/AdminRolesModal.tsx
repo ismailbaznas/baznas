@@ -119,7 +119,7 @@ export default function AdminRolesModal({
         {/* Role ID & Name */}
         <div className="grid grid-cols-2 gap-4">
             <div>
-                <label htmlFor="id" className="block text-body-md font-medium mb-1">
+                <label htmlFor="id" className="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1">
                     ID Peran (Slug)
                 </label>
                 <Input
@@ -130,12 +130,12 @@ export default function AdminRolesModal({
                     disabled={isEditing}
                     required
                 />
-                <p className="text-sm text-on-surface-variant mt-1">
+                <p className="text-xs text-on-surface-variant mt-1">
                     ID tidak dapat diubah setelah dibuat.
                 </p>
             </div>
             <div>
-                <label htmlFor="name" className="block text-body-md font-medium mb-1">
+                <label htmlFor="name" className="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1">
                     Nama Peran
                 </label>
                 <Input
@@ -150,7 +150,7 @@ export default function AdminRolesModal({
         
         {/* Description */}
         <div>
-          <label htmlFor="description" className="block text-body-md font-medium mb-1">
+          <label htmlFor="description" className="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1">
             Deskripsi
           </label>
           <Input

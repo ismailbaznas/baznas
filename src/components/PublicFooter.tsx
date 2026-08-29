@@ -1,95 +1,173 @@
-"use client";
-
 // src/components/PublicFooter.tsx
 
 import React from 'react';
 import Link from 'next/link';
-import Logo from './ui/Logo';
-import { useTheme } from './ThemeProvider';
+import Image from 'next/image';
 import { ThemeToggle } from './ThemeToggle';
-import { Mail, Phone, MapPin, Facebook, Instagram, Twitter } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, ShieldCheck, Facebook, Instagram } from 'lucide-react';
+
+const DEFAULT_ACCOUNTS = [
+  { id: "ba-1", nama_bank: "BSI", nomor_rekening: "7123456789", atas_nama: "BAZNAS Boven Digoel" },
+  { id: "ba-2", nama_bank: "Bank Papua", nomor_rekening: "1020201004567", atas_nama: "BAZNAS Boven Digoel" },
+  { id: "ba-3", nama_bank: "BRI", nomor_rekening: "012301004567890", atas_nama: "BAZNAS Boven Digoel" }
+];
+
+const DEFAULT_LINKS = [
+  { id: "ql-1", label: "Tentang Kami", url: "/tentang" },
+  { id: "ql-2", label: "Program Unggulan", url: "/program" },
+  { id: "ql-3", label: "Transparansi & Laporan", url: "/transparansi" },
+  { id: "ql-4", label: "Layanan Zakat", url: "/layanan" },
+  { id: "ql-5", label: "Kabar & Berita", url: "/kabar" },
+  { id: "ql-6", label: "Kontak & Layanan", url: "/kontak" }
+];
 
 export default function PublicFooter() {
-    const { theme } = useTheme();
-
-    // Placeholder data, should be fetched from site_settings table
-    const siteSettings = {
-        contact_phone: '+62-123-4567-890',
-        contact_email: 'info@baznasbvd.or.id',
-        address: 'Jl. Merdeka No. 1, Boven Digoel, Papua Selatan',
-        social_facebook: '#',
-        social_instagram: '#',
-        social_twitter: '#',
+    const contacts = {
+        address: "Jl. Trans Papua KM. 2, Tanah Merah, Boven Digoel, Papua Selatan 99664",
+        phone: "+62 812 3456 7890",
+        email: "bovendigoel@baznas.go.id"
     };
 
     return (
-        <footer className="bg-surface-container-low text-on-surface pt-12 pb-8">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 border-b border-surface-variant pb-8">
-                    {/* Section 1: Logo & Contact */}
-                    <div className="col-span-2 md:col-span-1 space-y-4">
-                        <Logo className="text-2xl" />
-                        <p className="text-sm text-on-surface-variant">
-                            Badan Amil Zakat Nasional Kabupaten Boven Digoel. Amanah, Profesional, Transparan.
+        <footer className="w-full pt-16 pb-12 bg-[#004229] dark:bg-[#131313] text-white transition-colors border-t border-emerald-900/50">
+            <div className="max-w-container-max mx-auto px-4 sm:px-8 lg:px-12">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 lg:gap-12">
+                    {/* Column 1: Emblem Logo & Social */}
+                    <div className="flex flex-col items-start">
+                        <Image 
+                            alt="BAZNAS Kabupaten Boven Digoel" 
+                            className="h-28 md:h-32 w-auto mb-6 object-contain" 
+                            src="/images/logo-white.png"
+                            width={140}
+                            height={120}
+                        />
+                        <p className="text-xs text-white/70 mb-5 leading-relaxed">
+                            Badan Amil Zakat Nasional Kabupaten Boven Digoel. Menguatkan masyarakat melalui tata kelola zakat yang amanah, transparan, dan profesional.
                         </p>
-                        <div className="space-y-2 text-sm">
-                            <div className="flex items-center space-x-2">
-                                <MapPin className="w-4 h-4 flex-shrink-0" />
-                                <span>{siteSettings.address}</span>
-                            </div>
-                            <div className="flex items-center space-x-2">
-                                <Phone className="w-4 h-4 flex-shrink-0" />
-                                <span>{siteSettings.contact_phone}</span>
-                            </div>
-                            <div className="flex items-center space-x-2">
-                                <Mail className="w-4 h-4 flex-shrink-0" />
-                                <span>{siteSettings.contact_email}</span>
-                            </div>
+                        <div className="flex gap-3">
+                            <a 
+                                className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:bg-white hover:text-[#004229] transition-all" 
+                                href="https://facebook.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Facebook"
+                            >
+                                <Facebook className="w-4 h-4" />
+                            </a>
+                            <a 
+                                className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:bg-white hover:text-[#004229] transition-all" 
+                                href="https://instagram.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Instagram"
+                            >
+                                <Instagram className="w-4 h-4" />
+                            </a>
                         </div>
                     </div>
 
-                    {/* Section 2: Navigasi Cepat */}
+                    {/* Column 2: Kantor Kami */}
                     <div>
-                        <h3 className="font-semibold text-on-surface mb-3">Navigasi Cepat</h3>
-                        <ul className="space-y-2 text-sm text-on-surface-variant">
-                            <li><Link href="/program" className="hover:text-primary">Program Unggulan</Link></li>
-                            <li><Link href="/kabar" className="hover:text-primary">Berita Terbaru</Link></li>
-                            <li><Link href="/agenda" className="hover:text-primary">Agenda Kegiatan</Link></li>
-                            <li><Link href="/transparansi" className="hover:text-primary">Laporan & Dokumen</Link></li>
+                        <h4 className="font-bold text-white mb-5 uppercase tracking-wider text-xs border-b border-white/10 pb-2">
+                            KANTOR KAMI
+                        </h4>
+                        <ul className="space-y-3.5 text-xs text-white/80">
+                            <li className="flex items-start gap-2.5">
+                                <MapPin className="w-4 h-4 text-[#ffe088] shrink-0 mt-0.5" />
+                                <span className="whitespace-pre-line leading-relaxed">{contacts.address}</span>
+                            </li>
+                            <li className="flex items-center gap-2.5">
+                                <Phone className="w-4 h-4 text-[#ffe088] shrink-0" />
+                                <a 
+                                    href={`https://wa.me/${contacts.phone.replace(/[^0-9]/g, "")}`} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="hover:text-white hover:underline transition-colors"
+                                >
+                                    {contacts.phone}
+                                </a>
+                            </li>
+                            <li className="flex items-center gap-2.5">
+                                <Mail className="w-4 h-4 text-[#ffe088] shrink-0" />
+                                <a 
+                                    href={`mailto:${contacts.email}`}
+                                    className="hover:text-white hover:underline transition-colors"
+                                >
+                                    {contacts.email}
+                                </a>
+                            </li>
+                            <li className="flex items-start gap-2.5">
+                                <Clock className="w-4 h-4 text-[#ffe088] shrink-0 mt-0.5" />
+                                <span>Senin - Jumat<br />08.00 - 16.00 WIT</span>
+                            </li>
                         </ul>
                     </div>
 
-                    {/* Section 3: Layanan Zakat */}
+                    {/* Column 3: Tautan Cepat */}
                     <div>
-                        <h3 className="font-semibold text-on-surface mb-3">Layanan Zakat</h3>
-                        <ul className="space-y-2 text-sm text-on-surface-variant">
-                            <li><Link href="/layanan/bayar-zakat" className="hover:text-primary">Tunaikan Zakat</Link></li>
-                            <li><Link href="/layanan/rekening" className="hover:text-primary">Info Rekening Resmi</Link></li>
-                            <li><Link href="/kontak" className="hover:text-primary">Konsultasi Zakat</Link></li>
-                            <li><Link href="/layanan/mustahik" className="hover:text-primary">Layanan Mustahik</Link></li>
+                        <h4 className="font-bold text-white mb-5 uppercase tracking-wider text-xs border-b border-white/10 pb-2">
+                            TAUTAN CEPAT
+                        </h4>
+                        <ul className="space-y-2.5 text-xs text-white/80">
+                            {DEFAULT_LINKS.map((link) => (
+                                <li key={link.id}>
+                                    <Link href={link.url} className="hover:text-white hover:underline transition-colors block">
+                                        {link.label}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
 
-                    {/* Section 4: Social & Settings */}
+                    {/* Column 4: Rekening Resmi */}
                     <div>
-                        <h3 className="font-semibold text-on-surface mb-3">Ikuti Kami</h3>
-                        <div className="flex space-x-4">
-                            <a href={siteSettings.social_facebook} target="_blank" rel="noopener noreferrer" className="text-on-surface-variant hover:text-primary"><Facebook className="w-6 h-6" /></a>
-                            <a href={siteSettings.social_instagram} target="_blank" rel="noopener noreferrer" className="text-on-surface-variant hover:text-primary"><Instagram className="w-6 h-6" /></a>
-                            <a href={siteSettings.social_twitter} target="_blank" rel="noopener noreferrer" className="text-on-surface-variant hover:text-primary"><Twitter className="w-6 h-6" /></a>
-                        </div>
+                        <h4 className="font-bold text-white mb-5 uppercase tracking-wider text-xs border-b border-white/10 pb-2">
+                            REKENING RESMI
+                        </h4>
+                        <ul className="space-y-3.5 text-xs text-white/80">
+                            {DEFAULT_ACCOUNTS.map((acc) => (
+                                <li key={acc.id} className="flex flex-col bg-white/5 p-2 rounded border border-white/10">
+                                    <span className="font-bold text-white tracking-wide">
+                                        {acc.nama_bank.split('(')[0].trim()} {acc.nomor_rekening}
+                                    </span>
+                                    <span className="text-[11px] text-[#ffe088] truncate max-w-full">
+                                        a.n. {acc.atas_nama}
+                                    </span>
+                                </li>
+                            ))}
+                        </ul>
+                        <p className="mt-4 text-[11px] leading-relaxed text-white/60 italic">
+                            Pastikan rekening tujuan adalah rekening resmi BAZNAS Kabupaten Boven Digoel.
+                        </p>
+                    </div>
 
-                        <div className="mt-6 space-y-2">
-                            <h3 className="font-semibold text-on-surface">Pengaturan Tampilan</h3>
-                            <ThemeToggle />
+                    {/* Column 5: Legalitas & Audited */}
+                    <div>
+                        <h4 className="font-bold text-white mb-5 uppercase tracking-wider text-xs border-b border-white/10 pb-2">
+                            LEGALITAS
+                        </h4>
+                        <ul className="space-y-2.5 text-xs text-white/80 mb-6">
+                            <li><Link href="/transparansi" className="hover:text-white hover:underline transition-colors block">SK BAZNAS</Link></li>
+                            <li><Link href="/transparansi" className="hover:text-white hover:underline transition-colors block">Kesepakatan BAZNAS</Link></li>
+                            <li><Link href="/kontak" className="hover:text-white hover:underline transition-colors block">Kebijakan Privasi</Link></li>
+                            <li><Link href="/kontak" className="hover:text-white hover:underline transition-colors block">Syarat & Ketentuan</Link></li>
+                        </ul>
+                        <div className="flex items-center gap-3 border border-white/20 p-3.5 rounded-lg bg-white/5">
+                            <ShieldCheck className="w-8 h-8 text-[#D4AF37] shrink-0" />
+                            <div className="text-[10px] uppercase font-bold tracking-wider leading-tight text-white/90">
+                                Audited<br />Syariah
+                            </div>
                         </div>
                     </div>
                 </div>
-                
-                {/* Copyright */}
-                <div className="mt-4 text-center text-xs text-on-surface-variant">
-                    &copy; {new Date().getFullYear()} BAZNAS Kabupaten Boven Digoel. Hak Cipta Dilindungi. | 
-                    <Link href="/privacy" className='ml-1 hover:underline'>Kebijakan Privasi</Link>
+
+                {/* Bottom Bar */}
+                <div className="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center text-xs text-white/60 gap-4">
+                    <p>© 2026 BAZNAS Kabupaten Boven Digoel. All rights reserved.</p>
+                    <div className="flex items-center gap-3">
+                        <span className="text-white/80 font-medium text-xs">Mode Tampilan</span>
+                        <ThemeToggle />
+                    </div>
                 </div>
             </div>
         </footer>

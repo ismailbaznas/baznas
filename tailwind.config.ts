@@ -1,14 +1,31 @@
 import type { Config } from "tailwindcss";
 import forms from "@tailwindcss/forms";
 
-// Base colors derived from AGENTS.md (Gold/Green BAZNAS DNA)
 const baznasColors = {
-  // Primary (Green/Gold)
-  primary: "rgb(var(--c-primary) / <alpha-value>)",
-  "on-primary": "rgb(var(--c-on-primary) / <alpha-value>)",
-  "primary-container": "rgb(var(--c-primary-container) / <alpha-value>)",
-  "on-primary-container": "rgb(var(--c-on-primary-container) / <alpha-value>)",
-  "primary-dark": "rgb(var(--c-primary-dark) / <alpha-value>)", // For contrast AA (e.g., outline-gold text)
+  // Brand DNA Colors
+  primary: "#004229",
+  "on-primary": "#ffffff",
+  "primary-container": "#075c3b",
+  "on-primary-container": "#88d2a8",
+  "primary-dark": "#075C3B",
+  "deep-emerald": "#075C3B",
+  "refined-gold": "#D4AF37",
+
+  // Secondary Accents
+  secondary: "#735c00",
+  "on-secondary": "#ffffff",
+  "secondary-container": "#fed65b",
+  "on-secondary-container": "#745c00",
+  "secondary-fixed": "#ffe088",
+  "on-secondary-fixed": "#241a00",
+  "secondary-fixed-dim": "#e9c349",
+  "secondary-gray": "#5B6470",
+
+  // Neutrals & Surfaces
+  "warm-off-white": "#F8F6F1",
+  "near-black": "#1F2937",
+  "outline-variant": "#bfc9c0",
+  outline: "#707a72",
 
   // Status semantic colors
   "status-success": "rgb(var(--c-status-success) / <alpha-value>)",
@@ -18,17 +35,19 @@ const baznasColors = {
   "status-danger": "rgb(var(--c-status-danger) / <alpha-value>)",
   "on-status-danger": "rgb(var(--c-on-status-danger) / <alpha-value>)",
 
-  // Surface and Neutral (Grey/White/Black)
+  // Surface and Neutral tokens
   background: "rgb(var(--c-background) / <alpha-value>)",
   "on-background": "rgb(var(--c-on-background) / <alpha-value>)",
   surface: "rgb(var(--c-surface) / <alpha-value>)",
   "on-surface": "rgb(var(--c-on-surface) / <alpha-value>)",
   "surface-container-lowest": "rgb(var(--c-surface-container-lowest) / <alpha-value>)",
+  "surface-container-low": "#f5f3ee",
+  "surface-container": "#f0eee9",
   "surface-container-high": "rgb(var(--c-surface-container-high) / <alpha-value>)",
   "surface-variant": "rgb(var(--c-surface-variant) / <alpha-value>)",
   "on-surface-variant": "rgb(var(--c-on-surface-variant) / <alpha-value>)",
-  // Inverse for dark mode contrast
   inverse: "rgb(var(--c-inverse) / <alpha-value>)",
+  "inverse-surface": "#30312e",
 };
 
 const config: Config = {
@@ -42,16 +61,30 @@ const config: Config = {
     extend: {
       colors: baznasColors,
       fontFamily: {
-        'inter': ['var(--font-inter)'],
-        'space-grotesk': ['var(--font-space-grotesk)'],
+        playfair: ['var(--font-playfair)', 'serif'],
+        jakarta: ['var(--font-jakarta)', 'sans-serif'],
+        inter: ['var(--font-inter)', 'sans-serif'],
+        'space-grotesk': ['var(--font-space-grotesk)', 'sans-serif'],
+        serif: ['var(--font-playfair)', 'serif'],
+        sans: ['var(--font-jakarta)', 'sans-serif'],
       },
-      // Simplified Font Tokens based on Kemenhaj Pattern
+      maxWidth: {
+        'container-max': '1320px',
+      },
+      spacing: {
+        'margin-desktop': '48px',
+        'margin-mobile': '20px',
+        gutter: '24px',
+        'section-v-spacer': '112px',
+      },
       fontSize: {
         'body-md': ['0.95rem', { lineHeight: '1.4rem' }],
         'body-lg': ['1.05rem', { lineHeight: '1.6rem' }],
         'headline-md': ['1.6rem', { lineHeight: '2rem', letterSpacing: '-0.015em' }],
-        'headline-lg': ['2rem', { lineHeight: '2.5rem', letterSpacing: '-0.02em' }],
-      }
+        'headline-lg': ['2.25rem', { lineHeight: '2.75rem', letterSpacing: '-0.02em' }],
+        'headline-xl': ['3.5rem', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
+        'headline-xl-mobile': ['2.5rem', { lineHeight: '1.1', letterSpacing: '-0.01em' }],
+      },
     },
   },
   plugins: [forms],

@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAdmin } from "@/lib/admin-context";
 import { Plus, Pencil, Trash2, Search, CheckCircle, XCircle } from "lucide-react";
@@ -15,8 +15,10 @@ import { Can } from "../rbac/Can";
 import { Pagination } from "../ui/Pagination";
 import { Database } from "@/types/database.types";
 import { getSupabaseBrowser } from "@/lib/supabase";
-import AdminTeamModal from "./AdminTeamModal";
+import dynamic from "next/dynamic";
 import ImagePlaceholder from "../ImagePlaceholder";
+
+const AdminTeamModal = dynamic(() => import("./AdminTeamModal"), { ssr: false });
 
 
 // Types derived from DB structure
@@ -46,6 +48,11 @@ export default function AdminTeamClient({
     const [teamList, setTeamList] = useState(initialTeam);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingId, setEditingId] = useState<string | null>(null);
+
+    // Synchronize local state whenever server props update (e.g. after router.refresh())
+    useEffect(() => {
+        setTeamList(initialTeam);
+    }, [initialTeam]);
 
     // Function to handle modal close and potential data refetch
     const handleCloseModal = (refetch: boolean = false) => {
@@ -77,6 +84,7 @@ export default function AdminTeamClient({
         if (error) {
             alert(`Gagal menghapus anggota tim: ${error.message}`);
         } else {
+            setTeamList(prev => prev.filter(item => item.id !== id));
             router.refresh(); // Refetch data
         }
     };
@@ -84,10 +92,15 @@ export default function AdminTeamClient({
     return (
         <>
             <div className="space-y-6">
-                <div className="flex justify-between items-center">
-                    <h1 className="text-headline-md font-space-grotesk">
-                        Daftar Pimpinan & Struktur ({totalItems})
-                    </h1>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div>
+                        <h1 className="text-2xl sm:text-3xl font-playfair font-bold text-[#004229] dark:text-[#8cd6ac]">
+                            Pimpinan & Struktur Organisasi
+                        </h1>
+                        <p className="text-xs text-on-surface-variant mt-1">
+                            Total {totalItems} profil pengurus dan pimpinan terdaftar.
+                        </p>
+                    </div>
                     <Can required="team_members.create">
                         <Button onClick={handleCreate} className="space-x-2">
                             <Plus className="w-5 h-5" />
@@ -97,9 +110,9 @@ export default function AdminTeamClient({
                 </div>
 
                 {/* Search Section */}
-                <div className="flex space-x-4">
+                <div className="bg-white dark:bg-[#181818] p-4 rounded-2xl border border-surface-variant/40 dark:border-zinc-800 flex flex-col sm:flex-row gap-4 shadow-sm">
                     <div className="relative flex-1">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-on-surface-variant" />
+                        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-on-surface-variant" />
                         <Input
                             placeholder="Cari nama atau jabatan anggota..."
                             defaultValue={search}
@@ -109,7 +122,7 @@ export default function AdminTeamClient({
                 </div>
 
                 {/* Main Table */}
-                <div className="bg-surface rounded-xl shadow-lg border border-surface-variant overflow-hidden">
+                <div className="bg-white dark:bg-[#181818] rounded-2xl shadow-sm border border-surface-variant/40 dark:border-zinc-800 overflow-hidden">
                     <Table>
                         <TableHeader>
                             <TableRow>

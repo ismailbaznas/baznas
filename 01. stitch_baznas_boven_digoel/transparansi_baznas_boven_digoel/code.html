@@ -1,0 +1,333 @@
+<!DOCTYPE html><html lang="id"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Transparansi - BAZNAS Boven Digoel</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error-container": "#93000a",
+                      "on-secondary": "#ffffff",
+                      "error": "#ba1a1a",
+                      "on-tertiary-container": "#ffaeab",
+                      "inverse-on-surface": "#f2f1ec",
+                      "primary": "#004229",
+                      "on-secondary-fixed": "#241a00",
+                      "tertiary-container": "#803b3b",
+                      "surface": "#fbf9f4",
+                      "on-secondary-container": "#745c00",
+                      "outline-variant": "#bfc9c0",
+                      "tertiary-fixed-dim": "#ffb3b1",
+                      "outline": "#707a72",
+                      "secondary-fixed": "#ffe088",
+                      "on-primary-fixed": "#002112",
+                      "secondary": "#735c00",
+                      "tertiary": "#632526",
+                      "surface-container-highest": "#e4e2dd",
+                      "surface-variant": "#e4e2dd",
+                      "background": "#fbf9f4",
+                      "surface-bright": "#fbf9f4",
+                      "error-container": "#ffdad6",
+                      "on-surface-variant": "#3f4942",
+                      "primary-fixed": "#a8f3c7",
+                      "surface-dim": "#dbdad5",
+                      "on-primary-fixed-variant": "#005233",
+                      "surface-container-low": "#f5f3ee",
+                      "surface-container-high": "#eae8e3",
+                      "on-primary": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "on-background": "#1b1c19",
+                      "inverse-primary": "#8cd6ac",
+                      "primary-fixed-dim": "#8cd6ac",
+                      "on-tertiary-fixed-variant": "#743232",
+                      "tertiary-fixed": "#ffdad8",
+                      "surface-container-lowest": "#ffffff",
+                      "on-error": "#ffffff",
+                      "surface-container": "#f0eee9",
+                      "secondary-fixed-dim": "#e9c349",
+                      "on-primary-container": "#88d2a8",
+                      "surface-tint": "#1f6b48",
+                      "secondary-container": "#fed65b",
+                      "on-tertiary-fixed": "#3c070b",
+                      "on-secondary-fixed-variant": "#574500",
+                      "primary-container": "#075c3b",
+                      "on-surface": "#1b1c19",
+                      "inverse-surface": "#30312e"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {},
+              "fontFamily": {
+                      "headline": [
+                              "Playfair Display"
+                      ],
+                      "display": [
+                              "Playfair Display"
+                      ],
+                      "body": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label": [
+                              "Plus Jakarta Sans"
+                      ]
+              },
+              "fontSize": {}
+      },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24
+        }
+      </style>
+</head>
+<body class="bg-background text-on-background font-body antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="bg-surface dark:bg-surface-container-low w-full top-0 sticky z-50 transition-colors duration-300">
+<div class="max-w-[1320px] mx-auto flex justify-between items-center px-12 py-6">
+<a class="text-xl font-headline font-bold text-primary dark:text-primary-fixed tracking-tight hover:opacity-90 transition-opacity" href="#">
+                BAZNAS Boven Digoel
+            </a>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-on-surface-variant dark:text-outline-variant font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors font-label" href="#">Beranda</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors font-label" href="#">Tentang Kami</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors font-label" href="#">Program</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors font-label" href="#">Kabar</a>
+<a class="text-primary dark:text-primary-fixed border-b-2 border-primary dark:border-primary-fixed pb-1 font-semibold font-label" href="#">Transparansi</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors font-label" href="#">Layanan</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium hover:text-primary dark:hover:text-primary-fixed transition-colors font-label" href="#">Kontak</a>
+</div>
+<button class="bg-primary-container text-on-primary-container px-6 py-3 rounded-lg font-label font-semibold hover:bg-primary hover:text-on-primary transition-all duration-300 shadow-sm hidden md:block">
+                Tunaikan Zakat
+            </button>
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+</nav>
+<main class="w-full">
+<!-- Hero Section -->
+<section class="max-w-[1320px] mx-auto px-6 md:px-12 py-20 md:py-28 flex flex-col md:flex-row items-center gap-16 relative">
+<div class="w-full md:w-1/2 flex flex-col items-start z-10">
+<span class="text-secondary font-label font-semibold uppercase tracking-wider mb-4 text-sm md:text-base">Akuntabilitas &amp; Kepercayaan</span>
+<h1 class="font-headline font-bold text-4xl md:text-6xl lg:text-[64px] text-on-surface leading-[1.1] mb-6 tracking-tight">
+                    Transparansi adalah Amanah
+                </h1>
+<p class="font-body text-on-surface-variant text-lg md:text-xl leading-relaxed mb-10 max-w-xl">
+                    Setiap rupiah yang Anda amanahkan kepada BAZNAS Kabupaten Boven Digoel dikelola secara profesional, akuntabel, dan transparan sesuai dengan syariat Islam dan peraturan perundang-undangan.
+                </p>
+<div class="flex items-center gap-4">
+<button class="bg-primary text-on-primary px-8 py-4 rounded font-label font-semibold hover:bg-primary-container hover:text-on-primary-container transition-all shadow-sm flex items-center gap-2">
+                        Unduh Laporan Tahunan
+                        <span class="material-symbols-outlined text-sm" data-icon="download">download</span>
+</button>
+</div>
+</div>
+<div class="w-full md:w-1/2 h-[400px] md:h-[600px] relative rounded-xl overflow-hidden group">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A professional documentary-style photograph showing an official meeting or document signing in a well-lit, formal institutional setting. Deep emerald and subtle gold tones are present in the decor. High quality, realistic, showcasing transparency and professional governance, clear focus, high resolution." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAP0dlPARimEyjxn6vZMByHUtT__uNNBwgEo2aNjk7vo3J44rrAzsEPRb0SGT_ukBqNR-6HozErWRZYZ--gBP4MEalnout8xXnPKRp9GBnshfBRxJc_FLQiPhr-ef0eZ6EUYhjGMy1zBWnFlUIAH_LSZvMsZ-_R4V5mQfTtQbG0PWo772wK3xsChToG_IzKBYx0FHaXWC6ei62nR76nZyBKbCAGnLAd4lcXplWSdY9JRlVIOihHV5ke">
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+</div>
+</section>
+<!-- Financial Highlights (Trust Strip) -->
+<section class="bg-surface-container-low py-20 border-y border-surface-variant">
+<div class="max-w-[1320px] mx-auto px-6 md:px-12">
+<div class="text-center mb-16">
+<h2 class="font-headline font-bold text-3xl md:text-4xl text-on-surface mb-4">Laporan Kinerja 2026</h2>
+<p class="font-body text-on-surface-variant max-w-2xl mx-auto">Ringkasan capaian pengelolaan dana zakat, infak, dan sedekah BAZNAS Boven Digoel per 31 Desember 2026.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Stat 1 -->
+<div class="bg-surface rounded-xl p-8 text-center border border-surface-variant/50 hover:shadow-sm transition-shadow duration-300 flex flex-col items-center">
+<div class="w-16 h-16 rounded-full bg-primary-container/10 flex items-center justify-center mb-6 text-primary">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet" style="font-size: 32px;">account_balance_wallet</span>
+</div>
+<h3 class="font-headline font-bold text-4xl text-on-surface mb-2 tracking-tight">Rp 2.45M</h3>
+<p class="font-label font-semibold text-secondary uppercase tracking-widest text-sm">Dana Dihimpun</p>
+</div>
+<!-- Stat 2 -->
+<div class="bg-surface rounded-xl p-8 text-center border border-surface-variant/50 hover:shadow-sm transition-shadow duration-300 flex flex-col items-center">
+<div class="w-16 h-16 rounded-full bg-primary-container/10 flex items-center justify-center mb-6 text-primary">
+<span class="material-symbols-outlined" data-icon="outbound" style="font-size: 32px;">outbound</span>
+</div>
+<h3 class="font-headline font-bold text-4xl text-on-surface mb-2 tracking-tight">Rp 2.30M</h3>
+<p class="font-label font-semibold text-secondary uppercase tracking-widest text-sm">Dana Disalurkan</p>
+</div>
+<!-- Stat 3 -->
+<div class="bg-surface rounded-xl p-8 text-center border border-surface-variant/50 hover:shadow-sm transition-shadow duration-300 flex flex-col items-center">
+<div class="w-16 h-16 rounded-full bg-primary-container/10 flex items-center justify-center mb-6 text-primary">
+<span class="material-symbols-outlined" data-icon="groups" style="font-size: 32px;">groups</span>
+</div>
+<h3 class="font-headline font-bold text-4xl text-on-surface mb-2 tracking-tight">1,250</h3>
+<p class="font-label font-semibold text-secondary uppercase tracking-widest text-sm">Mustahik Terlayani</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Reports Repository (Transparency Panel) -->
+<section class="max-w-[1320px] mx-auto px-6 md:px-12 py-24">
+<div class="flex flex-col lg:flex-row gap-16">
+<!-- Data Metrics / Context (Left 60%) -->
+<div class="w-full lg:w-[60%]">
+<h2 class="font-headline font-bold text-3xl md:text-4xl text-on-surface mb-6">Arsip Laporan Resmi</h2>
+<p class="font-body text-on-surface-variant mb-10 text-lg leading-relaxed">
+                        Sebagai bentuk pertanggungjawaban publik, BAZNAS Kabupaten Boven Digoel secara rutin mempublikasikan laporan keuangan dan laporan kinerja operasional. Seluruh laporan telah melalui proses audit oleh pihak independen yang berwenang.
+                    </p>
+<div class="grid grid-cols-2 gap-6 mb-8">
+<div class="bg-surface-container-low p-6 rounded-lg border border-surface-variant">
+<div class="flex items-center gap-3 mb-2 text-primary">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+<span class="font-label font-semibold">Status Audit</span>
+</div>
+<p class="font-body text-on-surface-variant text-sm">Wajar Tanpa Pengecualian (WTP) - KAP Independen 2026</p>
+</div>
+<div class="bg-surface-container-low p-6 rounded-lg border border-surface-variant">
+<div class="flex items-center gap-3 mb-2 text-primary">
+<span class="material-symbols-outlined" data-icon="gavel">gavel</span>
+<span class="font-label font-semibold">Audit Syariah</span>
+</div>
+<p class="font-body text-on-surface-variant text-sm">Sesuai Syariat - Kemenag Boven Digoel 2026</p>
+</div>
+</div>
+</div>
+<!-- Document List (Right 40%) -->
+<div class="w-full lg:w-[40%] bg-surface-container-lowest border border-surface-variant rounded-xl p-8 shadow-sm">
+<h3 class="font-headline font-bold text-xl text-on-surface mb-6 border-b border-surface-variant pb-4">Dokumen 2026</h3>
+<ul class="space-y-4">
+<!-- Doc 1 -->
+<li class="flex items-center justify-between p-4 bg-surface-container-low rounded-lg hover:bg-surface-container transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="picture_as_pdf">picture_as_pdf</span>
+</div>
+<div>
+<h4 class="font-label font-semibold text-on-surface">Laporan Tahunan 2026</h4>
+<span class="font-body text-xs text-on-surface-variant">PDF • 4.2 MB</span>
+</div>
+</div>
+<button aria-label="Unduh PDF" class="text-primary hover:text-primary-container p-2 rounded-full hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+</li>
+<!-- Doc 2 -->
+<li class="flex items-center justify-between p-4 bg-surface-container-low rounded-lg hover:bg-surface-container transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="picture_as_pdf">picture_as_pdf</span>
+</div>
+<div>
+<h4 class="font-label font-semibold text-on-surface">Laporan Semester II 2026</h4>
+<span class="font-body text-xs text-on-surface-variant">PDF • 2.1 MB</span>
+</div>
+</div>
+<button aria-label="Unduh PDF" class="text-primary hover:text-primary-container p-2 rounded-full hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+</li>
+<!-- Doc 3 -->
+<li class="flex items-center justify-between p-4 bg-surface-container-low rounded-lg hover:bg-surface-container transition-colors group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="picture_as_pdf">picture_as_pdf</span>
+</div>
+<div>
+<h4 class="font-label font-semibold text-on-surface">Laporan Semester I 2026</h4>
+<span class="font-body text-xs text-on-surface-variant">PDF • 1.8 MB</span>
+</div>
+</div>
+<button aria-label="Unduh PDF" class="text-primary hover:text-primary-container p-2 rounded-full hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+</li>
+</ul>
+<button class="w-full mt-6 py-3 border border-primary text-primary rounded-lg font-label font-semibold hover:bg-primary/5 transition-colors">
+                        Lihat Arsip Tahun Sebelumnya
+                    </button>
+</div>
+</div>
+</section>
+<!-- Audit & Quality Seals -->
+<section class="bg-primary text-on-primary py-24">
+<div class="max-w-[1320px] mx-auto px-6 md:px-12 text-center">
+<h2 class="font-headline font-bold text-3xl md:text-4xl mb-12">Komitmen Kelembagaan</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+<!-- Seal 1 -->
+<div class="flex flex-col items-center">
+<div class="w-20 h-20 rounded-full border-2 border-secondary flex items-center justify-center mb-4 text-secondary">
+<span class="material-symbols-outlined" data-icon="balance" style="font-size: 40px;">balance</span>
+</div>
+<h3 class="font-label font-semibold text-lg uppercase tracking-wider mb-2">Diaudit Syariah</h3>
+<p class="font-body text-sm text-on-primary/80 opacity-90">Sesuai prinsip kepatuhan syariah.</p>
+</div>
+<!-- Seal 2 -->
+<div class="flex flex-col items-center">
+<div class="w-20 h-20 rounded-full border-2 border-secondary flex items-center justify-center mb-4 text-secondary">
+<span class="material-symbols-outlined" data-icon="fact_check" style="font-size: 40px;">fact_check</span>
+</div>
+<h3 class="font-label font-semibold text-lg uppercase tracking-wider mb-2">Akuntabel</h3>
+<p class="font-body text-sm text-on-primary/80 opacity-90">Dapat dipertanggungjawabkan publik.</p>
+</div>
+<!-- Seal 3 -->
+<div class="flex flex-col items-center">
+<div class="w-20 h-20 rounded-full border-2 border-secondary flex items-center justify-center mb-4 text-secondary">
+<span class="material-symbols-outlined" data-icon="workspace_premium" style="font-size: 40px;">workspace_premium</span>
+</div>
+<h3 class="font-label font-semibold text-lg uppercase tracking-wider mb-2">Profesional</h3>
+<p class="font-body text-sm text-on-primary/80 opacity-90">Dikelola oleh amil bersertifikasi.</p>
+</div>
+<!-- Seal 4 -->
+<div class="flex flex-col items-center">
+<div class="w-20 h-20 rounded-full border-2 border-secondary flex items-center justify-center mb-4 text-secondary">
+<span class="material-symbols-outlined" data-icon="visibility" style="font-size: 40px;">visibility</span>
+</div>
+<h3 class="font-label font-semibold text-lg uppercase tracking-wider mb-2">Transparan</h3>
+<p class="font-body text-sm text-on-primary/80 opacity-90">Akses informasi terbuka luas.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-primary dark:bg-primary-container w-full pt-20 pb-10">
+<div class="max-w-[1320px] mx-auto px-12 grid grid-cols-1 md:grid-cols-4 gap-12 text-on-primary dark:text-on-primary-container">
+<div class="col-span-1 md:col-span-2">
+<h2 class="text-2xl font-headline font-bold text-on-primary dark:text-on-primary-container mb-4">BAZNAS Boven Digoel</h2>
+<p class="font-body text-body-md text-on-primary/80 dark:text-on-primary-container/80 max-w-md mb-6">
+                     Lembaga pemerintah nonstruktural yang berwenang melakukan pengelolaan zakat secara nasional di wilayah Kabupaten Boven Digoel.
+                 </p>
+<p class="font-label text-label-sm text-on-primary/60 dark:text-on-primary-container/60">
+                     © 2024 BAZNAS Kabupaten Boven Digoel. Amanah, Transparan, Profesional.
+                 </p>
+</div>
+<div>
+<h3 class="font-label text-label-md font-semibold mb-4 text-secondary dark:text-secondary-fixed">Tautan Penting</h3>
+<ul class="space-y-3">
+<li><a class="font-body text-body-md text-on-primary/80 dark:text-on-primary-container/80 hover:text-on-primary transition-colors hover:underline decoration-secondary dark:decoration-secondary-fixed underline-offset-4 focus:ring-2 ring-secondary dark:ring-secondary-fixed ring-offset-2 rounded outline-none" href="#">Kebijakan Privasi</a></li>
+<li><a class="font-body text-body-md text-on-primary/80 dark:text-on-primary-container/80 hover:text-on-primary transition-colors hover:underline decoration-secondary dark:decoration-secondary-fixed underline-offset-4 focus:ring-2 ring-secondary dark:ring-secondary-fixed ring-offset-2 rounded outline-none" href="#">Syarat &amp; Ketentuan</a></li>
+<li><a class="font-body text-body-md text-on-primary/80 dark:text-on-primary-container/80 hover:text-on-primary transition-colors hover:underline decoration-secondary dark:decoration-secondary-fixed underline-offset-4 focus:ring-2 ring-secondary dark:ring-secondary-fixed ring-offset-2 rounded outline-none" href="#">Laporan Tahunan</a></li>
+</ul>
+</div>
+<div>
+<h3 class="font-label text-label-md font-semibold mb-4 text-secondary dark:text-secondary-fixed">Hubungi Kami</h3>
+<ul class="space-y-3">
+<li><a class="font-body text-body-md text-on-primary/80 dark:text-on-primary-container/80 hover:text-on-primary transition-colors hover:underline decoration-secondary dark:decoration-secondary-fixed underline-offset-4 focus:ring-2 ring-secondary dark:ring-secondary-fixed ring-offset-2 rounded outline-none" href="#">Pusat Bantuan</a></li>
+<li class="flex items-center gap-2 font-body text-body-md text-on-primary/80 dark:text-on-primary-container/80"><span class="material-symbols-outlined text-sm" data-icon="mail">mail</span> info@baznasbovendigoel.go.id</li>
+</ul>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html><html lang="id"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Layanan - BAZNAS Boven Digoel</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config from Design System -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#e9c349",
+                    "tertiary": "#632526",
+                    "on-primary-fixed": "#002112",
+                    "on-tertiary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#005233",
+                    "on-tertiary-fixed-variant": "#743232",
+                    "on-error": "#ffffff",
+                    "outline-variant": "#bfc9c0",
+                    "background": "#fbf9f4",
+                    "surface-variant": "#e4e2dd",
+                    "surface-container-high": "#eae8e3",
+                    "on-secondary": "#ffffff",
+                    "primary-container": "#075c3b",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed": "#ffdad8",
+                    "on-tertiary-container": "#ffaeab",
+                    "error-container": "#ffdad6",
+                    "surface": "#fbf9f4",
+                    "tertiary-container": "#803b3b",
+                    "on-primary-container": "#88d2a8",
+                    "surface-container": "#f0eee9",
+                    "surface-container-highest": "#e4e2dd",
+                    "tertiary-fixed-dim": "#ffb3b1",
+                    "primary": "#004229",
+                    "on-secondary-fixed": "#241a00",
+                    "secondary-fixed": "#ffe088",
+                    "secondary": "#735c00",
+                    "surface-container-low": "#f5f3ee",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-primary": "#8cd6ac",
+                    "on-surface-variant": "#3f4942",
+                    "outline": "#707a72",
+                    "error": "#ba1a1a",
+                    "on-surface": "#1b1c19",
+                    "surface-dim": "#dbdad5",
+                    "surface-tint": "#1f6b48",
+                    "primary-fixed": "#a8f3c7",
+                    "primary-fixed-dim": "#8cd6ac",
+                    "surface-bright": "#fbf9f4",
+                    "on-secondary-fixed-variant": "#574500",
+                    "inverse-on-surface": "#f2f1ec",
+                    "secondary-container": "#fed65b",
+                    "on-background": "#1b1c19",
+                    "on-secondary-container": "#745c00",
+                    "on-tertiary-fixed": "#3c070b",
+                    "inverse-surface": "#30312e",
+                    
+                    // Design System Specific Aliases (to match guidelines if used directly)
+                    "deep-emerald": "#075C3B",
+                    "refined-gold": "#D4AF37",
+                    "warm-off-white": "#F8F6F1",
+                    "near-black": "#1F2937",
+                    "secondary-gray": "#5B6470",
+                    "white": "#FFFFFF"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px",
+                    // Adding specific design system rounded values
+                    "ds-sm": "0.5rem",   // 8px buttons
+                    "ds-lg": "1rem",     // 16px cards
+                    "ds-xl": "1.25rem"   // 20px storytelling
+            },
+            "spacing": {
+                "container-max": "1320px",
+                "section-v": "112px",
+            },
+            "fontFamily": {
+                    "headline": ["Playfair Display", "serif"],
+                    "display": ["Playfair Display", "serif"],
+                    "body": ["Plus Jakarta Sans", "sans-serif"],
+                    "label": ["Plus Jakarta Sans", "sans-serif"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        /* Base typography settings */
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #fbf9f4; /* surface background */
+            color: #1b1c19; /* on-surface */
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4, h5, h6, .font-headline {
+            font-family: 'Playfair Display', serif;
+            color: #1F2937; /* near-black for high legibility */
+        }
+        
+        /* Material symbols setup */
+        .material-symbols-outlined {
+          font-family: 'Material Symbols Outlined';
+          font-weight: normal;
+          font-style: normal;
+          font-size: 24px;  /* Preferred icon size */
+          display: inline-block;
+          line-height: 1;
+          text-transform: none;
+          letter-spacing: normal;
+          word-wrap: normal;
+          white-space: nowrap;
+          direction: ltr;
+        }
+
+        /* Anti-AI Design System Rules */
+        .ds-card {
+            background-color: #ffffff;
+            border: 1px solid #e4e2dd;
+            border-radius: 1rem;
+            box-shadow: none;
+        }
+        
+        .ds-input {
+            border-radius: 0.5rem;
+            background-color: #ffffff;
+            border: 1px solid #e4e2dd;
+        }
+        .ds-input:focus {
+            outline: none;
+            border-color: #075c3b;
+            box-shadow: 0 0 0 1px #075c3b;
+        }
+        
+        .ds-btn-primary {
+            background-color: #075C3B; /* Deep Emerald */
+            color: #ffffff;
+            border-radius: 0.5rem; /* 8px */
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+        }
+        .ds-btn-primary:hover {
+            background-color: #004229;
+        }
+        
+        .ds-btn-action {
+            background-color: #D4AF37; /* Refined Gold */
+            color: #1b1c19; /* High contrast text */
+            border-radius: 0.5rem;
+            font-weight: 700;
+            padding: 0.75rem 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+        }
+        .ds-btn-action:hover {
+            background-color: #c09e32;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<header class="bg-surface docked full-width top-0 sticky z-50 transition-all duration-300 border-b border-surface-container-highest">
+<div class="flex justify-between items-center w-full px-6 md:px-12 py-4 max-w-[1320px] mx-auto">
+<!-- Brand -->
+<a class="flex items-center gap-3 group" href="#">
+<img alt="BAZNAS Logo" class="h-10 w-auto object-contain bg-primary rounded p-1" data-alt="Official BAZNAS Boven Digoel logo in Deep Emerald and Gold, high resolution, clean corporate style" src="https://lh3.googleusercontent.com/aida/AEtjO1VCRHjovCFg1kzIdxiHHpgmqiO-wFO7V7iGis1LQz1ATNbBNjtnIyxXDqFvmpFXWi7VBxeiD0I2YTF6lfxrNHlYvlomlbXjoJBXcoqOqUaGAPmRi7ZMxSItozGQ6fPe1v9txsQ10Jq0fh-lhzzK3qMQoT2qIkQbO4zRPGteTGsDWkDfVXNL0wlqrPKDjp40T1dXQNCP_msqwbKsCRZalcZJKKTXoSVZc7l9L4rCY1N2r9hBKKIwkBnpdA">
+<span class="text-xl font-headline font-bold text-primary tracking-tight group-hover:opacity-80 transition-opacity">BAZNAS Boven Digoel</span>
+</a>
+<!-- Desktop Navigation -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant font-medium font-body hover:text-primary transition-colors duration-200" href="#">Beranda</a>
+<a class="text-on-surface-variant font-medium font-body hover:text-primary transition-colors duration-200" href="#">Tentang Kami</a>
+<a class="text-on-surface-variant font-medium font-body hover:text-primary transition-colors duration-200" href="#">Program</a>
+<a class="text-on-surface-variant font-medium font-body hover:text-primary transition-colors duration-200" href="#">Kabar</a>
+<a class="text-primary border-b-2 border-primary pb-1 font-medium font-body hover:text-primary transition-colors duration-200" href="#">Layanan</a>
+<a class="text-on-surface-variant font-medium font-body hover:text-primary transition-colors duration-200" href="#">Transparansi</a>
+</nav>
+<!-- Actions -->
+<div class="hidden md:flex items-center gap-4">
+<a class="ds-btn-action text-sm" href="#kalkulator">
+                    Tunaikan Zakat
+                </a>
+</div>
+<!-- Mobile Menu Toggle (Decorative for UI) -->
+<button class="md:hidden text-primary p-2">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="relative pt-24 pb-32 overflow-hidden bg-surface">
+<!-- Subtle background texture/pattern -->
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#075c3b 1px, transparent 1px); background-size: 32px 32px;"></div>
+<div class="max-w-[1320px] mx-auto px-6 md:px-12 relative z-10 text-center flex flex-col items-center">
+<div class="inline-flex items-center justify-center p-3 bg-primary-container/10 rounded-full mb-6">
+<span class="material-symbols-outlined text-primary-container text-3xl" style="font-variation-settings: 'FILL' 1;">volunteer_activism</span>
+</div>
+<h1 class="font-headline text-5xl md:text-6xl font-bold text-near-black mb-6 tracking-tight max-w-4xl leading-tight">Layanan BAZNAS</h1>
+<p class="font-body text-lg md:text-xl text-secondary-gray max-w-2xl mx-auto leading-relaxed">Kemudahan akses layanan zakat, infak, dan bantuan sosial bagi masyarakat Boven Digoel.</p>
+<div class="mt-10 flex flex-wrap justify-center gap-4">
+<a class="ds-btn-primary" href="#zakat">
+                        Hitung Zakat
+                        <span class="material-symbols-outlined text-sm">arrow_downward</span>
+</a>
+<a class="bg-white text-near-black border border-surface-container-highest rounded-lg font-semibold py-3 px-6 hover:bg-surface-container-low transition-colors duration-200" href="#bantuan">
+                        Pengajuan Bantuan
+                    </a>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container-highest w-full py-16">
+<div class="max-w-[1320px] mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-4 gap-12 border-t border-outline-variant pt-16">
+<!-- Brand Column -->
+<div class="col-span-1 md:col-span-1">
+<img alt="BAZNAS Footer Logo" class="h-12 w-auto mb-6 bg-primary rounded p-1" data-alt="BAZNAS Boven Digoel Logo in Footer, high resolution white version on dark green background, corporate non-profit style" src="https://lh3.googleusercontent.com/aida/AEtjO1VCRHjovCFg1kzIdxiHHpgmqiO-wFO7V7iGis1LQz1ATNbBNjtnIyxXDqFvmpFXWi7VBxeiD0I2YTF6lfxrNHlYvlomlbXjoJBXcoqOqUaGAPmRi7ZMxSItozGQ6fPe1v9txsQ10Jq0fh-lhzzK3qMQoT2qIkQbO4zRPGteTGsDWkDfVXNL0wlqrPKDjp40T1dXQNCP_msqwbKsCRZalcZJKKTXoSVZc7l9L4rCY1N2r9hBKKIwkBnpdA">
+<p class="font-body text-sm text-on-surface-variant mb-6">Lembaga Pemerintah Non-Struktural Pengelola Zakat di Kabupaten Boven Digoel.</p>
+</div>
+<!-- Links Columns -->
+<div>
+<h3 class="font-headline font-semibold text-primary mb-4">Navigasi</h3>
+<ul class="space-y-3 font-body text-sm">
+<li><a class="text-on-surface-variant hover:text-secondary underline transition-all" href="#">Tentang Kami</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary underline transition-all" href="#">Program Unggulan</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary underline transition-all" href="#">Kabar BAZNAS</a></li>
+</ul>
+</div>
+<div>
+<h3 class="font-headline font-semibold text-primary mb-4">Informasi</h3>
+<ul class="space-y-3 font-body text-sm">
+<li><a class="text-on-surface-variant hover:text-secondary underline transition-all" href="#">Laporan Transparansi</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary underline transition-all" href="#">Kontak Kami</a></li>
+<li><a class="text-on-surface-variant hover:text-secondary underline transition-all" href="#">Kebijakan Privasi</a></li>
+</ul>
+</div>
+<!-- Contact Summary -->
+<div>
+<h3 class="font-headline font-semibold text-primary mb-4">Hubungi Kami</h3>
+<div class="font-body text-sm text-on-surface-variant space-y-2">
+<p>Jl. Trans Papua, Tanah Merah</p>
+<p>Boven Digoel, Papua Selatan</p>
+<p class="pt-2 font-medium">Call Center: 0811-XXXX-XXXX</p>
+</div>
+</div>
+</div>
+<div class="max-w-[1320px] mx-auto px-6 md:px-12 mt-12 pt-8 border-t border-outline-variant/50">
+<p class="font-body text-sm text-on-surface-variant text-center">© 2024 BAZNAS Kabupaten Boven Digoel. Lembaga Pemerintah Non-Struktural Pengelola Zakat.</p>
+</div>
+</footer>
+</main>
+</body></html>

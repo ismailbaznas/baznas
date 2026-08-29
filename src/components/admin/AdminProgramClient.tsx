@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAdmin } from "@/lib/admin-context";
 import { Plus, Pencil, Trash2, Search, Calendar, Package, CheckCircle, XCircle } from "lucide-react";
 import { Button } from "../ui/Button";
@@ -15,8 +15,10 @@ import { Can } from "../rbac/Can";
 import { Pagination } from "../ui/Pagination";
 import { Database } from "@/types/database.types";
 import { useRouter } from "next/navigation";
-import AdminProgramModal from "./AdminProgramModal";
+import dynamic from "next/dynamic";
 import { getSupabaseBrowser } from "@/lib/supabase";
+
+const AdminProgramModal = dynamic(() => import("./AdminProgramModal"), { ssr: false });
 
 // Types derived from DB structure
 type ProgramItem = Database["public"]["Tables"]["programs"]["Row"] & {
@@ -52,6 +54,11 @@ export default function AdminProgramClient({
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingId, setEditingId] = useState<string | null>(null);
 
+    // Synchronize local state whenever server props update (e.g. after router.refresh())
+    useEffect(() => {
+        setProgramList(initialPrograms);
+    }, [initialPrograms]);
+
     // Function to handle modal close and potential data refetch
     const handleCloseModal = (refetch: boolean = false) => {
         setIsModalOpen(false);
@@ -82,6 +89,7 @@ export default function AdminProgramClient({
         if (error) {
             alert(`Gagal menghapus program: ${error.message}`);
         } else {
+            setProgramList(prev => prev.filter(item => item.id !== id));
             router.refresh(); // Refetch data
         }
     };
@@ -89,10 +97,15 @@ export default function AdminProgramClient({
     return (
         <>
             <div className="space-y-6">
-                <div className="flex justify-between items-center">
-                    <h1 className="text-headline-md font-space-grotesk">
-                        Daftar Program ({totalItems})
-                    </h1>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div>
+                        <h1 className="text-2xl sm:text-3xl font-playfair font-bold text-[#004229] dark:text-[#8cd6ac]">
+                            Daftar Program Kerja
+                        </h1>
+                        <p className="text-xs text-on-surface-variant mt-1">
+                            Total {totalItems} program penyaluran dan pemberdayaan terdaftar.
+                        </p>
+                    </div>
                     <Can required="program.create">
                         <Button onClick={handleCreate} className="space-x-2">
                             <Plus className="w-5 h-5" />
@@ -102,24 +115,19 @@ export default function AdminProgramClient({
                 </div>
 
                 {/* Search and Filter Section */}
-                <div className="flex space-x-4">
+                <div className="bg-white dark:bg-[#181818] p-4 rounded-2xl border border-surface-variant/40 dark:border-zinc-800 flex flex-col sm:flex-row gap-4 shadow-sm">
                     <div className="relative flex-1">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-on-surface-variant" />
+                        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-on-surface-variant" />
                         <Input
                             placeholder="Cari nama atau deskripsi program..."
                             defaultValue={search}
                             className="pl-10"
                         />
                     </div>
-                    {/* Placeholder for Category Filter */}
-                    <Button variant="outline" className="space-x-2">
-                        <Package className="w-4 h-4" />
-                        <span>Filter Kategori</span>
-                    </Button>
                 </div>
 
                 {/* Main Table */}
-                <div className="bg-surface rounded-xl shadow-lg border border-surface-variant overflow-hidden">
+                <div className="bg-white dark:bg-[#181818] rounded-2xl shadow-sm border border-surface-variant/40 dark:border-zinc-800 overflow-hidden">
                     <Table>
                         <TableHeader>
                             <TableRow>
