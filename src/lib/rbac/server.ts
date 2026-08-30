@@ -32,16 +32,19 @@ export async function getRbacUser(): Promise<RBACUser | null> {
     user_email: authUser.email!,
   } as any);
 
+  const avatarUrl = authUser.user_metadata?.avatar_url || authUser.user_metadata?.picture || null;
+
   if (error || !rbacData || (rbacData as any[]).length === 0) {
     // If RPC fails (error) or user is not found in admin_users (empty array), return base user
     if (error) console.error("RPC get_rbac_user failed:", error);
     return {
       id: authUser.id,
       email: authUser.email!,
-      name: authUser.user_metadata.full_name || authUser.email!,
+      name: authUser.user_metadata?.full_name || authUser.email!,
       role: null,
       permissions: [],
       isSuperAdmin: false,
+      avatar_url: avatarUrl,
     };
   }
 
@@ -52,10 +55,11 @@ export async function getRbacUser(): Promise<RBACUser | null> {
   return {
     id: authUser.id,
     email: authUser.email!,
-    name: user.name || authUser.user_metadata.full_name || authUser.email!,
+    name: user.name || authUser.user_metadata?.full_name || authUser.email!,
     role: user.role,
     permissions: user.permissions || [],
     isSuperAdmin: isSuperAdmin,
+    avatar_url: avatarUrl,
   };
 }
 

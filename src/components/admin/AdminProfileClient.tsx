@@ -3,6 +3,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { 
   User, 
   Mail, 
@@ -27,12 +28,14 @@ interface AdminProfileClientProps {
   initialEmail: string;
   initialName: string;
   initialRole: string | null;
+  initialAvatarUrl?: string | null;
 }
 
 export default function AdminProfileClient({
   initialEmail,
   initialName,
   initialRole,
+  initialAvatarUrl = null,
 }: AdminProfileClientProps) {
   const router = useRouter();
   const [name, setName] = useState(initialName);
@@ -131,8 +134,19 @@ export default function AdminProfileClient({
         <div className="lg:col-span-5 space-y-6">
           <div className="bg-white dark:bg-[#181818] p-6 rounded-2xl border border-surface-variant/40 dark:border-zinc-800 shadow-sm text-center">
             {/* Avatar Circle */}
-            <div className="w-20 h-20 rounded-full bg-[#004229]/10 dark:bg-[#8cd6ac]/15 border-2 border-[#D4AF37] mx-auto flex items-center justify-center text-[#004229] dark:text-[#8cd6ac] text-2xl font-bold font-playfair shadow-md">
-              {(name || initialEmail || "A").charAt(0).toUpperCase()}
+            <div className="w-20 h-20 rounded-full bg-[#004229]/10 dark:bg-[#8cd6ac]/15 border-2 border-[#D4AF37] mx-auto flex items-center justify-center text-[#004229] dark:text-[#8cd6ac] text-2xl font-bold font-playfair shadow-md overflow-hidden">
+              {initialAvatarUrl ? (
+                <Image
+                  src={initialAvatarUrl}
+                  alt={name || initialEmail || "Foto Profil"}
+                  width={80}
+                  height={80}
+                  className="w-full h-full object-cover rounded-full"
+                  unoptimized
+                />
+              ) : (
+                (name || initialEmail || "A").charAt(0).toUpperCase()
+              )}
             </div>
 
             <h2 className="font-playfair text-xl font-bold text-[#004229] dark:text-white mt-4 truncate">

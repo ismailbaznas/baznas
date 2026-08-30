@@ -4,6 +4,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Logo from './ui/Logo';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
@@ -46,6 +47,7 @@ export default function PublicNavbar() {
         setIsProfileOpen(false);
     }, [pathname]);
 
+    const avatarUrl = user?.user_metadata?.avatar_url || user?.user_metadata?.picture || null;
     const userInitial = (user?.user_metadata?.full_name || user?.email || "A").charAt(0).toUpperCase();
 
     return (
@@ -91,14 +93,25 @@ export default function PublicNavbar() {
                         <button
                             onClick={() => setIsProfileOpen(!isProfileOpen)}
                             title={isLoggedIn ? (user?.user_metadata?.full_name || user?.email || "Akun Saya") : "Masuk / Login"}
-                            className="w-10 h-10 rounded-full bg-[#004229]/10 dark:bg-[#8cd6ac]/15 text-[#004229] dark:text-[#8cd6ac] border border-[#004229]/20 dark:border-[#8cd6ac]/30 flex items-center justify-center font-bold text-xs transition-all hover:scale-105 hover:border-[#075C3B] active:scale-95 shadow-sm"
+                            className="w-10 h-10 rounded-full bg-[#004229]/10 dark:bg-[#8cd6ac]/15 text-[#004229] dark:text-[#8cd6ac] border border-[#004229]/20 dark:border-[#8cd6ac]/30 flex items-center justify-center font-bold text-xs transition-all hover:scale-105 hover:border-[#075C3B] active:scale-95 shadow-sm overflow-hidden"
                             aria-expanded={isProfileOpen}
                             aria-label="Menu Akun"
                         >
                             {loading ? (
                                 <div className="w-4 h-4 border-2 border-[#004229] dark:border-[#8cd6ac] border-t-transparent rounded-full animate-spin" />
                             ) : isLoggedIn ? (
-                                <span>{userInitial}</span>
+                                avatarUrl ? (
+                                    <Image
+                                        src={avatarUrl}
+                                        alt={user?.user_metadata?.full_name || user?.email || "Foto Profil"}
+                                        width={40}
+                                        height={40}
+                                        className="w-full h-full object-cover rounded-full"
+                                        unoptimized
+                                    />
+                                ) : (
+                                    <span>{userInitial}</span>
+                                )
                             ) : (
                                 <User className="w-4 h-4 text-[#004229] dark:text-[#8cd6ac]" />
                             )}
@@ -106,16 +119,34 @@ export default function PublicNavbar() {
 
                         {/* Dropdown Popover */}
                         {isProfileOpen && (
-                            <div className="absolute right-0 mt-2.5 w-56 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200/90 dark:border-zinc-800 shadow-2xl py-2 z-50 font-jakarta animate-in fade-in zoom-in-95 duration-150">
+                            <div className="absolute right-0 mt-2.5 w-60 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200/90 dark:border-zinc-800 shadow-2xl py-2 z-50 font-jakarta animate-in fade-in zoom-in-95 duration-150">
                                 {isLoggedIn ? (
                                     <>
-                                        <div className="px-4 py-2.5 border-b border-zinc-100 dark:border-zinc-800">
-                                            <p className="text-xs font-bold text-[#1F2937] dark:text-white truncate">
-                                                {user?.user_metadata?.full_name || user?.email?.split('@')[0]}
-                                            </p>
-                                            <p className="text-[11px] text-[#5B6470] dark:text-zinc-400 truncate mt-0.5">
-                                                {user?.email}
-                                            </p>
+                                        <div className="px-4 py-3 border-b border-zinc-100 dark:border-zinc-800 flex items-center gap-3">
+                                            {avatarUrl ? (
+                                                <div className="w-9 h-9 rounded-full overflow-hidden border border-[#D4AF37] shrink-0 shadow-sm">
+                                                    <Image
+                                                        src={avatarUrl}
+                                                        alt={user?.user_metadata?.full_name || user?.email || "Foto Profil"}
+                                                        width={36}
+                                                        height={36}
+                                                        className="w-full h-full object-cover"
+                                                        unoptimized
+                                                    />
+                                                </div>
+                                            ) : (
+                                                <div className="w-9 h-9 rounded-full bg-[#004229]/10 dark:bg-[#8cd6ac]/15 text-[#004229] dark:text-[#8cd6ac] font-bold text-xs flex items-center justify-center shrink-0 border border-[#004229]/20">
+                                                    {userInitial}
+                                                </div>
+                                            )}
+                                            <div className="overflow-hidden flex-1">
+                                                <p className="text-xs font-bold text-[#1F2937] dark:text-white truncate">
+                                                    {user?.user_metadata?.full_name || user?.email?.split('@')[0]}
+                                                </p>
+                                                <p className="text-[11px] text-[#5B6470] dark:text-zinc-400 truncate mt-0.5">
+                                                    {user?.email}
+                                                </p>
+                                            </div>
                                         </div>
 
                                         <div className="p-1.5 space-y-0.5">
@@ -206,6 +237,33 @@ export default function PublicNavbar() {
 
                         {isLoggedIn ? (
                             <>
+                                <div className="flex items-center gap-3 p-3 bg-zinc-50 dark:bg-zinc-800/60 rounded-xl border border-zinc-200 dark:border-zinc-700">
+                                    {avatarUrl ? (
+                                        <div className="w-10 h-10 rounded-full overflow-hidden border border-[#D4AF37] shrink-0">
+                                            <Image
+                                                src={avatarUrl}
+                                                alt={user?.user_metadata?.full_name || user?.email || "Foto Profil"}
+                                                width={40}
+                                                height={40}
+                                                className="w-full h-full object-cover"
+                                                unoptimized
+                                            />
+                                        </div>
+                                    ) : (
+                                        <div className="w-10 h-10 rounded-full bg-[#075C3B]/10 text-[#075C3B] font-bold text-sm flex items-center justify-center shrink-0">
+                                            {userInitial}
+                                        </div>
+                                    )}
+                                    <div className="overflow-hidden flex-1">
+                                        <p className="text-xs font-bold text-zinc-900 dark:text-white truncate">
+                                            {user?.user_metadata?.full_name || user?.email?.split('@')[0]}
+                                        </p>
+                                        <p className="text-[11px] text-zinc-500 dark:text-zinc-400 truncate">
+                                            {user?.email}
+                                        </p>
+                                    </div>
+                                </div>
+
                                 <Link
                                     href="/admin"
                                     onClick={() => setIsMenuOpen(false)}

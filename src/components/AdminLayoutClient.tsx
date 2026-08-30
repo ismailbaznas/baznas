@@ -23,6 +23,7 @@ import {
   ShieldCheck
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { ThemeToggle } from "./ThemeToggle";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
@@ -204,8 +205,19 @@ const AdminSidebar = ({ mobileOpen = false, onClose }: AdminSidebarProps) => {
           className="p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/10 flex items-center gap-3 group"
           title="Buka Pengaturan Profil Saya"
         >
-          <div className="w-8 h-8 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/40 flex items-center justify-center text-[#ffe088] font-bold text-xs shrink-0 group-hover:scale-105 transition-transform">
-            {(user.name || user.email || "A").charAt(0).toUpperCase()}
+          <div className="w-8 h-8 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/40 flex items-center justify-center text-[#ffe088] font-bold text-xs shrink-0 group-hover:scale-105 transition-transform overflow-hidden">
+            {user.avatar_url ? (
+              <Image
+                src={user.avatar_url}
+                alt={user.name || user.email || "Foto Profil"}
+                width={32}
+                height={32}
+                className="w-full h-full object-cover rounded-full"
+                unoptimized
+              />
+            ) : (
+              (user.name || user.email || "A").charAt(0).toUpperCase()
+            )}
           </div>
           <div className="overflow-hidden flex-1">
             <p className="text-xs font-bold text-white truncate leading-tight group-hover:text-[#ffe088] transition-colors">
@@ -309,8 +321,19 @@ export default function AdminLayoutClient({ children }: { children: React.ReactN
               className="flex items-center gap-2 pl-2 border-l border-surface-variant/40 dark:border-zinc-800 hover:opacity-85 transition-opacity group"
               title="Buka Pengaturan Profil Saya"
             >
-              <div className="w-8 h-8 rounded-full bg-[#075C3B]/10 dark:bg-[#8cd6ac]/10 text-[#004229] dark:text-[#8cd6ac] flex items-center justify-center font-bold text-xs font-jakarta group-hover:scale-105 transition-transform border border-[#075C3B]/20">
-                {(user.name || user.email || "A").charAt(0).toUpperCase()}
+              <div className="w-8 h-8 rounded-full bg-[#075C3B]/10 dark:bg-[#8cd6ac]/10 text-[#004229] dark:text-[#8cd6ac] flex items-center justify-center font-bold text-xs font-jakarta group-hover:scale-105 transition-transform border border-[#075C3B]/20 overflow-hidden">
+                {user.avatar_url ? (
+                  <Image
+                    src={user.avatar_url}
+                    alt={user.name || user.email || "Foto Profil"}
+                    width={32}
+                    height={32}
+                    className="w-full h-full object-cover rounded-full"
+                    unoptimized
+                  />
+                ) : (
+                  (user.name || user.email || "A").charAt(0).toUpperCase()
+                )}
               </div>
               <div className="text-left hidden sm:block">
                 <p className="text-xs font-bold text-on-surface leading-none truncate max-w-[120px] group-hover:text-[#004229] dark:group-hover:text-[#8cd6ac] transition-colors">
