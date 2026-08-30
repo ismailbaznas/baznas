@@ -29,4 +29,5 @@ export interface RBACUser {
   role: string | null; // Role ID
   permissions: PermissionId[];
   isSuperAdmin: boolean;
+  avatar_url?: string | null;
 }

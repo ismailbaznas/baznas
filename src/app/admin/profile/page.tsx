@@ -18,6 +18,7 @@ export default async function AdminProfilePage() {
       initialEmail={user.email}
       initialName={user.name || ""}
       initialRole={user.role}
+      initialAvatarUrl={user.avatar_url || null}
     />
   );
 }
