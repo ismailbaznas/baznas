@@ -3,8 +3,26 @@
 import { createServerSupabase } from "@/lib/server-supabase";
 import TentangClient from "@/components/TentangClient";
 import { AlertTriangle } from "lucide-react";
+import type { Metadata } from "next";
+import JsonLd from "@/components/seo/JsonLd";
+import { getBreadcrumbJsonLd } from "@/lib/seo";
 
 export const revalidate = 60;
+
+export const metadata: Metadata = {
+  title: "Tentang Kami",
+  description:
+    "Profil lembaga, visi, misi, legalitas, dan struktur pimpinan Badan Amil Zakat Nasional (BAZNAS) Kabupaten Boven Digoel, Papua Selatan.",
+  alternates: {
+    canonical: "/tentang",
+  },
+  openGraph: {
+    title: "Tentang Kami — BAZNAS Kabupaten Boven Digoel",
+    description:
+      "Profil lembaga, visi, misi, legalitas, dan struktur pimpinan Badan Amil Zakat Nasional (BAZNAS) Kabupaten Boven Digoel, Papua Selatan.",
+    url: "/tentang",
+  },
+};
 
 export default async function AboutPage() {
     const supabase = await createServerSupabase();
@@ -45,11 +63,18 @@ export default async function AboutPage() {
       }, {} as Record<string, string>) || {};
 
     const teamList = teamMembers as any[] || [];
+    const breadcrumbJsonLd = getBreadcrumbJsonLd([
+      { name: "Beranda", url: "/" },
+      { name: "Tentang Kami", url: "/tentang" },
+    ]);
     
     return (
-        <TentangClient 
-            team={teamList} 
-            settings={settingsMap}
-        />
+        <>
+            <JsonLd data={breadcrumbJsonLd} />
+            <TentangClient 
+                team={teamList} 
+                settings={settingsMap}
+            />
+        </>
     );
 }

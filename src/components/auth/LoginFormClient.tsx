@@ -3,6 +3,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { Lock, Mail, LogIn, AlertTriangle, Chrome } from "lucide-react";
 import { Button } from "../ui/Button";
 import { getSupabaseBrowser } from "@/lib/supabase";
@@ -83,13 +84,13 @@ export default function LoginFormClient() {
     <div className="w-full max-w-md p-8 md:p-10 space-y-6 bg-white dark:bg-[#08240e] rounded-3xl shadow-xl border border-surface-variant/40 dark:border-[#0f4018] font-jakarta">
       <div className="text-center space-y-3">
         <div className="flex justify-center mb-2">
-          <img 
+          <Image 
             src="/images/logo-header.png" 
             alt="BAZNAS Kabupaten Boven Digoel" 
+            width={160}
+            height={64}
+            priority
             className="h-16 w-auto object-contain rounded-md"
-            onError={(e) => {
-              (e.target as HTMLImageElement).src = "/images/logo-baznas.png";
-            }} 
           />
         </div>
         <div>

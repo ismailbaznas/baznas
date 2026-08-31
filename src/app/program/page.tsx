@@ -3,8 +3,26 @@
 import { createServerSupabase } from "@/lib/server-supabase";
 import ProgramClient from "@/components/ProgramClient";
 import { AlertTriangle } from "lucide-react";
+import type { Metadata } from "next";
+import JsonLd from "@/components/seo/JsonLd";
+import { getBreadcrumbJsonLd } from "@/lib/seo";
 
 export const revalidate = 60;
+
+export const metadata: Metadata = {
+  title: "Program Pendayagunaan",
+  description:
+    "Program pendistribusian dan pendayagunaan ZIS BAZNAS Boven Digoel melalui 5 pilar utama: Sehat, Cerdas, Mandiri, Peduli, dan Taqwa.",
+  alternates: {
+    canonical: "/program",
+  },
+  openGraph: {
+    title: "Program Pendayagunaan — BAZNAS Kabupaten Boven Digoel",
+    description:
+      "Program pendistribusian dan pendayagunaan ZIS BAZNAS Boven Digoel melalui 5 pilar utama: Sehat, Cerdas, Mandiri, Peduli, dan Taqwa.",
+    url: "/program",
+  },
+};
 
 export default async function ProgramPage() {
     const supabase = await createServerSupabase();
@@ -52,5 +70,15 @@ export default async function ProgramPage() {
         );
     }
     
-    return <ProgramClient programs={programList} stats={statsMap} />;
+    const breadcrumbJsonLd = getBreadcrumbJsonLd([
+      { name: "Beranda", url: "/" },
+      { name: "Program", url: "/program" },
+    ]);
+
+    return (
+        <>
+            <JsonLd data={breadcrumbJsonLd} />
+            <ProgramClient programs={programList} stats={statsMap} />
+        </>
+    );
 }

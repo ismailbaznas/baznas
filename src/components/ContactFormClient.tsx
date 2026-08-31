@@ -421,7 +421,7 @@ export default function ContactFormClient({ settings = {}, initialBankAccounts =
         />
         <div className="absolute inset-0 bg-black/5 flex items-center justify-center">
           <a 
-            href="https://maps.google.com/?q=Tanah+Merah+Boven+Digoel+BAZNAS" 
+            href="https://maps.google.com/?q=BAZNAS+Kabupaten+Boven+Digoel+Tanah+Merah+Papua+Selatan" 
             target="_blank" 
             rel="noopener noreferrer"
             className="bg-white dark:bg-slate-900 border border-surface-variant dark:border-outline/10 text-primary dark:text-white font-jakarta font-bold text-sm px-6 py-3.5 rounded-full shadow-lg hover:scale-105 transition-transform duration-300 flex items-center gap-2"

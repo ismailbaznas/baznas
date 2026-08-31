@@ -1,0 +1,692 @@
+# MASTER TASK — SEO, OPEN GRAPH, SOCIAL SHARING & LOCAL SEO AUDIT
+
+Kamu bertindak sebagai **Senior Next.js SEO Engineer + Technical SEO Specialist + Web Performance Engineer**.
+
+Project ini adalah website resmi **BAZNAS Kabupaten Boven Digoel**.
+
+Tugas kamu adalah melakukan **audit menyeluruh terlebih dahulu**, kemudian mengimplementasikan perbaikan SEO dan social sharing secara profesional.
+
+## ⚠️ ATURAN UTAMA
+
+JANGAN langsung mengubah code.
+
+Ikuti urutan:
+
+1. Inspect project
+2. Understand architecture
+3. Audit existing implementation
+4. Identify problems
+5. Create implementation plan
+6. Implement changes
+7. Run lint/typecheck/build
+8. Fix any resulting errors
+9. Re-audit
+10. Report final result
+
+Jangan membuat ulang arsitektur aplikasi hanya demi SEO.
+
+Pertahankan architecture, UI, functionality, database, authentication, dan existing features yang sudah berjalan.
+
+Jika suatu hal sudah benar, JANGAN mengubahnya hanya untuk terlihat berbeda.
+
+---
+
+# 1. INSPECT PROJECT
+
+Baca dan pahami minimal:
+
+* README.md
+* package.json
+* next.config.*
+* seluruh struktur `app/`
+* layout.tsx
+* page.tsx
+* loading/error/not-found
+* seluruh route publik
+* dynamic routes
+* API routes
+* components
+* image handling
+* existing metadata
+* existing SEO implementation
+* sitemap
+* robots
+* manifest
+* middleware
+* environment configuration
+
+Cari apakah project menggunakan:
+
+* Next.js App Router
+* Metadata API
+* generateMetadata()
+* generateStaticParams()
+* next/image
+* dynamic routes
+* server components
+* client components
+
+Jangan berasumsi.
+Periksa code yang sebenarnya.
+
+---
+
+# 2. SEO FOUNDATION
+
+Pastikan website memiliki implementasi SEO yang benar menggunakan **Next.js Metadata API**, bukan solusi hack atau metadata manual yang tidak diperlukan.
+
+Audit:
+
+* `<title>`
+* meta description
+* keywords jika memang relevan
+* canonical URL
+* robots metadata
+* viewport
+* language
+* authors
+* publisher
+* favicon
+* theme-color
+* metadataBase
+
+Pastikan:
+
+* title tidak duplikat secara tidak sengaja
+* description relevan
+* canonical tidak salah
+* URL absolut digunakan ketika diperlukan
+* metadata tidak menghasilkan conflict antara layout dan page
+* tidak ada metadata yang hanya muncul di client component jika seharusnya server-rendered
+
+Gunakan pendekatan metadata inheritance Next.js dengan benar.
+
+---
+
+# 3. TITLE STRATEGY
+
+Buat struktur title yang konsisten.
+
+Homepage:
+
+"BAZNAS Kabupaten Boven Digoel"
+
+Halaman internal harus memiliki title yang deskriptif.
+
+Contoh konsep:
+
+"Berita — BAZNAS Kabupaten Boven Digoel"
+
+"Program — BAZNAS Kabupaten Boven Digoel"
+
+"Profil — BAZNAS Kabupaten Boven Digoel"
+
+Untuk halaman detail:
+
+"[Judul Konten] — BAZNAS Kabupaten Boven Digoel"
+
+Jangan membuat title terlalu panjang.
+
+Pastikan dynamic pages menghasilkan title berdasarkan data aktual.
+
+---
+
+# 4. OPEN GRAPH / SOCIAL SHARING
+
+Implementasikan **Open Graph metadata** dengan benar.
+
+Target:
+
+* WhatsApp
+* Facebook
+* Telegram
+* LinkedIn
+* Discord
+* platform lain yang menggunakan Open Graph
+
+Minimal:
+
+* og:title
+* og:description
+* og:image
+* og:url
+* og:type
+* og:site_name
+* og:locale
+
+Untuk website berbahasa Indonesia gunakan locale yang sesuai.
+
+---
+
+# 5. OG IMAGE
+
+Perhatikan bagian ini secara khusus.
+
+Audit apakah project sudah memiliki OG Image.
+
+Jika belum, implementasikan dengan cara yang paling sesuai dengan architecture project.
+
+Gunakan ukuran standar:
+
+**1200 × 630 px**
+
+Buat OG image yang terlihat profesional ketika link website dibagikan.
+
+Konsep visual:
+
+* BAZNAS Kabupaten Boven Digoel
+* branding resmi
+* emerald/green
+* gold sebagai accent
+* putih sebagai neutral
+* clean
+* institutional
+* trustworthy
+* tidak terlalu ramai
+* typography jelas ketika dilihat sebagai thumbnail
+
+Jangan menggunakan terlalu banyak ornament.
+
+Jika memungkinkan dan sesuai architecture, gunakan:
+
+**Next.js dynamic OG image / ImageResponse**
+
+untuk menghasilkan OG image secara dinamis.
+
+Namun jangan memaksakan dynamic generation jika static image lebih stabil untuk deployment.
+
+---
+
+# 6. DYNAMIC OG IMAGE UNTUK BERITA / PROGRAM
+
+Audit halaman detail seperti:
+
+* berita/[slug]
+* program/[slug]
+* agenda/[slug]
+* halaman dynamic lainnya
+
+Setiap konten idealnya mempunyai:
+
+* title
+* description
+* image
+* canonical URL
+* Open Graph image
+
+Prioritaskan gambar featured image dari konten jika tersedia.
+
+Fallback ke default BAZNAS OG Image jika featured image tidak tersedia.
+
+Jangan menghasilkan broken image URL.
+
+Pastikan URL gambar valid dan dapat diakses crawler.
+
+---
+
+# 7. TWITTER / X CARD
+
+Implementasikan metadata Twitter/X Card yang kompatibel.
+
+Gunakan:
+
+* twitter:card
+* twitter:title
+* twitter:description
+* twitter:image
+
+Gunakan `summary_large_image` jika sesuai.
+
+Jangan membuat metadata yang redundant secara tidak perlu jika Next.js dapat mengelolanya dengan benar.
+
+---
+
+# 8. CANONICAL URL
+
+Implementasikan canonical URL untuk seluruh halaman publik yang relevan.
+
+Pastikan:
+
+* HTTP dan HTTPS tidak menghasilkan canonical yang salah
+* trailing slash konsisten
+* query parameter tidak menyebabkan canonical yang kacau
+* dynamic route mempunyai canonical URL yang benar
+* canonical menggunakan domain produksi
+
+Jangan hardcode domain secara sembarangan.
+
+Gunakan konfigurasi/environment yang sesuai dengan project.
+
+---
+
+# 9. SITEMAP
+
+Audit apakah website sudah memiliki:
+
+`/sitemap.xml`
+
+Jika belum, implementasikan menggunakan mekanisme Next.js yang sesuai.
+
+Sitemap harus mencakup halaman publik yang memang ingin di-index.
+
+Contoh:
+
+* homepage
+* profil
+* program
+* berita
+* agenda
+* halaman informasi publik
+* halaman publik lainnya
+
+JANGAN masukkan:
+
+* admin
+* dashboard
+* login
+* API
+* halaman private
+* halaman internal
+* halaman yang sengaja noindex
+
+Jika berita/program berasal dari database, pertimbangkan sitemap dinamis.
+
+Pastikan URL sitemap menggunakan URL produksi yang benar.
+
+---
+
+# 10. ROBOTS.TXT
+
+Audit:
+
+`/robots.txt`
+
+Pastikan crawler:
+
+* dapat mengakses halaman publik
+* dapat menemukan sitemap
+* tidak diarahkan ke route private
+
+Block route seperti:
+
+* /admin
+* /dashboard
+* /api jika memang tidak perlu dicrawl
+* route private lainnya
+
+Jangan melakukan blocking terhadap CSS, JS, image, atau resource yang dibutuhkan crawler untuk memahami halaman.
+
+---
+
+# 11. STRUCTURED DATA / JSON-LD
+
+Audit dan implementasikan structured data jika relevan.
+
+Prioritaskan:
+
+### Organization
+
+Untuk BAZNAS Kabupaten Boven Digoel.
+
+Informasi yang relevan:
+
+* name
+* url
+* logo
+* description
+* address
+* telephone jika tersedia
+* sameAs
+* contactPoint jika memang tersedia
+
+### WebSite
+
+Homepage.
+
+### BreadcrumbList
+
+Untuk halaman bertingkat seperti:
+
+Home → Berita → Judul Berita
+
+Home → Program → Nama Program
+
+### Article / NewsArticle
+
+Untuk halaman berita jika struktur kontennya memenuhi syarat.
+
+Gunakan:
+
+* headline
+* description
+* image
+* datePublished
+* dateModified
+* author
+* publisher
+* mainEntityOfPage
+
+JANGAN membuat structured data yang tidak didukung oleh konten sebenarnya.
+
+JANGAN memasukkan data palsu.
+
+---
+
+# 12. LOCAL SEO
+
+Karena ini website organisasi tingkat kabupaten, optimalkan local/entity SEO.
+
+Pastikan informasi organisasi konsisten:
+
+**BAZNAS Kabupaten Boven Digoel**
+
+Lokasi:
+
+**Kabupaten Boven Digoel, Papua Selatan, Indonesia**
+
+Jika data alamat lengkap tersedia di project, gunakan data tersebut.
+
+Jika tidak tersedia:
+
+JANGAN mengarang alamat.
+
+Tambahkan informasi lokasi secara natural pada halaman yang relevan.
+
+---
+
+# 13. GOOGLE MAPS / LOCATION
+
+Audit apakah website memiliki informasi lokasi kantor.
+
+Jika belum, siapkan komponen lokasi yang profesional.
+
+Idealnya mencakup:
+
+* alamat
+* Google Maps
+* tombol "Buka di Google Maps"
+* koordinat jika memang tersedia
+* embedded map jika diperlukan
+
+JANGAN memasukkan koordinat atau alamat palsu.
+
+Jika project sudah memiliki data lokasi, gunakan data tersebut.
+
+Jika tidak ada, tandai sebagai:
+
+**DATA REQUIRED**
+
+dan jangan mengarang.
+
+Untuk link Google Maps, gunakan URL yang aman dan valid.
+
+---
+
+# 14. NAP CONSISTENCY
+
+Audit konsistensi:
+
+**Name**
+**Address**
+**Phone**
+
+di seluruh website.
+
+Jangan sampai homepage menulis nama organisasi berbeda dengan footer atau halaman kontak.
+
+Jika nomor telepon/alamat belum tersedia, jangan mengarang.
+
+---
+
+# 15. IMAGE SEO
+
+Audit seluruh penggunaan image:
+
+* alt text
+* width
+* height
+* next/image
+* loading
+* priority
+* object-fit
+* image URL
+* remotePatterns
+* Open Graph images
+
+Pastikan gambar informatif memiliki alt text yang deskriptif.
+
+Jangan menggunakan alt text seperti:
+
+"image"
+"foto"
+"gambar"
+
+untuk gambar yang sebenarnya memiliki konteks.
+
+Untuk decorative image gunakan alt kosong jika memang tepat.
+
+---
+
+# 16. PERFORMANCE SEO
+
+Audit hal-hal yang mempengaruhi Core Web Vitals:
+
+* LCP
+* CLS
+* INP
+* image loading
+* font loading
+* excessive JavaScript
+* unnecessary client components
+* render blocking resources
+* layout shifts
+
+Jangan melakukan optimasi yang merusak desain.
+
+Prioritaskan perubahan yang memberikan impact terbesar.
+
+---
+
+# 17. MOBILE SEO
+
+Pastikan:
+
+* responsive
+* viewport benar
+* text readable
+* tap targets cukup besar
+* no horizontal overflow
+* navigation usable
+* metadata tetap benar pada mobile
+* OG image tetap valid
+
+---
+
+# 18. ACCESSIBILITY
+
+SEO audit juga harus memperhatikan accessibility.
+
+Audit:
+
+* heading hierarchy
+* semantic HTML
+* aria-label
+* alt text
+* link text
+* button semantics
+* contrast
+* keyboard navigation
+
+Jangan mengubah UI secara drastis hanya demi accessibility.
+
+Lakukan perubahan yang aman dan masuk akal.
+
+---
+
+# 19. INDEXABILITY
+
+Buat matrix halaman:
+
+| Route | Indexable | Canonical | Sitemap | Description | OG | Structured Data |
+| ----- | --------- | --------- | ------- | ----------- | -- | --------------- |
+
+Periksa setiap route publik.
+
+Identifikasi:
+
+* accidental noindex
+* duplicate content
+* missing metadata
+* orphan pages
+* incorrect canonical
+* missing sitemap entries
+
+---
+
+# 20. SECURITY
+
+Pastikan implementasi SEO tidak:
+
+* expose secret key
+* expose service role key
+* expose private database information
+* leak internal URLs
+* expose admin metadata
+
+OG generation dan structured data harus aman.
+
+---
+
+# 21. DO NOT DO THESE
+
+Jangan:
+
+* memasukkan keyword stuffing
+* membuat konten SEO palsu
+* membuat ratusan keyword meta
+* mengarang alamat/telepon
+* mengarang social media
+* mengarang Google Maps coordinates
+* membuat structured data palsu
+* memasukkan halaman admin ke sitemap
+* membuat canonical asal-asalan
+* menghapus functionality existing
+* mengganti UI tanpa alasan
+* melakukan dependency upgrade besar hanya demi SEO
+
+---
+
+# 22. VALIDATION
+
+Setelah implementasi:
+
+jalankan:
+
+* npm run lint
+* npm run typecheck jika tersedia
+* npm run build
+
+Jika script berbeda, gunakan script yang tersedia di package.json.
+
+Perbaiki error yang muncul.
+
+Kemudian lakukan final audit.
+
+Periksa secara khusus:
+
+* `/`
+* `/robots.txt`
+* `/sitemap.xml`
+* halaman berita
+* halaman detail berita
+* halaman program
+* halaman detail program
+* halaman profil
+* halaman kontak/lokasi
+* halaman 404
+
+---
+
+# 23. FINAL REPORT
+
+Setelah selesai, jangan hanya mengatakan:
+
+"SEO sudah diperbaiki."
+
+Berikan laporan:
+
+## SEO AUDIT RESULT
+
+### Fixed
+
+* ...
+* ...
+* ...
+
+### Already Correct
+
+* ...
+* ...
+
+### Remaining Issues
+
+* ...
+* ...
+
+### Data Required From Owner
+
+* ...
+* ...
+
+### Files Changed
+
+* ...
+* ...
+
+### Build Status
+
+* Lint:
+* Typecheck:
+* Build:
+
+### SEO Score Estimate
+
+Berikan penilaian:
+
+* Technical SEO
+* Metadata
+* Open Graph
+* Sitemap
+* Robots
+* Structured Data
+* Local SEO
+* Accessibility
+* Performance
+
+Gunakan:
+
+`Excellent / Good / Needs Improvement / Critical`
+
+---
+
+# IMPORTANT FINAL INSTRUCTION
+
+**Jangan berhenti setelah membuat metadata.**
+
+Tujuan task ini adalah membuat website BAZNAS Kabupaten Boven Digoel:
+
+1. mudah dipahami search engine
+2. mudah di-index
+3. memiliki metadata yang benar
+4. terlihat profesional ketika link dibagikan
+5. memiliki OG Image yang bagus
+6. memiliki structured data yang valid
+7. memiliki local SEO yang baik
+8. memiliki sitemap dan robots yang benar
+9. tetap cepat
+10. tetap aman
+11. tetap mempertahankan seluruh functionality existing
+
+**Audit dahulu → rencanakan → implementasikan → test → build → audit ulang.**
+
+Jangan melakukan perubahan yang tidak diperlukan.

@@ -3,8 +3,23 @@
 
 import { createServerSupabase } from "@/lib/server-supabase";
 import HomeClient from "@/components/HomeClient";
+import type { Metadata } from "next";
+import { SITE_CONFIG } from "@/lib/seo";
 
 export const revalidate = 60;
+
+export const metadata: Metadata = {
+  title: "BAZNAS Kabupaten Boven Digoel — Badan Amil Zakat Nasional",
+  description: SITE_CONFIG.description,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "BAZNAS Kabupaten Boven Digoel — Badan Amil Zakat Nasional",
+    description: SITE_CONFIG.description,
+    url: "/",
+  },
+};
 
 export default async function HomePage() {
   const supabase = await createServerSupabase();

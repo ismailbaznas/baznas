@@ -3,8 +3,26 @@
 import { createServerSupabase } from "@/lib/server-supabase";
 import TransparansiClient from "@/components/TransparansiClient";
 import { AlertTriangle } from "lucide-react";
+import type { Metadata } from "next";
+import JsonLd from "@/components/seo/JsonLd";
+import { getBreadcrumbJsonLd } from "@/lib/seo";
 
 export const revalidate = 60;
+
+export const metadata: Metadata = {
+  title: "Transparansi & Laporan",
+  description:
+    "Laporan keuangan, statistik penghimpunan dan penyaluran ZIS, serta dokumen publik resmi terverifikasi BAZNAS Kabupaten Boven Digoel.",
+  alternates: {
+    canonical: "/transparansi",
+  },
+  openGraph: {
+    title: "Transparansi & Laporan — BAZNAS Kabupaten Boven Digoel",
+    description:
+      "Laporan keuangan, statistik penghimpunan dan penyaluran ZIS, serta dokumen publik resmi terverifikasi BAZNAS Kabupaten Boven Digoel.",
+    url: "/transparansi",
+  },
+};
 
 export default async function TransparansiPage() {
     const supabase = await createServerSupabase();
@@ -47,5 +65,15 @@ export default async function TransparansiPage() {
         );
     }
     
-    return <TransparansiClient documents={documentsList} stats={statsMap} />;
+    const breadcrumbJsonLd = getBreadcrumbJsonLd([
+      { name: "Beranda", url: "/" },
+      { name: "Transparansi & Laporan", url: "/transparansi" },
+    ]);
+
+    return (
+        <>
+            <JsonLd data={breadcrumbJsonLd} />
+            <TransparansiClient documents={documentsList} stats={statsMap} />
+        </>
+    );
 }

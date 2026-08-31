@@ -40,6 +40,23 @@ export async function createServerSupabase() {
 }
 
 /**
+ * Creates a stateless, cookie-free Supabase client for static routes and dynamic sitemaps.
+ * Safe for build-time generation without triggering dynamic cookie errors.
+ * @returns SupabaseClient (Public Anon, no cookie access)
+ */
+export function createPublicServerSupabase() {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+
+  return createClient<Database>(supabaseUrl, supabaseAnonKey, {
+    auth: {
+      persistSession: false,
+      autoRefreshToken: false,
+    },
+  });
+}
+
+/**
  * Creates a Supabase client for Server Component/Server Actions using the Service Role Key.
  * Bypasses RLS and should only be used in secure server environments.
  * @returns SupabaseClient (Service Role)

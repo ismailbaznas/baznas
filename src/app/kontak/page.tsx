@@ -2,8 +2,26 @@
 
 import { createServerSupabase } from "@/lib/server-supabase";
 import ContactFormClient from "@/components/ContactFormClient";
+import type { Metadata } from "next";
+import JsonLd from "@/components/seo/JsonLd";
+import { getBreadcrumbJsonLd } from "@/lib/seo";
 
 export const revalidate = 60;
+
+export const metadata: Metadata = {
+  title: "Kontak & Lokasi",
+  description:
+    "Hubungi kantor BAZNAS Kabupaten Boven Digoel di Tanah Merah, Papua Selatan. Alamat lengkap, nomor telepon, WhatsApp, email, dan rekening resmi zakat.",
+  alternates: {
+    canonical: "/kontak",
+  },
+  openGraph: {
+    title: "Kontak & Lokasi — BAZNAS Kabupaten Boven Digoel",
+    description:
+      "Hubungi kantor BAZNAS Kabupaten Boven Digoel di Tanah Merah, Papua Selatan. Alamat lengkap, nomor telepon, WhatsApp, email, dan rekening resmi zakat.",
+    url: "/kontak",
+  },
+};
 
 export default async function ContactPage() {
     const supabase = await createServerSupabase();
@@ -21,10 +39,18 @@ export default async function ContactPage() {
         return acc;
     }, {} as Record<string, string>) || {};
 
+    const breadcrumbJsonLd = getBreadcrumbJsonLd([
+      { name: "Beranda", url: "/" },
+      { name: "Kontak", url: "/kontak" },
+    ]);
+
     return (
-        <ContactFormClient 
-            settings={settingsMap} 
-            initialBankAccounts={accountsRes.data || []} 
-        />
+        <>
+            <JsonLd data={breadcrumbJsonLd} />
+            <ContactFormClient 
+                settings={settingsMap} 
+                initialBankAccounts={accountsRes.data || []} 
+            />
+        </>
     );
 }
