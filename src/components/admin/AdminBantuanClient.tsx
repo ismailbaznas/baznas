@@ -170,7 +170,7 @@ export default function AdminBantuanClient({
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-playfair font-bold text-[#004229] dark:text-[#8cd6ac]">
+          <h1 className="text-2xl sm:text-3xl font-playfair font-bold text-primary dark:text-white tracking-tight">
             Permohonan Bantuan Mustahik
           </h1>
           <p className="text-xs text-on-surface-variant mt-1">
@@ -192,7 +192,7 @@ export default function AdminBantuanClient({
       )}
 
       {/* Filter Bar */}
-      <div className="bg-white dark:bg-[#181818] p-4 rounded-2xl border border-surface-variant/40 dark:border-zinc-800 shadow-sm flex flex-col md:flex-row gap-4">
+      <div className="bg-white dark:bg-surface p-4 rounded-2xl border border-surface-variant/40 dark:border-surface-variant/80 shadow-sm flex flex-col md:flex-row gap-4">
         {/* Search */}
         <div className="relative flex-1">
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-on-surface-variant" />
@@ -211,7 +211,7 @@ export default function AdminBantuanClient({
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="rounded-xl border border-surface-variant/60 dark:border-zinc-700 bg-white dark:bg-[#1e1e1e] text-on-surface px-3 py-2 text-xs font-semibold outline-none focus:ring-2 focus:ring-[#075C3B]"
+              className="rounded-xl border border-surface-variant/60 dark:border-surface-variant/80 bg-white dark:bg-surface-variant text-on-surface px-3 py-2 text-xs font-semibold outline-none focus:ring-2 focus:ring-[#075C3B]"
             >
               <option value="all">Semua Status</option>
               <option value="new">Baru (Belum Verifikasi)</option>
@@ -224,7 +224,7 @@ export default function AdminBantuanClient({
           <select
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}
-            className="rounded-xl border border-surface-variant/60 dark:border-zinc-700 bg-white dark:bg-[#1e1e1e] text-on-surface px-3 py-2 text-xs font-semibold outline-none focus:ring-2 focus:ring-[#075C3B]"
+            className="rounded-xl border border-surface-variant/60 dark:border-surface-variant/80 bg-white dark:bg-surface-variant text-on-surface px-3 py-2 text-xs font-semibold outline-none focus:ring-2 focus:ring-[#075C3B]"
           >
             <option value="all">Semua Kategori Program</option>
             {Object.entries(CATEGORIES_MAP).map(([key, label]) => (
@@ -235,23 +235,23 @@ export default function AdminBantuanClient({
       </div>
 
       {/* Applications Table */}
-      <div className="bg-white dark:bg-[#181818] rounded-2xl border border-surface-variant/40 dark:border-zinc-800 shadow-sm overflow-hidden">
+      <div className="bg-white dark:bg-surface rounded-2xl border border-slate-200/90 dark:border-[#0f4018] shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm border-collapse font-jakarta">
             <thead>
-              <tr className="bg-slate-50 dark:bg-zinc-800/60 border-b border-surface-variant/40 dark:border-zinc-800">
-                <th className="p-4 font-bold text-xs uppercase tracking-wider text-[#5B6470] dark:text-zinc-400">Mustahik</th>
-                <th className="p-4 font-bold text-xs uppercase tracking-wider text-[#5B6470] dark:text-zinc-400">NIK / HP</th>
-                <th className="p-4 font-bold text-xs uppercase tracking-wider text-[#5B6470] dark:text-zinc-400">Domisili</th>
-                <th className="p-4 font-bold text-xs uppercase tracking-wider text-[#5B6470] dark:text-zinc-400">Program Bantuan</th>
-                <th className="p-4 font-bold text-xs uppercase tracking-wider text-[#5B6470] dark:text-zinc-400">Status</th>
-                <th className="p-4 font-bold text-xs uppercase tracking-wider text-[#5B6470] dark:text-zinc-400">Tanggal Masuk</th>
-                <th className="p-4 font-bold text-xs uppercase tracking-wider text-[#5B6470] dark:text-zinc-400 text-right">Aksi</th>
+              <tr className="bg-slate-100/90 dark:bg-[#0c3514] border-b-2 border-slate-200 dark:border-[#0f4018]">
+                <th className="p-4 font-bold text-xs uppercase tracking-wider text-slate-700 dark:text-emerald-300">Mustahik</th>
+                <th className="p-4 font-bold text-xs uppercase tracking-wider text-slate-700 dark:text-emerald-300">NIK / HP</th>
+                <th className="p-4 font-bold text-xs uppercase tracking-wider text-slate-700 dark:text-emerald-300">Domisili</th>
+                <th className="p-4 font-bold text-xs uppercase tracking-wider text-slate-700 dark:text-emerald-300">Program Bantuan</th>
+                <th className="p-4 font-bold text-xs uppercase tracking-wider text-slate-700 dark:text-emerald-300">Status</th>
+                <th className="p-4 font-bold text-xs uppercase tracking-wider text-slate-700 dark:text-emerald-300">Tanggal Masuk</th>
+                <th className="p-4 font-bold text-xs uppercase tracking-wider text-slate-700 dark:text-emerald-300 text-right">Aksi</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-surface-variant/20 dark:divide-zinc-800/60">
+            <tbody className="divide-y divide-slate-200 dark:divide-[#0f4018]">
               {filteredApps.map((app) => (
-                <tr key={app.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/10 transition-colors">
+                <tr key={app.id} className="border-b border-slate-200 dark:border-[#0f4018] hover:bg-slate-50/80 dark:hover:bg-[#0c3514]/60 transition-colors">
                   <td className="p-4 font-semibold text-on-surface">{app.name}</td>
                   <td className="p-4 space-y-0.5">
                     <p className="text-xs font-semibold text-on-surface-variant tracking-wider">{app.nik}</p>

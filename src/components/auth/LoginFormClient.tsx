@@ -80,7 +80,7 @@ export default function LoginFormClient() {
   };
 
   return (
-    <div className="w-full max-w-md p-8 md:p-10 space-y-6 bg-white dark:bg-[#181818] rounded-3xl shadow-xl border border-surface-variant/40 dark:border-zinc-800 font-jakarta">
+    <div className="w-full max-w-md p-8 md:p-10 space-y-6 bg-white dark:bg-[#08240e] rounded-3xl shadow-xl border border-surface-variant/40 dark:border-[#0f4018] font-jakarta">
       <div className="text-center space-y-3">
         <div className="flex justify-center mb-2">
           <img 
@@ -93,7 +93,7 @@ export default function LoginFormClient() {
           />
         </div>
         <div>
-          <h1 className="text-2xl md:text-3xl font-playfair font-bold text-[#004229] dark:text-[#8cd6ac]">
+          <h1 className="text-2xl md:text-3xl font-playfair font-bold text-primary dark:text-white">
             Panel Administrator
           </h1>
           <p className="text-xs text-[#5B6470] dark:text-zinc-400 mt-1">

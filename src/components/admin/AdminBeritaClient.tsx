@@ -100,7 +100,7 @@ export default function AdminBeritaClient({
             <div className="space-y-6">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div>
-                        <h1 className="text-2xl sm:text-3xl font-playfair font-bold text-[#004229] dark:text-[#8cd6ac]">
+                        <h1 className="text-2xl sm:text-3xl font-playfair font-bold text-primary dark:text-white tracking-tight">
                             Daftar Berita & Artikel
                         </h1>
                         <p className="text-xs text-on-surface-variant mt-1">
@@ -116,7 +116,7 @@ export default function AdminBeritaClient({
                 </div>
 
                 {/* Search and Filter Section */}
-                <div className="bg-white dark:bg-[#181818] p-4 rounded-2xl border border-surface-variant/40 dark:border-zinc-800 flex flex-col sm:flex-row gap-4 shadow-sm">
+                <div className="bg-white dark:bg-surface p-4 rounded-2xl border border-slate-200/90 dark:border-[#0f4018] flex flex-col sm:flex-row gap-4 shadow-sm">
                     <div className="relative flex-1">
                         <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-on-surface-variant" />
                         <Input
@@ -128,7 +128,7 @@ export default function AdminBeritaClient({
                 </div>
 
                 {/* Main Table */}
-                <div className="bg-white dark:bg-[#181818] rounded-2xl shadow-sm border border-surface-variant/40 dark:border-zinc-800 overflow-hidden">
+                <div className="bg-white dark:bg-surface rounded-2xl shadow-sm border border-slate-200/90 dark:border-[#0f4018] overflow-hidden">
                     <Table>
                         <TableHeader>
                             <TableRow>

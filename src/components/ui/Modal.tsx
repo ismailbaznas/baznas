@@ -29,7 +29,7 @@ export function Modal({ open, onClose, title, children, size = "md" }: ModalProp
   );
 
   const contentClass = cn(
-    "bg-white dark:bg-[#181818] border border-surface-variant/50 dark:border-zinc-800 rounded-2xl shadow-2xl transition-all duration-300 transform p-6 md:p-8 w-full mx-auto max-h-[90vh] overflow-y-auto text-on-surface",
+    "bg-white dark:bg-surface border border-surface-variant/50 dark:border-surface-variant/80 rounded-2xl shadow-2xl transition-all duration-300 transform p-6 md:p-8 w-full mx-auto max-h-[90vh] overflow-y-auto text-on-surface",
     sizeClasses[size],
     open ? "scale-100 translate-y-0" : "scale-95 translate-y-4"
   );
@@ -45,11 +45,11 @@ export function Modal({ open, onClose, title, children, size = "md" }: ModalProp
     <div className={cn(modalClass, "bg-black/60 backdrop-blur-sm")} onClick={handleBackdropClick}>
       <div className={contentClass}>
         <div className="flex justify-between items-center pb-4 border-b border-surface-variant/30 dark:border-zinc-800 mb-6">
-          <h2 className="text-xl font-playfair font-bold text-[#004229] dark:text-[#8cd6ac]">{title}</h2>
+          <h2 className="text-xl font-playfair font-bold text-primary dark:text-white">{title}</h2>
           <button 
             type="button" 
             onClick={onClose}
-            className="text-on-surface-variant hover:text-[#004229] dark:hover:text-[#8cd6ac] p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors"
+            className="text-on-surface-variant hover:text-primary dark:hover:text-white p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>

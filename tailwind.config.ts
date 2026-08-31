@@ -48,6 +48,48 @@ const baznasColors = {
   "on-surface-variant": "rgb(var(--c-on-surface-variant) / <alpha-value>)",
   inverse: "rgb(var(--c-inverse) / <alpha-value>)",
   "inverse-surface": "#30312e",
+
+  // Systematic Theme Color Overrides (Dark Green rgb(5 24 8) in Dark Mode)
+  slate: {
+    50: '#f8fafc',
+    100: '#f1f5f9',
+    200: '#e2e8f0',
+    300: '#cbd5e1',
+    400: '#94a3b8',
+    500: '#64748b',
+    600: '#475569',
+    700: 'rgb(var(--c-theme-bg-700) / <alpha-value>)',
+    800: 'rgb(var(--c-theme-bg-800) / <alpha-value>)',
+    850: 'rgb(var(--c-theme-bg-850) / <alpha-value>)',
+    900: 'rgb(var(--c-theme-bg-900) / <alpha-value>)',
+    950: 'rgb(var(--c-theme-bg-950) / <alpha-value>)',
+  },
+  zinc: {
+    50: '#fafafa',
+    100: '#f4f4f5',
+    200: '#e4e4e7',
+    300: '#d4d4d8',
+    400: '#a1a1aa',
+    500: '#71717a',
+    600: '#52525b',
+    700: 'rgb(var(--c-theme-bg-700) / <alpha-value>)',
+    800: 'rgb(var(--c-theme-bg-800) / <alpha-value>)',
+    900: 'rgb(var(--c-theme-bg-900) / <alpha-value>)',
+    950: 'rgb(var(--c-theme-bg-950) / <alpha-value>)',
+  },
+  neutral: {
+    50: '#fafafa',
+    100: '#f5f5f5',
+    200: '#e5e5e5',
+    300: '#d4d4d4',
+    400: '#a3a3a3',
+    500: '#737373',
+    600: '#525252',
+    700: 'rgb(var(--c-theme-bg-700) / <alpha-value>)',
+    800: 'rgb(var(--c-theme-bg-800) / <alpha-value>)',
+    900: 'rgb(var(--c-theme-bg-900) / <alpha-value>)',
+    950: 'rgb(var(--c-theme-bg-950) / <alpha-value>)',
+  },
 };
 
 const config: Config = {

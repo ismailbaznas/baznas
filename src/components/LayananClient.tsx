@@ -366,7 +366,7 @@ export default function LayananClient() {
                     <p className="font-jakarta text-xs text-[#5B6470] dark:text-slate-300">
                       Total kekayaan/pendapatan Anda telah melampaui batas Nisab. Kewajiban zakat Anda (2.5%) adalah:
                     </p>
-                    <div className="font-playfair text-3xl font-bold text-[#004229] dark:text-[#8cd6ac] pt-2">
+                    <div className="font-playfair text-3xl font-bold text-primary dark:text-[#ffe088] pt-2">
                       Rp {calculatedZakat.toLocaleString("id-ID", { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
                     </div>
                   </div>
@@ -549,7 +549,7 @@ export default function LayananClient() {
                 { title: "Verifikasi Berkas & Survei", desc: "Kunjungi kantor BAZNAS Boven Digoel di Tanah Merah untuk menyerahkan berkas. Tim amil kami akan melakukan survei kelayakan." }
               ].map((step, index) => (
                 <div key={index} className="flex gap-4 items-start">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#004229]/10 dark:bg-[#8cd6ac]/20 text-[#004229] dark:text-[#8cd6ac] flex items-center justify-center font-bold font-jakarta text-sm mt-0.5">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#004229]/10 dark:bg-emerald-500/20 text-primary dark:text-[#ffe088] flex items-center justify-center font-bold font-jakarta text-sm mt-0.5">
                     {index + 1}
                   </div>
                   <div>
@@ -565,7 +565,7 @@ export default function LayananClient() {
             </div>
 
             <div className="p-6 bg-[#F8F6F1] dark:bg-slate-900 rounded-2xl border border-surface-variant/50 dark:border-outline/10 shadow-sm space-y-4">
-              <div className="flex items-center gap-2.5 text-[#004229] dark:text-[#8cd6ac]">
+              <div className="flex items-center gap-2.5 text-primary dark:text-[#ffe088]">
                 <FileText className="w-5 h-5 text-[#D4AF37]" />
                 <h4 className="font-jakarta text-sm font-bold text-[#1F2937] dark:text-white">Dokumen Wajib</h4>
               </div>

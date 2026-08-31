@@ -324,7 +324,7 @@ export default function HomeClient({ news = [], programs = [], settings = {}, tr
                 <div className="text-xs text-[#5B6470] dark:text-zinc-400 mb-2 font-medium">
                   Dana Dihimpun
                 </div>
-                <div className="font-playfair text-2xl font-bold text-[#004229] dark:text-[#8cd6ac] mb-1">
+                <div className="font-playfair text-2xl font-bold text-primary dark:text-white mb-1">
                   {transparencyStats?.dana_dihimpun?.value || "Rp 2,45 Miliar"}
                 </div>
                 <div className="text-[11px] text-[#5B6470] dark:text-zinc-400">
@@ -336,7 +336,7 @@ export default function HomeClient({ news = [], programs = [], settings = {}, tr
                 <div className="text-xs text-[#5B6470] dark:text-zinc-400 mb-2 font-medium">
                   Dana Disalurkan
                 </div>
-                <div className="font-playfair text-2xl font-bold text-[#004229] dark:text-[#8cd6ac] mb-1">
+                <div className="font-playfair text-2xl font-bold text-primary dark:text-white mb-1">
                   {transparencyStats?.dana_disalurkan?.value || "Rp 2,30 Miliar"}
                 </div>
                 <div className="text-[11px] text-[#5B6470] dark:text-zinc-400">
@@ -348,7 +348,7 @@ export default function HomeClient({ news = [], programs = [], settings = {}, tr
                 <div className="text-xs text-[#5B6470] dark:text-zinc-400 mb-2 font-medium">
                   Mustahik Terlayani
                 </div>
-                <div className="font-playfair text-2xl font-bold text-[#004229] dark:text-[#8cd6ac] mb-1">
+                <div className="font-playfair text-2xl font-bold text-primary dark:text-white mb-1">
                   {transparencyStats?.mustahik_terlayani?.value || "4.850 Jiwa"}
                 </div>
                 <div className="text-[11px] text-[#5B6470] dark:text-zinc-400">
@@ -472,8 +472,8 @@ export default function HomeClient({ news = [], programs = [], settings = {}, tr
               </p>
               {(story.metric || story.metric_label) && (
                 <div className="flex items-center gap-4 mb-8 bg-[#075C3B]/5 dark:bg-[#8cd6ac]/5 p-4 rounded-xl border border-zinc-200/50 dark:border-zinc-700/50 w-fit">
-                  {story.metric && (
-                    <div className="font-playfair text-3xl font-extrabold text-[#004229] dark:text-[#8cd6ac] shrink-0">
+                   {story.metric && (
+                    <div className="font-playfair text-3xl font-extrabold text-primary dark:text-white shrink-0">
                       {story.metric}
                     </div>
                   )}
@@ -505,13 +505,13 @@ export default function HomeClient({ news = [], programs = [], settings = {}, tr
             <span className="text-[#5B6470] dark:text-zinc-400 text-xs font-bold tracking-widest uppercase mb-2 block">
               INFORMASI & ARTIKEL
             </span>
-            <h2 className="font-playfair text-3xl sm:text-4xl font-bold text-[#004229] dark:text-[#8cd6ac]">
+            <h2 className="font-playfair text-3xl sm:text-4xl font-bold text-primary dark:text-white">
               Kabar BAZNAS
             </h2>
           </div>
           <Link
             href="/kabar"
-            className="text-[#004229] dark:text-[#8cd6ac] text-sm font-bold hover:underline flex items-center gap-1 group"
+            className="text-primary dark:text-[#ffe088] text-sm font-bold hover:underline flex items-center gap-1 group"
           >
             <span>Lihat Semua Kabar</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />

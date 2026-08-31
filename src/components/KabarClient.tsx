@@ -195,7 +195,7 @@ export default function KabarClient({ initialNews }: KabarClientProps) {
                 </p>
 
                 <Link
-                  className="inline-flex items-center gap-2 text-[#004229] dark:text-[#8cd6ac] font-jakarta text-sm font-bold group-hover:text-[#075C3B] transition-colors"
+                  className="inline-flex items-center gap-2 text-primary dark:text-[#ffe088] font-jakarta text-sm font-bold group-hover:text-[#075C3B] transition-colors"
                   href={`/kabar/${featuredArticle.slug}`}
                 >
                   Baca Selengkapnya
@@ -251,7 +251,7 @@ export default function KabarClient({ initialNews }: KabarClientProps) {
 
                   <div className="mt-auto pt-4 border-t border-surface-variant/50 dark:border-outline/10 flex items-center justify-between">
                     <Link
-                      className="inline-flex items-center gap-1.5 text-[#004229] dark:text-[#8cd6ac] font-jakarta text-xs font-bold group-hover:text-[#075C3B] transition-colors"
+                      className="inline-flex items-center gap-1.5 text-primary dark:text-[#ffe088] font-jakarta text-xs font-bold group-hover:text-[#075C3B] transition-colors"
                       href={`/kabar/${item.slug}`}
                     >
                       Baca Selengkapnya

@@ -121,7 +121,7 @@ export default function AdminProfileClient({
     <div className="max-w-4xl space-y-8 font-jakarta">
       {/* Header */}
       <div>
-        <h1 className="text-2xl sm:text-3xl font-playfair font-bold text-[#004229] dark:text-[#8cd6ac]">
+        <h1 className="text-2xl sm:text-3xl font-playfair font-bold text-primary dark:text-white tracking-tight">
           Pengaturan Profil
         </h1>
         <p className="text-xs text-on-surface-variant mt-1">
@@ -132,9 +132,9 @@ export default function AdminProfileClient({
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: Account Summary Card */}
         <div className="lg:col-span-5 space-y-6">
-          <div className="bg-white dark:bg-[#181818] p-6 rounded-2xl border border-surface-variant/40 dark:border-zinc-800 shadow-sm text-center">
+          <div className="bg-white dark:bg-surface p-6 rounded-2xl border border-surface-variant/40 dark:border-surface-variant/80 shadow-sm text-center">
             {/* Avatar Circle */}
-            <div className="w-20 h-20 rounded-full bg-[#004229]/10 dark:bg-[#8cd6ac]/15 border-2 border-[#D4AF37] mx-auto flex items-center justify-center text-[#004229] dark:text-[#8cd6ac] text-2xl font-bold font-playfair shadow-md overflow-hidden">
+            <div className="w-20 h-20 rounded-full bg-[#004229]/10 dark:bg-emerald-500/20 border-2 border-[#D4AF37] mx-auto flex items-center justify-center text-primary dark:text-emerald-300 text-2xl font-bold font-playfair shadow-md overflow-hidden">
               {initialAvatarUrl ? (
                 <Image
                   src={initialAvatarUrl}
@@ -179,7 +179,7 @@ export default function AdminProfileClient({
         {/* Right Column: Update Forms */}
         <div className="lg:col-span-7 space-y-6">
           {/* Card 1: Update Name */}
-          <div className="bg-white dark:bg-[#181818] p-6 sm:p-8 rounded-2xl border border-surface-variant/40 dark:border-zinc-800 shadow-sm space-y-5">
+          <div className="bg-white dark:bg-surface p-6 sm:p-8 rounded-2xl border border-surface-variant/40 dark:border-surface-variant/80 shadow-sm space-y-5">
             <div className="flex items-center gap-3 pb-4 border-b border-surface-variant/40 dark:border-zinc-800">
               <div className="w-9 h-9 rounded-xl bg-[#075C3B]/10 dark:bg-[#8cd6ac]/15 flex items-center justify-center text-[#075C3B] dark:text-[#8cd6ac]">
                 <User className="w-4 h-4" />
@@ -264,7 +264,7 @@ export default function AdminProfileClient({
           </div>
 
           {/* Card 2: Update Password */}
-          <div className="bg-white dark:bg-[#181818] p-6 sm:p-8 rounded-2xl border border-surface-variant/40 dark:border-zinc-800 shadow-sm space-y-5">
+          <div className="bg-white dark:bg-surface p-6 sm:p-8 rounded-2xl border border-surface-variant/40 dark:border-surface-variant/80 shadow-sm space-y-5">
             <div className="flex items-center gap-3 pb-4 border-b border-surface-variant/40 dark:border-zinc-800">
               <div className="w-9 h-9 rounded-xl bg-amber-50 dark:bg-amber-950/30 flex items-center justify-center text-amber-600 dark:text-amber-400">
                 <KeyRound className="w-4 h-4" />

@@ -78,7 +78,7 @@ export default function AdminRolesClient({
             <div className="space-y-6">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div>
-                        <h1 className="text-2xl sm:text-3xl font-playfair font-bold text-[#004229] dark:text-[#8cd6ac]">
+                        <h1 className="text-2xl sm:text-3xl font-playfair font-bold text-primary dark:text-white tracking-tight">
                             Manajemen Peran & Hak Akses
                         </h1>
                         <p className="text-xs text-on-surface-variant mt-1">
@@ -93,7 +93,7 @@ export default function AdminRolesClient({
                     </Can>
                 </div>
 
-                <div className="bg-white dark:bg-[#181818] rounded-2xl shadow-sm border border-surface-variant/40 dark:border-zinc-800 overflow-hidden">
+                <div className="bg-white dark:bg-surface rounded-2xl shadow-sm border border-slate-200/90 dark:border-[#0f4018] overflow-hidden">
                     <Table>
                         <TableHeader>
                             <TableRow>

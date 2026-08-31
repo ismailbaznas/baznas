@@ -167,7 +167,7 @@ export default function TransparansiClient({ documents, stats }: TransparansiCli
           <span className="text-[#D4AF37] dark:text-[#ffe088] font-jakarta text-xs md:text-sm font-bold uppercase tracking-widest bg-[#D4AF37]/5 dark:bg-[#D4AF37]/10 px-4 py-1.5 rounded-full">
             Akuntabilitas & Kepercayaan
           </span>
-          <h1 className="font-playfair font-bold text-4xl md:text-5xl lg:text-6xl text-[#004229] dark:text-white leading-[1.1] tracking-tight">
+          <h1 className="font-playfair font-bold text-4xl md:text-5xl lg:text-6xl text-primary dark:text-white leading-[1.1] tracking-tight">
             Transparansi adalah Amanah
           </h1>
           <p className="font-jakarta text-base md:text-lg text-[#5B6470] dark:text-slate-300 leading-relaxed max-w-xl">
@@ -202,7 +202,7 @@ export default function TransparansiClient({ documents, stats }: TransparansiCli
       <section className="bg-slate-50 dark:bg-slate-900/40 py-16 md:py-20 border-y border-surface-variant/40 dark:border-outline/10">
         <div className="max-w-[1320px] mx-auto px-6 md:px-12">
           <div className="text-center mb-16">
-            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-[#004229] dark:text-white mb-4">
+            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-primary dark:text-white mb-4">
               Laporan Kinerja Keuangan
             </h2>
             <p className="font-jakarta text-sm md:text-base text-[#5B6470] dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
@@ -268,7 +268,7 @@ export default function TransparansiClient({ documents, stats }: TransparansiCli
         {/* Intro Row */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 mb-16 items-center">
           <div className="lg:col-span-7 space-y-4 text-left">
-            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-[#004229] dark:text-white">
+            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-primary dark:text-white">
               Arsip Laporan Resmi
             </h2>
             <p className="font-jakarta text-sm md:text-base text-[#5B6470] dark:text-slate-300 leading-relaxed">
@@ -435,7 +435,7 @@ export default function TransparansiClient({ documents, stats }: TransparansiCli
       <section className="bg-[#F8F6F1] dark:bg-slate-950 text-[#1F2937] dark:text-white py-16 md:py-24 border-t border-surface-variant/40 dark:border-outline/10">
         <div className="max-w-[1320px] mx-auto px-6 md:px-12 text-center space-y-16">
           <div className="space-y-4">
-            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-[#004229] dark:text-white">
+            <h2 className="font-playfair font-bold text-3xl md:text-4xl text-primary dark:text-white">
               Komitmen Kelembagaan Kami
             </h2>
             <p className="font-jakarta text-sm md:text-base text-[#5B6470] dark:text-slate-300 max-w-xl mx-auto leading-relaxed">

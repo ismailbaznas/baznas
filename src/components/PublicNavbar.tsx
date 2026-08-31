@@ -51,7 +51,7 @@ export default function PublicNavbar() {
     const userInitial = (user?.user_metadata?.full_name || user?.email || "A").charAt(0).toUpperCase();
 
     return (
-        <header className="sticky top-0 z-50 w-full h-20 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md border-b border-[#bfc9c0]/30 transition-colors">
+        <header className="sticky top-0 z-50 w-full h-20 bg-white/95 dark:bg-[#051808]/95 backdrop-blur-md border-b border-[#bfc9c0]/30 transition-colors">
             <div className="max-w-container-max mx-auto px-4 sm:px-8 lg:px-12 h-full flex items-center justify-between">
                 {/* Brand Logo */}
                 <Logo />
@@ -67,8 +67,8 @@ export default function PublicNavbar() {
                                 className={cn(
                                     'text-sm font-semibold transition-colors py-1 relative',
                                     isActive
-                                        ? 'text-[#004229] dark:text-[#8cd6ac] border-b-2 border-[#004229] dark:border-[#8cd6ac] font-bold'
-                                        : 'text-[#3f4942] dark:text-zinc-300 hover:text-[#004229] dark:hover:text-white'
+                                        ? 'text-primary dark:text-[#ffe088] border-b-2 border-primary dark:border-[#ffe088] font-bold'
+                                        : 'text-[#3f4942] dark:text-zinc-300 hover:text-primary dark:hover:text-white'
                                 )}
                             >
                                 {link.label}
@@ -93,7 +93,7 @@ export default function PublicNavbar() {
                         <button
                             onClick={() => setIsProfileOpen(!isProfileOpen)}
                             title={isLoggedIn ? (user?.user_metadata?.full_name || user?.email || "Akun Saya") : "Masuk / Login"}
-                            className="w-10 h-10 rounded-full bg-[#004229]/10 dark:bg-[#8cd6ac]/15 text-[#004229] dark:text-[#8cd6ac] border border-[#004229]/20 dark:border-[#8cd6ac]/30 flex items-center justify-center font-bold text-xs transition-all hover:scale-105 hover:border-[#075C3B] active:scale-95 shadow-sm overflow-hidden"
+                            className="w-10 h-10 rounded-full bg-[#004229]/10 dark:bg-emerald-500/20 text-primary dark:text-[#ffe088] border border-[#004229]/20 dark:border-[#ffe088]/30 flex items-center justify-center font-bold text-xs transition-all hover:scale-105 hover:border-[#075C3B] active:scale-95 shadow-sm overflow-hidden"
                             aria-expanded={isProfileOpen}
                             aria-label="Menu Akun"
                         >
@@ -113,7 +113,7 @@ export default function PublicNavbar() {
                                     <span>{userInitial}</span>
                                 )
                             ) : (
-                                <User className="w-4 h-4 text-[#004229] dark:text-[#8cd6ac]" />
+                                <User className="w-4 h-4 text-primary dark:text-[#ffe088]" />
                             )}
                         </button>
 
@@ -135,7 +135,7 @@ export default function PublicNavbar() {
                                                     />
                                                 </div>
                                             ) : (
-                                                <div className="w-9 h-9 rounded-full bg-[#004229]/10 dark:bg-[#8cd6ac]/15 text-[#004229] dark:text-[#8cd6ac] font-bold text-xs flex items-center justify-center shrink-0 border border-[#004229]/20">
+                                                <div className="w-9 h-9 rounded-full bg-[#004229]/10 dark:bg-emerald-500/20 text-primary dark:text-[#ffe088] font-bold text-xs flex items-center justify-center shrink-0 border border-[#004229]/20">
                                                     {userInitial}
                                                 </div>
                                             )}
@@ -176,7 +176,7 @@ export default function PublicNavbar() {
                                         <Link
                                             href="/login"
                                             onClick={() => setIsProfileOpen(false)}
-                                            className="flex items-center gap-2.5 px-3 py-2.5 text-xs font-bold text-[#004229] dark:text-[#8cd6ac] hover:bg-emerald-50 dark:hover:bg-emerald-950/30 rounded-xl transition-colors"
+                                            className="flex items-center gap-2.5 px-3 py-2.5 text-xs font-bold text-primary dark:text-[#ffe088] hover:bg-emerald-50 dark:hover:bg-emerald-950/30 rounded-xl transition-colors"
                                         >
                                             <LogIn className="w-4 h-4 text-[#075C3B] dark:text-[#8cd6ac]" />
                                             <span>Masuk / Login</span>

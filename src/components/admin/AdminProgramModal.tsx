@@ -194,7 +194,7 @@ export default function AdminProgramModal({
             value={form.description}
             onChange={handleChange}
             rows={5}
-            className="flex min-h-[100px] w-full rounded-xl border border-surface-variant/60 dark:border-zinc-700 bg-white dark:bg-[#1e1e1e] px-3.5 py-2 text-sm text-on-surface placeholder:text-slate-400 dark:placeholder:text-zinc-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075C3B] dark:focus-visible:ring-[#8cd6ac]"
+            className="flex min-h-[100px] w-full rounded-xl border border-surface-variant/60 dark:border-surface-variant/80 bg-white dark:bg-surface-variant px-3.5 py-2 text-sm text-on-surface placeholder:text-slate-400 dark:placeholder:text-zinc-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075C3B] dark:focus-visible:ring-[#8cd6ac]"
           />
         </div>
 
@@ -228,7 +228,7 @@ export default function AdminProgramModal({
               name="category_id"
               value={form.category_id}
               onChange={handleChange}
-              className="flex h-10 w-full rounded-xl border border-surface-variant/60 dark:border-zinc-700 bg-white dark:bg-[#1e1e1e] text-on-surface px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075C3B] dark:focus-visible:ring-[#8cd6ac]"
+              className="flex h-10 w-full rounded-xl border border-surface-variant/60 dark:border-surface-variant/80 bg-white dark:bg-surface-variant text-on-surface px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075C3B] dark:focus-visible:ring-[#8cd6ac]"
             >
               <option value="">-- Pilih Kategori --</option>
               {categories.map((cat) => (

@@ -425,7 +425,7 @@ export default function AdminSettingsClient({
                         onChange={(e) => handleChange(setting.key, e.target.value)}
                         disabled={!canUpdate || loading}
                         rows={3}
-                        className="flex min-h-[80px] w-full rounded-xl border border-surface-variant/60 dark:border-zinc-700 bg-white dark:bg-[#1e1e1e] text-on-surface px-3.5 py-2 text-sm placeholder:text-slate-400 dark:placeholder:text-zinc-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075C3B] dark:focus-visible:ring-[#8cd6ac] disabled:cursor-not-allowed disabled:opacity-50"
+                        className="flex min-h-[80px] w-full rounded-xl border border-surface-variant/60 dark:border-surface-variant/80 bg-white dark:bg-surface-variant text-on-surface px-3.5 py-2 text-sm placeholder:text-slate-400 dark:placeholder:text-zinc-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075C3B] dark:focus-visible:ring-[#8cd6ac] disabled:cursor-not-allowed disabled:opacity-50"
                     />
                 ) : (
                     <Input
@@ -443,7 +443,7 @@ export default function AdminSettingsClient({
     return (
         <div className="space-y-6">
             <div>
-                <h1 className="text-2xl sm:text-3xl font-playfair font-bold text-[#004229] dark:text-[#8cd6ac]">
+                <h1 className="text-2xl sm:text-3xl font-playfair font-bold text-primary dark:text-white tracking-tight">
                     Pengaturan Konten Situs
                 </h1>
                 <p className="text-xs text-on-surface-variant mt-1">

@@ -139,7 +139,7 @@ export default function TentangClient({ team, settings = {} }: TentangClientProp
             <ul className="space-y-5">
               {missions.map((mission, index) => (
                 <li key={index} className="flex gap-4 items-start">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#004229]/10 dark:bg-[#8cd6ac]/20 text-[#004229] dark:text-[#8cd6ac] flex items-center justify-center font-bold font-jakarta text-sm mt-0.5">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#004229]/10 dark:bg-emerald-500/20 text-primary dark:text-[#ffe088] flex items-center justify-center font-bold font-jakarta text-sm mt-0.5">
                     {index + 1}
                   </div>
                   <p className="font-jakarta text-sm md:text-base text-[#5B6470] dark:text-slate-300 leading-relaxed pt-0.5">
@@ -287,7 +287,7 @@ export default function TentangClient({ team, settings = {} }: TentangClientProp
             <div className="w-full md:w-1/3 flex justify-center border-l-0 md:border-l border-surface-variant/60 dark:border-outline/20 pl-0 md:pl-8">
               <div className="text-center space-y-2">
                 <Award className="w-12 h-12 text-[#075C3B] dark:text-[#8cd6ac] mx-auto stroke-[1.5]" />
-                <p className="font-jakarta text-xs font-bold text-[#004229] dark:text-[#8cd6ac] uppercase tracking-wider leading-relaxed">
+                <p className="font-jakarta text-xs font-bold text-primary dark:text-[#ffe088] uppercase tracking-wider leading-relaxed">
                   Terdaftar Resmi &amp;
                   <br />
                   Diaudit Berkala

@@ -39,7 +39,7 @@ export function PermissionEditor({
 
   return (
     <div className="space-y-4 font-jakarta">
-      <h3 className="text-base font-bold text-[#004229] dark:text-[#8cd6ac] border-b border-surface-variant/40 dark:border-zinc-800 pb-2">
+      <h3 className="text-base font-bold text-primary dark:text-white border-b border-surface-variant/40 dark:border-zinc-800 pb-2">
         Atur Hak Akses Modul
       </h3>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
