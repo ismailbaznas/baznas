@@ -4,9 +4,19 @@ import { redirect } from "next/navigation";
 import LoginFormClient from "@/components/auth/LoginFormClient";
 import { createServerSupabase } from "@/lib/server-supabase";
 import RedirectClient from "@/components/RedirectClient";
+import type { Metadata } from "next";
 
 // Required for dynamic behavior
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Masuk Staf & Amil",
+  description: "Portal masuk staf, pengurus, dan amil BAZNAS Kabupaten Boven Digoel.",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default async function LoginPage() {
   const supabase = await createServerSupabase();

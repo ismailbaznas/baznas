@@ -3,8 +3,26 @@
 import { createServerSupabase } from "@/lib/server-supabase";
 import KabarClient from "@/components/KabarClient";
 import { AlertTriangle } from "lucide-react";
+import type { Metadata } from "next";
+import JsonLd from "@/components/seo/JsonLd";
+import { getBreadcrumbJsonLd } from "@/lib/seo";
 
 export const revalidate = 60;
+
+export const metadata: Metadata = {
+  title: "Kabar & Berita",
+  description:
+    "Kumpulan artikel, berita penyaluran ZIS, agenda kemanusiaan, dan kegiatan terkini BAZNAS Kabupaten Boven Digoel, Papua Selatan.",
+  alternates: {
+    canonical: "/kabar",
+  },
+  openGraph: {
+    title: "Kabar & Berita — BAZNAS Kabupaten Boven Digoel",
+    description:
+      "Kumpulan artikel, berita penyaluran ZIS, agenda kemanusiaan, dan kegiatan terkini BAZNAS Kabupaten Boven Digoel, Papua Selatan.",
+    url: "/kabar",
+  },
+};
 
 export default async function KabarPage() {
     const supabase = await createServerSupabase();
@@ -40,5 +58,15 @@ export default async function KabarPage() {
         );
     }
     
-    return <KabarClient initialNews={newsList} />;
+    const breadcrumbJsonLd = getBreadcrumbJsonLd([
+      { name: "Beranda", url: "/" },
+      { name: "Kabar & Berita", url: "/kabar" },
+    ]);
+
+    return (
+        <>
+            <JsonLd data={breadcrumbJsonLd} />
+            <KabarClient initialNews={newsList} />
+        </>
+    );
 }

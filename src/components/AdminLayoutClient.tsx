@@ -142,13 +142,12 @@ const AdminSidebar = ({ mobileOpen = false, onClose }: AdminSidebarProps) => {
       <div className="flex items-center justify-between pb-6 mb-4 border-b border-white/10">
         <Link href="/admin" className="flex items-center gap-3 group">
           <div className="w-10 h-10 rounded-xl bg-white p-1.5 flex items-center justify-center shadow-md shrink-0">
-            <img 
+            <Image 
               src="/images/logo-baznas.png" 
-              alt="Logo BAZNAS" 
+              alt="Logo BAZNAS Kabupaten Boven Digoel" 
+              width={32}
+              height={32}
               className="w-full h-full object-contain"
-              onError={(e) => {
-                (e.target as HTMLElement).style.display = 'none';
-              }} 
             />
           </div>
           <div>

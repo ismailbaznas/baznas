@@ -1,8 +1,10 @@
 import { Inter, Space_Grotesk, Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { ThemeProvider } from "../components/ThemeProvider";
 import AppLayoutWrapper from "@/components/AppLayoutWrapper";
+import JsonLd from "@/components/seo/JsonLd";
+import { SITE_CONFIG, getBaseUrl, getOrganizationJsonLd, getWebSiteJsonLd } from "@/lib/seo";
 
 // Setup Fonts as per Visual Concept Blueprint
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -21,12 +23,36 @@ const jakarta = Plus_Jakarta_Sans({
   weight: ["400", "500", "600", "700"],
 });
 
-// Base Metadata (Simplified from AGENTS.md)
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#004229" },
+    { media: "(prefers-color-scheme: dark)", color: "#031407" },
+  ],
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
+// Base Metadata
 export const metadata: Metadata = {
-  title: "Website Resmi BAZNAS Kabupaten Boven Digoel",
-  description:
-    "Portal resmi Badan Amil Zakat Nasional Kabupaten Boven Digoel. Amanah, Profesional, dan Transparan.",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
+  metadataBase: new URL(getBaseUrl()),
+  title: {
+    default: "BAZNAS Kabupaten Boven Digoel — Badan Amil Zakat Nasional",
+    template: "%s — BAZNAS Kabupaten Boven Digoel",
+  },
+  description: SITE_CONFIG.description,
+  keywords: SITE_CONFIG.keywords,
+  authors: [{ name: SITE_CONFIG.name, url: getBaseUrl() }],
+  creator: SITE_CONFIG.name,
+  publisher: SITE_CONFIG.formalName,
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  alternates: {
+    canonical: "./",
+  },
   icons: {
     icon: [
       { url: "/favicon.ico" },
@@ -38,13 +64,37 @@ export const metadata: Metadata = {
     shortcut: ["/favicon.ico"],
   },
   openGraph: {
-    title: "BAZNAS Kabupaten Boven Digoel",
-    description:
-      "Portal resmi Badan Amil Zakat Nasional Kabupaten Boven Digoel. Amanah, Profesional, dan Transparan.",
-    url: "/",
-    siteName: "BAZNAS Kabupaten Boven Digoel",
-    locale: "id_ID",
     type: "website",
+    locale: "id_ID",
+    url: "./",
+    title: "BAZNAS Kabupaten Boven Digoel — Badan Amil Zakat Nasional",
+    description: SITE_CONFIG.description,
+    siteName: SITE_CONFIG.name,
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: SITE_CONFIG.name,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "BAZNAS Kabupaten Boven Digoel — Badan Amil Zakat Nasional",
+    description: SITE_CONFIG.description,
+    images: ["/twitter-image"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
@@ -53,6 +103,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const orgJsonLd = getOrganizationJsonLd();
+  const websiteJsonLd = getWebSiteJsonLd();
+
   return (
     <html
       lang="id"
@@ -60,6 +113,9 @@ export default function RootLayout({
       // Suppress warning about custom attributes on html tag for theme initialization
       suppressHydrationWarning
     >
+      <head>
+        <JsonLd data={[orgJsonLd, websiteJsonLd]} />
+      </head>
       <body className="font-jakarta bg-background text-on-background min-h-screen antialiased">
         <ThemeProvider>
           <AppLayoutWrapper>{children}</AppLayoutWrapper>
