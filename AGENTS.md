@@ -22,20 +22,28 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 | 🗄️ **Database & Supabase** | [`docs/03_DATABASE_SUPABASE.md`](docs/03_DATABASE_SUPABASE.md) | Skema tabel, kamus key `site_settings`, PostgREST column pruning, agregat `head: true`, pemisahan Klien Server/Browser/Service Role. |
 | 🛡️ **Keamanan & RBAC** | [`docs/04_SECURITY_RBAC.md`](docs/04_SECURITY_RBAC.md) | 3-Layer Defense (`guardAdminPage`, `requirePermission`, `<Can>`), Google OAuth PKCE callback, pengamanan formulir publik via API routes. |
 | 🚀 **Performa & Audit** | [`docs/05_PERFORMANCE_AUDIT.md`](docs/05_PERFORMANCE_AUDIT.md) | Laporan implementasi 10 optimasi performa, benchmark Core Web Vitals, dan checklist verifikasi pra-commit. |
+| 📊 **Executive Dashboard** | [`docs/06_EXECUTIVE_DASHBOARD_IMPLEMENTATION.md`](docs/06_EXECUTIVE_DASHBOARD_IMPLEMENTATION.md) | Arsitektur Command Center, visualisasi data adaptif (Light/Dark mode), indikator strategis, dan panduan rollback. |
+| 🌐 **SEO, Open Graph & PWA** | [`docs/07_SEO_PWA_ARCHITECTURE.md`](docs/07_SEO_PWA_ARCHITECTURE.md) | Metadata Base, Dynamic OG/Twitter Image (1200x630), Dynamic Sitemap/Robots, JSON-LD Structured Data, dan Native PWA Service Worker. |
 
 ---
 
-## 🚨 5 ATURAN EMAS (WAJIB DIIKUTI TANPA PENGECUALIAN)
+## 🚨 7 ATURAN EMAS (WAJIB DIIKUTI TANPA PENGECUALIAN)
 
 1. **Next.js 16 Async Page Props:**
    `params` dan `searchParams` pada Server Components **WAJIB** bertipe `Promise<{ ... }>` dan di-`await` sebelum dibaca.
 2. **Semantik HTML & Hydration Safety:**
    `Badge.tsx` **WAJIB** merender tag `<span>` (bukan `<div>`). DILARANG menaruh elemen tingkat blok di dalam tag `<p>`.
 3. **Pemisahan Klien Supabase:**
-   `createServiceRoleClient()` **HANYA BOLEH** digunakan di `src/app/api/*`. DILARANG mengimpornya ke komponen klien (`"use client"`).
+   `createServiceRoleClient()` **HANYA BOLEH** digunakan di `src/app/api/*`. DILARANG mengimpornya ke komponen klien (`"use client"`). Gunakan `createPublicServerSupabase()` untuk sitemap tanpa cookies.
 4. **Performa Tinggi & Tanpa Waterfall:**
    - Kueri server independen **WAJIB** dibungkus `Promise.all`.
    - DILARANG menggunakan tag mentah `<img>` (gunakan `<Image />` dari `next/image`).
    - Modal CMS admin **WAJIB** diimpor dinamis dengan `next/dynamic` (`{ ssr: false }`).
-5. **Verifikasi Build Mandatori:**
+5. **SEO & Metadata Integrity:**
+   - Setiap halaman detail dinamis **WAJIB** mengekspor fungsi asinkron `generateMetadata({ params })`.
+   - Seluruh halaman publik wajib memiliki `canonical` dan `openGraph` yang konsisten.
+6. **Keamanan Service Worker & Caching PWA:**
+   - DILARANG meng-cache rute `/admin/*`, `/api/*`, `/login`, auth session, atau data mutasi mustahik/muzaki.
+   - Halaman `/offline` wajib diberi proteksi `robots: { index: false, follow: false }`.
+7. **Verifikasi Build Mandatori:**
    Setiap selesai melakukan perubahan kode, jalankan `npm run build` untuk memastikan 100% bebas dari kesalahan tipe dan hidrasi.
