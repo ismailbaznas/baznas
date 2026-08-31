@@ -168,12 +168,12 @@ export default function AdminProgramClient({
                                         <TableCell className="text-right">
                                             <div className="space-x-2 flex justify-end">
                                                 <Can required="program.update">
-                                                    <Button variant="outline" size="sm" onClick={() => handleEdit(item.id)}>
+                                                    <Button variant="outline" size="sm" onClick={() => handleEdit(item.id)} aria-label="Edit program" title="Edit program">
                                                         <Pencil className="w-4 h-4" />
                                                     </Button>
                                                 </Can>
                                                 <Can required="program.delete">
-                                                    <Button variant="destructive" size="sm" onClick={() => handleDelete(item.id)}>
+                                                    <Button variant="destructive" size="sm" onClick={() => handleDelete(item.id)} aria-label="Hapus program" title="Hapus program">
                                                         <Trash2 className="w-4 h-4" />
                                                     </Button>
                                                 </Can>

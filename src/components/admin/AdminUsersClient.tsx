@@ -68,12 +68,12 @@ const MappedTableRows = ({ userList, handleEdit, handleDelete, user }: { userLis
                         <TableCell className="text-right">
                             <div className="space-x-2 flex justify-end">
                                 <Can required="user.manage">
-                                    <Button variant="outline" size="sm" onClick={() => handleEdit(item)}>
+                                    <Button variant="outline" size="sm" onClick={() => handleEdit(item)} aria-label="Edit pengguna" title="Edit pengguna">
                                         <Pencil className="w-4 h-4" />
                                     </Button>
                                 </Can>
                                 <Can required="user.manage">
-                                    <Button variant="destructive" size="sm" onClick={() => handleDelete(item.id, item.email)} disabled={isSelf}>
+                                    <Button variant="destructive" size="sm" onClick={() => handleDelete(item.id, item.email)} disabled={isSelf} aria-label="Hapus pengguna" title="Hapus pengguna">
                                         <Trash2 className="w-4 h-4" />
                                     </Button>
                                 </Can>

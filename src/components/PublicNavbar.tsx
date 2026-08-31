@@ -77,12 +77,12 @@ export default function PublicNavbar() {
                     })}
                 </nav>
 
-                {/* Action Buttons */}
+                    {/* Action Buttons */}
                 <div className="flex items-center space-x-3">
                     {/* Primary CTA Button */}
                     <Link
                         href="/layanan"
-                        className="hidden sm:inline-flex items-center gap-2 bg-[#075C3B] hover:bg-[#004229] text-white text-sm font-semibold px-5 py-2.5 rounded-lg shadow-sm transition-all hover:shadow hover:opacity-95"
+                        className="hidden sm:inline-flex items-center gap-2 bg-[#075C3B] hover:bg-[#004229] active:scale-[0.98] text-white text-sm font-semibold px-5 py-2.5 rounded-lg shadow-sm transition-all hover:shadow hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075C3B] focus-visible:ring-offset-2"
                     >
                         <span>Tunaikan Zakat</span>
                         <ArrowRight className="w-4 h-4" />
@@ -93,9 +93,9 @@ export default function PublicNavbar() {
                         <button
                             onClick={() => setIsProfileOpen(!isProfileOpen)}
                             title={isLoggedIn ? (user?.user_metadata?.full_name || user?.email || "Akun Saya") : "Masuk / Login"}
-                            className="w-10 h-10 rounded-full bg-[#004229]/10 dark:bg-emerald-500/20 text-primary dark:text-[#ffe088] border border-[#004229]/20 dark:border-[#ffe088]/30 flex items-center justify-center font-bold text-xs transition-all hover:scale-105 hover:border-[#075C3B] active:scale-95 shadow-sm overflow-hidden"
+                            className="w-10 h-10 min-w-[40px] min-h-[40px] rounded-full bg-[#004229]/10 dark:bg-emerald-500/20 text-primary dark:text-[#ffe088] border border-[#004229]/20 dark:border-[#ffe088]/30 flex items-center justify-center font-bold text-xs transition-all hover:scale-105 hover:border-[#075C3B] active:scale-95 shadow-sm overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075C3B] dark:focus-visible:ring-[#8cd6ac] focus-visible:ring-offset-2 cursor-pointer"
                             aria-expanded={isProfileOpen}
-                            aria-label="Menu Akun"
+                            aria-label={isLoggedIn ? "Menu akun pengguna" : "Masuk / Login"}
                         >
                             {loading ? (
                                 <div className="w-4 h-4 border-2 border-[#004229] dark:border-[#8cd6ac] border-t-transparent rounded-full animate-spin" />
@@ -164,7 +164,7 @@ export default function PublicNavbar() {
                                                     setIsProfileOpen(false);
                                                     handleLogout();
                                                 }}
-                                                className="w-full flex items-center gap-2.5 px-3 py-2 text-xs font-semibold text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 rounded-xl transition-colors"
+                                                className="w-full flex items-center gap-2.5 px-3 py-2 text-xs font-semibold text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 rounded-xl transition-colors cursor-pointer"
                                             >
                                                 <LogOut className="w-4 h-4" />
                                                 <span>Keluar</span>
@@ -189,9 +189,10 @@ export default function PublicNavbar() {
 
                     {/* Mobile Menu Button */}
                     <button
-                        className="lg:hidden p-2 rounded-lg text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800"
+                        className="lg:hidden w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl flex items-center justify-center text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075C3B] dark:focus-visible:ring-[#8cd6ac] transition-all cursor-pointer"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        aria-label="Toggle menu"
+                        aria-label={isMenuOpen ? "Tutup menu navigasi" : "Buka menu navigasi"}
+                        aria-expanded={isMenuOpen}
                     >
                         {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                     </button>
@@ -205,7 +206,7 @@ export default function PublicNavbar() {
                     isMenuOpen ? "opacity-100 translate-y-0 visible" : "opacity-0 -translate-y-2 invisible"
                 )}
             >
-                <div className="p-5 space-y-2 max-h-[calc(100vh-5rem)] overflow-y-auto">
+                <div className="p-5 space-y-2 max-h-[calc(100dvh-5rem)] overflow-y-auto">
                     {NAV_LINKS.map((link) => {
                         const isActive = pathname === link.href;
                         return (
@@ -214,7 +215,7 @@ export default function PublicNavbar() {
                                 href={link.href}
                                 onClick={() => setIsMenuOpen(false)}
                                 className={cn(
-                                    'block px-4 py-3 rounded-lg text-sm font-semibold transition-colors',
+                                    'flex items-center min-h-[44px] px-4 py-3 rounded-xl text-sm font-semibold transition-all active:scale-[0.99]',
                                     isActive
                                         ? 'bg-[#075C3B]/10 text-[#075C3B] dark:text-[#8cd6ac] font-bold'
                                         : 'text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800'
@@ -229,7 +230,7 @@ export default function PublicNavbar() {
                         <Link
                             href="/layanan"
                             onClick={() => setIsMenuOpen(false)}
-                            className="flex items-center justify-center gap-2 w-full bg-[#075C3B] text-white py-3 rounded-lg text-sm font-semibold shadow-sm"
+                            className="flex items-center justify-center gap-2 w-full min-h-[44px] bg-[#075C3B] hover:bg-[#004229] active:scale-[0.98] text-white py-3 rounded-xl text-sm font-semibold shadow-sm transition-all"
                         >
                             <span>Tunaikan Zakat</span>
                             <ArrowRight className="w-4 h-4" />

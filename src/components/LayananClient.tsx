@@ -247,31 +247,35 @@ export default function LayananClient() {
           <div className="lg:col-span-7 bg-white dark:bg-slate-900 p-8 md:p-10 rounded-2xl border border-surface-variant/50 dark:border-outline/10 shadow-md">
             
             {/* Tabs */}
-            <div className="flex border-b border-surface-variant/50 dark:border-outline/10 mb-8">
+            <div className="flex border-b border-surface-variant/50 dark:border-outline/10 mb-8" role="tablist" aria-label="Pilihan jenis kalkulator zakat">
               <button 
+                role="tab"
+                aria-selected={calculatorTab === "penghasilan"}
                 onClick={() => {
                   setCalculatorTab("penghasilan");
                   setCalculatedZakat(null);
                 }}
                 className={cn(
-                  "flex-1 pb-4 text-center font-jakarta text-sm font-bold transition-colors border-b-2",
+                  "flex-1 min-h-[44px] pb-3 text-center font-jakarta text-sm font-bold transition-all border-b-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075C3B] dark:focus-visible:ring-[#8cd6ac] rounded-t-lg",
                   calculatorTab === "penghasilan" 
                     ? "border-[#004229] text-[#004229] dark:border-[#8cd6ac] dark:text-[#8cd6ac]" 
-                    : "border-transparent text-[#5B6470] dark:text-slate-400 hover:text-[#004229]"
+                    : "border-transparent text-[#5B6470] dark:text-slate-400 hover:text-[#004229] dark:hover:text-white"
                 )}
               >
                 Zakat Penghasilan
               </button>
               <button 
+                role="tab"
+                aria-selected={calculatorTab === "maal"}
                 onClick={() => {
                   setCalculatorTab("maal");
                   setCalculatedZakat(null);
                 }}
                 className={cn(
-                  "flex-1 pb-4 text-center font-jakarta text-sm font-bold transition-colors border-b-2",
+                  "flex-1 min-h-[44px] pb-3 text-center font-jakarta text-sm font-bold transition-all border-b-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075C3B] dark:focus-visible:ring-[#8cd6ac] rounded-t-lg",
                   calculatorTab === "maal" 
                     ? "border-[#004229] text-[#004229] dark:border-[#8cd6ac] dark:text-[#8cd6ac]" 
-                    : "border-transparent text-[#5B6470] dark:text-slate-400 hover:text-[#004229]"
+                    : "border-transparent text-[#5B6470] dark:text-slate-400 hover:text-[#004229] dark:hover:text-white"
                 )}
               >
                 Zakat Maal (Harta)
@@ -295,7 +299,7 @@ export default function LayananClient() {
                         onChange={(e) => setFormIncome(e.target.value)}
                         required
                         placeholder="7.500.000"
-                        className="w-full rounded-lg border border-surface-variant/60 dark:border-outline/20 focus:border-[#004229] dark:focus:border-[#8cd6ac] focus:ring focus:ring-[#004229]/10 bg-white dark:bg-slate-800 pl-12 pr-4 py-3 font-jakarta text-sm outline-none dark:text-white"
+                        className="w-full rounded-xl border border-surface-variant/60 dark:border-outline/20 focus:border-[#004229] dark:focus:border-[#8cd6ac] focus:ring focus:ring-[#004229]/10 bg-white dark:bg-slate-800 pl-12 pr-4 py-3 font-jakarta text-sm outline-none dark:text-white"
                       />
                     </div>
                   </div>
@@ -311,7 +315,7 @@ export default function LayananClient() {
                         value={otherIncome}
                         onChange={(e) => setFormOtherIncome(e.target.value)}
                         placeholder="0"
-                        className="w-full rounded-lg border border-surface-variant/60 dark:border-outline/20 focus:border-[#004229] dark:focus:border-[#8cd6ac] focus:ring focus:ring-[#004229]/10 bg-white dark:bg-slate-800 pl-12 pr-4 py-3 font-jakarta text-sm outline-none dark:text-white"
+                        className="w-full rounded-xl border border-surface-variant/60 dark:border-outline/20 focus:border-[#004229] dark:focus:border-[#8cd6ac] focus:ring focus:ring-[#004229]/10 bg-white dark:bg-slate-800 pl-12 pr-4 py-3 font-jakarta text-sm outline-none dark:text-white"
                       />
                     </div>
                   </div>
@@ -319,7 +323,7 @@ export default function LayananClient() {
 
                 <button 
                   type="submit"
-                  className="w-full bg-[#075C3B] dark:bg-[#8cd6ac] hover:bg-[#004229] dark:hover:bg-[#a8f3c7] text-white dark:text-[#002112] rounded-lg px-6 py-4 font-jakarta font-bold text-sm flex items-center justify-center gap-2 shadow"
+                  className="w-full min-h-[48px] bg-[#075C3B] dark:bg-[#8cd6ac] hover:bg-[#004229] dark:hover:bg-[#a8f3c7] text-white dark:text-[#002112] rounded-xl px-6 py-4 font-jakarta font-bold text-sm flex items-center justify-center gap-2 shadow active:scale-[0.98] transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075C3B] dark:focus-visible:ring-[#8cd6ac] focus-visible:ring-offset-2"
                 >
                   Hitung Zakat Penghasilan
                 </button>
@@ -340,14 +344,14 @@ export default function LayananClient() {
                       onChange={(e) => setMaalWealth(e.target.value)}
                       required
                       placeholder="100.000.000"
-                      className="w-full rounded-lg border border-surface-variant/60 dark:border-outline/20 focus:border-[#004229] dark:focus:border-[#8cd6ac] focus:ring focus:ring-[#004229]/10 bg-white dark:bg-slate-800 pl-12 pr-4 py-3 font-jakarta text-sm outline-none dark:text-white"
+                      className="w-full rounded-xl border border-surface-variant/60 dark:border-outline/20 focus:border-[#004229] dark:focus:border-[#8cd6ac] focus:ring focus:ring-[#004229]/10 bg-white dark:bg-slate-800 pl-12 pr-4 py-3 font-jakarta text-sm outline-none dark:text-white"
                     />
                   </div>
                 </div>
 
                 <button 
                   type="submit"
-                  className="w-full bg-[#075C3B] dark:bg-[#8cd6ac] hover:bg-[#004229] dark:hover:bg-[#a8f3c7] text-white dark:text-[#002112] rounded-lg px-6 py-4 font-jakarta font-bold text-sm flex items-center justify-center gap-2 shadow"
+                  className="w-full min-h-[48px] bg-[#075C3B] dark:bg-[#8cd6ac] hover:bg-[#004229] dark:hover:bg-[#a8f3c7] text-white dark:text-[#002112] rounded-xl px-6 py-4 font-jakarta font-bold text-sm flex items-center justify-center gap-2 shadow active:scale-[0.98] transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075C3B] dark:focus-visible:ring-[#8cd6ac] focus-visible:ring-offset-2"
                 >
                   Hitung Zakat Maal
                 </button>
@@ -528,7 +532,7 @@ export default function LayananClient() {
               <button 
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-[#075C3B] dark:bg-[#8cd6ac] hover:bg-[#004229] dark:hover:bg-[#a8f3c7] text-white dark:text-[#002112] rounded-lg px-6 py-4 font-jakarta font-bold text-sm flex items-center justify-center gap-2 shadow active:scale-[0.99] disabled:opacity-50"
+                className="w-full min-h-[48px] bg-[#075C3B] dark:bg-[#8cd6ac] hover:bg-[#004229] dark:hover:bg-[#a8f3c7] text-white dark:text-[#002112] rounded-xl px-6 py-4 font-jakarta font-bold text-sm flex items-center justify-center gap-2 shadow active:scale-[0.98] transition-all disabled:opacity-50 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075C3B] dark:focus-visible:ring-[#8cd6ac] focus-visible:ring-offset-2"
               >
                 <span>{isSubmitting ? "Mengirim Permohonan..." : "Kirim Permohonan Bantuan"}</span>
                 <Send className="w-4 h-4" />

@@ -13,7 +13,7 @@ export default function OfflineClient() {
   };
 
   return (
-    <div className="min-h-[75vh] flex items-center justify-center bg-background px-4 py-16 font-jakarta">
+    <div className="min-h-[75dvh] flex items-center justify-center bg-background px-4 py-16 font-jakarta">
       <div className="max-w-lg w-full text-center space-y-8 bg-white dark:bg-slate-900 p-8 sm:p-12 rounded-3xl border border-surface-variant/50 dark:border-outline/10 shadow-xl">
         {/* Logo & Offline Icon Badge */}
         <div className="flex flex-col items-center justify-center space-y-4">

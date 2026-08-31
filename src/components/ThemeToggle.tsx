@@ -36,8 +36,8 @@ export function ThemeToggle({ showLabel = false, variant = "default", className 
           onClick={toggleTheme}
           type="button"
           title={isDark ? "Beralih ke Mode Terang" : "Beralih ke Mode Gelap"}
-          className="w-8 h-8 rounded-full flex items-center justify-center bg-white/15 hover:bg-white/25 text-white transition-all duration-200 border border-white/25 hover:scale-105 active:scale-95 shadow-sm"
-          aria-label="Ubah tema tampilan"
+          className="w-9 h-9 min-w-[36px] min-h-[36px] rounded-full flex items-center justify-center bg-white/15 hover:bg-white/25 text-white transition-all duration-150 border border-white/25 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#004229] shadow-sm cursor-pointer"
+          aria-label={isDark ? "Beralih ke tema terang" : "Beralih ke tema gelap"}
         >
           {isDark ? (
             <Sun className="h-4 w-4 fill-amber-300 text-amber-300" />
@@ -61,8 +61,8 @@ export function ThemeToggle({ showLabel = false, variant = "default", className 
         onClick={toggleTheme}
         type="button"
         title={isDark ? "Beralih ke Mode Terang" : "Beralih ke Mode Gelap"}
-        className="w-8 h-8 rounded-full flex items-center justify-center bg-slate-100 dark:bg-zinc-800 text-slate-700 dark:text-zinc-200 hover:bg-slate-200 dark:hover:bg-zinc-700 transition-all duration-200 border border-surface-variant/40 dark:border-zinc-700 hover:scale-105 active:scale-95 shadow-sm"
-        aria-label="Ubah tema tampilan"
+        className="w-9 h-9 min-w-[36px] min-h-[36px] rounded-full flex items-center justify-center bg-slate-100 dark:bg-zinc-800 text-slate-700 dark:text-zinc-200 hover:bg-slate-200 dark:hover:bg-zinc-700 transition-all duration-150 border border-surface-variant/40 dark:border-zinc-700 hover:scale-105 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075C3B] dark:focus-visible:ring-[#8cd6ac] focus-visible:ring-offset-2 shadow-sm cursor-pointer"
+        aria-label={isDark ? "Beralih ke tema terang" : "Beralih ke tema gelap"}
       >
         {isDark ? (
           <Sun className="h-4 w-4 fill-amber-400 text-amber-400" />

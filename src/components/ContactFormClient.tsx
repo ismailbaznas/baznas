@@ -267,7 +267,8 @@ export default function ContactFormClient({ settings = {}, initialBankAccounts =
                       </div>
                       <button 
                         onClick={() => handleCopy(acc.nomor_rekening || acc.number, index)}
-                        className="text-[#075C3B] dark:text-[#8cd6ac] hover:text-[#004229] dark:hover:text-[#a8f3c7] font-jakarta text-xs font-bold flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#075C3B]/5 dark:bg-[#8cd6ac]/10 hover:bg-[#075C3B]/10 transition-colors shrink-0"
+                        aria-label={`Salin nomor rekening ${acc.nama_bank || acc.bank}`}
+                        className="text-[#075C3B] dark:text-[#8cd6ac] hover:text-[#004229] dark:hover:text-[#a8f3c7] font-jakarta text-xs font-bold flex items-center gap-1 px-3.5 py-2 rounded-lg bg-[#075C3B]/5 dark:bg-[#8cd6ac]/10 hover:bg-[#075C3B]/10 active:scale-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075C3B] dark:focus-visible:ring-[#8cd6ac] shrink-0 cursor-pointer"
                       >
                         {copiedIndex === index ? (
                           <>
@@ -396,7 +397,7 @@ export default function ContactFormClient({ settings = {}, initialBankAccounts =
                   </div>
 
                   <button 
-                    className="w-full bg-[#075C3B] dark:bg-[#8cd6ac] hover:bg-[#004229] dark:hover:bg-[#a8f3c7] text-white dark:text-[#002112] rounded-lg px-6 py-4 font-jakarta font-bold text-sm flex items-center justify-center gap-2 shadow transition-all duration-300 active:scale-[0.99] disabled:opacity-50" 
+                    className="w-full min-h-[48px] bg-[#075C3B] dark:bg-[#8cd6ac] hover:bg-[#004229] dark:hover:bg-[#a8f3c7] text-white dark:text-[#002112] rounded-xl px-6 py-4 font-jakarta font-bold text-sm flex items-center justify-center gap-2 shadow transition-all duration-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075C3B] dark:focus-visible:ring-[#8cd6ac] focus-visible:ring-offset-2 disabled:opacity-50 cursor-pointer" 
                     type="submit"
                     disabled={loading}
                   >

@@ -37,7 +37,7 @@ export default function AcceptInvitePage() {
   }, [router, supabase]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-[#fbf9f4] dark:bg-[#051808] p-4 font-jakarta">
+    <div className="flex flex-col items-center justify-center min-h-[100dvh] bg-[#fbf9f4] dark:bg-[#051808] p-4 font-jakarta">
       <div className="w-full max-w-md p-8 md:p-10 space-y-6 bg-white dark:bg-black rounded-3xl shadow-xl border border-surface-variant/40 dark:border-zinc-800 text-center">
         <h1 className="text-2xl md:text-3xl font-playfair font-bold text-primary dark:text-white">
           Penerimaan Undangan
