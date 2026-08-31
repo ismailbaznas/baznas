@@ -4,6 +4,7 @@ import type { Metadata, Viewport } from "next";
 import { ThemeProvider } from "../components/ThemeProvider";
 import AppLayoutWrapper from "@/components/AppLayoutWrapper";
 import JsonLd from "@/components/seo/JsonLd";
+import PwaRegister from "@/components/pwa/PwaRegister";
 import { SITE_CONFIG, getBaseUrl, getOrganizationJsonLd, getWebSiteJsonLd } from "@/lib/seo";
 
 // Setup Fonts as per Visual Concept Blueprint
@@ -45,6 +46,12 @@ export const metadata: Metadata = {
   authors: [{ name: SITE_CONFIG.name, url: getBaseUrl() }],
   creator: SITE_CONFIG.name,
   publisher: SITE_CONFIG.formalName,
+  manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "BAZNAS Boven Digoel",
+  },
   formatDetection: {
     email: false,
     address: false,
@@ -56,10 +63,11 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico" },
-      { url: "/icon.png", type: "image/png" },
+      { url: "/icons/icon-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icons/icon-512x512.png", sizes: "512x512", type: "image/png" },
     ],
     apple: [
-      { url: "/apple-icon.png", type: "image/png" },
+      { url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
     shortcut: ["/favicon.ico"],
   },
@@ -117,6 +125,7 @@ export default function RootLayout({
         <JsonLd data={[orgJsonLd, websiteJsonLd]} />
       </head>
       <body className="font-jakarta bg-background text-on-background min-h-screen antialiased">
+        <PwaRegister />
         <ThemeProvider>
           <AppLayoutWrapper>{children}</AppLayoutWrapper>
         </ThemeProvider>
