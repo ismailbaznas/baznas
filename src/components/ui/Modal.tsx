@@ -29,7 +29,7 @@ export function Modal({ open, onClose, title, children, size = "md" }: ModalProp
   );
 
   const contentClass = cn(
-    "bg-white dark:bg-surface border border-surface-variant/50 dark:border-surface-variant/80 rounded-2xl shadow-2xl transition-all duration-300 transform p-6 md:p-8 w-full mx-auto max-h-[90vh] overflow-y-auto text-on-surface",
+    "bg-white dark:bg-surface border border-surface-variant/50 dark:border-surface-variant/80 rounded-2xl shadow-2xl transition-all duration-300 transform p-6 md:p-8 w-full mx-auto max-h-[90dvh] overflow-y-auto text-on-surface",
     sizeClasses[size],
     open ? "scale-100 translate-y-0" : "scale-95 translate-y-4"
   );
@@ -49,7 +49,8 @@ export function Modal({ open, onClose, title, children, size = "md" }: ModalProp
           <button 
             type="button" 
             onClick={onClose}
-            className="text-on-surface-variant hover:text-primary dark:hover:text-white p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors"
+            aria-label="Tutup dialog"
+            className="text-on-surface-variant hover:text-primary dark:hover:text-white w-10 h-10 min-w-[40px] min-h-[40px] rounded-xl flex items-center justify-center hover:bg-slate-100 dark:hover:bg-zinc-800 active:scale-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075C3B] dark:focus-visible:ring-[#8cd6ac] cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>

@@ -49,6 +49,8 @@ export function Pagination({ totalPages, currentPage, totalItems }: PaginationPr
           size="icon"
           onClick={() => handlePageChange(currentPage - 1)}
           disabled={currentPage === 1}
+          aria-label="Halaman sebelumnya"
+          title="Halaman sebelumnya"
         >
           <ChevronLeft className="w-4 h-4" />
         </Button>
@@ -59,7 +61,9 @@ export function Pagination({ totalPages, currentPage, totalItems }: PaginationPr
             variant={page === currentPage ? "default" : "outline"}
             size="sm"
             onClick={() => handlePageChange(page)}
-            className={cn("w-10", page === currentPage ? "bg-primary text-on-primary" : "bg-background")}
+            aria-label={`Halaman ${page}`}
+            aria-current={page === currentPage ? "page" : undefined}
+            className={cn("w-10 min-w-[40px] font-bold", page === currentPage ? "bg-primary text-on-primary" : "bg-background")}
           >
             {page}
           </Button>
@@ -70,6 +74,8 @@ export function Pagination({ totalPages, currentPage, totalItems }: PaginationPr
           size="icon"
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
+          aria-label="Halaman berikutnya"
+          title="Halaman berikutnya"
         >
           <ChevronRight className="w-4 h-4" />
         </Button>

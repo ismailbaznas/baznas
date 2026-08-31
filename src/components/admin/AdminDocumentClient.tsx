@@ -389,17 +389,17 @@ export default function AdminDocumentClient({
                                         <TableCell className="text-right">
                                             <div className="space-x-2 flex justify-end">
                                                 <Button variant="ghost" size="sm" asChild>
-                                                    <a href={item.document_url} target="_blank" rel="noopener noreferrer" title="Unduh Dokumen">
+                                                    <a href={item.document_url} target="_blank" rel="noopener noreferrer" aria-label="Unduh Dokumen" title="Unduh Dokumen">
                                                         <Download className="w-4 h-4" />
                                                     </a>
                                                 </Button>
                                                 <Can required="dokumentasi.update">
-                                                    <Button variant="outline" size="sm" onClick={() => handleEdit(item.id)}>
+                                                    <Button variant="outline" size="sm" onClick={() => handleEdit(item.id)} aria-label="Edit dokumen" title="Edit dokumen">
                                                         <Pencil className="w-4 h-4" />
                                                     </Button>
                                                 </Can>
                                                 <Can required="dokumentasi.delete">
-                                                    <Button variant="destructive" size="sm" onClick={() => handleDelete(item.id)}>
+                                                    <Button variant="destructive" size="sm" onClick={() => handleDelete(item.id)} aria-label="Hapus dokumen" title="Hapus dokumen">
                                                         <Trash2 className="w-4 h-4" />
                                                     </Button>
                                                 </Can>

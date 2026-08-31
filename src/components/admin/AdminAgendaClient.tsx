@@ -86,12 +86,12 @@ const MappedTableRows = ({ agendaList, handleEdit, handleDelete }: { agendaList:
                         <TableCell className="text-right">
                             <div className="space-x-2 flex justify-end">
                                 <Can required="agenda.update">
-                                    <Button variant="outline" size="sm" onClick={() => handleEdit(item.id)}>
+                                    <Button variant="outline" size="sm" onClick={() => handleEdit(item.id)} aria-label="Edit agenda" title="Edit agenda">
                                         <Pencil className="w-4 h-4" />
                                     </Button>
                                 </Can>
                                 <Can required="agenda.delete">
-                                    <Button variant="destructive" size="sm" onClick={() => handleDelete(item.id)}>
+                                    <Button variant="destructive" size="sm" onClick={() => handleDelete(item.id)} aria-label="Hapus agenda" title="Hapus agenda">
                                         <Trash2 className="w-4 h-4" />
                                     </Button>
                                 </Can>

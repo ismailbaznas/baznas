@@ -123,11 +123,11 @@ export default function PublicFooter() {
                         <div className="flex gap-3">
                             {socials.facebook && (
                                 <a 
-                                    className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:bg-white hover:text-[#004229] transition-all" 
+                                    className="w-10 h-10 min-w-[40px] min-h-[40px] rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:bg-white hover:text-[#004229] active:scale-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#004229]" 
                                     href={socials.facebook}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    aria-label="Facebook"
+                                    aria-label="Facebook BAZNAS Boven Digoel"
                                     title="Facebook BAZNAS Boven Digoel"
                                 >
                                     <Facebook className="w-4 h-4" />
@@ -135,11 +135,11 @@ export default function PublicFooter() {
                             )}
                             {socials.instagram && (
                                 <a 
-                                    className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:bg-white hover:text-[#004229] transition-all" 
+                                    className="w-10 h-10 min-w-[40px] min-h-[40px] rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:bg-white hover:text-[#004229] active:scale-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#004229]" 
                                     href={socials.instagram}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    aria-label="Instagram"
+                                    aria-label="Instagram BAZNAS Boven Digoel"
                                     title="Instagram BAZNAS Boven Digoel"
                                 >
                                     <Instagram className="w-4 h-4" />
@@ -147,11 +147,11 @@ export default function PublicFooter() {
                             )}
                             {socials.tiktok && (
                                 <a 
-                                    className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:bg-white hover:text-[#004229] transition-all" 
+                                    className="w-10 h-10 min-w-[40px] min-h-[40px] rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:bg-white hover:text-[#004229] active:scale-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#004229]" 
                                     href={socials.tiktok}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    aria-label="TikTok"
+                                    aria-label="TikTok BAZNAS Boven Digoel"
                                     title="TikTok BAZNAS Boven Digoel"
                                 >
                                     <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
