@@ -137,7 +137,7 @@ const AdminSidebar = ({ mobileOpen = false, onClose }: AdminSidebarProps) => {
   ].filter(item => !item.permission || can(item.permission.split('.')[0], item.permission.split('.')[1]));
 
   const sidebarContent = (
-    <div className="flex flex-col h-full bg-[#004229] dark:bg-[#062d1c] text-white p-5 select-none font-jakarta">
+    <div className="flex flex-col h-full bg-[#004229] dark:bg-[#041d0a] text-white p-5 select-none font-jakarta">
       {/* Brand Header */}
       <div className="flex items-center justify-between pb-6 mb-4 border-b border-white/10">
         <Link href="/admin" className="flex items-center gap-3 group">
@@ -278,14 +278,14 @@ export default function AdminLayoutClient({ children }: { children: React.ReactN
   const currentTitle = PAGE_TITLES[pathname] || "Admin Dashboard";
 
   return (
-    <div className="flex min-h-screen bg-[#fbf9f4] dark:bg-[#121212] font-jakarta antialiased selection:bg-[#075C3B] selection:text-white">
+    <div className="flex min-h-screen bg-[#fbf9f4] dark:bg-[#051808] font-jakarta antialiased selection:bg-[#075C3B] selection:text-white">
       {/* Sidebar */}
       <AdminSidebar mobileOpen={mobileOpen} onClose={() => setMobileOpen(false)} />
 
       {/* Main Container */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* TopAppBar Header */}
-        <header className="sticky top-0 z-30 h-16 bg-white/90 dark:bg-[#181818]/90 backdrop-blur border-b border-surface-variant/40 dark:border-zinc-800/80 px-4 sm:px-8 flex items-center justify-between transition-colors">
+        <header className="sticky top-0 z-30 h-16 bg-white/90 dark:bg-[#08240e]/90 backdrop-blur border-b border-surface-variant/40 dark:border-[#0f3d17] px-4 sm:px-8 flex items-center justify-between transition-colors">
           <div className="flex items-center gap-3">
             <button
               onClick={() => setMobileOpen(true)}
@@ -294,7 +294,7 @@ export default function AdminLayoutClient({ children }: { children: React.ReactN
             >
               <Menu className="w-5 h-5" />
             </button>
-            <h2 className="font-playfair text-lg sm:text-xl font-bold text-[#004229] dark:text-[#8cd6ac] truncate">
+            <h2 className="font-playfair text-lg sm:text-xl font-bold text-primary dark:text-white truncate">
               {currentTitle}
             </h2>
           </div>
@@ -305,7 +305,7 @@ export default function AdminLayoutClient({ children }: { children: React.ReactN
               href="/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-on-surface-variant hover:text-[#004229] dark:hover:text-[#8cd6ac] px-3 py-1.5 rounded-lg border border-surface-variant/50 dark:border-zinc-700 hover:bg-slate-50 dark:hover:bg-zinc-800 transition-colors"
+              className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-on-surface-variant hover:text-primary dark:hover:text-white px-3 py-1.5 rounded-lg border border-surface-variant/50 dark:border-zinc-700 hover:bg-slate-50 dark:hover:bg-zinc-800 transition-colors"
               title="Buka Website Publik di Tab Baru"
             >
               <span>Lihat Situs</span>
@@ -321,7 +321,7 @@ export default function AdminLayoutClient({ children }: { children: React.ReactN
               className="flex items-center gap-2 pl-2 border-l border-surface-variant/40 dark:border-zinc-800 hover:opacity-85 transition-opacity group"
               title="Buka Pengaturan Profil Saya"
             >
-              <div className="w-8 h-8 rounded-full bg-[#075C3B]/10 dark:bg-[#8cd6ac]/10 text-[#004229] dark:text-[#8cd6ac] flex items-center justify-center font-bold text-xs font-jakarta group-hover:scale-105 transition-transform border border-[#075C3B]/20 overflow-hidden">
+              <div className="w-8 h-8 rounded-full bg-[#075C3B]/10 dark:bg-emerald-500/20 text-primary dark:text-emerald-300 flex items-center justify-center font-bold text-xs font-jakarta group-hover:scale-105 transition-transform border border-[#075C3B]/20 overflow-hidden">
                 {user.avatar_url ? (
                   <Image
                     src={user.avatar_url}
@@ -336,7 +336,7 @@ export default function AdminLayoutClient({ children }: { children: React.ReactN
                 )}
               </div>
               <div className="text-left hidden sm:block">
-                <p className="text-xs font-bold text-on-surface leading-none truncate max-w-[120px] group-hover:text-[#004229] dark:group-hover:text-[#8cd6ac] transition-colors">
+                <p className="text-xs font-bold text-on-surface leading-none truncate max-w-[120px] group-hover:text-primary dark:group-hover:text-white transition-colors">
                   {user.name || user.email}
                 </p>
                 <span className="text-[10px] text-on-surface-variant font-medium capitalize">
@@ -348,7 +348,7 @@ export default function AdminLayoutClient({ children }: { children: React.ReactN
         </header>
 
         {/* Dynamic Page Content */}
-        <main className="flex-1 p-4 sm:p-8 lg:p-10 bg-[#fbf9f4] dark:bg-[#121212] text-on-surface">
+        <main className="flex-1 p-4 sm:p-8 lg:p-10 bg-[#fbf9f4] dark:bg-[#051808] text-on-surface">
           <div className="max-w-6xl mx-auto">
             {children}
           </div>

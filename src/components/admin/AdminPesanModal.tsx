@@ -121,7 +121,7 @@ export default function AdminPesanModal({
                 <div><strong className="text-on-surface">Tanggal Masuk:</strong> <span className="text-on-surface-variant ml-1">{format(new Date(data.created_at), "dd MMMM yyyy, HH:mm", { locale: id })} WIT</span></div>
             </div>
             
-            <h3 className="text-base font-bold border-b border-surface-variant/40 dark:border-zinc-800 pb-3 text-[#004229] dark:text-[#8cd6ac]">Subjek: {data.subject}</h3>
+            <h3 className="text-base font-bold border-b border-surface-variant/40 dark:border-zinc-800 pb-3 text-primary dark:text-white">Subjek: {data.subject}</h3>
 
             <div className="p-5 bg-slate-50 dark:bg-zinc-800/40 border border-surface-variant/30 dark:border-zinc-800 rounded-2xl whitespace-pre-wrap text-sm text-on-surface leading-relaxed">
                 {data.message}
@@ -141,7 +141,7 @@ export default function AdminPesanModal({
                         name="status"
                         value={status}
                         onChange={(e) => setStatus(e.target.value)}
-                        className="flex h-10 w-full rounded-xl border border-surface-variant/60 dark:border-zinc-700 bg-white dark:bg-[#1e1e1e] text-on-surface px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075C3B] dark:focus-visible:ring-[#8cd6ac]"
+                        className="flex h-10 w-full rounded-xl border border-surface-variant/60 dark:border-surface-variant/80 bg-white dark:bg-surface-variant text-on-surface px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075C3B] dark:focus-visible:ring-[#8cd6ac]"
                         disabled={saving}
                     >
                         {MESSAGE_STATUSES.map((stat) => (

@@ -10,18 +10,26 @@ Sistem warna memadukan kewibawaan institusi Islam modern (**Deep Emerald**) deng
 ### A. Warna Utama (Brand Colors)
 | Nama Token | Hex Code | Penggunaan Utama | Mode Gelap |
 |:---|:---|:---|:---|
-| **Deep Emerald Solid** | `#004229` | Background Sidebar Admin, Header/Footer Publik, Banner Utama | `#131313` / `#002112` |
+| **Deep Emerald Solid** | `#004229` | Background Sidebar Admin, Header/Footer Publik, Banner Utama | `#051808` / `rgb(5 24 8)` (Deep Dark Green) |
 | **Emerald Accent** | `#075C3B` | Tombol Utama, Badge Aktif, Border Penekanan | `#8cd6ac` (Teks/Aksen) |
 | **Gold Classic** | `#D4AF37` | Lencana Kategori, Aksen Angka, Garis Aktif Sidebar | `#ffe088` (Teks Aksen Terang) |
 | **Dark Gold Contrast** | `#a08124` | Teks Emas di atas latar terang (WCAG AA) | `#ffe088` |
-| **Surface Cream Light**| `#F8F6F1` | Latar Seksi Profil, Trust Strip, Kontras Lembut | `#181818` |
-| **Neutral Border** | `#bfc9c0`/30 | Garis pemisah kartu, header, dan tabel | `#27272a` (`border-zinc-800`) |
+| **Surface Cream Light**| `#F8F6F1` | Latar Seksi Profil, Trust Strip, Kontras Lembut | `#08240e` (Dark Emerald Surface) |
+| **Neutral Border** | `#bfc9c0`/30 | Garis pemisah kartu, header, dan tabel | `#0f4018` (`border-[#0f4018]`) |
 
 ### B. Warna Status Semantik
 * **Sukses / Terverifikasi (`verified`/`done`):** Emerald / Green (`bg-emerald-50 text-emerald-800 border-emerald-300`)
 * **Peringatan / Menunggu (`pending`/`new`):** Amber / Gold (`bg-amber-50 text-amber-800 border-amber-300`)
 * **Bahaya / Ditolak (`rejected`):** Crimson / Red (`bg-red-50 text-red-800 border-red-300`)
 * **Informasi / Arsip:** Slate / Zinc (`bg-slate-100 text-slate-700`)
+
+### C. Sistemik CSS Variables & Non-Hardcoded Global Palette
+* **Terpusat di `tailwind.config.ts` & `src/app/globals.css`:** Seluruh utilitas warna mode gelap (`dark:bg-slate-900`, `dark:bg-zinc-900`, `dark:bg-slate-800`, `bg-background`, `bg-surface`, `bg-surface-variant`) **tidak di-hardcode di masing-masing komponen**.
+* **Variabel Rujukan Utama:**
+  - `--c-background`: Terang (`#FBF9F4`), Gelap (`rgb(5, 24, 8)` / `#051808`).
+  - `--c-surface`: Terang (`#FFFFFF`), Gelap (`rgb(8, 36, 14)` / `#08240e`).
+  - `--c-surface-variant`: Terang (`#F8F6F1`), Gelap (`rgb(12, 48, 18)` / `#0c3012`).
+* **Manfaat:** Jika ada perubahan warna tema di masa depan, pengubah hanya perlu mengedit satu tempat di `src/app/globals.css` / `tailwind.config.ts` dan seluruh halaman publik & admin akan otomatis berubah secara instan.
 
 ---
 

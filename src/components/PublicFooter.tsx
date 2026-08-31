@@ -105,7 +105,7 @@ export default function PublicFooter() {
     }, []);
 
     return (
-        <footer className="w-full pt-16 pb-12 bg-[#004229] dark:bg-[#131313] text-white transition-colors border-t border-emerald-900/50">
+        <footer className="w-full pt-16 pb-12 bg-[#004229] dark:bg-[#031407] text-white transition-colors border-t border-emerald-900/50">
             <div className="max-w-container-max mx-auto px-4 sm:px-8 lg:px-12">
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8 lg:gap-12">
                     {/* Column 1: Emblem Logo & Social */}

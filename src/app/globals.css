@@ -5,37 +5,44 @@
 @layer base {
   :root {
     /* Light Theme (BAZNAS Green/Gold) */
-    --c-primary: 29 133 9; /* BAZNAS Green */
+    --c-primary: 0 66 41;               /* #004229 BAZNAS Deep Emerald */
     --c-on-primary: 255 255 255;
-    --c-primary-container: 245 200 80; /* Light Gold */
-    --c-on-primary-container: 26 13 0;
+    --c-primary-container: 7 92 59;     /* #075C3B Emerald Accent */
+    --c-on-primary-container: 136 210 168;
 
     /* Status Colors */
-    --c-status-success: 22 163 74; /* Light Success */
+    --c-status-success: 22 163 74;      /* Light Success */
     --c-on-status-success: 255 255 255;
-    --c-status-warning: 217 119 6; /* Light Warning */
+    --c-status-warning: 217 119 6;      /* Light Warning */
     --c-on-status-warning: 255 255 255;
-    --c-status-danger: 220 38 38; /* Light Danger */
+    --c-status-danger: 220 38 38;       /* Light Danger */
     --c-on-status-danger: 255 255 255;
 
-    --c-primary-dark: 140 105 15; /* For text on light surfaces (gold) */
+    --c-primary-dark: 160 129 36;       /* #a08124 Gold text */
 
-    /* Surface and Text */
-    --c-background: 255 255 255;
-    --c-on-background: 28 27 31;
-    --c-surface: 255 255 255;
-    --c-on-surface: 28 27 31;
-    --c-surface-variant: 236 224 236;
-    --c-on-surface-variant: 73 69 78;
-    --c-surface-container-lowest: 255 255 255; /* White */
+    /* Surface and Text (Light Theme) */
+    --c-background: 251 249 244;        /* #FBF9F4 Warm Off-White */
+    --c-on-background: 31 41 55;        /* #1F2937 Dark Slate text */
+    --c-surface: 255 255 255;           /* White card surface */
+    --c-on-surface: 31 41 55;
+    --c-surface-variant: 248 246 241;   /* #F8F6F1 Surface Cream */
+    --c-on-surface-variant: 91 100 112;  /* #5B6470 */
+    --c-surface-container-lowest: 255 255 255;
+
+    /* Default Light Mode values for slate/zinc 700, 800, 850, 900, 950 */
+    --c-theme-bg-700: 51 65 85;
+    --c-theme-bg-800: 30 41 59;
+    --c-theme-bg-850: 24 35 55;
+    --c-theme-bg-900: 15 23 42;
+    --c-theme-bg-950: 2 6 23;
   }
 
-  /* Dark Theme */
+  /* Dark Theme - Unified Deep Dark Green Identity rgb(5 24 8) / #051808 */
   [data-mode="dark"] {
-    --c-primary: 153 234 110;
-    --c-on-primary: 0 57 32;
-    --c-primary-container: 247 210 108;
-    --c-on-primary-container: 32 15 0;
+    --c-primary: 140 214 172;           /* #8cd6ac Light Emerald */
+    --c-on-primary: 5 24 8;
+    --c-primary-container: 212 175 55;  /* #D4AF37 Gold Classic */
+    --c-on-primary-container: 26 13 0;
 
     /* Status Colors (Dark Contrast) */
     --c-status-success: 34 197 94;
@@ -45,16 +52,36 @@
     --c-status-danger: 248 113 113;
     --c-on-status-danger: 0 0 0;
 
-    --c-primary-dark: 200 160 40; /* Dark Gold contrast */
+    --c-primary-dark: 255 224 136;      /* #ffe088 Light Gold */
 
-    /* Surface and Text */
-    --c-background: 18 18 18;
-    --c-on-background: 230 230 230;
-    --c-surface: 18 18 18;
-    --c-on-surface: 230 230 230;
-    --c-surface-variant: 38 40 42; /* Dark grey */
-    --c-on-surface-variant: 198 198 200;
-    --c-surface-container-lowest: 28 28 30; /* Very dark grey */
+    /* Surface and Text (Dark Theme Deep Dark Green) */
+    --c-background: 5 24 8;             /* rgb(5 24 8) #051808 Deep Dark Green Base */
+    --c-on-background: 236 245 238;
+    --c-surface: 8 36 14;               /* rgb(8 36 14) #08240e Dark Green Card Surface */
+    --c-on-surface: 236 245 238;
+    --c-surface-variant: 12 48 18;       /* rgb(12 48 18) #0c3012 Dark Green Sub-container */
+    --c-on-surface-variant: 190 215 195;
+    --c-surface-container-lowest: 4 19 6; /* #041306 Deepest Dark Green */
+
+    /* SYSTEMATIC GLOBAL OVERRIDE FOR DARK UTILITY CLASSES Across All Pages */
+    /* When ANY component uses dark:bg-slate-900, dark:bg-zinc-900, dark:bg-slate-800, dark:bg-zinc-800, etc., */
+    /* it will automatically render in the rich Deep Dark Green rgb(5, 24, 8) / #051808! */
+    --c-theme-bg-950: 4 19 6;            /* #041306 Deepest Dark Green */
+    --c-theme-bg-900: 5 24 8;            /* #051808 Deep Dark Green (Main Background) */
+    --c-theme-bg-850: 6 30 10;           /* #061e0a Dark Green Elevated Surface */
+    --c-theme-bg-800: 8 36 14;           /* #08240e Dark Green Card Surface */
+    --c-theme-bg-700: 12 48 18;          /* #0c3012 Dark Green Sub-card/Variant */
+  }
+
+  /* Global Body & Root Rules */
+  body {
+    background-color: rgb(var(--c-background));
+    color: rgb(var(--c-on-background));
+  }
+
+  [data-mode="dark"] body {
+    background-color: rgb(5, 24, 8);
+    color: rgb(236, 245, 238);
   }
 
   /* KEMENHAJ/BAZNAS Specifics */

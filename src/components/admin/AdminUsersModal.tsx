@@ -123,7 +123,7 @@ export default function AdminUsersModal({
 
         {/* Info */}
         {!isEditing && (
-            <div className="p-3.5 bg-[#075C3B]/10 dark:bg-[#075C3B]/20 border border-[#075C3B]/30 rounded-xl flex items-center space-x-2 text-xs font-semibold text-[#004229] dark:text-[#8cd6ac]">
+            <div className="p-3.5 bg-[#075C3B]/10 dark:bg-[#075C3B]/20 border border-[#075C3B]/30 rounded-xl flex items-center space-x-2 text-xs font-semibold text-primary dark:text-emerald-300">
                 <CheckCircle className="w-4 h-4 shrink-0" />
                 <span>Undangan akan dikirim via email. Pengguna baru akan mengatur kata sandi secara mandiri.</span>
             </div>
@@ -163,7 +163,7 @@ export default function AdminUsersModal({
                     value={form.role}
                     onChange={handleChange}
                     disabled={isSelf} // Prevent user from changing their own role
-                    className="flex h-10 w-full rounded-xl border border-surface-variant/60 dark:border-zinc-700 bg-white dark:bg-[#1e1e1e] text-on-surface px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075C3B] dark:focus-visible:ring-[#8cd6ac]"
+                    className="flex h-10 w-full rounded-xl border border-surface-variant/60 dark:border-surface-variant/80 bg-white dark:bg-surface-variant text-on-surface px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#075C3B] dark:focus-visible:ring-[#8cd6ac]"
                 >
                     <option value="" disabled>-- Pilih Peran --</option>
                     {rolesList.map((role) => (

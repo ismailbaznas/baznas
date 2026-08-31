@@ -89,12 +89,12 @@ export default function AdminBantuanModal({
 
   return (
     <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 backdrop-blur-sm font-jakarta animate-fade-in">
-      <div className="bg-white dark:bg-[#181818] border border-surface-variant/40 dark:border-zinc-800 rounded-3xl max-w-2xl w-full shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+      <div className="bg-white dark:bg-surface border border-surface-variant/40 dark:border-surface-variant/80 rounded-3xl max-w-2xl w-full shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
         
         {/* Header */}
         <div className="p-6 border-b border-surface-variant/40 dark:border-zinc-800 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <h3 className="font-playfair text-xl font-bold text-[#004229] dark:text-[#8cd6ac]">
+            <h3 className="font-playfair text-xl font-bold text-primary dark:text-white">
               Detail Permohonan Bantuan
             </h3>
             {getStatusBadge(application.status)}

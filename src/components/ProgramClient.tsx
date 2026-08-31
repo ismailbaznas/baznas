@@ -199,7 +199,7 @@ export default function ProgramClient({ programs, stats = {} }: ProgramClientPro
 
                   <div className="pt-4 border-t border-surface-variant/50 dark:border-outline/10 mt-auto flex items-center justify-between">
                     <Link
-                      className="inline-flex items-center gap-1.5 text-[#004229] dark:text-[#8cd6ac] font-jakarta text-xs font-bold group-hover:text-[#075C3B] transition-colors"
+                      className="inline-flex items-center gap-1.5 text-primary dark:text-emerald-300 font-jakarta text-xs font-bold group-hover:text-[#075C3B] transition-colors"
                       href={`/program/${item.slug}`}
                     >
                       Detail Program

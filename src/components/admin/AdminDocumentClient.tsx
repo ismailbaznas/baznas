@@ -192,7 +192,7 @@ export default function AdminDocumentClient({
             <div className="space-y-8 font-jakarta">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div>
-                        <h1 className="text-2xl sm:text-3xl font-playfair font-bold text-[#004229] dark:text-[#8cd6ac]">
+                        <h1 className="text-2xl sm:text-3xl font-playfair font-bold text-primary dark:text-white tracking-tight">
                             Daftar Dokumen Transparansi
                         </h1>
                         <p className="text-xs text-on-surface-variant mt-1">
@@ -208,11 +208,11 @@ export default function AdminDocumentClient({
                 </div>
 
                 {/* TRANSPARENCY STATS MANAGEMENT (EDIT ONLY) */}
-                <div className="bg-white dark:bg-[#181818] border border-surface-variant/40 dark:border-zinc-800 rounded-2xl p-6 shadow-sm space-y-4">
-                    <div className="flex items-center gap-2 pb-3 border-b border-surface-variant/30 dark:border-zinc-800">
+                <div className="bg-white dark:bg-surface border border-surface-variant/40 dark:border-surface-variant/80 rounded-2xl p-6 shadow-sm space-y-4">
+                    <div className="flex items-center gap-2 pb-3 border-b border-surface-variant/30 dark:border-surface-variant/80">
                         <BarChart3 className="w-5 h-5 text-[#D4AF37]" />
                         <div>
-                            <h2 className="text-sm font-bold text-[#004229] dark:text-[#8cd6ac]">Kelola Statistik Transparansi</h2>
+                            <h2 className="text-sm font-bold text-primary dark:text-white">Kelola Statistik Transparansi</h2>
                             <p className="text-[11px] text-on-surface-variant">Klik Edit untuk mengubah Judul, Sub Judul, atau Jumlah yang tampil pada Beranda dan Transparansi.</p>
                         </div>
                     </div>
@@ -232,7 +232,7 @@ export default function AdminDocumentClient({
                     {showStatForm && canUpdateStats && (
                         <form onSubmit={handleSaveStat} className="bg-slate-50 dark:bg-zinc-800/40 p-6 rounded-2xl border border-surface-variant/40 dark:border-zinc-800 space-y-4 animate-fadeIn">
                             <div className="flex items-center justify-between pb-3 border-b border-surface-variant/30 dark:border-zinc-800">
-                                <h3 className="text-sm font-bold text-[#004229] dark:text-[#8cd6ac]">Edit Statistik</h3>
+                                <h3 className="text-sm font-bold text-primary dark:text-white">Edit Statistik</h3>
                                 <button
                                     type="button"
                                     onClick={() => { setShowStatForm(false); setEditingStat(null); }}
@@ -294,10 +294,10 @@ export default function AdminDocumentClient({
                     {loadingStats ? (
                         <p className="text-xs text-on-surface-variant italic py-4 text-center">Memuat data statistik...</p>
                     ) : (
-                        <div className="border border-surface-variant/40 dark:border-zinc-800 rounded-2xl overflow-hidden shadow-sm bg-white dark:bg-[#181818]">
+                        <div className="border border-slate-200/90 dark:border-[#0f4018] rounded-2xl overflow-hidden shadow-sm bg-white dark:bg-surface">
                             <div className="overflow-x-auto">
                                 <table className="w-full text-left font-jakarta text-sm">
-                                    <thead className="bg-slate-50 dark:bg-zinc-800/60 border-b border-surface-variant/30 dark:border-zinc-800 text-on-surface-variant text-xs uppercase font-bold tracking-wider">
+                                    <thead className="bg-slate-100/90 dark:bg-[#0c3514] border-b-2 border-slate-200 dark:border-[#0f4018] text-slate-700 dark:text-emerald-300 text-xs uppercase font-bold tracking-wider">
                                         <tr>
                                             <th className="px-6 py-4">Judul</th>
                                             <th className="px-6 py-4">Sub Judul</th>
@@ -305,7 +305,7 @@ export default function AdminDocumentClient({
                                             {canUpdateStats && <th className="px-6 py-4 text-right">Aksi</th>}
                                         </tr>
                                     </thead>
-                                    <tbody className="divide-y divide-surface-variant/20 dark:divide-zinc-800/60">
+                                    <tbody className="divide-y divide-slate-200 dark:divide-[#0f4018]">
                                         {stats.length === 0 ? (
                                             <tr>
                                                 <td colSpan={4} className="px-6 py-12 text-center text-xs text-on-surface-variant italic">
@@ -341,7 +341,7 @@ export default function AdminDocumentClient({
                 </div>
 
                 {/* Search and Filter Section */}
-                <div className="bg-white dark:bg-[#181818] p-4 rounded-2xl border border-surface-variant/40 dark:border-zinc-800 flex flex-col sm:flex-row gap-4 shadow-sm">
+                <div className="bg-white dark:bg-surface p-4 rounded-2xl border border-surface-variant/40 dark:border-surface-variant/80 flex flex-col sm:flex-row gap-4 shadow-sm">
                     <div className="relative flex-1">
                         <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-on-surface-variant" />
                         <Input
@@ -353,7 +353,7 @@ export default function AdminDocumentClient({
                 </div>
 
                 {/* Main Table */}
-                <div className="bg-white dark:bg-[#181818] rounded-2xl shadow-sm border border-surface-variant/40 dark:border-zinc-800 overflow-hidden">
+                <div className="bg-white dark:bg-surface rounded-2xl shadow-sm border border-surface-variant/40 dark:border-surface-variant/80 overflow-hidden">
                     <Table>
                         <TableHeader>
                             <TableRow>
