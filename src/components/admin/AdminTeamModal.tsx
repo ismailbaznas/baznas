@@ -5,6 +5,7 @@
 import { Modal } from "../ui/Modal";
 import { Button } from "../ui/Button";
 import { Input } from "../ui/Input";
+import { FileUploadInput } from "../ui/FileUploadInput";
 import { Database } from "@/types/database.types";
 import { useState, useEffect } from "react";
 import { getSupabaseBrowser } from "@/lib/supabase";
@@ -170,38 +171,32 @@ export default function AdminTeamModal({
           />
         </div>
 
-        {/* Photo URL & Sort Order */}
-        <div className="grid grid-cols-3 gap-4">
-            <div className="col-span-2">
-                <label
-                    htmlFor="photo_url"
-                    className="block text-body-md font-medium mb-1"
-                >
-                    URL Foto Anggota
-                </label>
-                <Input
-                    id="photo_url"
-                    name="photo_url"
-                    value={form.photo_url}
-                    onChange={handleChange}
-                />
-            </div>
-            <div>
-                <label
-                    htmlFor="sort_order"
-                    className="block text-body-md font-medium mb-1"
-                >
-                    Urutan
-                </label>
-                <Input
-                    id="sort_order"
-                    name="sort_order"
-                    type="number"
-                    value={form.sort_order}
-                    onChange={handleChange}
-                    required
-                />
-            </div>
+        {/* Photo Upload & Preview */}
+        <FileUploadInput
+          label="Foto Anggota / Pimpinan"
+          value={form.photo_url}
+          onChange={(url) => setForm((prev) => ({ ...prev, photo_url: url }))}
+          folder="team"
+          acceptType="image"
+          helperText="Upload foto profil pimpinan (.jpg, .png, .webp) atau masukkan URL gambar."
+        />
+
+        {/* Sort Order */}
+        <div>
+          <label
+            htmlFor="sort_order"
+            className="block text-body-md font-medium mb-1"
+          >
+            Urutan Tampilan
+          </label>
+          <Input
+            id="sort_order"
+            name="sort_order"
+            type="number"
+            value={form.sort_order}
+            onChange={handleChange}
+            required
+          />
         </div>
 
         {/* Is Active Checkbox */}
