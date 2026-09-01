@@ -31,14 +31,15 @@ Patuhi standar teknis, batasan keamanan, dan alur kerja verifikasi ini pada seti
 1. **3 Kategori Klien Supabase Terpisah:**
    - `createServerSupabase()`: Menggunakan cookie asinkron untuk Server Component & Server Actions.
    - `getSupabaseBrowser()`: Singleton browser client untuk Client Component (Admin CMS & mutasi).
-   - `createServiceRoleClient()`: HANYA untuk backend API route (`src/app/api/*`). DILARANG KERAS diimpor ke Client Component.
-2. **Google OAuth PKCE Flow:**
+   - `createServiceRoleClient()`: HANYA untuk backend API route (`src/app/api/*`) dan server guard yang terproteksi (`/admin/users`). DILARANG KERAS diimpor ke Client Component (`"use client"`).
+2. **Google OAuth PKCE Flow & Smart Role Routing:**
    - `redirectTo` mengarah ke `${origin}/api/auth/callback`.
    - API callback menukar `code` menjadi session cookie via `exchangeCodeForSession` di server sebelum redirect.
+   - Pengguna non-staff/tamu (`role = null`) otomatis diarahkan ke portal pengguna `/akun`, sedangkan staff/admin diarahkan ke `/admin`.
 3. **Keamanan Formulir Publik:**
    - Formulir kirim pesan publik dan permohonan bantuan WAJIB mengirim data via API Route backend, bukan direct write dari browser anonim.
 4. **3-Layer RBAC Guard:**
-   - Halaman: `await guardAdminPage('module.read')`
+   - Halaman Admin: `await guardAdminPage('module.read')` (Otomatis redirect guest ke `/akun`).
    - API: `await requirePermission('module.action')`
    - UI: `<Can do="module.action">`
 
