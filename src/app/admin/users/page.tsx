@@ -1,7 +1,7 @@
 // src/app/admin/users/page.tsx
 
 import { guardAdminPage } from "@/lib/rbac/server";
-import { createServerSupabase } from "@/lib/server-supabase";
+import { createServiceRoleClient } from "@/lib/server-supabase";
 import AdminUsersClient from "@/components/admin/AdminUsersClient";
 
 export const dynamic = "force-dynamic";
@@ -14,7 +14,7 @@ export default async function AdminUsersPage({
 }: {
   searchParams: Promise<{ page?: string; search?: string }>;
 }) {
-  // Guard 1: Check read permission
+  // Guard 1: Check read permission (Superadmin / user.manage)
   const user = await guardAdminPage("user.manage");
 
   const resolvedParams = await searchParams;
@@ -22,12 +22,11 @@ export default async function AdminUsersPage({
   const search = resolvedParams.search || "";
   const offset = (currentPage - 1) * PAGE_SIZE;
 
-  // Fetch users and roles data using service role client to bypass RLS
-  const supabase = await createServerSupabase();
+  // Use Service Role client to bypass RLS and view all users across the organization
+  const supabase = createServiceRoleClient();
 
   // Fetch all users
-  let query = supabase
-    .from("admin_users")
+  let query = (supabase.from("admin_users") as any)
     .select("*, roles(name)", { count: "exact" })
     .order("created_at", { ascending: false });
 

@@ -26,16 +26,18 @@ export default async function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // Check if the user is authenticated at all (Guard 1 - Part 1)
-  const user = await getRbacUser(); // Call without cookies
+  // Check if the user is authenticated (Guard 1 - Part 1)
+  const user = await getRbacUser();
 
   // If no user object is found (unauthenticated), redirect to login page.
   if (!user) {
     redirect("/login");
   }
 
-  // The guardAdminPage is usually called in the specific page.tsx for permission check.
-  // Here, we just ensure the user is logged in and pass the initial user data to the client.
+  // SECURITY GUARD: If user has no assigned staff/admin role (guest/tamu), redirect to user dashboard
+  if (!user.role) {
+    redirect("/akun");
+  }
 
   return (
     <AdminProvider initialUser={user}>

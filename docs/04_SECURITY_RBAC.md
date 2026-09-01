@@ -79,3 +79,24 @@ if (can("berita.delete")) { ... }
 Formulir pesan kontak (`/kontak`) dan permohonan mustahik (`/layanan`) **DILARANG** melakukan direct insert dari browser klien publik. Seluruh kiriman wajib melalui API Route khusus:
 * `/api/contact` ➔ Melakukan validasi input, sanitasi string, dan insert via Service Role Client.
 * `/api/mustahik` ➔ Memvalidasi NIK, nama, distrik, dan nomor telepon sebelum menyimpan data ke `mustahik_applications`.
+
+---
+
+## 5. PEMISAHAN HAK AKSES: USER TAMU (MASYARAKAT) VS ADMINISTRATOR
+
+```
+┌───────────────────────────────┬──────────────────────────────────┬─────────────────────────────┐
+│ Kategori Pengguna             │ Rute & Dashboard Tujuan          │ Batasan Akses               │
+├───────────────────────────────┼──────────────────────────────────┼─────────────────────────────┤
+│ **Tamu / Masyarakat Umum**    │ `/akun` (Portal Pengguna)        │ • Tidak bisa akses `/admin` │
+│ (Login Google / Email Baru)   │ • Kelola nama lengkap            │ • Akses layanan publik saja │
+│                               │ • Ganti kata sandi               │                             │
+├───────────────────────────────┼──────────────────────────────────┼─────────────────────────────┤
+│ **Staff / Pengurus / Amil**   │ `/admin` (Command Center)        │ • Akses modular sesuai role │
+│ (`superadmin`, `admin`, dll)  │ • `/akun` (Profil Pribadi)       │ • Diberikan izin oleh Admin │
+└───────────────────────────────┴──────────────────────────────────┴─────────────────────────────┘
+```
+
+1. **Auto-Guest Boundary:** Pengguna yang mendaftar secara mandiri melalui Google OAuth atau email publik tanpa penugasan peran dari administrator otomatis berstatus **Tamu** (`role = null`).
+2. **Admin Lockdown:** Seluruh rute `/admin/*` memvalidasi `if (!user.role) redirect("/akun");` untuk mencegah kebocoran panel kontrol ke publik.
+3. **Superadmin Visibility:** Halaman `/admin/users` menggunakan `createServiceRoleClient()` setelah melewati guard `guardAdminPage("user.manage")` agar Super Admin dapat melihat seluruh daftar pengguna dan menetapkan peran secara akurat tanpa terhalang RLS PostgREST.

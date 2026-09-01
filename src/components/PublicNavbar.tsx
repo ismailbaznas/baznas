@@ -25,7 +25,7 @@ export default function PublicNavbar() {
     const pathname = usePathname();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isProfileOpen, setIsProfileOpen] = useState(false);
-    const { user, isLoggedIn, loading, handleLogout } = useAuthSession();
+    const { user, role, isAdmin, isLoggedIn, loading, handleLogout } = useAuthSession();
     const profileRef = useRef<HTMLDivElement>(null);
 
     // Close profile dropdown on click outside
@@ -150,13 +150,24 @@ export default function PublicNavbar() {
                                         </div>
 
                                         <div className="p-1.5 space-y-0.5">
+                                            {isAdmin && (
+                                                <Link
+                                                    href="/admin"
+                                                    onClick={() => setIsProfileOpen(false)}
+                                                    className="flex items-center gap-2.5 px-3 py-2 text-xs font-semibold text-[#1F2937] dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-xl transition-colors"
+                                                >
+                                                    <LayoutDashboard className="w-4 h-4 text-[#075C3B] dark:text-[#8cd6ac]" />
+                                                    <span>Buka Panel Admin</span>
+                                                </Link>
+                                            )}
+
                                             <Link
-                                                href="/admin"
+                                                href="/akun"
                                                 onClick={() => setIsProfileOpen(false)}
                                                 className="flex items-center gap-2.5 px-3 py-2 text-xs font-semibold text-[#1F2937] dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-xl transition-colors"
                                             >
-                                                <LayoutDashboard className="w-4 h-4 text-[#075C3B] dark:text-[#8cd6ac]" />
-                                                <span>Buka Panel Admin</span>
+                                                <User className="w-4 h-4 text-[#075C3B] dark:text-[#8cd6ac]" />
+                                                <span>Akun & Profil Saya</span>
                                             </Link>
 
                                             <button
@@ -265,13 +276,24 @@ export default function PublicNavbar() {
                                     </div>
                                 </div>
 
+                                {isAdmin && (
+                                    <Link
+                                        href="/admin"
+                                        onClick={() => setIsMenuOpen(false)}
+                                        className="flex items-center justify-center gap-2 w-full min-h-[44px] py-2.5 rounded-xl bg-[#075C3B]/10 text-[#075C3B] dark:text-[#8cd6ac] text-sm font-bold"
+                                    >
+                                        <LayoutDashboard className="w-4 h-4" />
+                                        <span>Buka Panel Admin</span>
+                                    </Link>
+                                )}
+
                                 <Link
-                                    href="/admin"
+                                    href="/akun"
                                     onClick={() => setIsMenuOpen(false)}
-                                    className="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg bg-[#075C3B]/10 text-[#075C3B] dark:text-[#8cd6ac] text-sm font-bold"
+                                    className="flex items-center justify-center gap-2 w-full min-h-[44px] py-2.5 rounded-xl bg-slate-100 dark:bg-zinc-800 text-on-surface text-sm font-bold"
                                 >
-                                    <LayoutDashboard className="w-4 h-4" />
-                                    <span>Buka Panel Admin</span>
+                                    <User className="w-4 h-4 text-[#075C3B] dark:text-[#8cd6ac]" />
+                                    <span>Akun & Profil Saya</span>
                                 </Link>
 
                                 <button
@@ -279,7 +301,7 @@ export default function PublicNavbar() {
                                         handleLogout();
                                         setIsMenuOpen(false);
                                     }}
-                                    className="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg border border-zinc-200 dark:border-zinc-700 text-sm font-semibold text-red-600 dark:text-red-400"
+                                    className="flex items-center justify-center gap-2 w-full min-h-[44px] py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-700 text-sm font-semibold text-red-600 dark:text-red-400 cursor-pointer"
                                 >
                                     <LogOut className="w-4 h-4" />
                                     <span>Logout</span>

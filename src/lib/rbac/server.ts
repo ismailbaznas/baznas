@@ -81,6 +81,11 @@ export async function guardAdminPage(
     redirect("/login");
   }
 
+  // SECURITY GUARD: Guest / Non-admin users cannot access admin pages
+  if (!user.role) {
+    redirect("/akun");
+  }
+
   const [module, action] = requiredPermission.split(".") as [string, string];
 
   // Bypass for superadmin
