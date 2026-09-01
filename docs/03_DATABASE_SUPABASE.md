@@ -92,6 +92,29 @@ const { count } = await supabase
 ├───────────────────────────────┼──────────────────────────────────┼─────────────────────────────┤
 │ `createServerSupabase()`      │ `src/lib/server-supabase.ts`     │ Server Component & Actions  │
 │ `getSupabaseBrowser()`        │ `src/lib/supabase.ts`            │ Client Component (Admin CMS)│
-│ `createServiceRoleClient()`   │ `src/lib/service-supabase.ts`    │ Strictly `src/app/api/*`    │
+│ `createServiceRoleClient()`   │ `src/lib/server-supabase.ts`     │ Strictly `src/app/api/*`    │
 └───────────────────────────────┴──────────────────────────────────┴─────────────────────────────┘
+```
+
+---
+
+## 5. UNIFIED HOMEPAGE VIEW (`view_homepage_data`)
+
+Untuk memangkas 5–8 roundtrip kueri terpisah saat pengunjung membuka Beranda, sistem menyediakan SQL View `public.view_homepage_data`:
+
+```tsx
+// ✅ 1 Kueri Tunggal Mengambil Seluruh Kebutuhan Beranda & Footer:
+const { data, error } = await supabase
+  .from("view_homepage_data")
+  .select("*")
+  .single();
+
+// Data otomatis berisi:
+// data.news              -> 3 Berita terbaru + kategori
+// data.programs          -> 3 Program aktif + kategori
+// data.transparency_stats-> Agregat angka real-time
+// data.recent_documents  -> 3 Laporan PDF publik terbaru
+// data.settings          -> Konfigurasi hero, quote, kontak, sosmed
+// data.bank_accounts     -> Rekening bank resmi untuk footer
+// data.quick_links       -> Tautan navigasi footer dinamis
 ```
