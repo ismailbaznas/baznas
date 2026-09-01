@@ -1,5 +1,5 @@
 // src/components/PublicFooter.tsx
-// Pure Server Component - Zero Client Fetch, Zero Waterfall, Instant Render
+// Pure Server Component - Zero Client Fetch, Zero Waterfall, Dynamic + Fallback Ready
 
 import React from 'react';
 import Link from 'next/link';
@@ -7,13 +7,47 @@ import Image from 'next/image';
 import { ThemeToggle } from './ThemeToggle';
 import { Mail, Phone, MapPin, Clock, ShieldCheck, Facebook, Instagram } from 'lucide-react';
 
-const DEFAULT_ACCOUNTS = [
+export interface BankAccountItem {
+  id: string;
+  nama_bank: string;
+  nomor_rekening: string;
+  atas_nama: string;
+  kategori?: string | null;
+}
+
+export interface QuickLinkItem {
+  id: string;
+  label: string;
+  url: string;
+  sort_order?: number | null;
+}
+
+export interface FooterContacts {
+  address?: string;
+  phone?: string;
+  email?: string;
+}
+
+export interface FooterSocials {
+  facebook?: string;
+  instagram?: string;
+  tiktok?: string;
+}
+
+export interface PublicFooterProps {
+  bankAccounts?: BankAccountItem[];
+  quickLinks?: QuickLinkItem[];
+  contacts?: FooterContacts;
+  socials?: FooterSocials;
+}
+
+const DEFAULT_ACCOUNTS: BankAccountItem[] = [
   { id: "ba-1", nama_bank: "BSI", nomor_rekening: "7123456789", atas_nama: "BAZNAS Boven Digoel" },
   { id: "ba-2", nama_bank: "Bank Papua", nomor_rekening: "1020201004567", atas_nama: "BAZNAS Boven Digoel" },
   { id: "ba-3", nama_bank: "BRI", nomor_rekening: "012301004567890", atas_nama: "BAZNAS Boven Digoel" }
 ];
 
-const DEFAULT_LINKS = [
+const DEFAULT_LINKS: QuickLinkItem[] = [
   { id: "ql-1", label: "Tentang Kami", url: "/tentang" },
   { id: "ql-2", label: "Program Unggulan", url: "/program" },
   { id: "ql-3", label: "Transparansi & Laporan", url: "/transparansi" },
@@ -22,13 +56,27 @@ const DEFAULT_LINKS = [
   { id: "ql-6", label: "Kontak & Layanan", url: "/kontak" }
 ];
 
-const CONTACTS = {
+const DEFAULT_CONTACTS: FooterContacts = {
   address: "Jl. Trans Papua KM. 2, Tanah Merah, Boven Digoel, Papua Selatan 99664",
   phone: "+62 812 3456 7890",
   email: "bovendigoel@baznas.go.id"
 };
 
-export default function PublicFooter() {
+export default function PublicFooter({
+  bankAccounts,
+  quickLinks,
+  contacts,
+  socials,
+}: PublicFooterProps = {}) {
+  const accountsToRender = bankAccounts && bankAccounts.length > 0 ? bankAccounts : DEFAULT_ACCOUNTS;
+  const linksToRender = quickLinks && quickLinks.length > 0 ? quickLinks : DEFAULT_LINKS;
+  const contactAddress = contacts?.address || DEFAULT_CONTACTS.address!;
+  const contactPhone = contacts?.phone || DEFAULT_CONTACTS.phone!;
+  const contactEmail = contacts?.email || DEFAULT_CONTACTS.email!;
+  const socialFacebook = socials?.facebook || "https://facebook.com";
+  const socialInstagram = socials?.instagram || "https://instagram.com";
+  const socialTiktok = socials?.tiktok || "https://tiktok.com";
+
   return (
     <footer className="w-full pt-16 pb-12 bg-[#004229] dark:bg-[#031407] text-white transition-colors border-t border-emerald-900/50">
       <div className="max-w-container-max mx-auto px-4 sm:px-8 lg:px-12">
@@ -46,38 +94,44 @@ export default function PublicFooter() {
               Badan Amil Zakat Nasional Kabupaten Boven Digoel. Menguatkan masyarakat melalui tata kelola zakat yang amanah, transparan, dan profesional.
             </p>
             <div className="flex gap-3">
-              <a 
-                className="w-10 h-10 min-w-[40px] min-h-[40px] rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:bg-white hover:text-[#004229] active:scale-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#004229]" 
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook BAZNAS Boven Digoel"
-                title="Facebook BAZNAS Boven Digoel"
-              >
-                <Facebook className="w-4 h-4" />
-              </a>
-              <a 
-                className="w-10 h-10 min-w-[40px] min-h-[40px] rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:bg-white hover:text-[#004229] active:scale-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#004229]" 
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram BAZNAS Boven Digoel"
-                title="Instagram BAZNAS Boven Digoel"
-              >
-                <Instagram className="w-4 h-4" />
-              </a>
-              <a 
-                className="w-10 h-10 min-w-[40px] min-h-[40px] rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:bg-white hover:text-[#004229] active:scale-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#004229]" 
-                href="https://tiktok.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="TikTok BAZNAS Boven Digoel"
-                title="TikTok BAZNAS Boven Digoel"
-              >
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.1z"/>
-                </svg>
-              </a>
+              {socialFacebook && (
+                <a 
+                  className="w-10 h-10 min-w-[40px] min-h-[40px] rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:bg-white hover:text-[#004229] active:scale-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#004229]" 
+                  href={socialFacebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook BAZNAS Boven Digoel"
+                  title="Facebook BAZNAS Boven Digoel"
+                >
+                  <Facebook className="w-4 h-4" />
+                </a>
+              )}
+              {socialInstagram && (
+                <a 
+                  className="w-10 h-10 min-w-[40px] min-h-[40px] rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:bg-white hover:text-[#004229] active:scale-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#004229]" 
+                  href={socialInstagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram BAZNAS Boven Digoel"
+                  title="Instagram BAZNAS Boven Digoel"
+                >
+                  <Instagram className="w-4 h-4" />
+                </a>
+              )}
+              {socialTiktok && (
+                <a 
+                  className="w-10 h-10 min-w-[40px] min-h-[40px] rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:bg-white hover:text-[#004229] active:scale-95 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#004229]" 
+                  href={socialTiktok}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="TikTok BAZNAS Boven Digoel"
+                  title="TikTok BAZNAS Boven Digoel"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.1z"/>
+                  </svg>
+                </a>
+              )}
             </div>
           </div>
 
@@ -89,26 +143,26 @@ export default function PublicFooter() {
             <ul className="space-y-3.5 text-xs text-white/80">
               <li className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-[#ffe088] shrink-0 mt-0.5" />
-                <span className="whitespace-pre-line leading-relaxed">{CONTACTS.address}</span>
+                <span className="whitespace-pre-line leading-relaxed">{contactAddress}</span>
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-[#ffe088] shrink-0" />
                 <a 
-                  href={`https://wa.me/${CONTACTS.phone.replace(/[^0-9]/g, "")}`} 
+                  href={`https://wa.me/${contactPhone.replace(/[^0-9]/g, "")}`} 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="hover:text-white hover:underline transition-colors"
                 >
-                  {CONTACTS.phone}
+                  {contactPhone}
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-[#ffe088] shrink-0" />
                 <a 
-                  href={`mailto:${CONTACTS.email}`}
+                  href={`mailto:${contactEmail}`}
                   className="hover:text-white hover:underline transition-colors"
                 >
-                  {CONTACTS.email}
+                  {contactEmail}
                 </a>
               </li>
               <li className="flex items-start gap-2.5">
@@ -124,7 +178,7 @@ export default function PublicFooter() {
               TAUTAN CEPAT
             </h4>
             <ul className="space-y-2.5 text-xs text-white/80">
-              {DEFAULT_LINKS.map((link) => (
+              {linksToRender.map((link) => (
                 <li key={link.id}>
                   <Link href={link.url} className="hover:text-white hover:underline transition-colors block">
                     {link.label}
@@ -140,7 +194,7 @@ export default function PublicFooter() {
               REKENING RESMI
             </h4>
             <ul className="space-y-3.5 text-xs text-white/80">
-              {DEFAULT_ACCOUNTS.map((acc) => (
+              {accountsToRender.map((acc) => (
                 <li key={acc.id} className="flex flex-col bg-white/5 p-2 rounded border border-white/10">
                   <span className="font-bold text-white tracking-wide">
                     {(acc.nama_bank || "").split('(')[0].trim()} {acc.nomor_rekening}

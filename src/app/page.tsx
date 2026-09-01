@@ -1,5 +1,5 @@
 // src/app/page.tsx
-// Server Component
+// Server Component - Ultra Fast Single View Query with Graceful Fallback
 
 import { createServerSupabase } from "@/lib/server-supabase";
 import HomeClient from "@/components/HomeClient";
@@ -24,7 +24,29 @@ export const metadata: Metadata = {
 export default async function HomePage() {
   const supabase = await createServerSupabase();
 
-  // Execute all 5 queries in parallel via Promise.all (no waterfall)
+  // 1. PRIMARY: Fetch from PostgreSQL Unified View (1 Single Database Request)
+  const { data: viewData, error: viewError } = await (supabase
+    .from("view_homepage_data" as any) as any)
+    .select("*")
+    .maybeSingle();
+
+  if (!viewError && viewData) {
+    const payload = viewData as any;
+    const settings = (payload.settings as Record<string, string>) || {};
+    const transparencyStats = payload.transparency_stats || {};
+
+    return (
+      <HomeClient 
+        news={payload.news || []} 
+        programs={payload.programs || []} 
+        settings={settings}
+        transparencyStats={transparencyStats}
+        recentDocuments={payload.recent_documents || []}
+      />
+    );
+  }
+
+  // 2. FALLBACK: Parallel Multi-Table Query (if view is not yet created in Supabase SQL editor)
   const [
     { data: newsData },
     { data: programData },
