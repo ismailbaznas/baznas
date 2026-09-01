@@ -60,7 +60,7 @@ export async function generateMetadata({
       ]
     : [
         {
-          url: `${baseUrl}/opengraph-image`,
+          url: `${baseUrl}/og.png`,
           width: 1200,
           height: 630,
           alt: item.title,
@@ -86,7 +86,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: `${item.title} — BAZNAS Kabupaten Boven Digoel`,
       description: cleanDescription,
-      images: [item.thumbnail_url || `${baseUrl}/twitter-image`],
+      images: [item.thumbnail_url || `${baseUrl}/og.png`],
     },
   };
 }
