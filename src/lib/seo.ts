@@ -187,7 +187,7 @@ export function getNewsArticleJsonLd({
     ? imageUrl.startsWith("http")
       ? imageUrl
       : `${baseUrl}${imageUrl.startsWith("/") ? "" : "/"}${imageUrl}`
-    : `${baseUrl}/opengraph-image`;
+    : `${baseUrl}/og.png`;
 
   return {
     "@context": "https://schema.org",
@@ -242,7 +242,7 @@ export function getProgramJsonLd({
     ? imageUrl.startsWith("http")
       ? imageUrl
       : `${baseUrl}${imageUrl.startsWith("/") ? "" : "/"}${imageUrl}`
-    : `${baseUrl}/opengraph-image`;
+    : `${baseUrl}/og.png`;
 
   return {
     "@context": "https://schema.org",

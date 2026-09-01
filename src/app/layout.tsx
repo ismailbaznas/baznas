@@ -80,7 +80,7 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     images: [
       {
-        url: "/opengraph-image",
+        url: "/og.png",
         width: 1200,
         height: 630,
         alt: SITE_CONFIG.name,
@@ -91,7 +91,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "BAZNAS Kabupaten Boven Digoel — Badan Amil Zakat Nasional",
     description: SITE_CONFIG.description,
-    images: ["/twitter-image"],
+    images: ["/og.png"],
   },
   robots: {
     index: true,
