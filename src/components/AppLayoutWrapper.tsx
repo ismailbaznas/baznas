@@ -5,11 +5,14 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import PublicNavbar from "@/components/PublicNavbar";
 import PublicFooter from "@/components/PublicFooter";
+import { FooterData } from "@/lib/footer";
 
 export default function AppLayoutWrapper({
   children,
+  footerData,
 }: {
   children: React.ReactNode;
+  footerData?: FooterData;
 }) {
   const pathname = usePathname();
 
@@ -27,7 +30,7 @@ export default function AppLayoutWrapper({
     <div className="flex flex-col min-h-screen">
       <PublicNavbar />
       <main className="flex-grow">{children}</main>
-      <PublicFooter />
+      <PublicFooter {...footerData} />
     </div>
   );
 }
