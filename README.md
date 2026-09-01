@@ -72,6 +72,7 @@ Untuk pedoman teknis mendalam, buka dokumen spesifik di folder `docs/`:
 Proyek ini dilengkapi custom AI Skills yang siap digunakan untuk workflow otomasi:
 
 - **`nextjs-supabase-stack`** — SOP arsitektur Next.js 16 + Supabase SSR.
+- **`nextjs-rbac-security-master`** — Standar arsitektur Role-Based Access Control (RBAC), 3-Layer Defense, penguncian admin, dan pemisahan portal pengguna/tamu.
 - **`nextjs-seo-og-master`** — Standar implementasi Technical SEO, Dynamic OG/Twitter Image, Dynamic Sitemap, Robots, dan JSON-LD.
 - **`nextjs-pwa-master`** — Standar arsitektur Progressive Web App (PWA), Service Worker, Manifest, Icon suite, dan Offline Fallback.
 - **`nextjs-uiux-audit-master`** — Standar audit dan optimasi UI/UX, aksesibilitas WCAG AA, target sentuh mobile, tactile feedback, dan stabilitas viewport.
