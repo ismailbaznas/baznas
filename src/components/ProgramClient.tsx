@@ -250,7 +250,15 @@ export default function ProgramClient({ programs, stats = {} }: ProgramClientPro
 
       {/* Call to Action */}
       <section className="py-16 md:py-24 max-w-[1320px] mx-auto text-center relative overflow-hidden rounded-2xl my-12 bg-[#004229] px-6 md:px-12 shadow-md">
-        <div className="absolute inset-0 z-0 opacity-10 bg-cover bg-center" style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuA3hIUosc_GXcM6p6FbEJx09omdq1OpqVr4H0yLKSXZNfziNNoV-xveRddLrdRLRvhXoDfCV7bss6ByaxPVtrwTu651Fr9a_21scaQLKDFq9-eQmFHcXYEFhcQJyqFs-CavT62EM13ieUV1B93xTOInwlpdv-R-LO-0iMO5sxf9ONqtyVooZQ-2jvG50iml8k3YQnuupig36-gQS7FNKvCocK26NJHu1JlyWR-Xwz-4NLwLmVVfVAMc')" }} />
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3hIUosc_GXcM6p6FbEJx09omdq1OpqVr4H0yLKSXZNfziNNoV-xveRddLrdRLRvhXoDfCV7bss6ByaxPVtrwTu651Fr9a_21scaQLKDFq9-eQmFHcXYEFhcQJyqFs-CavT62EM13ieUV1B93xTOInwlpdv-R-LO-0iMO5sxf9ONqtyVooZQ-2jvG50iml8k3YQnuupig36-gQS7FNKvCocK26NJHu1JlyWR-Xwz-4NLwLmVVfVAMc"
+            alt="Latar Belakang Penyaluran"
+            fill
+            sizes="100vw"
+            className="object-cover opacity-10"
+          />
+        </div>
         <div className="relative z-10 max-w-3xl mx-auto space-y-6 md:space-y-8">
           <h2 className="font-playfair text-3xl md:text-4xl lg:text-5xl font-bold text-white">
             Bersama Membangun Kesejahteraan

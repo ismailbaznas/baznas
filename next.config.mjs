@@ -1,10 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  compress: true,
+  poweredByHeader: false,
   // Using the new Next.js 16 format for external packages
-  serverExternalPackages: ["@supabase/supabase-js", "sharp"], 
+  serverExternalPackages: ["@supabase/supabase-js", "sharp"],
+  experimental: {
+    optimizePackageImports: ["lucide-react", "date-fns"],
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 31536000, // 1 year edge CDN cache
     remotePatterns: [
       {
         protocol: 'https',
