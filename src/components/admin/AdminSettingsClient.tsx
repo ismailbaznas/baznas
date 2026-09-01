@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useAdmin } from "@/lib/admin-context";
 import { Button } from "../ui/Button";
 import { Input } from "../ui/Input";
+import { FileUploadInput } from "../ui/FileUploadInput";
 import { RBACUser } from "@/types/rbac";
 import { Can } from "../rbac/Can";
 import { 
@@ -395,28 +396,14 @@ export default function AdminSettingsClient({
                         <option value="false">Arsip (Nonaktif)</option>
                     </select>
                 ) : isImageUrl ? (
-                    <div className="space-y-2">
-                        <Input
-                            id={setting.key}
-                            name={setting.key}
-                            value={setting.value}
-                            onChange={(e) => handleChange(setting.key, e.target.value)}
-                            disabled={!canUpdate || loading}
-                            placeholder="https://..."
-                        />
-                        {setting.value && (
-                            <div className="mt-2 p-2 border border-surface-variant/40 rounded-lg bg-slate-50">
-                                <p className="text-[10px] text-on-surface-variant mb-1 font-bold uppercase tracking-wider">Preview Gambar</p>
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img 
-                                    src={setting.value} 
-                                    alt="Preview" 
-                                    className="w-full h-32 object-cover rounded-md border border-surface-variant/30"
-                                    onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-                                />
-                            </div>
-                        )}
-                    </div>
+                    <FileUploadInput
+                        label={setting.name}
+                        value={setting.value}
+                        onChange={(url) => handleChange(setting.key, url)}
+                        folder="settings"
+                        acceptType="image"
+                        helperText="Upload gambar (.jpg, .png, .webp) atau masukkan URL gambar."
+                    />
                 ) : isLongText ? (
                     <textarea
                         id={setting.key}

@@ -5,6 +5,7 @@
 import { Modal } from "../ui/Modal";
 import { Button } from "../ui/Button";
 import { Input } from "../ui/Input";
+import { FileUploadInput } from "../ui/FileUploadInput";
 import { Database } from "@/types/database.types";
 import { useState, useEffect } from "react";
 import { getSupabaseBrowser } from "@/lib/supabase";
@@ -198,21 +199,15 @@ export default function AdminProgramModal({
           />
         </div>
 
-        {/* Image URL */}
-        <div>
-          <label
-            htmlFor="image_url"
-            className="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1"
-          >
-            URL Gambar Program
-          </label>
-          <Input
-            id="image_url"
-            name="image_url"
-            value={form.image_url}
-            onChange={handleChange}
-          />
-        </div>
+        {/* Gambar Program Upload & Preview */}
+        <FileUploadInput
+          label="Gambar Ilustrasi Program"
+          value={form.image_url}
+          onChange={(url) => setForm((prev) => ({ ...prev, image_url: url }))}
+          folder="programs"
+          acceptType="image"
+          helperText="Upload file gambar (.jpg, .png, .webp) atau masukkan URL gambar."
+        />
 
         {/* Category & Active */}
         <div className="grid grid-cols-2 gap-4">

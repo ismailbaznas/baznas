@@ -5,6 +5,7 @@
 import { Modal } from "../ui/Modal";
 import { Button } from "../ui/Button";
 import { Input } from "../ui/Input";
+import { FileUploadInput } from "../ui/FileUploadInput";
 import { Database } from "@/types/database.types";
 import { useState, useEffect } from "react";
 import { getSupabaseBrowser } from "@/lib/supabase";
@@ -208,21 +209,15 @@ export default function AdminBeritaModal({
           />
         </div>
 
-        {/* Thumbnail URL */}
-        <div>
-          <label
-            htmlFor="thumbnail_url"
-            className="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1"
-          >
-            URL Thumbnail
-          </label>
-          <Input
-            id="thumbnail_url"
-            name="thumbnail_url"
-            value={form.thumbnail_url}
-            onChange={handleChange}
-          />
-        </div>
+        {/* Thumbnail Image Upload & Preview */}
+        <FileUploadInput
+          label="Gambar / Thumbnail Berita"
+          value={form.thumbnail_url}
+          onChange={(url) => setForm((prev) => ({ ...prev, thumbnail_url: url }))}
+          folder="news"
+          acceptType="image"
+          helperText="Upload file gambar (.jpg, .png, .webp) atau masukkan URL gambar."
+        />
 
         {/* Category & Published At */}
         <div className="grid grid-cols-2 gap-4">

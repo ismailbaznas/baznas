@@ -5,6 +5,7 @@
 import { Modal } from "../ui/Modal";
 import { Button } from "../ui/Button";
 import { Input } from "../ui/Input";
+import { FileUploadInput } from "../ui/FileUploadInput";
 import { Database } from "@/types/database.types";
 import { useState, useEffect } from "react";
 import { getSupabaseBrowser } from "@/lib/supabase";
@@ -165,23 +166,15 @@ export default function AdminDocumentModal({
           />
         </div>
 
-        {/* Document URL */}
-        <div>
-          <label
-            htmlFor="document_url"
-            className="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1"
-          >
-            URL File (Link Supabase Storage/Lainnya)
-          </label>
-          <Input
-            id="document_url"
-            name="document_url"
-            value={form.document_url}
-            onChange={handleChange}
-            required
-          />
-          <p className="text-xs text-on-surface-variant mt-1">Pastikan link file dapat diakses publik (misalnya: file PDF laporan).</p>
-        </div>
+        {/* Dokumen PDF Upload & Preview */}
+        <FileUploadInput
+          label="Dokumen Berkas Transparansi (PDF)"
+          value={form.document_url}
+          onChange={(url) => setForm((prev) => ({ ...prev, document_url: url }))}
+          folder="transparansi"
+          acceptType="pdf"
+          helperText="Upload file laporan format PDF (.pdf) atau masukkan URL dokumen publik."
+        />
 
 
         {/* Type & Year */}
