@@ -7,21 +7,28 @@ import JsonLd from "@/components/seo/JsonLd";
 import PwaRegister from "@/components/pwa/PwaRegister";
 import { SITE_CONFIG, getBaseUrl, getOrganizationJsonLd, getWebSiteJsonLd } from "@/lib/seo";
 
-// Setup Fonts as per Visual Concept Blueprint
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+// Setup Fonts as per Visual Concept Blueprint with display: 'swap' for non-blocking render
+const inter = Inter({ 
+  subsets: ["latin"], 
+  variable: "--font-inter",
+  display: "swap",
+});
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
+  display: "swap",
 });
 const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair",
   weight: ["400", "600", "700", "900"],
+  display: "swap",
 });
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-jakarta",
   weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 export const viewport: Viewport = {
@@ -122,6 +129,8 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <link rel="preconnect" href="https://lh3.googleusercontent.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://lh3.googleusercontent.com" />
         <JsonLd data={[orgJsonLd, websiteJsonLd]} />
       </head>
       <body className="font-jakarta bg-background text-on-background min-h-screen antialiased">

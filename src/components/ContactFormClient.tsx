@@ -413,12 +413,13 @@ export default function ContactFormClient({ settings = {}, initialBankAccounts =
       </section>
 
       {/* Map Section */}
-      <section className="h-[450px] w-full bg-surface-container relative">
-        <div 
-          className="w-full h-full bg-cover bg-center filter grayscale contrast-[1.1] brightness-95" 
-          style={{ 
-            backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuCIstclstn0X5ZLF0obcazSG_SF63fpCpyvc1Jz9ayjLS4Ep7ZucXItsQas6DMC5ErqGQfDH3ijBTOt6icPKBNCsOPmLQehqgGt8bzEuzLCArV-P1h8n8b9lE1PR0_w9kCYoUA677K-hN4P7BZBODLwzxqrguz1SpkrQiLRgYw-ASIhkPlrFPwIG5exS4AXrTHU4m6FKXuSZS_kl2vQVyixuUsC-dok3q8hh8K1mE0DFiIKXy4tSfv8')" 
-          }}
+      <section className="h-[450px] w-full bg-surface-container relative overflow-hidden">
+        <Image 
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIstclstn0X5ZLF0obcazSG_SF63fpCpyvc1Jz9ayjLS4Ep7ZucXItsQas6DMC5ErqGQfDH3ijBTOt6icPKBNCsOPmLQehqgGt8bzEuzLCArV-P1h8n8b9lE1PR0_w9kCYoUA677K-hN4P7BZBODLwzxqrguz1SpkrQiLRgYw-ASIhkPlrFPwIG5exS4AXrTHU4m6FKXuSZS_kl2vQVyixuUsC-dok3q8hh8K1mE0DFiIKXy4tSfv8"
+          alt="Peta Lokasi Kantor BAZNAS Boven Digoel"
+          fill
+          sizes="100vw"
+          className="object-cover filter grayscale contrast-[1.1] brightness-95"
         />
         <div className="absolute inset-0 bg-black/5 flex items-center justify-center">
           <a 

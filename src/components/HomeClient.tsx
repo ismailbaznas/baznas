@@ -159,11 +159,13 @@ export default function HomeClient({ news = [], programs = [], settings = {}, tr
       <header className="relative w-full h-[600px] md:h-[680px] bg-[#1F2937] overflow-hidden flex items-center">
         {/* Hero Background Image & Gradient */}
         <div className="absolute inset-0 z-0">
-          <div
-            className="w-full h-full bg-cover bg-center opacity-60 scale-105 transform transition-transform duration-1000"
-            style={{
-              backgroundImage: `url('${heroImageUrl || DEFAULT_HERO_IMAGE}')`,
-            }}
+          <Image
+            src={heroImageUrl || DEFAULT_HERO_IMAGE}
+            alt="BAZNAS Kabupaten Boven Digoel"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover opacity-60 scale-105 transform transition-transform duration-1000"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#1F2937] via-[#1F2937]/80 to-transparent" />
         </div>
@@ -443,12 +445,13 @@ export default function HomeClient({ news = [], programs = [], settings = {}, tr
         <section className="max-w-container-max mx-auto px-4 sm:px-8 lg:px-12 py-16 sm:py-20">
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 bg-white dark:bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800 p-4 sm:p-6 lg:p-8">
             {story.url_foto && (
-              <div className="lg:w-[55%] min-h-[320px] sm:min-h-[400px] lg:min-h-[440px] relative rounded-xl overflow-hidden shadow-inner">
-                <div
-                  className="absolute inset-0 bg-cover bg-center"
-                  style={{
-                    backgroundImage: `url('${story.url_foto}')`,
-                  }}
+              <div className="lg:w-[55%] min-h-[320px] sm:min-h-[400px] lg:min-h-[440px] relative rounded-xl overflow-hidden shadow-inner bg-slate-100 dark:bg-zinc-800">
+                <Image
+                  src={story.url_foto}
+                  alt={story.title || "Kisah Inspiratif Mustahik"}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 55vw"
+                  className="object-cover"
                 />
               </div>
             )}
