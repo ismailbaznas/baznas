@@ -6,6 +6,7 @@ import AppLayoutWrapper from "@/components/AppLayoutWrapper";
 import JsonLd from "@/components/seo/JsonLd";
 import PwaRegister from "@/components/pwa/PwaRegister";
 import { SITE_CONFIG, getBaseUrl, getOrganizationJsonLd, getWebSiteJsonLd } from "@/lib/seo";
+import { getFooterData } from "@/lib/footer";
 
 // Setup Fonts as per Visual Concept Blueprint with display: 'swap' for non-blocking render
 const inter = Inter({ 
@@ -113,13 +114,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   const orgJsonLd = getOrganizationJsonLd();
   const websiteJsonLd = getWebSiteJsonLd();
+  const footerData = await getFooterData();
 
   return (
     <html
@@ -136,7 +138,7 @@ export default function RootLayout({
       <body className="font-jakarta bg-background text-on-background min-h-screen antialiased">
         <PwaRegister />
         <ThemeProvider>
-          <AppLayoutWrapper>{children}</AppLayoutWrapper>
+          <AppLayoutWrapper footerData={footerData}>{children}</AppLayoutWrapper>
         </ThemeProvider>
       </body>
     </html>
