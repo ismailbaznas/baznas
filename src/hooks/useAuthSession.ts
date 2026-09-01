@@ -6,23 +6,46 @@ import { useEffect, useState } from "react";
 
 export function useAuthSession() {
   const [user, setUser] = useState<User | null>(null);
+  const [role, setRole] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const supabase = getSupabaseBrowser();
+
+  const fetchRole = async (email?: string | null) => {
+    if (!email) {
+      setRole(null);
+      return;
+    }
+    try {
+      const { data } = await supabase.rpc("get_rbac_user", {
+        user_email: email,
+      } as any);
+      const userRole = data && (data as any[])[0]?.role;
+      setRole(userRole || null);
+    } catch {
+      setRole(null);
+    }
+  };
 
   useEffect(() => {
     // Initial fetch
     supabase.auth.getUser().then(({ data: { user: currentUser } }) => {
       setUser(currentUser);
-      setLoading(false);
+      if (currentUser?.email) {
+        fetchRole(currentUser.email).finally(() => setLoading(false));
+      } else {
+        setLoading(false);
+      }
     });
 
     // Listener for auth state changes
     const { data: authListener } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        if (event === "SIGNED_IN" || event === "INITIAL_SESSION") {
-          setUser(session?.user ?? null);
-        } else if (event === "SIGNED_OUT") {
-          setUser(null);
+      async (event, session) => {
+        const u = session?.user ?? null;
+        setUser(u);
+        if (u?.email) {
+          await fetchRole(u.email);
+        } else {
+          setRole(null);
         }
       }
     );
@@ -35,8 +58,17 @@ export function useAuthSession() {
   const handleLogout = async () => {
     setLoading(true);
     await supabase.auth.signOut();
-    // Supabase listener will update the user state to null
+    setUser(null);
+    setRole(null);
+    setLoading(false);
   };
 
-  return { user, loading, handleLogout, isLoggedIn: !!user };
+  return { 
+    user, 
+    role, 
+    isAdmin: Boolean(role), 
+    loading, 
+    handleLogout, 
+    isLoggedIn: !!user 
+  };
 }

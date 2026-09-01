@@ -15,6 +15,11 @@ export default async function AdminDashboardPage() {
     redirect("/login");
   }
 
+  // SECURITY GUARD: If user has no staff/admin role (guest/tamu), redirect to user dashboard
+  if (!user.role) {
+    redirect("/akun");
+  }
+
   const supabase = await createServerSupabase();
 
   // Fetch real-time aggregate counts in parallel

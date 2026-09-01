@@ -2,16 +2,15 @@
 
 import { redirect } from "next/navigation";
 import LoginFormClient from "@/components/auth/LoginFormClient";
-import { createServerSupabase } from "@/lib/server-supabase";
-import RedirectClient from "@/components/RedirectClient";
+import { getRbacUser } from "@/lib/rbac/server";
 import type { Metadata } from "next";
 
 // Required for dynamic behavior
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Masuk Staf & Amil",
-  description: "Portal masuk staf, pengurus, dan amil BAZNAS Kabupaten Boven Digoel.",
+  title: "Masuk Akun & Administrator",
+  description: "Portal masuk akun pengguna, staf, dan pengurus BAZNAS Kabupaten Boven Digoel.",
   robots: {
     index: false,
     follow: false,
@@ -19,16 +18,14 @@ export const metadata: Metadata = {
 };
 
 export default async function LoginPage() {
-  const supabase = await createServerSupabase();
-
-  // Check if the user is already logged in
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const user = await getRbacUser();
 
   if (user) {
-    // If logged in, use client component to force a clean, client-side navigation
-    return <RedirectClient />;
+    if (user.role) {
+      redirect("/admin");
+    } else {
+      redirect("/akun");
+    }
   }
 
   return (

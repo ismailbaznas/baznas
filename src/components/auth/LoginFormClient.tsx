@@ -20,46 +20,65 @@ export default function LoginFormClient() {
   const supabase = getSupabaseBrowser();
   const router = useRouter();
 
+  const checkUserRoleAndRedirect = async (userEmail?: string | null) => {
+    if (!userEmail) {
+      router.push("/akun");
+      return;
+    }
+    try {
+      const { data: rbacData } = await supabase.rpc("get_rbac_user", {
+        user_email: userEmail,
+      } as any);
+      const role = rbacData && (rbacData as any[])[0]?.role;
+      if (role) {
+        router.push("/admin");
+      } else {
+        router.push("/akun");
+      }
+    } catch {
+      router.push("/akun");
+    }
+  };
+
   // Listen for auth change and redirect
   useEffect(() => {
     // Initial check on mount
     supabase.auth.getSession().then(({ data: { session } }) => {
-        if (session) {
-            router.push("/admin");
-        }
+      if (session?.user?.email) {
+        checkUserRoleAndRedirect(session.user.email);
+      }
     });
 
     // Listener for sign in events from OAuth popup
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-        if (event === 'SIGNED_IN' && session) {
-            router.push("/admin");
-        }
+      if (event === 'SIGNED_IN' && session?.user?.email) {
+        checkUserRoleAndRedirect(session.user.email);
+      }
     });
 
     return () => {
       subscription.unsubscribe();
     };
   }, [router, supabase]);
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
 
-    const { error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
 
     if (error) {
       setError(error.message);
+      setLoading(false);
     } else {
-      // Successful login, wait briefly for cookies to write, then redirect to admin page
       await supabase.auth.getSession();
-      await new Promise((resolve) => setTimeout(resolve, 500));
-      router.push("/admin");
+      await new Promise((resolve) => setTimeout(resolve, 300));
+      await checkUserRoleAndRedirect(data.user?.email || email);
     }
-
-    setLoading(false);
   };
 
   const handleGoogleLogin = async () => {
@@ -95,10 +114,10 @@ export default function LoginFormClient() {
         </div>
         <div>
           <h1 className="text-2xl md:text-3xl font-playfair font-bold text-primary dark:text-white">
-            Panel Administrator
+            Masuk ke Akun
           </h1>
           <p className="text-xs text-[#5B6470] dark:text-zinc-400 mt-1">
-            Portal Administrasi Resmi BAZNAS Kabupaten Boven Digoel
+            Portal Layanan Pengguna & Administrator BAZNAS Kabupaten Boven Digoel
           </p>
         </div>
       </div>
