@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
 const SETTINGS_KEYS = [
     // Umum & Kontak
     { key: "site_name", name: "Nama Situs", default: "BAZNAS Kabupaten Boven Digoel" },
-    { key: "contact_phone", name: "Telepon Kontak / WA", default: "+62 812 3456 7890" },
+    { key: "contact_phone", name: "Telepon Kontak / WA", default: "+62 812-1505-8989" },
     { key: "contact_email", name: "Email Kontak", default: "bovendigoel@baznas.go.id" },
     { key: "contact_address", name: "Alamat Kantor", default: "Jl. Trans Papua KM. 2, Tanah Merah, Boven Digoel" },
     

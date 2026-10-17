@@ -28,7 +28,7 @@ const DEFAULT_LINKS: QuickLinkItem[] = [
 
 const DEFAULT_CONTACTS: FooterContacts = {
   address: "Jl. Trans Papua KM. 2, Tanah Merah, Boven Digoel, Papua Selatan 99664",
-  phone: "+62 812 3456 7890",
+  phone: "+62 812 1505 8989",
   email: "bovendigoel@baznas.go.id"
 };
 

@@ -1,5 +1,6 @@
 // src/app/layanan/page.tsx
 
+import { createServerSupabase } from "@/lib/server-supabase";
 import LayananClient from "@/components/LayananClient";
 import type { Metadata } from "next";
 import JsonLd from "@/components/seo/JsonLd";
@@ -22,7 +23,22 @@ export const metadata: Metadata = {
   },
 };
 
-export default function LayananPage() {
+export default async function LayananPage() {
+    const supabase = await createServerSupabase();
+
+    // Fetch site settings and active bank accounts in parallel
+    const [settingsRes, accountsRes] = await Promise.all([
+        supabase.from("site_settings").select("*"),
+        supabase.from("bank_accounts").select("*").eq("status", "active").order("created_at", { ascending: true })
+    ]);
+
+    const settingsMap = settingsRes.data?.reduce((acc: Record<string, string>, setting: any) => {
+        acc[setting.key] = setting.value && typeof setting.value === "object" && "value" in setting.value 
+            ? String(setting.value.value) 
+            : String(setting.value);
+        return acc;
+    }, {} as Record<string, string>) || {};
+
     const breadcrumbJsonLd = getBreadcrumbJsonLd([
       { name: "Beranda", url: "/" },
       { name: "Layanan", url: "/layanan" },
@@ -31,7 +47,10 @@ export default function LayananPage() {
     return (
         <>
             <JsonLd data={breadcrumbJsonLd} />
-            <LayananClient />
+            <LayananClient 
+                bankAccounts={accountsRes.data || []} 
+                settings={settingsMap} 
+            />
         </>
     );
 }

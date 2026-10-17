@@ -21,3 +21,6 @@ pnpm-debug.log*
 # IDE specific files
 .vscode
 .idea
+
+# Build caches
+*.tsbuildinfo

@@ -16,17 +16,45 @@ import {
   ArrowRight,
   ClipboardCheck,
   CheckCircle2,
-  AlertTriangle
+  AlertTriangle,
+  Building,
+  Copy
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export default function LayananClient() {
+export interface BankAccountItem {
+  id: string;
+  nama_bank: string;
+  nomor_rekening: string;
+  atas_nama: string;
+  kategori?: string | null;
+  status?: string | null;
+}
+
+interface LayananClientProps {
+  bankAccounts?: BankAccountItem[];
+  settings?: Record<string, string>;
+}
+
+export default function LayananClient({ bankAccounts = [], settings = {} }: LayananClientProps) {
   const [calculatorTab, setCalculatorTab] = useState<"penghasilan" | "maal">("penghasilan");
   const [income, setFormIncome] = useState("");
   const [otherIncome, setFormOtherIncome] = useState("");
   const [maalWealth, setMaalWealth] = useState("");
   const [calculatedZakat, setCalculatedZakat] = useState<number | null>(null);
   const [nisabPassed, setNisabPassed] = useState<boolean | null>(null);
+  const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
+
+  const contactPhone = settings.contact_phone || "+62 812 3456 7890";
+  const cleanPhone = contactPhone.replace(/[^0-9]/g, "");
+  const formattedWa = cleanPhone.startsWith("0") ? "62" + cleanPhone.slice(1) : cleanPhone;
+  const waLink = `https://wa.me/${formattedWa || "6281234567890"}`;
+
+  const handleCopy = (num: string, index: number) => {
+    navigator.clipboard.writeText(num);
+    setCopiedIndex(index);
+    setTimeout(() => setCopiedIndex(null), 2000);
+  };
 
   // Mustahik form state
   const [mustahikForm, setMustahikForm] = useState({
@@ -176,7 +204,7 @@ export default function LayananClient() {
               desc: "Butuh penjelasan lebih lanjut? Tim amil zakat kami siap menjawab pertanyaan Anda secara responsif via chat WhatsApp resmi.",
               icon: PhoneCall,
               action: "Hubungi Amil WA",
-              link: "https://wa.me/6281234567890"
+              link: waLink
             }
           ].map((service, idx) => {
             const Icon = service.icon;
@@ -360,7 +388,7 @@ export default function LayananClient() {
 
             {/* Calculation Result */}
             {calculatedZakat !== null && (
-              <div className="mt-8 p-6 bg-slate-50 dark:bg-slate-800/50 border border-surface-variant/50 dark:border-outline/10 rounded-xl space-y-4">
+              <div className="mt-8 p-6 bg-slate-50 dark:bg-slate-800/50 border border-surface-variant/50 dark:border-outline/10 rounded-xl space-y-5">
                 {nisabPassed ? (
                   <div className="space-y-2">
                     <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 font-bold font-jakarta text-sm">
@@ -383,6 +411,64 @@ export default function LayananClient() {
                     <p className="font-jakarta text-xs text-[#5B6470] dark:text-slate-300 leading-relaxed">
                       Pendapatan atau nilai aset Anda berada di bawah batas Nisab tahun berjalan. Anda belum memiliki kewajiban zakat, tetapi sangat dianjurkan untuk menyempurnakan kebaikan dengan menyisihkan Infak atau Sedekah sukarela guna kemaslahatan sesama.
                     </p>
+                  </div>
+                )}
+
+                {/* Rekening Resmi BAZNAS Boven Digoel (Dinamis dari Database) */}
+                {bankAccounts && bankAccounts.length > 0 && (
+                  <div className="pt-4 border-t border-surface-variant/40 dark:border-outline/10 space-y-3">
+                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#004229] dark:text-[#8cd6ac]">
+                      <Building className="w-4 h-4" />
+                      <span>Rekening Resmi Penyaluran BAZNAS:</span>
+                    </div>
+                    <div className="space-y-2.5">
+                      {bankAccounts.map((acc, accIdx) => (
+                        <div 
+                          key={acc.id || accIdx}
+                          className="p-3.5 bg-white dark:bg-slate-900 border border-surface-variant/60 dark:border-outline/20 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs shadow-sm"
+                        >
+                          <div>
+                            <span className="font-bold text-[#1F2937] dark:text-white block text-sm">
+                              {acc.nama_bank} {acc.kategori ? `— Rekening ${acc.kategori}` : ""}
+                            </span>
+                            <span className="font-mono text-sm font-bold text-[#075C3B] dark:text-[#ffe088] tracking-wide">
+                              {acc.nomor_rekening}
+                            </span>
+                            <span className="text-[#5B6470] dark:text-slate-400 text-xs block mt-0.5">
+                              a.n. {acc.atas_nama}
+                            </span>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => handleCopy(acc.nomor_rekening, accIdx)}
+                            className="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 font-semibold transition-colors cursor-pointer text-xs shrink-0 self-start sm:self-auto border border-emerald-500/20"
+                          >
+                            {copiedIndex === accIdx ? (
+                              <>
+                                <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                                <span>Tersalin!</span>
+                              </>
+                            ) : (
+                              <>
+                                <Copy className="w-3.5 h-3.5" />
+                                <span>Salin No. Rek</span>
+                              </>
+                            )}
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[11px] text-[#5B6470] dark:text-slate-400">
+                      <span>*Konfirmasi bukti transfer ke nomor WhatsApp resmi amil zakat.</span>
+                      <a 
+                        href={waLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#075C3B] dark:text-[#8cd6ac] font-bold hover:underline inline-flex items-center gap-1"
+                      >
+                        Konfirmasi WA Sekarang &rarr;
+                      </a>
+                    </div>
                   </div>
                 )}
               </div>

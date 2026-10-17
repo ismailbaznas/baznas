@@ -62,46 +62,44 @@ const DUMMY_NEWS = [
   },
 ];
 
+import {
+  PillarSehatIcon,
+  PillarCerdasIcon,
+  PillarMandiriIcon,
+  PillarPeduliIcon,
+  PillarTaqwaIcon,
+} from "@/components/icons/PillarIcons";
+
 const FIVE_PILLARS = [
   {
     id: "sehat",
     name: "Boven Digoel Sehat",
     description: "Bantuan kesehatan dan gizi masyarakat.",
-    icon: HeartPulse,
-    color: "text-rose-600 dark:text-rose-400",
-    bg: "bg-rose-50 dark:bg-rose-950/40",
+    icon: PillarSehatIcon,
   },
   {
     id: "cerdas",
     name: "Boven Digoel Cerdas",
     description: "Beasiswa dan dukungan pendidikan.",
-    icon: GraduationCap,
-    color: "text-blue-600 dark:text-blue-400",
-    bg: "bg-blue-50 dark:bg-blue-950/40",
+    icon: PillarCerdasIcon,
   },
   {
     id: "mandiri",
     name: "Boven Digoel Mandiri",
     description: "Pemberdayaan ekonomi masyarakat.",
-    icon: Briefcase,
-    color: "text-emerald-600 dark:text-emerald-400",
-    bg: "bg-emerald-50 dark:bg-emerald-950/40",
+    icon: PillarMandiriIcon,
   },
   {
     id: "peduli",
     name: "Boven Digoel Peduli",
     description: "Bantuan sosial dan kebencanaan.",
-    icon: LifeBuoy,
-    color: "text-amber-600 dark:text-amber-400",
-    bg: "bg-amber-50 dark:bg-amber-950/40",
+    icon: PillarPeduliIcon,
   },
   {
     id: "taqwa",
     name: "Boven Digoel Taqwa",
     description: "Pembinaan keagamaan dan dakwah.",
-    icon: Building2,
-    color: "text-teal-600 dark:text-teal-400",
-    bg: "bg-teal-50 dark:bg-teal-950/40",
+    icon: PillarTaqwaIcon,
   },
 ];
 
@@ -282,10 +280,10 @@ export default function HomeClient({ news = [], programs = [], settings = {}, tr
             return (
               <div
                 key={pilar.id}
-                className="bg-white dark:bg-zinc-800/80 border border-zinc-200 dark:border-zinc-700/80 rounded-xl p-7 hover:border-[#075C3B] dark:hover:border-[#8cd6ac] hover:shadow-md transition-all group flex flex-col items-center text-center"
+                className="bg-white dark:bg-zinc-800/80 border border-zinc-200/80 dark:border-zinc-700/80 rounded-xl p-7 hover:border-[#075C3B] dark:hover:border-[#8cd6ac] hover:shadow-md transition-all group flex flex-col items-center text-center"
               >
-                <div className="w-14 h-14 rounded-full bg-[#075C3B]/10 dark:bg-[#075C3B]/25 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:bg-[#075C3B] transition-all">
-                  <Icon className="w-7 h-7 text-[#075C3B] dark:text-[#8cd6ac] group-hover:text-white transition-colors" />
+                <div className="w-14 h-14 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <Icon className="w-11 h-11 text-[#075C3B] dark:text-[#8cd6ac] transition-colors" />
                 </div>
                 <h3 className="font-playfair text-lg font-bold text-[#1F2937] dark:text-white mb-2.5 group-hover:text-[#075C3B] dark:group-hover:text-[#8cd6ac] transition-colors">
                   {pilar.name}

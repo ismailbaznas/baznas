@@ -31,7 +31,7 @@ interface ContactFormClientProps {
 
 export default function ContactFormClient({ settings = {}, initialBankAccounts = [] }: ContactFormClientProps) {
   const contactAddress = settings.contact_address || "Jl. Trans Papua KM. 2, Tanah Merah, Kabupaten Boven Digoel, Papua Selatan";
-  const contactPhone = settings.contact_phone || "+62 812 3456 7890";
+  const contactPhone = settings.contact_phone || "+62 812 1505 8989";
   const contactEmail = settings.contact_email || "bovendigoel@baznas.go.id";
   const cleanPhoneForWa = contactPhone.replace(/[^0-9]/g, "");
 

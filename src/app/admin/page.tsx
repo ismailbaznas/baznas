@@ -22,7 +22,7 @@ export default async function AdminDashboardPage() {
 
   const supabase = await createServerSupabase();
 
-  // Fetch real-time aggregate counts in parallel
+  // Fetch real-time aggregate counts & transparency stats in parallel
   const [
     { count: newsCount },
     { count: programCount },
@@ -32,7 +32,8 @@ export default async function AdminDashboardPage() {
     { count: newBantuanCount },
     { count: approvedBantuanCount },
     { count: totalBantuanCount },
-    { count: docsCount }
+    { count: docsCount },
+    { data: statsData }
   ] = await Promise.all([
     supabase.from("news").select("*", { count: "exact", head: true }),
     supabase.from("programs").select("*", { count: "exact", head: true }),
@@ -42,7 +43,8 @@ export default async function AdminDashboardPage() {
     supabase.from("mustahik_applications").select("*", { count: "exact", head: true }).eq("status", "new"),
     supabase.from("mustahik_applications").select("*", { count: "exact", head: true }).eq("status", "approved"),
     supabase.from("mustahik_applications").select("*", { count: "exact", head: true }),
-    supabase.from("documents").select("*", { count: "exact", head: true })
+    supabase.from("documents").select("*", { count: "exact", head: true }),
+    supabase.from("transparency_stats").select("*")
   ]);
 
   const counts = {
@@ -57,6 +59,11 @@ export default async function AdminDashboardPage() {
     docsCount: docsCount || 0,
   };
 
+  const transparencyStats = statsData?.reduce((acc: Record<string, string>, item: any) => {
+    acc[item.key] = item.value;
+    return acc;
+  }, {}) || {};
+
   return (
     <ExecutiveDashboardClient
       user={{
@@ -65,6 +72,7 @@ export default async function AdminDashboardPage() {
         role: user.role,
       }}
       counts={counts}
+      transparencyStats={transparencyStats}
     />
   );
 }

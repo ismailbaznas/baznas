@@ -2,15 +2,18 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { 
-  HeartPulse, 
-  GraduationCap, 
-  Briefcase, 
-  LifeBuoy, 
-  Building2, 
+  Building2,
   ArrowRight, 
   Sparkles,
   Inbox
 } from "lucide-react";
+import {
+  PillarSehatIcon,
+  PillarCerdasIcon,
+  PillarMandiriIcon,
+  PillarPeduliIcon,
+  PillarTaqwaIcon,
+} from "@/components/icons/PillarIcons";
 
 interface ProgramItem {
   id: string;
@@ -33,41 +36,31 @@ const FIVE_PILLARS = [
     id: "sehat",
     name: "Boven Digoel Sehat",
     description: "Program bantuan kesehatan, pemenuhan gizi untuk balita stunting, penyediaan sanitasi yang layak, dan pendampingan medis bagi keluarga kurang mampu.",
-    icon: HeartPulse,
-    color: "text-rose-600 dark:text-rose-400",
-    bg: "bg-rose-50 dark:bg-rose-950/20 hover:border-rose-300 dark:hover:border-rose-800"
+    icon: PillarSehatIcon,
   },
   {
     id: "cerdas",
     name: "Boven Digoel Cerdas",
     description: "Pemberian beasiswa pendidikan, penyediaan fasilitas belajar mengajar, dan program pemberantasan buta aksara untuk generasi penerus yang unggul.",
-    icon: GraduationCap,
-    color: "text-blue-600 dark:text-blue-400",
-    bg: "bg-blue-50 dark:bg-blue-950/20 hover:border-blue-300 dark:hover:border-blue-800"
+    icon: PillarCerdasIcon,
   },
   {
     id: "mandiri",
     name: "Boven Digoel Mandiri",
     description: "Bantuan modal usaha mikro, pelatihan keterampilan kewirausahaan, dan pendampingan ekonomi produktif untuk melepaskan status mustahik menjadi muzaki.",
-    icon: Briefcase,
-    color: "text-emerald-600 dark:text-emerald-400",
-    bg: "bg-emerald-50 dark:bg-emerald-950/20 hover:border-emerald-300 dark:hover:border-emerald-800"
+    icon: PillarMandiriIcon,
   },
   {
     id: "peduli",
     name: "Boven Digoel Peduli",
     description: "Respon cepat tanggap bencana, bantuan biaya hidup dasar bagi kaum dhuafa, dan program renovasi rumah tidak layak huni (RTLH) di pedalaman.",
-    icon: LifeBuoy,
-    color: "text-amber-600 dark:text-amber-400",
-    bg: "bg-amber-50 dark:bg-amber-950/20 hover:border-amber-300 dark:hover:border-amber-800"
+    icon: PillarPeduliIcon,
   },
   {
     id: "taqwa",
     name: "Boven Digoel Taqwa",
     description: "Pembinaan rohani islam, dukungan operasional masjid/mushola di daerah 3T, kafalah da'i pedalaman, dan peningkatan pemahaman keagamaan.",
-    icon: Building2,
-    color: "text-purple-600 dark:text-purple-400",
-    bg: "bg-purple-50 dark:bg-purple-950/20 hover:border-purple-300 dark:hover:border-purple-800"
+    icon: PillarTaqwaIcon,
   }
 ];
 
@@ -132,12 +125,12 @@ export default function ProgramClient({ programs, stats = {} }: ProgramClientPro
             return (
               <div 
                 key={pillar.id}
-                className={`p-8 rounded-2xl border border-surface-variant/60 dark:border-outline/20 transition-all duration-300 group flex flex-col h-full bg-white dark:bg-slate-900 shadow-sm hover:shadow-md ${pillar.bg}`}
+                className="p-8 rounded-2xl border border-surface-variant/60 dark:border-outline/20 transition-all duration-300 group flex flex-col h-full bg-white dark:bg-slate-900 shadow-sm hover:shadow-md hover:border-[#075C3B] dark:hover:border-[#8cd6ac]"
               >
-                <div className="w-14 h-14 bg-white dark:bg-slate-800 rounded-xl flex items-center justify-center mb-6 shadow-sm border border-surface-variant/40 dark:border-outline/10 group-hover:border-[#D4AF37] transition-colors">
-                  <Icon className={`w-7 h-7 ${pillar.color}`} />
+                <div className="w-16 h-16 bg-white dark:bg-slate-800 rounded-xl flex items-center justify-center mb-6 shadow-sm border border-surface-variant/40 dark:border-outline/10 group-hover:border-[#D4AF37] transition-all">
+                  <Icon className="w-10 h-10 text-[#075C3B] dark:text-[#8cd6ac] group-hover:scale-105 transition-transform duration-300" />
                 </div>
-                <h3 className="font-playfair text-2xl font-bold text-[#004229] dark:text-white mb-3">
+                <h3 className="font-playfair text-2xl font-bold text-[#004229] dark:text-white mb-3 group-hover:text-[#075C3B] dark:group-hover:text-[#8cd6ac] transition-colors">
                   {pillar.name}
                 </h3>
                 <p className="font-jakarta text-sm text-[#5B6470] dark:text-slate-300 leading-relaxed flex-grow">

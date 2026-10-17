@@ -43,6 +43,7 @@ interface ExecutiveDashboardProps {
     totalBantuanCount: number;
     docsCount: number;
   };
+  transparencyStats?: Record<string, string>;
 }
 
 // Initial Data for Visualizations
@@ -67,7 +68,7 @@ const TOP_DISTRIK_DATA = [
   { distrik: "Sesnuk", nominal: 85, mustahik: 160 },
 ];
 
-export default function ExecutiveDashboardClient({ user, counts }: ExecutiveDashboardProps) {
+export default function ExecutiveDashboardClient({ user, counts, transparencyStats }: ExecutiveDashboardProps) {
   // Filter drawer state
   const [filterOpen, setFilterOpen] = useState(false);
   const [selectedYear, setSelectedYear] = useState("2026");
@@ -148,13 +149,13 @@ export default function ExecutiveDashboardClient({ user, counts }: ExecutiveDash
             </div>
           </div>
           <p className="text-2xl font-extrabold text-[#004229] dark:text-white font-playfair tracking-tight">
-            Rp 2.450 M
+            {transparencyStats?.dana_dihimpun || "Rp 2,3 Miliar"}
           </p>
           <div className="flex items-center gap-1.5 mt-2 text-[11px]">
             <span className="inline-flex items-center font-bold text-emerald-800 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-500/10 px-1.5 py-0.5 rounded">
-              <ArrowUpRight className="w-3 h-3 mr-0.5" /> 12,4%
+              <ArrowUpRight className="w-3 h-3 mr-0.5" /> Real-Time
             </span>
-            <span className="text-slate-500 dark:text-slate-400">vs tahun lalu</span>
+            <span className="text-slate-500 dark:text-slate-400">tercatat di database</span>
           </div>
         </div>
 
@@ -169,13 +170,13 @@ export default function ExecutiveDashboardClient({ user, counts }: ExecutiveDash
             </div>
           </div>
           <p className="text-2xl font-extrabold text-[#004229] dark:text-white font-playfair tracking-tight">
-            Rp 2.300 M
+            {transparencyStats?.dana_disalurkan || "Rp 2,30 Miliar"}
           </p>
           <div className="flex items-center gap-1.5 mt-2 text-[11px]">
             <span className="inline-flex items-center font-bold text-amber-800 dark:text-[#ffe088] bg-amber-100 dark:bg-[#D4AF37]/10 px-1.5 py-0.5 rounded">
-              93,8%
+              Aktif
             </span>
-            <span className="text-slate-500 dark:text-slate-400">pagu target RKAT</span>
+            <span className="text-slate-500 dark:text-slate-400">tercatat di database</span>
           </div>
         </div>
 
@@ -190,13 +191,13 @@ export default function ExecutiveDashboardClient({ user, counts }: ExecutiveDash
             </div>
           </div>
           <p className="text-2xl font-extrabold text-[#004229] dark:text-white font-playfair tracking-tight">
-            4.850 Jiwa
+            {transparencyStats?.mustahik_terlayani || "4.850 Jiwa"}
           </p>
           <div className="flex items-center gap-1.5 mt-2 text-[11px]">
             <span className="inline-flex items-center font-bold text-cyan-800 dark:text-cyan-400 bg-cyan-100 dark:bg-cyan-500/10 px-1.5 py-0.5 rounded">
-              <ArrowUpRight className="w-3 h-3 mr-0.5" /> 15,2%
+              <ArrowUpRight className="w-3 h-3 mr-0.5" /> Terlayani
             </span>
-            <span className="text-slate-500 dark:text-slate-400">penerima aktif</span>
+            <span className="text-slate-500 dark:text-slate-400">mustahik aktif</span>
           </div>
         </div>
 
